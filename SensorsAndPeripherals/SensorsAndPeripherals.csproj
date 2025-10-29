@@ -20,8 +20,10 @@
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
 		<ApplicationVersion>1</ApplicationVersion>
 
-		<CompileSdkVersion>36</CompileSdkVersion>
-		<TargetSdkVersion>36</TargetSdkVersion>
+		<!-- Android versions -->
+		<CompileSdkVersion>35</CompileSdkVersion>
+		<TargetSdkVersion>35</TargetSdkVersion>
+		<MinSdkVersion>29</MinSdkVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">29.0</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
