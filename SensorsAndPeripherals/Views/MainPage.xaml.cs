@@ -1,4 +1,4 @@
-﻿namespace SensorsAndPeripherals
+﻿namespace SensorsAndPeripherals.Views
 {
     public partial class MainPage : ContentPage
     {
