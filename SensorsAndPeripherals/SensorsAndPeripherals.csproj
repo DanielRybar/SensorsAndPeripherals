@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net9.0-android</TargetFrameworks>
+		<TargetFrameworks>net10.0-android</TargetFrameworks>
 		
 		<OutputType>Exe</OutputType>
 		<RootNamespace>SensorsAndPeripherals</RootNamespace>
@@ -21,8 +21,8 @@
 		<ApplicationVersion>1</ApplicationVersion>
 
 		<!-- Android versions -->
-		<CompileSdkVersion>35</CompileSdkVersion>
-		<TargetSdkVersion>35</TargetSdkVersion>
+		<CompileSdkVersion>36</CompileSdkVersion>
+		<TargetSdkVersion>36</TargetSdkVersion>
 		<MinSdkVersion>29</MinSdkVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">29.0</SupportedOSPlatformVersion>
 	</PropertyGroup>
@@ -46,8 +46,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.120" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.10" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="10.0.10" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
 	</ItemGroup>
 
 </Project>
