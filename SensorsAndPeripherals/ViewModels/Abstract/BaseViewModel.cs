@@ -14,18 +14,16 @@ namespace SensorsAndPeripherals.ViewModels.Abstract
             return true;
         }
 
-        private string title = string.Empty;
         public string Title
         {
-            get => title;
-            set => SetProperty(ref title, value);
-        }
+            get;
+            set => SetProperty(ref field, value);
+        } = string.Empty;
 
-        private bool isBusy = false;
         public bool IsBusy
         {
-            get => isBusy;
-            set => SetProperty(ref isBusy, value);
-        }
+            get;
+            set => SetProperty(ref field, value);
+        } = false;
     }
 }
