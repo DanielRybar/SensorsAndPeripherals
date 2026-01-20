@@ -9,7 +9,7 @@
     FlyoutBackgroundColor="{AppThemeBinding Light={StaticResource MenuBackgroundColorLight}, Dark={StaticResource MenuBackgroundColorDark}}">
 
     <Shell.Behaviors>
-        <toolkit:StatusBarBehavior StatusBarColor="{StaticResource MainApplicationColorDark}" StatusBarStyle="LightContent" />
+        <toolkit:StatusBarBehavior StatusBarColor="{StaticResource BarColor}" StatusBarStyle="LightContent" />
     </Shell.Behaviors>
 
     <Shell.FlyoutHeader>

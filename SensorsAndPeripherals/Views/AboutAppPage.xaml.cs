@@ -1,6 +1,8 @@
+using SensorsAndPeripherals.Views.Abstract;
+
 namespace SensorsAndPeripherals.Views;
 
-public partial class AboutAppPage : ContentPage
+public partial class AboutAppPage : ApplicationPage
 {
 	public AboutAppPage()
 	{
