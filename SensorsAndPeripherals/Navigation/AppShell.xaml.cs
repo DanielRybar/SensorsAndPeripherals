@@ -1,4 +1,4 @@
-﻿namespace SensorsAndPeripherals
+﻿namespace SensorsAndPeripherals.Navigation
 {
     public partial class AppShell : Shell
     {

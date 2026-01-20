@@ -1,4 +1,6 @@
-﻿namespace SensorsAndPeripherals
+﻿using SensorsAndPeripherals.Navigation;
+
+namespace SensorsAndPeripherals
 {
     public partial class App : Application
     {
