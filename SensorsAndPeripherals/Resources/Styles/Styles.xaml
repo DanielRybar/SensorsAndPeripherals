@@ -442,6 +442,28 @@
     </Style>
 
     <!-- custom styles -->
-    <!-- ... -->
+    <Style TargetType="Image" x:Key="ShellLogoStyle">
+        <Setter Property="HeightRequest" Value="100" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="Margin" Value="0,40,0,20" />
+    </Style>
+
+    <Style Class="FlyoutItemLabelStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="PoppinsRegular" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="CenteredLabel">
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+    </Style>
+
+    <Style TargetType="Label" BasedOn="{StaticResource CenteredLabel}" x:Key="ShellLabel">
+        <Setter Property="FontFamily" Value="PoppinsRegular" />
+    </Style>
+
+    <Style TargetType="StackLayout" x:Key="ShellStackLayout">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource MenuBackgroundColorLight}, Dark={StaticResource MenuBackgroundColorDark}}" />
+        <Setter Property="Padding" Value="0,0,0,20" />
+    </Style>
 
 </ResourceDictionary>

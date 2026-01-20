@@ -12,9 +12,18 @@
         <toolkit:StatusBarBehavior StatusBarColor="{StaticResource MainApplicationColorDark}" StatusBarStyle="LightContent" />
     </Shell.Behaviors>
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate views:MainPage}"
-        Route="MainPage" />
+    <Shell.FlyoutHeader>
+        <StackLayout Style="{StaticResource ShellStackLayout}">
+            <Image Source="logo_dark.png" Style="{StaticResource ShellLogoStyle}" />
+            <Label Text="Senzory a periferie" Style="{StaticResource ShellLabel}" FontFamily="PoppinsRegular" />
+        </StackLayout>
+    </Shell.FlyoutHeader>
 
+    <FlyoutItem Title="O aplikaci" Icon="{StaticResource InfoIcon}">
+        <ShellContent ContentTemplate="{DataTemplate views:AboutAppPage}" Route="AboutAppPage" />
+    </FlyoutItem>
+
+    <Shell.FlyoutFooter>
+        <Label Text="© Daniel Rybář, 2026" Style="{StaticResource ShellLabel}" Padding="0,0,0,10"/>
+    </Shell.FlyoutFooter>
 </Shell>
