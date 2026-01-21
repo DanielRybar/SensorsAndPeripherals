@@ -8,4 +8,6 @@ public partial class LightSensorPage : ApplicationPage
 	{
 		InitializeComponent();
 	}
+
+    protected override string InfoText => "";
 }

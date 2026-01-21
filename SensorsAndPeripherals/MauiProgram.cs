@@ -17,6 +17,7 @@ namespace SensorsAndPeripherals
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                     fonts.AddFont("Poppins-Regular.ttf", "PoppinsRegular");
                     fonts.AddFont("fa-solid-900.ttf", "FontAwesomeSolid");
+                    fonts.AddFont("fa-regular-400.ttf", "FontAwesomeRegular");
                 });
 
 #if DEBUG

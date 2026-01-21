@@ -8,4 +8,6 @@ public partial class AccelerometerPage : ApplicationPage
 	{
 		InitializeComponent();
 	}
+
+    protected override string InfoText => "";
 }

@@ -8,4 +8,6 @@ public partial class GyroscopePage : ApplicationPage
 	{
 		InitializeComponent();
 	}
+
+    protected override string InfoText => "";
 }

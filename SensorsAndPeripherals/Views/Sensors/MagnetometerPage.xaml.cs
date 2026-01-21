@@ -8,4 +8,6 @@ public partial class MagnetometerPage : ApplicationPage
 	{
 		InitializeComponent();
 	}
+
+    protected override string InfoText => "";
 }

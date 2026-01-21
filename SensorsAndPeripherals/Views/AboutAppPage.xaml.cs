@@ -4,8 +4,10 @@ namespace SensorsAndPeripherals.Views;
 
 public partial class AboutAppPage : ApplicationPage
 {
-	public AboutAppPage()
+	public AboutAppPage() : base(showInfoToolbarItem: false)
 	{
 		InitializeComponent();
 	}
+
+	protected override string InfoText => "";
 }
