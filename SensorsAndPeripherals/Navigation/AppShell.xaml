@@ -3,7 +3,9 @@
     x:Class="SensorsAndPeripherals.Navigation.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:SensorsAndPeripherals.Controls"
     xmlns:views="clr-namespace:SensorsAndPeripherals.Views"
+    xmlns:sensors="clr-namespace:SensorsAndPeripherals.Views.Sensors"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Shell.FlyoutBehavior="Flyout"
     FlyoutBackgroundColor="{AppThemeBinding Light={StaticResource MenuBackgroundColorLight}, Dark={StaticResource MenuBackgroundColorDark}}">
@@ -12,6 +14,7 @@
         <toolkit:StatusBarBehavior StatusBarColor="{StaticResource BarColor}" StatusBarStyle="LightContent" />
     </Shell.Behaviors>
 
+    <!-- Header -->
     <Shell.FlyoutHeader>
         <StackLayout Style="{StaticResource ShellStackLayout}">
             <Image Source="logo_dark.png" Style="{StaticResource ShellLogoStyle}" />
@@ -19,10 +22,39 @@
         </StackLayout>
     </Shell.FlyoutHeader>
 
+    <!-- Sensors -->
+    <controls:MenuSeparator Text="Pohybové senzory" />
+    
+    <FlyoutItem Title="Akcelerometr" Icon="{StaticResource GaugeIcon}">
+        <ShellContent ContentTemplate="{DataTemplate sensors:AccelerometerPage}" Route="AccelerometerPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Gyroskop" Icon="{StaticResource RotationIcon}">
+        <ShellContent ContentTemplate="{DataTemplate sensors:GyroscopePage}" Route="GyroscopePage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Magnetometr" Icon="{StaticResource CompassIcon}">
+        <ShellContent ContentTemplate="{DataTemplate sensors:MagnetometerPage}" Route="MagnetometerPage" />
+    </FlyoutItem>
+
+    <controls:MenuSeparator Text="Environmentální senzory" />
+
+    <FlyoutItem Title="Světelný senzor" Icon="{StaticResource LightIcon}">
+        <ShellContent ContentTemplate="{DataTemplate sensors:LightSensorPage}" Route="LightSensorPage" />
+    </FlyoutItem>
+
+
+    <!-- Peripherals -->
+    <!-- ... -->
+
+    <!-- Other items -->
+    <controls:MenuSeparator Text="Ostatní položky" />
+
     <FlyoutItem Title="O aplikaci" Icon="{StaticResource InfoIcon}">
         <ShellContent ContentTemplate="{DataTemplate views:AboutAppPage}" Route="AboutAppPage" />
     </FlyoutItem>
 
+    <!-- Footer -->
     <Shell.FlyoutFooter>
         <Label Text="© Daniel Rybář, 2026" Style="{StaticResource ShellLabel}" Padding="0,0,0,10"/>
     </Shell.FlyoutFooter>

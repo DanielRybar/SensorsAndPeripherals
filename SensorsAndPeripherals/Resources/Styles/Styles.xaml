@@ -461,4 +461,11 @@
         <Setter Property="Padding" Value="0,0,0,20" />
     </Style>
 
+    <Style TargetType="Label" x:Key="MenuSeparator">
+        <Setter Property="FontFamily" Value="PoppinsRegular" />
+        <Setter Property="TextTransform" Value="Uppercase" />
+        <Setter Property="Padding" Value="20,10,20,5" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray100}}" />
+    </Style>
+
 </ResourceDictionary>

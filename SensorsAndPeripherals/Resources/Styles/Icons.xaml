@@ -11,4 +11,32 @@
         Color="{StaticResource MainApplicationColor}"
         Glyph="&#xf05a;" />
 
+    <FontImageSource
+        x:Key="GaugeIcon"
+        FontFamily="FontAwesomeSolid"
+        Size="50"
+        Color="{StaticResource MainApplicationColor}"
+        Glyph="&#xf624;" />
+
+    <FontImageSource
+        x:Key="RotationIcon"
+        FontFamily="FontAwesomeSolid"
+        Size="50"
+        Color="{StaticResource MainApplicationColor}"
+        Glyph="&#xe4f6;" />
+
+    <FontImageSource
+        x:Key="CompassIcon"
+        FontFamily="FontAwesomeSolid"
+        Size="50"
+        Color="{StaticResource MainApplicationColor}"
+        Glyph="&#xf14e;" />
+
+    <FontImageSource
+        x:Key="LightIcon"
+        FontFamily="FontAwesomeSolid"
+        Size="50"
+        Color="{StaticResource MainApplicationColor}"
+        Glyph="&#xf0eb;" />
+
 </ResourceDictionary>
