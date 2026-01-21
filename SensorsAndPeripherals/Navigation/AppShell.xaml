@@ -25,11 +25,11 @@
     <!-- Sensors -->
     <controls:MenuSeparator Text="Pohybové senzory" />
     
-    <FlyoutItem Title="Akcelerometr" Icon="{StaticResource GaugeIcon}">
+    <FlyoutItem Title="Akcelerometr" Icon="{StaticResource AccelerometerIcon}">
         <ShellContent ContentTemplate="{DataTemplate sensors:AccelerometerPage}" Route="AccelerometerPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Gyroskop" Icon="{StaticResource RotationIcon}">
+    <FlyoutItem Title="Gyroskop" Icon="{StaticResource GyroscopeIcon}">
         <ShellContent ContentTemplate="{DataTemplate sensors:GyroscopePage}" Route="GyroscopePage" />
     </FlyoutItem>
 
@@ -37,12 +37,35 @@
         <ShellContent ContentTemplate="{DataTemplate sensors:MagnetometerPage}" Route="MagnetometerPage" />
     </FlyoutItem>
 
+    <FlyoutItem Title="Senzor rotace" Icon="{StaticResource RotationIcon}">
+        <ShellContent ContentTemplate="{DataTemplate sensors:RotationSensorPage}" Route="RotationSensorPage" />
+    </FlyoutItem>
+
     <controls:MenuSeparator Text="Environmentální senzory" />
 
     <FlyoutItem Title="Světelný senzor" Icon="{StaticResource LightIcon}">
         <ShellContent ContentTemplate="{DataTemplate sensors:LightSensorPage}" Route="LightSensorPage" />
     </FlyoutItem>
+    
+    <FlyoutItem Title="Barometr" Icon="{StaticResource BarometerIcon}">
+        <ShellContent ContentTemplate="{DataTemplate sensors:BarometerPage}" Route="BarometerPage" />
+    </FlyoutItem>
 
+    <controls:MenuSeparator Text="Polohové senzory" />
+
+    <FlyoutItem Title="GPS" Icon="{StaticResource GpsIcon}">
+        <ShellContent ContentTemplate="{DataTemplate sensors:GpsPage}" Route="GpsPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Senzor blízkosti" Icon="{StaticResource ProximityIcon}">
+        <ShellContent ContentTemplate="{DataTemplate sensors:ProximitySensorPage}" Route="ProximitySensorPage" />
+    </FlyoutItem>
+
+    <controls:MenuSeparator Text="Biometrické senzory" />
+
+    <FlyoutItem Title="Biometrické ověření" Icon="{StaticResource BiometricIcon}">
+        <ShellContent ContentTemplate="{DataTemplate sensors:BiometricPage}" Route="BiometricPage" />
+    </FlyoutItem>
 
     <!-- Peripherals -->
     <!-- ... -->
@@ -56,6 +79,6 @@
 
     <!-- Footer -->
     <Shell.FlyoutFooter>
-        <Label Text="© Daniel Rybář, 2026" Style="{StaticResource ShellLabel}" Padding="0,0,0,10"/>
+        <Label Text="© Daniel Rybář, 2026" Style="{StaticResource ShellLabel}" />
     </Shell.FlyoutFooter>
 </Shell>

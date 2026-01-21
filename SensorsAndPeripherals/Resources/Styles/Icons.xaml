@@ -12,14 +12,14 @@
         Glyph="&#xf05a;" />
 
     <FontImageSource
-        x:Key="GaugeIcon"
+        x:Key="AccelerometerIcon"
         FontFamily="FontAwesomeSolid"
         Size="50"
         Color="{StaticResource MainApplicationColor}"
-        Glyph="&#xf624;" />
+        Glyph="&#xf62a;" />
 
     <FontImageSource
-        x:Key="RotationIcon"
+        x:Key="GyroscopeIcon"
         FontFamily="FontAwesomeSolid"
         Size="50"
         Color="{StaticResource MainApplicationColor}"
@@ -33,11 +33,46 @@
         Glyph="&#xf14e;" />
 
     <FontImageSource
+        x:Key="RotationIcon"
+        FontFamily="FontAwesomeSolid"
+        Size="50"
+        Color="{StaticResource MainApplicationColor}"
+        Glyph="&#xe4bb;" />
+
+    <FontImageSource
         x:Key="LightIcon"
         FontFamily="FontAwesomeSolid"
         Size="50"
         Color="{StaticResource MainApplicationColor}"
         Glyph="&#xf0eb;" />
+
+    <FontImageSource
+        x:Key="BarometerIcon"
+        FontFamily="FontAwesomeSolid"
+        Size="50"
+        Color="{StaticResource MainApplicationColor}"
+        Glyph="&#xf624;" />
+
+    <FontImageSource
+        x:Key="GpsIcon"
+        FontFamily="FontAwesomeSolid"
+        Size="50"
+        Color="{StaticResource MainApplicationColor}"
+        Glyph="&#xf3c5;" />
+
+    <FontImageSource
+        x:Key="ProximityIcon"
+        FontFamily="FontAwesomeSolid"
+        Size="50"
+        Color="{StaticResource MainApplicationColor}"
+        Glyph="&#xf2a0;" />
+
+    <FontImageSource
+        x:Key="BiometricIcon"
+        FontFamily="FontAwesomeSolid"
+        Size="50"
+        Color="{StaticResource MainApplicationColor}"
+        Glyph="&#xf505;" />
 
     <FontImageSource
         x:Key="ToolbarHelpIcon"
