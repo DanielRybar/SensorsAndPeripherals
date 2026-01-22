@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SensorsAndPeripherals.Views.Sensors.GyroscopePage"
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"
-             Title="Gyroskop">
+             Title="{StaticResource GyroscopeTitle}">
     
     <VerticalStackLayout>
 

@@ -26,83 +26,83 @@
     <!-- Sensors -->
     <controls:MenuSeparator Text="Pohybové senzory" />
     
-    <FlyoutItem Title="Akcelerometr" Icon="{StaticResource AccelerometerIcon}">
+    <FlyoutItem Title="{StaticResource AccelerometerTitle}" Icon="{StaticResource AccelerometerIcon}">
         <ShellContent ContentTemplate="{DataTemplate sensors:AccelerometerPage}" Route="AccelerometerPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Gyroskop" Icon="{StaticResource GyroscopeIcon}">
+    <FlyoutItem Title="{StaticResource GyroscopeTitle}" Icon="{StaticResource GyroscopeIcon}">
         <ShellContent ContentTemplate="{DataTemplate sensors:GyroscopePage}" Route="GyroscopePage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Magnetometr" Icon="{StaticResource CompassIcon}">
+    <FlyoutItem Title="{StaticResource MagnetometerTitle}" Icon="{StaticResource CompassIcon}">
         <ShellContent ContentTemplate="{DataTemplate sensors:MagnetometerPage}" Route="MagnetometerPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Gravitační senzor" Icon="{StaticResource GravityIcon}">
+    <FlyoutItem Title="{StaticResource GravitySensorTitle}" Icon="{StaticResource GravityIcon}">
         <ShellContent ContentTemplate="{DataTemplate sensors:GravitySensorPage}" Route="GravitySensorPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Senzor rotace" Icon="{StaticResource RotationIcon}">
+    <FlyoutItem Title="{StaticResource RotationSensorTitle}" Icon="{StaticResource RotationIcon}">
         <ShellContent ContentTemplate="{DataTemplate sensors:RotationSensorPage}" Route="RotationSensorPage" />
     </FlyoutItem>
 
     <controls:MenuSeparator Text="Environmentální senzory" />
 
-    <FlyoutItem Title="Světelný senzor" Icon="{StaticResource LightIcon}">
+    <FlyoutItem Title="{StaticResource LightSensorTitle}" Icon="{StaticResource LightIcon}">
         <ShellContent ContentTemplate="{DataTemplate sensors:LightSensorPage}" Route="LightSensorPage" />
     </FlyoutItem>
     
-    <FlyoutItem Title="Barometr" Icon="{StaticResource BarometerIcon}">
+    <FlyoutItem Title="{StaticResource BarometerTitle}" Icon="{StaticResource BarometerIcon}">
         <ShellContent ContentTemplate="{DataTemplate sensors:BarometerPage}" Route="BarometerPage" />
     </FlyoutItem>
 
     <controls:MenuSeparator Text="Polohové senzory" />
 
-    <FlyoutItem Title="GPS" Icon="{StaticResource GpsIcon}">
+    <FlyoutItem Title="{StaticResource GpsTitle}" Icon="{StaticResource GpsIcon}">
         <ShellContent ContentTemplate="{DataTemplate sensors:GpsPage}" Route="GpsPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Senzor blízkosti" Icon="{StaticResource ProximityIcon}">
+    <FlyoutItem Title="{StaticResource ProximitySensorTitle}" Icon="{StaticResource ProximityIcon}">
         <ShellContent ContentTemplate="{DataTemplate sensors:ProximitySensorPage}" Route="ProximitySensorPage" />
     </FlyoutItem>
 
     <controls:MenuSeparator Text="Biometrické senzory" />
 
-    <FlyoutItem Title="Biometrické ověření" Icon="{StaticResource BiometricIcon}">
+    <FlyoutItem Title="{StaticResource BiometricTitle}" Icon="{StaticResource BiometricIcon}">
         <ShellContent ContentTemplate="{DataTemplate sensors:BiometricPage}" Route="BiometricPage" />
     </FlyoutItem>
 
     <!-- Peripherals -->
     <controls:MenuSeparator Text="Komunikační periferie" />
     
-    <FlyoutItem Title="NFC" Icon="{StaticResource NfcIcon}">
+    <FlyoutItem Title="{StaticResource NfcTitle}" Icon="{StaticResource NfcIcon}">
         <ShellContent ContentTemplate="{DataTemplate peripherals:NfcPage}" Route="NfcPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Bluetooth" Icon="{StaticResource BluetoothIcon}">
+    <FlyoutItem Title="{StaticResource BluetoothTitle}" Icon="{StaticResource BluetoothIcon}">
         <ShellContent ContentTemplate="{DataTemplate peripherals:BluetoothPage}" Route="BluetoothPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Wi-Fi a mobilní sítě" Icon="{StaticResource WifiIcon}">
+    <FlyoutItem Title="{StaticResource WifiTitle}" Icon="{StaticResource WifiIcon}">
         <ShellContent ContentTemplate="{DataTemplate peripherals:WifiPage}" Route="WifiPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Kamera" Icon="{StaticResource CameraIcon}">
+    <FlyoutItem Title="{StaticResource CameraTitle}" Icon="{StaticResource CameraIcon}">
         <ShellContent ContentTemplate="{DataTemplate peripherals:CameraPage}" Route="CameraPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Mikrofon a reproduktory" Icon="{StaticResource AcousticIcon}">
+    <FlyoutItem Title="{StaticResource AcousticTitle}" Icon="{StaticResource AcousticIcon}">
         <ShellContent ContentTemplate="{DataTemplate peripherals:AcousticPage}" Route="AcousticPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="Vibrace a haptika" Icon="{StaticResource VibrationIcon}">
+    <FlyoutItem Title="{StaticResource VibrationTitle}" Icon="{StaticResource VibrationIcon}">
         <ShellContent ContentTemplate="{DataTemplate peripherals:VibrationPage}" Route="VibrationPage" />
     </FlyoutItem>
 
     <!-- Other items -->
     <controls:MenuSeparator Text="Ostatní položky" />
 
-    <FlyoutItem Title="O aplikaci" Icon="{StaticResource InfoIcon}">
+    <FlyoutItem Title="{StaticResource AboutAppTitle}" Icon="{StaticResource InfoIcon}">
         <ShellContent ContentTemplate="{DataTemplate views:AboutAppPage}" Route="AboutAppPage" />
     </FlyoutItem>
 

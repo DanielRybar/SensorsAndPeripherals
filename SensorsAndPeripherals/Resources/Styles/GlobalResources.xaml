@@ -4,4 +4,23 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
+    <!-- Strings -->
+    <x:String x:Key="AccelerometerTitle">Akcelerometr</x:String>
+    <x:String x:Key="BarometerTitle">Barometr</x:String>
+    <x:String x:Key="BiometricTitle">Biometrické ověření</x:String>
+    <x:String x:Key="GpsTitle">GPS</x:String>
+    <x:String x:Key="GravitySensorTitle">Gravitační senzor</x:String>
+    <x:String x:Key="GyroscopeTitle">Gyroskop</x:String>
+    <x:String x:Key="LightSensorTitle">Světelný senzor</x:String>
+    <x:String x:Key="MagnetometerTitle">Magnetometr</x:String>
+    <x:String x:Key="ProximitySensorTitle">Senzor blízkosti</x:String>
+    <x:String x:Key="RotationSensorTitle">Senzor rotace</x:String>
+    <x:String x:Key="AcousticTitle">Mikrofon a reproduktory</x:String>
+    <x:String x:Key="BluetoothTitle">Bluetooth</x:String>
+    <x:String x:Key="CameraTitle">Kamera</x:String>
+    <x:String x:Key="NfcTitle">NFC</x:String>
+    <x:String x:Key="VibrationTitle">Vibrace a haptika</x:String>
+    <x:String x:Key="WifiTitle">Konektivita</x:String>
+    <x:String x:Key="AboutAppTitle">O aplikaci</x:String>
+
 </ResourceDictionary>
