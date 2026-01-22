@@ -25,5 +25,6 @@
     <x:String x:Key="AboutAppTitle">O aplikaci</x:String>
 
     <x:String x:Key="LoadingText">Načítání dat</x:String>
+    <x:String x:Key="EmptyViewText">Žádná data nejsou k dispozici.</x:String>
 
 </ResourceDictionary>
