@@ -5,6 +5,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <FontImageSource
+        x:Key="OverviewIcon"
+        FontFamily="FontAwesomeSolid"
+        Size="50"
+        Color="{StaticResource MainApplicationColor}"
+        Glyph="&#xf46d;" />
+    
+    <FontImageSource
         x:Key="InfoIcon"
         FontFamily="FontAwesomeSolid"
         Size="50"

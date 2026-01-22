@@ -102,6 +102,10 @@
     <!-- Other items -->
     <controls:MenuSeparator Text="Ostatní položky" />
 
+    <FlyoutItem Title="{StaticResource OverviewTitle}" Icon="{StaticResource OverviewIcon}">
+        <ShellContent ContentTemplate="{DataTemplate views:OverviewPage}" Route="OverviewPage" />
+    </FlyoutItem>
+    
     <FlyoutItem Title="{StaticResource AboutAppTitle}" Icon="{StaticResource InfoIcon}">
         <ShellContent ContentTemplate="{DataTemplate views:AboutAppPage}" Route="AboutAppPage" />
     </FlyoutItem>

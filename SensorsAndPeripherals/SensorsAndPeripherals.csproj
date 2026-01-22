@@ -60,6 +60,9 @@
 	  <MauiXaml Update="Views\AboutAppPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\OverviewPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Peripherals\AcousticPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
