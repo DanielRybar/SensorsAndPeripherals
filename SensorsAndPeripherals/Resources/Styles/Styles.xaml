@@ -468,4 +468,42 @@
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray100}}" />
     </Style>
 
+    <Style TargetType="CollectionView" x:Key="SensorOverview">
+        <Setter Property="SelectionMode" Value="None" />
+        <Setter Property="VerticalScrollBarVisibility" Value="Never" />
+        <Setter Property="HorizontalScrollBarVisibility" Value="Never" />
+    </Style>
+
+    <Style TargetType="Border" x:Key="SensorOverviewBorder">
+        <Setter Property="Stroke" Value="{StaticResource Gray300}" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 10" />
+        <Setter Property="StrokeThickness" Value="1" />
+        <Setter Property="Padding" Value="10" />
+        <Setter Property="Margin" Value="0,0,0,10" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="SensorOverviewTitle">
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="TextColor" Value="{StaticResource MainApplicationColor}" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="SensorOverviewStringType">
+        <Setter Property="FontAttributes" Value="Italic" />
+        <Setter Property="FontSize" Value="Header" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray200}}" />
+    </Style>
+
+    <Style TargetType="Button" x:Key="SensorOverviewButton">
+        <Setter Property="HorizontalOptions" Value="Fill" />
+        <Setter Property="BackgroundColor" Value="{StaticResource MainApplicationColor}" />
+        <Setter Property="TextColor" Value="{StaticResource White}" />
+    </Style>
+
+    <Style TargetType="Grid" x:Key="LoadingLayout">
+        <Setter Property="IsVisible" Value="False" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}" />
+    </Style>
+
+
 </ResourceDictionary>

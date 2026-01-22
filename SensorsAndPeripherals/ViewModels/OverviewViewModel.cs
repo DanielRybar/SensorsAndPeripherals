@@ -15,16 +15,20 @@ namespace SensorsAndPeripherals.ViewModels
         #region constructor
         public OverviewViewModel()
         {
-            GetSensorsCommand = new Command(() =>
+            GetSensorsCommand = new Command(async () =>
             {
-                IsBusy = true;
+                IsWorking = true;
+                await Task.Delay(500);
                 Sensors.Clear();
-                var sensors = sensorListService.GetAllSensors();
+                var sensors = sensorListService.GetAllSensors().OrderBy(x => x.Power);
                 foreach (var sensor in sensors)
                 {
-                    Sensors.Add(sensor);
+                    if (sensor?.Name is not null)
+                    {
+                        Sensors.Add(sensor);
+                    }
                 }
-                IsBusy = false;
+                IsWorking = false;
             });
         }
         #endregion

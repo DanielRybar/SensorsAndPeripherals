@@ -20,7 +20,7 @@ namespace SensorsAndPeripherals.ViewModels.Abstract
             set => SetProperty(ref field, value);
         } = string.Empty;
 
-        public bool IsBusy
+        public bool IsWorking
         {
             get;
             set => SetProperty(ref field, value);
