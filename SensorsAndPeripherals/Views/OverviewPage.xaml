@@ -8,10 +8,12 @@
 
     <Grid RowDefinitions="Auto, *" Padding="20" RowSpacing="10">
         <Button Text="Načíst senzory" Command="{Binding GetSensorsCommand}" Style="{StaticResource SensorOverviewButton}" />
- 
-        <CollectionView Grid.Row="1" ItemsSource="{Binding Sensors}" Style="{StaticResource SensorOverview}">
+
+        <CollectionView x:Name="MainCollectionView" Grid.Row="1" ItemsSource="{Binding Sensors}" Style="{StaticResource SensorOverview}">
             <CollectionView.EmptyView>
-                <Label Text="Žádná data nejsou k dispozici." HorizontalOptions="Center" VerticalOptions="Center" />
+                <Grid HeightRequest="{Binding Source={x:Reference MainCollectionView}, Path=Height}">
+                    <Label Text="Žádná data nejsou k dispozici." HorizontalOptions="Center" VerticalOptions="Center" />
+                </Grid>
             </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
