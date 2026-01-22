@@ -4,8 +4,23 @@
              x:Class="SensorsAndPeripherals.Views.OverviewPage"
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"
              Title="{StaticResource OverviewTitle}">
-    
-    <VerticalStackLayout>
 
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Padding="30">
+            <Button Text="Načíst senzory" Command="{Binding GetSensorsCommand}"/>
+
+            <CollectionView ItemsSource="{Binding Sensors}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Padding="10">
+                            <Label Text="{Binding Name}" FontAttributes="Bold" />
+                            <Label Text="{Binding Vendor}" TextColor="Gray" />
+                            <Label Text="{Binding StringType}" FontSize="Small" />
+                            <BoxView HeightRequest="1" Color="LightGray" />
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
 </abstract:ApplicationPage>

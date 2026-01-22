@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using SensorsAndPeripherals.Interfaces;
 
 namespace SensorsAndPeripherals
 {
@@ -23,6 +24,9 @@ namespace SensorsAndPeripherals
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+
+            // Services
+            DependencyService.Register<ISensorListService, Platforms.Android.Services.SensorListService>();
 
             return builder.Build();
         }
