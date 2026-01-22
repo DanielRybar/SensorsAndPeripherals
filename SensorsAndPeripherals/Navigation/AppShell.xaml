@@ -37,6 +37,10 @@
         <ShellContent ContentTemplate="{DataTemplate sensors:MagnetometerPage}" Route="MagnetometerPage" />
     </FlyoutItem>
 
+    <FlyoutItem Title="Gravitační senzor" Icon="{StaticResource GravityIcon}">
+        <ShellContent ContentTemplate="{DataTemplate sensors:GravitySensorPage}" Route="GravitySensorPage" />
+    </FlyoutItem>
+
     <FlyoutItem Title="Senzor rotace" Icon="{StaticResource RotationIcon}">
         <ShellContent ContentTemplate="{DataTemplate sensors:RotationSensorPage}" Route="RotationSensorPage" />
     </FlyoutItem>

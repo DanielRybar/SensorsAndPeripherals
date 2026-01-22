@@ -72,6 +72,9 @@
 	  <MauiXaml Update="Views\Sensors\GpsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Sensors\GravitySensorPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Sensors\GyroscopePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
