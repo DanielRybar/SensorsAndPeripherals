@@ -2,6 +2,6 @@
 {
     public static class LocalStorageKeys
     {
-        public const string DEFAULT_MODULE = "StudentsHelper.DefaultModule";
+        public const string DEFAULT_MODULE = "SensorsAndPeripherals.DefaultModule";
     }
 }
