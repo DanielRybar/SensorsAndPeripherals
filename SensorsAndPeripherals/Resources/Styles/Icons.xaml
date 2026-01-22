@@ -82,6 +82,48 @@
         Glyph="&#xf505;" />
 
     <FontImageSource
+        x:Key="NfcIcon"
+        FontFamily="FontAwesomeSolid"
+        Size="50"
+        Color="{StaticResource MainApplicationColor}"
+        Glyph="&#xf519;" />
+
+    <FontImageSource
+        x:Key="BluetoothIcon"
+        FontFamily="FontAwesomeSolid"
+        Size="50"
+        Color="{StaticResource MainApplicationColor}"
+        Glyph="&#xf3ce;" />
+
+    <FontImageSource
+        x:Key="WifiIcon"
+        FontFamily="FontAwesomeSolid"
+        Size="50"
+        Color="{StaticResource MainApplicationColor}"
+        Glyph="&#xf1eb;" />
+
+    <FontImageSource
+        x:Key="CameraIcon"
+        FontFamily="FontAwesomeSolid"
+        Size="50"
+        Color="{StaticResource MainApplicationColor}"
+        Glyph="&#xf030;" />
+
+    <FontImageSource
+        x:Key="AcousticIcon"
+        FontFamily="FontAwesomeSolid"
+        Size="50"
+        Color="{StaticResource MainApplicationColor}"
+        Glyph="&#xf028;" />
+
+    <FontImageSource
+        x:Key="VibrationIcon"
+        FontFamily="FontAwesomeSolid"
+        Size="50"
+        Color="{StaticResource MainApplicationColor}"
+        Glyph="&#xe816;" />
+
+    <FontImageSource
         x:Key="ToolbarHelpIcon"
         FontFamily="FontAwesomeRegular"
         Size="25"

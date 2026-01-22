@@ -6,6 +6,7 @@
     xmlns:controls="clr-namespace:SensorsAndPeripherals.Controls"
     xmlns:views="clr-namespace:SensorsAndPeripherals.Views"
     xmlns:sensors="clr-namespace:SensorsAndPeripherals.Views.Sensors"
+    xmlns:peripherals="clr-namespace:SensorsAndPeripherals.Views.Peripherals"
     xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     Shell.FlyoutBehavior="Flyout"
     FlyoutBackgroundColor="{AppThemeBinding Light={StaticResource MenuBackgroundColorLight}, Dark={StaticResource MenuBackgroundColorDark}}">
@@ -72,7 +73,31 @@
     </FlyoutItem>
 
     <!-- Peripherals -->
-    <!-- ... -->
+    <controls:MenuSeparator Text="Komunikační periferie" />
+    
+    <FlyoutItem Title="NFC" Icon="{StaticResource NfcIcon}">
+        <ShellContent ContentTemplate="{DataTemplate peripherals:NfcPage}" Route="NfcPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Bluetooth" Icon="{StaticResource BluetoothIcon}">
+        <ShellContent ContentTemplate="{DataTemplate peripherals:BluetoothPage}" Route="BluetoothPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Wi-Fi a mobilní sítě" Icon="{StaticResource WifiIcon}">
+        <ShellContent ContentTemplate="{DataTemplate peripherals:WifiPage}" Route="WifiPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Kamera" Icon="{StaticResource CameraIcon}">
+        <ShellContent ContentTemplate="{DataTemplate peripherals:CameraPage}" Route="CameraPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Mikrofon a reproduktory" Icon="{StaticResource AcousticIcon}">
+        <ShellContent ContentTemplate="{DataTemplate peripherals:AcousticPage}" Route="AcousticPage" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Vibrace a haptika" Icon="{StaticResource VibrationIcon}">
+        <ShellContent ContentTemplate="{DataTemplate peripherals:VibrationPage}" Route="VibrationPage" />
+    </FlyoutItem>
 
     <!-- Other items -->
     <controls:MenuSeparator Text="Ostatní položky" />
