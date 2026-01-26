@@ -15,7 +15,10 @@ public partial class AccelerometerPage : ApplicationPage
     protected override void OnDisappearing()
     {
         base.OnDisappearing();
-        viewModel.StopSensor();
+        if (viewModel.IsMonitoring)
+        {
+            viewModel.StopSensor();
+        }
     }
 
     protected override string InfoText => "";

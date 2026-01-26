@@ -24,22 +24,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         {
             IsSupported = accelerometerService.IsSupported;
             IsMonitoring = accelerometerService.IsMonitoring;
-            accelerometerService.ReadingChanged += OnReadingChanged;
-
-            ToggleCommand = new Command(() =>
-            {
-                if (IsMonitoring)
-                {
-                    accelerometerService.Stop();
-                    IsMonitoring = false;
-                }
-                else
-                {
-                    accelerometerService.Start(SensorSpeed.Game);
-                    IsMonitoring = true;
-                }
-            },
-            () => IsSupported);
+            ToggleCommand = new Command(ToggleSensor, () => IsSupported);
         }
         #endregion
 
@@ -89,13 +74,30 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         #endregion
 
         #region methods
-        public void StopSensor()
+        private void ToggleSensor()
         {
             if (IsMonitoring)
             {
-                accelerometerService.Stop();
-                IsMonitoring = false;
+                StopSensor();
             }
+            else
+            {
+                StartSensor();
+            }
+        }
+
+        private void StartSensor()
+        {
+            accelerometerService.ReadingChanged += OnReadingChanged;
+            accelerometerService.Start(SensorSpeed.Game);
+            IsMonitoring = true;
+        }
+
+        public void StopSensor()
+        {
+            accelerometerService.Stop();
+            accelerometerService.ReadingChanged -= OnReadingChanged;
+            IsMonitoring = false;
         }
         #endregion
 

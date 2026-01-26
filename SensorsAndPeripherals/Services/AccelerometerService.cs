@@ -5,18 +5,6 @@ namespace SensorsAndPeripherals.Services
     public class AccelerometerService : IAccelerometerService
     {
         public event EventHandler<AccelerometerChangedEventArgs>? ReadingChanged;
-
-        public AccelerometerService()
-        {
-            if (IsSupported)
-            {
-                Accelerometer.Default.ReadingChanged += (sender, args) =>
-                {
-                    ReadingChanged?.Invoke(this, args);
-                };
-            }
-        }
-
         public bool IsMonitoring => Accelerometer.Default.IsMonitoring;
         public bool IsSupported => Accelerometer.Default.IsSupported;
 
@@ -24,6 +12,7 @@ namespace SensorsAndPeripherals.Services
         {
             if (IsSupported && !IsMonitoring)
             {
+                Accelerometer.Default.ReadingChanged += OnReadingChanged;
                 Accelerometer.Default.Start(speed);
             }
         }
@@ -33,7 +22,13 @@ namespace SensorsAndPeripherals.Services
             if (IsSupported && IsMonitoring)
             {
                 Accelerometer.Default.Stop();
+                Accelerometer.Default.ReadingChanged -= OnReadingChanged;
             }
+        }
+
+        private void OnReadingChanged(object? sender, AccelerometerChangedEventArgs e)
+        {
+            ReadingChanged?.Invoke(this, e);
         }
     }
 }
