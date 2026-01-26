@@ -27,7 +27,7 @@
 
     <x:String x:Key="LoadingText">Načítání dat</x:String>
     <x:String x:Key="EmptyViewText">Žádná data nejsou k dispozici.</x:String>
-    <x:String x:Key="SensorNotSupported">Senzor není podporován.</x:String>
+    <x:String x:Key="SensorNotSupported">Senzor na tomto zařízení není podporován.</x:String>
     <x:String x:Key="ToggleOnText">Zapnout</x:String>
     <x:String x:Key="ToggleOffText">Vypnout</x:String>
 
