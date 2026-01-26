@@ -555,8 +555,8 @@
     </Style>
 
     <Style TargetType="Image" x:Key="CompassPointer">
-        <Setter Property="WidthRequest" Value="150" />
-        <Setter Property="HeightRequest" Value="150" />
+        <Setter Property="WidthRequest" Value="130" />
+        <Setter Property="HeightRequest" Value="130" />
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />
     </Style>
