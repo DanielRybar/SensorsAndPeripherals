@@ -3,9 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SensorsAndPeripherals.Views.Sensors.AccelerometerPage"
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"
+             xmlns:controls="clr-namespace:SensorsAndPeripherals.Controls"
              Title="{StaticResource AccelerometerTitle}">
-    
-    <VerticalStackLayout>
 
-    </VerticalStackLayout>
+    <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource SensorNotSupported}">
+        <Grid>
+            <BoxView WidthRequest="1" Style="{StaticResource SensorSimpleBoxView}" />
+            <BoxView HeightRequest="1" Style="{StaticResource SensorSimpleBoxView}" />
+            <Border Style="{StaticResource AccelerometerBorder}" />
+            <Ellipse Style="{StaticResource AccelerometerBall}" TranslationX="{Binding BallX}" TranslationY="{Binding BallY}">
+                <Ellipse.Shadow>
+                    <Shadow Brush="Black" Offset="5,5" Opacity="0.4"/>
+                </Ellipse.Shadow>
+            </Ellipse>
+            <VerticalStackLayout Style="{StaticResource AccelerometerVsl}">
+                <Label Text="{Binding DisplayX}" Style="{StaticResource CenteredLabel}" />
+                <Label Text="{Binding DisplayY}" Style="{StaticResource CenteredLabel}"/>
+                <Label Text="{Binding DisplayZ}" Style="{StaticResource CenteredLabel}" />
+                <Button Text="{Binding IsMonitoring, Converter={StaticResource BoolToButtonTextConverter}}" Command="{Binding ToggleCommand}" Style="{StaticResource HorizontalFilledButton}" />
+            </VerticalStackLayout>
+        </Grid>
+    </controls:DataGuard>
 </abstract:ApplicationPage>

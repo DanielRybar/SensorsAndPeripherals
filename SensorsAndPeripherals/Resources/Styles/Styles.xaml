@@ -494,7 +494,7 @@
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray200}}" />
     </Style>
 
-    <Style TargetType="Button" x:Key="SensorOverviewButton">
+    <Style TargetType="Button" x:Key="HorizontalFilledButton">
         <Setter Property="HorizontalOptions" Value="Fill" />
         <Setter Property="BackgroundColor" Value="{StaticResource MainApplicationColor}" />
         <Setter Property="TextColor" Value="{StaticResource White}" />
@@ -503,6 +503,36 @@
     <Style TargetType="Grid" x:Key="LoadingLayout">
         <Setter Property="IsVisible" Value="False" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}" />
+    </Style>
+
+    <Style TargetType="BoxView" x:Key="SensorSimpleBoxView">
+        <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray200}}" />
+        <Setter Property="Opacity" Value="0.3" />
+    </Style>
+
+    <Style TargetType="Border" x:Key="AccelerometerBorder">
+        <Setter Property="HeightRequest" Value="300" />
+        <Setter Property="WidthRequest" Value="300" />
+        <Setter Property="StrokeThickness" Value="2" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray200}}" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 150" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
+    <Style TargetType="Ellipse" x:Key="AccelerometerBall">
+        <Setter Property="WidthRequest" Value="50" />
+        <Setter Property="HeightRequest" Value="50" />
+        <Setter Property="Fill" Value="{StaticResource MainApplicationColor}" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
+    <Style TargetType="VerticalStackLayout" x:Key="AccelerometerVsl">
+        <Setter Property="VerticalOptions" Value="End" />
+        <Setter Property="Padding" Value="20" />
+        <Setter Property="Spacing" Value="10" />
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource WhiteWithAlpha}, Dark={StaticResource OffBlackWithAlpha}}" />
     </Style>
 
 

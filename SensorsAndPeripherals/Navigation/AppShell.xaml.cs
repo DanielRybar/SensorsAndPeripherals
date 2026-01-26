@@ -28,7 +28,7 @@ namespace SensorsAndPeripherals.Navigation
 
             var savedModule = Preferences.Get(LocalStorageKeys.DEFAULT_MODULE, string.Empty);
             var targetItem = Items.FirstOrDefault(x => x.Route == savedModule);
-            if (targetItem is not null && CurrentItem?.Route != targetItem?.Route)
+            if (targetItem is not null)
             {
                 await GoToAsync($"//{savedModule}");
             }

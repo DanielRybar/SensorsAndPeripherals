@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using SensorsAndPeripherals.Interfaces;
+using SensorsAndPeripherals.Services;
 
 namespace SensorsAndPeripherals
 {
@@ -22,10 +23,11 @@ namespace SensorsAndPeripherals
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             // Services
+            DependencyService.Register<IAccelerometerService, AccelerometerService>();
             DependencyService.Register<ISensorListService, Platforms.Android.Services.SensorListService>();
 
             return builder.Build();
