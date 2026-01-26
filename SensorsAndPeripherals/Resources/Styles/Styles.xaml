@@ -535,5 +535,8 @@
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource WhiteWithAlpha}, Dark={StaticResource OffBlackWithAlpha}}" />
     </Style>
 
-
+    <Style TargetType="Label" BasedOn="{StaticResource CenteredLabel}" x:Key="AccelerometerDataLabel">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
 </ResourceDictionary>

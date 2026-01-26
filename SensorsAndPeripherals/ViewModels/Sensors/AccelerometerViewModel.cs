@@ -23,11 +23,8 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         public AccelerometerViewModel()
         {
             IsSupported = accelerometerService.IsSupported;
-            if (IsSupported)
-            {
-                accelerometerService.ReadingChanged += OnReadingChanged;
-            }
             IsMonitoring = accelerometerService.IsMonitoring;
+            accelerometerService.ReadingChanged += OnReadingChanged;
 
             ToggleCommand = new Command(() =>
             {

@@ -17,9 +17,9 @@
                 </Ellipse.Shadow>
             </Ellipse>
             <VerticalStackLayout Style="{StaticResource AccelerometerVsl}">
-                <Label Text="{Binding DisplayX}" Style="{StaticResource CenteredLabel}" />
-                <Label Text="{Binding DisplayY}" Style="{StaticResource CenteredLabel}"/>
-                <Label Text="{Binding DisplayZ}" Style="{StaticResource CenteredLabel}" />
+                <Label Text="{Binding DisplayX}" Style="{StaticResource AccelerometerDataLabel}" />
+                <Label Text="{Binding DisplayY}" Style="{StaticResource AccelerometerDataLabel}"/>
+                <Label Text="{Binding DisplayZ}" Style="{StaticResource AccelerometerDataLabel}" />
                 <Button Text="{Binding IsMonitoring, Converter={StaticResource BoolToButtonTextConverter}}" Command="{Binding ToggleCommand}" Style="{StaticResource HorizontalFilledButton}" />
             </VerticalStackLayout>
         </Grid>
