@@ -3,9 +3,28 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SensorsAndPeripherals.Views.Sensors.MagnetometerPage"
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"
+             xmlns:controls="clr-namespace:SensorsAndPeripherals.Controls"
              Title="{StaticResource MagnetometerTitle}">
     
-    <VerticalStackLayout>
-
-    </VerticalStackLayout>
+    <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource SensorNotSupported}">
+        <Grid RowDefinitions="Auto, *, Auto" Padding="0,10,0,10">
+            <Label Text="{Binding DisplayText}" HorizontalOptions="Center" FontSize="24" FontAttributes="Bold"/>
+            <Grid Grid.Row="1" WidthRequest="350" HeightRequest="350" HorizontalOptions="Center" VerticalOptions="Center">
+                <Ellipse Style="{StaticResource MagnetometerCircle}" />
+                <Label Text="S" TextColor="{StaticResource LightRed}" HorizontalOptions="Center" VerticalOptions="Start" Margin="0,-5,0,0" Style="{StaticResource MagnetometerCircleLabel}" />
+                <Label Text="J" HorizontalOptions="Center" VerticalOptions="End" Margin="0,0,0,-5" Style="{StaticResource MagnetometerCircleLabel}" />
+                <Label Text="Z" HorizontalOptions="Start" VerticalOptions="Center" Margin="10,0,0,0" Style="{StaticResource MagnetometerCircleLabel}" />
+                <Label Text="V" HorizontalOptions="End" VerticalOptions="Center" Margin="0,0,10,0" Style="{StaticResource MagnetometerCircleLabel}" />
+                <BoxView WidthRequest="1" VerticalOptions="Fill" HorizontalOptions="Center" Margin="0,30" Style="{StaticResource SensorSimpleBoxView}" />
+                <BoxView HeightRequest="1" HorizontalOptions="Fill" VerticalOptions="Center" Margin="30,0" Style="{StaticResource SensorSimpleBoxView}" />
+                <Image Style="{StaticResource CompassPointer}" Source="pointer.png" Rotation="{Binding Heading}" />
+            </Grid>
+            <VerticalStackLayout Grid.Row="2" Style="{StaticResource SensorStatusVsl}">
+                <Label Text="{Binding DisplayX}" Style="{StaticResource SensorDataLabel}" />
+                <Label Text="{Binding DisplayY}" Style="{StaticResource SensorDataLabel}"/>
+                <Label Text="{Binding DisplayZ}" Style="{StaticResource SensorDataLabel}" />
+                <Button Text="{Binding IsMonitoring, Converter={StaticResource BoolToButtonTextConverter}}" Command="{Binding ToggleCommand}" Style="{StaticResource HorizontalFilledButton}" />
+            </VerticalStackLayout>
+        </Grid>
+    </controls:DataGuard>
 </abstract:ApplicationPage>

@@ -528,15 +528,36 @@
         <Setter Property="VerticalOptions" Value="Center" />
     </Style>
 
-    <Style TargetType="VerticalStackLayout" x:Key="AccelerometerVsl">
+    <Style TargetType="VerticalStackLayout" x:Key="SensorStatusVsl">
         <Setter Property="VerticalOptions" Value="End" />
         <Setter Property="Padding" Value="20" />
         <Setter Property="Spacing" Value="10" />
         <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource WhiteWithAlpha}, Dark={StaticResource OffBlackWithAlpha}}" />
     </Style>
 
-    <Style TargetType="Label" BasedOn="{StaticResource CenteredLabel}" x:Key="AccelerometerDataLabel">
+    <Style TargetType="Label" BasedOn="{StaticResource CenteredLabel}" x:Key="SensorDataLabel">
         <Setter Property="FontSize" Value="16" />
         <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
+    <Style TargetType="Ellipse" x:Key="MagnetometerCircle">
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray200}}" />
+        <Setter Property="StrokeThickness" Value="2" />
+        <Setter Property="WidthRequest" Value="250" />
+        <Setter Property="HeightRequest" Value="250" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="MagnetometerCircleLabel" BasedOn="{StaticResource CenteredLabel}">
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="25" />
+    </Style>
+
+    <Style TargetType="Image" x:Key="CompassPointer">
+        <Setter Property="WidthRequest" Value="150" />
+        <Setter Property="HeightRequest" Value="150" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
     </Style>
 </ResourceDictionary>

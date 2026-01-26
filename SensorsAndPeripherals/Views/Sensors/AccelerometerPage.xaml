@@ -16,10 +16,10 @@
                     <Shadow Brush="Black" Offset="5,5" Opacity="0.4"/>
                 </Ellipse.Shadow>
             </Ellipse>
-            <VerticalStackLayout Style="{StaticResource AccelerometerVsl}">
-                <Label Text="{Binding DisplayX}" Style="{StaticResource AccelerometerDataLabel}" />
-                <Label Text="{Binding DisplayY}" Style="{StaticResource AccelerometerDataLabel}"/>
-                <Label Text="{Binding DisplayZ}" Style="{StaticResource AccelerometerDataLabel}" />
+            <VerticalStackLayout Style="{StaticResource SensorStatusVsl}">
+                <Label Text="{Binding DisplayX}" Style="{StaticResource SensorDataLabel}" />
+                <Label Text="{Binding DisplayY}" Style="{StaticResource SensorDataLabel}"/>
+                <Label Text="{Binding DisplayZ}" Style="{StaticResource SensorDataLabel}" />
                 <Button Text="{Binding IsMonitoring, Converter={StaticResource BoolToButtonTextConverter}}" Command="{Binding ToggleCommand}" Style="{StaticResource HorizontalFilledButton}" />
             </VerticalStackLayout>
         </Grid>

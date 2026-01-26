@@ -35,40 +35,46 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         #region event handlers
         private void OnReadingChanged(object? sender, AccelerometerChangedEventArgs e)
         {
+            // low-pass filter for X and Y
+            double currentRawX = e.Reading.Acceleration.X;
+            double currentRawY = e.Reading.Acceleration.Y;
+            double smoothedX = (currentRawX * smoothFactor) + (lastX * (1 - smoothFactor));
+            double smoothedY = (currentRawY * smoothFactor) + (lastY * (1 - smoothFactor));
+            lastX = smoothedX;
+            lastY = smoothedY;
+
+            // normalize from n * ag to m/s²
+            double x = smoothedX * SensorConstants.GRAVITIONAL_ACCELERATION;
+            double y = smoothedY * SensorConstants.GRAVITIONAL_ACCELERATION;
+            double z = e.Reading.Acceleration.Z * SensorConstants.GRAVITIONAL_ACCELERATION;
+            string displayX = $"X: {x:F2} m/s²";
+            string displayY = $"Y: {y:F2} m/s²";
+            string displayZ = $"Z: {z:F2} m/s²";
+
+            // for better visualization
+            double rawX = x * multiplier;
+            double rawY = y * multiplier;
+            double ballX, ballY;
+            double distance = Math.Sqrt((rawX * rawX) + (rawY * rawY));
+            if (distance <= maxRadius)
+            {
+                ballX = rawX;
+                ballY = rawY;
+            }
+            else
+            {
+                double ratio = maxRadius / distance;
+                ballX = rawX * ratio;
+                ballY = rawY * ratio;
+            }
+
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                // low-pass filter for X and Y
-                double currentRawX = e.Reading.Acceleration.X;
-                double currentRawY = e.Reading.Acceleration.Y;
-                double smoothedX = (currentRawX * smoothFactor) + (lastX * (1 - smoothFactor));
-                double smoothedY = (currentRawY * smoothFactor) + (lastY * (1 - smoothFactor));
-                lastX = smoothedX;
-                lastY = smoothedY;
-
-                // normalize from n * ag to m/s^2
-                var x = smoothedX * SensorConstants.GRAVITIONAL_ACCELERATION;
-                var y = smoothedY * SensorConstants.GRAVITIONAL_ACCELERATION;
-                var z = e.Reading.Acceleration.Z * SensorConstants.GRAVITIONAL_ACCELERATION;
-
-                DisplayX = $"X: {x:F2} m/s²";
-                DisplayY = $"Y: {y:F2} m/s²";
-                DisplayZ = $"Z: {z:F2} m/s²";
-
-                // for better visualization
-                double rawX = x * multiplier;
-                double rawY = y * multiplier;
-                double distance = Math.Sqrt((rawX * rawX) + (rawY * rawY));
-                if (distance <= maxRadius)
-                {
-                    BallX = rawX;
-                    BallY = rawY;
-                }
-                else
-                {
-                    double ratio = maxRadius / distance;
-                    BallX = rawX * ratio;
-                    BallY = rawY * ratio;
-                }
+                DisplayX = displayX;
+                DisplayY = displayY;
+                DisplayZ = displayZ;
+                BallX = ballX;
+                BallY = ballY;
             });
         }
         #endregion

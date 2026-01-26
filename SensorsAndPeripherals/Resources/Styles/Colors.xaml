@@ -14,6 +14,7 @@
     <Color x:Key="MenuBackgroundColorLight">#EEE</Color>
     <Color x:Key="BarColor">#005073</Color>
     <Color x:Key="Transparent">Transparent</Color>
+    <Color x:Key="LightRed">#FF4500</Color>
 
     <Color x:Key="Primary">#107DAC</Color>
     <Color x:Key="PrimaryDark">#ac99ea</Color>

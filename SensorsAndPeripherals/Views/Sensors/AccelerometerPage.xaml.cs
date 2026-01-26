@@ -6,6 +6,7 @@ namespace SensorsAndPeripherals.Views.Sensors;
 public partial class AccelerometerPage : ApplicationPage
 {
 	private readonly AccelerometerViewModel viewModel;
+
 	public AccelerometerPage()
 	{
 		InitializeComponent();
