@@ -1,11 +1,8 @@
-﻿namespace SensorsAndPeripherals.Interfaces
+﻿using SensorsAndPeripherals.Interfaces.Generic;
+
+namespace SensorsAndPeripherals.Interfaces
 {
-    public interface IAccelerometerService
+    public interface IAccelerometerService : ISensorService<AccelerometerChangedEventArgs>
     {
-        public event EventHandler<AccelerometerChangedEventArgs> ReadingChanged;
-        public bool IsMonitoring { get; }
-        public bool IsSupported { get; }
-        public void Start(SensorSpeed speed);
-        public void Stop();
     }
 }

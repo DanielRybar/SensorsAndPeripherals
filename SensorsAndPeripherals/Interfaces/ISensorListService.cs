@@ -4,6 +4,6 @@ namespace SensorsAndPeripherals.Interfaces
 {
     public interface ISensorListService
     {
-        public List<SensorInfo> GetAllSensors();
+        List<SensorInfo> GetAllSensors();
     }
 }
