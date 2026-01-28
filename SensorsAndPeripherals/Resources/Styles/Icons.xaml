@@ -40,13 +40,6 @@
         Glyph="&#xf14e;" />
 
     <FontImageSource
-        x:Key="GravityIcon"
-        FontFamily="FontAwesomeSolid"
-        Size="50"
-        Color="{StaticResource MainApplicationColor}"
-        Glyph="&#xf4fb;" />
-
-    <FontImageSource
         x:Key="RotationIcon"
         FontFamily="FontAwesomeSolid"
         Size="50"

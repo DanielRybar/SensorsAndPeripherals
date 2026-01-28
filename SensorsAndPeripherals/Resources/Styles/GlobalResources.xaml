@@ -10,7 +10,6 @@
     <x:String x:Key="BarometerTitle">Barometr</x:String>
     <x:String x:Key="BiometricTitle">Biometrické ověření</x:String>
     <x:String x:Key="GpsTitle">GPS</x:String>
-    <x:String x:Key="GravitySensorTitle">Gravitační senzor</x:String>
     <x:String x:Key="GyroscopeTitle">Gyroskop</x:String>
     <x:String x:Key="LightSensorTitle">Světelný senzor</x:String>
     <x:String x:Key="MagnetometerTitle">Magnetometr</x:String>
