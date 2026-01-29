@@ -540,6 +540,56 @@
         <Setter Property="FontAttributes" Value="Bold" />
     </Style>
 
+    <Style TargetType="Grid" x:Key="GyroscopeGaugeContainer">
+        <Setter Property="WidthRequest" Value="160" />
+        <Setter Property="HeightRequest" Value="160" />
+    </Style>
+
+    <Style TargetType="Ellipse" x:Key="GyroscopeGaugeCircle">
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource White}}" />
+        <Setter Property="StrokeThickness" Value="4" />
+        <Setter Property="WidthRequest" Value="160" />
+        <Setter Property="HeightRequest" Value="160" />
+    </Style>
+
+    <Style TargetType="Ellipse" x:Key="GyroscopeCenterCap">
+        <Setter Property="Fill" Value="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource White}}" />
+        <Setter Property="WidthRequest" Value="16" />
+        <Setter Property="HeightRequest" Value="16" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
+    <Style TargetType="BoxView" x:Key="ZeroMarker">
+        <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Gray500}}" />
+        <Setter Property="WidthRequest" Value="4" />
+        <Setter Property="HeightRequest" Value="15" />
+        <Setter Property="VerticalOptions" Value="Start" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="Margin" Value="0,2,0,0" />
+    </Style>
+
+    <Style TargetType="BoxView" x:Key="BaseNeedle">
+        <Setter Property="WidthRequest" Value="6"/>
+        <Setter Property="HeightRequest" Value="75"/>
+        <Setter Property="CornerRadius" Value="3"/>
+        <Setter Property="VerticalOptions" Value="Start"/>
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="TranslationY" Value="5" />
+        <Setter Property="AnchorY" Value="1" />
+    </Style>
+
+    <Style TargetType="VerticalStackLayout" x:Key="GyroscopeVsl">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="Spacing" Value="5" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="GyroscopeResultLabel">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
     <Style TargetType="Ellipse" x:Key="MagnetometerCircle">
         <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray200}}" />
         <Setter Property="StrokeThickness" Value="2" />
