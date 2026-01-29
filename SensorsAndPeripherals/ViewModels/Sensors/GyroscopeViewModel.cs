@@ -105,19 +105,19 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         {
             get;
             set => SetProperty(ref field, value);
-        } = "0,00°/s";
+        } = $"{0:F2}°/s";
 
         public string DisplayY
         {
             get;
             set => SetProperty(ref field, value);
-        } = "0,00°/s";
+        } = $"{0:F2}°/s";
 
         public string DisplayZ
         {
             get;
             set => SetProperty(ref field, value);
-        } = "0,00°/s";
+        } = $"{0:F2}°/s";
 
         public double RotationX
         {

@@ -136,19 +136,19 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         {
             get;
             set => SetProperty(ref field, value);
-        } = "X: 0,00 m/s²";
+        } = $"X: {0:F2} m/s²";
 
         public string DisplayY
         {
             get;
             set => SetProperty(ref field, value);
-        } = "Y: 0,00 m/s²";
+        } = $"Y: {0:F2} m/s²";
 
         public string DisplayZ
         {
             get;
             set => SetProperty(ref field, value);
-        } = "Z: 0,00 m/s²";
+        } = $"Z: {0:F2} m/s²";
         #endregion
     }
 }

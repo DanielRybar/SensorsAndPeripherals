@@ -98,19 +98,19 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         {
             get;
             set => SetProperty(ref field, value);
-        } = "X: 0,00 µT";
+        } = $"X: {0:F2} µT";
 
         public string DisplayY
         {
             get;
             set => SetProperty(ref field, value);
-        } = "Y: 0,00 µT";
+        } = $"Y: {0:F2} µT";
 
         public string DisplayZ
         {
             get;
             set => SetProperty(ref field, value);
-        } = "Z: 0,00 µT";
+        } = $"Z: {0:F2} µT";
 
         public double Heading
         {
