@@ -546,31 +546,31 @@
     </Style>
 
     <Style TargetType="Ellipse" x:Key="GyroscopeGaugeCircle">
-        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource White}}" />
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray500}}" />
         <Setter Property="StrokeThickness" Value="4" />
         <Setter Property="WidthRequest" Value="160" />
         <Setter Property="HeightRequest" Value="160" />
     </Style>
 
     <Style TargetType="Ellipse" x:Key="GyroscopeCenterCap">
-        <Setter Property="Fill" Value="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource White}}" />
-        <Setter Property="WidthRequest" Value="16" />
-        <Setter Property="HeightRequest" Value="16" />
+        <Setter Property="Fill" Value="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray500}}" />
+        <Setter Property="WidthRequest" Value="12" />
+        <Setter Property="HeightRequest" Value="12" />
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />
     </Style>
 
     <Style TargetType="BoxView" x:Key="ZeroMarker">
-        <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Gray400}, Dark={StaticResource Gray500}}" />
+        <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray500}}" />
         <Setter Property="WidthRequest" Value="4" />
-        <Setter Property="HeightRequest" Value="15" />
+        <Setter Property="HeightRequest" Value="10" />
         <Setter Property="VerticalOptions" Value="Start" />
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="Margin" Value="0,2,0,0" />
     </Style>
 
     <Style TargetType="BoxView" x:Key="BaseNeedle">
-        <Setter Property="WidthRequest" Value="6"/>
+        <Setter Property="WidthRequest" Value="4"/>
         <Setter Property="HeightRequest" Value="75"/>
         <Setter Property="CornerRadius" Value="3"/>
         <Setter Property="VerticalOptions" Value="Start"/>
