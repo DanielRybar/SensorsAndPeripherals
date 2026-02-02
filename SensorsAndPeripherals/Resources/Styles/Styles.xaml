@@ -650,7 +650,7 @@
     </Style>
 
     <Style TargetType="Grid" x:Key="ScaleLiquidContainerGrid">
-        <Setter Property="HeightRequest" Value="{StaticResource ScaleLiquidContainerGridHeightRequest}" />
+        <Setter Property="HeightRequest" Value="{DynamicResource ScaleLiquidContainerGridHeightRequest}" />
         <Setter Property="VerticalOptions" Value="Fill" />
     </Style>
 
