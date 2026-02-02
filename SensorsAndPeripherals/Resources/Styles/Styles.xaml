@@ -540,19 +540,19 @@
         <Setter Property="FontAttributes" Value="Bold" />
     </Style>
 
-    <Style TargetType="Grid" x:Key="GyroscopeGaugeContainer">
+    <Style TargetType="Grid" x:Key="GaugeContainer">
         <Setter Property="WidthRequest" Value="160" />
         <Setter Property="HeightRequest" Value="160" />
     </Style>
 
-    <Style TargetType="Ellipse" x:Key="GyroscopeGaugeCircle">
+    <Style TargetType="Ellipse" x:Key="GaugeCircle">
         <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray500}}" />
         <Setter Property="StrokeThickness" Value="4" />
         <Setter Property="WidthRequest" Value="160" />
         <Setter Property="HeightRequest" Value="160" />
     </Style>
 
-    <Style TargetType="Ellipse" x:Key="GyroscopeCenterCap">
+    <Style TargetType="Ellipse" x:Key="CenterCap">
         <Setter Property="Fill" Value="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray500}}" />
         <Setter Property="WidthRequest" Value="12" />
         <Setter Property="HeightRequest" Value="12" />
@@ -579,12 +579,12 @@
         <Setter Property="AnchorY" Value="1" />
     </Style>
 
-    <Style TargetType="VerticalStackLayout" x:Key="GyroscopeVsl">
+    <Style TargetType="VerticalStackLayout" x:Key="GaugeVsl">
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="Spacing" Value="5" />
     </Style>
 
-    <Style TargetType="Label" x:Key="GyroscopeResultLabel">
+    <Style TargetType="Label" x:Key="GaugeResultLabel">
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="FontSize" Value="18" />
         <Setter Property="FontAttributes" Value="Bold" />

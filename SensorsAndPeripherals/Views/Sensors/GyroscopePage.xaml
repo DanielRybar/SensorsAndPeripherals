@@ -9,33 +9,33 @@
     <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource SensorNotSupported}">
         <Grid RowDefinitions="*, Auto" Padding="0,10,0,10">
             <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*,*" VerticalOptions="Center" Padding="10" RowSpacing="30" ColumnSpacing="20">
-                <VerticalStackLayout Style="{StaticResource GyroscopeVsl}">
-                    <Label Text="X" TextColor="{StaticResource LightRed}" Style="{StaticResource GyroscopeResultLabel}" />
-                    <Grid Style="{StaticResource GyroscopeGaugeContainer}">
-                        <Ellipse Style="{StaticResource GyroscopeGaugeCircle}" />
+                <VerticalStackLayout Style="{StaticResource GaugeVsl}">
+                    <Label Text="X" TextColor="{StaticResource LightRed}" Style="{StaticResource GaugeResultLabel}" />
+                    <Grid Style="{StaticResource GaugeContainer}">
+                        <Ellipse Style="{StaticResource GaugeCircle}" />
                         <BoxView Style="{StaticResource ZeroMarker}"/>
                         <BoxView Style="{StaticResource BaseNeedle}" Color="{StaticResource LightRed}" Rotation="{Binding RotationX}" />
-                        <Ellipse Style="{StaticResource GyroscopeCenterCap}" />
+                        <Ellipse Style="{StaticResource CenterCap}" />
                     </Grid>
                     <Label Text="{Binding DisplayX}" Style="{StaticResource SensorDataLabel}" />
                 </VerticalStackLayout>
-                <VerticalStackLayout Grid.Column="1" Style="{StaticResource GyroscopeVsl}">
-                    <Label Text="Y" TextColor="{StaticResource LightGreen}" Style="{StaticResource GyroscopeResultLabel}" />
-                    <Grid Style="{StaticResource GyroscopeGaugeContainer}">
-                        <Ellipse Style="{StaticResource GyroscopeGaugeCircle}" />
+                <VerticalStackLayout Grid.Column="1" Style="{StaticResource GaugeVsl}">
+                    <Label Text="Y" TextColor="{StaticResource LightGreen}" Style="{StaticResource GaugeResultLabel}" />
+                    <Grid Style="{StaticResource GaugeContainer}">
+                        <Ellipse Style="{StaticResource GaugeCircle}" />
                         <BoxView Style="{StaticResource ZeroMarker}"/>
                         <BoxView Style="{StaticResource BaseNeedle}" Color="{StaticResource LightGreen}" Rotation="{Binding RotationY}" />
-                        <Ellipse Style="{StaticResource GyroscopeCenterCap}" />
+                        <Ellipse Style="{StaticResource CenterCap}" />
                     </Grid>
                     <Label Text="{Binding DisplayY}" Style="{StaticResource SensorDataLabel}" />
                 </VerticalStackLayout>
-                <VerticalStackLayout Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource GyroscopeVsl}">
-                    <Label Text="Z" TextColor="{StaticResource MainApplicationColor}" Style="{StaticResource GyroscopeResultLabel}" />
-                    <Grid Style="{StaticResource GyroscopeGaugeContainer}">
-                        <Ellipse Style="{StaticResource GyroscopeGaugeCircle}" />
+                <VerticalStackLayout Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource GaugeVsl}">
+                    <Label Text="Z" TextColor="{StaticResource MainApplicationColor}" Style="{StaticResource GaugeResultLabel}" />
+                    <Grid Style="{StaticResource GaugeContainer}">
+                        <Ellipse Style="{StaticResource GaugeCircle}" />
                         <BoxView Style="{StaticResource ZeroMarker}" />
                         <BoxView Style="{StaticResource BaseNeedle}" Color="{StaticResource MainApplicationColor}" Rotation="{Binding RotationZ}" />
-                        <Ellipse Style="{StaticResource GyroscopeCenterCap}" />
+                        <Ellipse Style="{StaticResource CenterCap}" />
                     </Grid>
                     <Label Text="{Binding DisplayZ}" Style="{StaticResource SensorDataLabel}" />
                 </VerticalStackLayout>

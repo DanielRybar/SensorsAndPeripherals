@@ -3,9 +3,46 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SensorsAndPeripherals.Views.Sensors.RotationSensorPage"
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"
+             xmlns:controls="clr-namespace:SensorsAndPeripherals.Controls"
              Title="{StaticResource RotationSensorTitle}">
-    
-    <VerticalStackLayout>
 
-    </VerticalStackLayout>
+    <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource SensorNotSupported}">
+        <Grid RowDefinitions="*, Auto" Padding="0,10,0,10">
+            <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*,*" VerticalOptions="Center" Padding="10" RowSpacing="30" ColumnSpacing="20">
+                <VerticalStackLayout Style="{StaticResource GaugeVsl}">
+                    <Label Text="Pitch" TextColor="{StaticResource LightRed}" Style="{StaticResource GaugeResultLabel}" />
+                    <Grid Style="{StaticResource GaugeContainer}">
+                        <Ellipse Style="{StaticResource GaugeCircle}" />
+                        <BoxView Style="{StaticResource ZeroMarker}"/>
+                        <BoxView Style="{StaticResource BaseNeedle}" Color="{StaticResource LightRed}" Rotation="{Binding RotationX}" />
+                        <Ellipse Style="{StaticResource CenterCap}" />
+                    </Grid>
+                    <Label Text="{Binding DisplayX}" Style="{StaticResource SensorDataLabel}" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Column="1" Style="{StaticResource GaugeVsl}">
+                    <Label Text="Roll" TextColor="{StaticResource LightGreen}" Style="{StaticResource GaugeResultLabel}" />
+                    <Grid Style="{StaticResource GaugeContainer}">
+                        <Ellipse Style="{StaticResource GaugeCircle}" />
+                        <BoxView Style="{StaticResource ZeroMarker}"/>
+                        <BoxView Style="{StaticResource BaseNeedle}" Color="{StaticResource LightGreen}" Rotation="{Binding RotationY}" />
+                        <Ellipse Style="{StaticResource CenterCap}" />
+                    </Grid>
+                    <Label Text="{Binding DisplayY}" Style="{StaticResource SensorDataLabel}" />
+                </VerticalStackLayout>
+                <VerticalStackLayout Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource GaugeVsl}">
+                    <Label Text="Yaw" TextColor="{StaticResource MainApplicationColor}" Style="{StaticResource GaugeResultLabel}" />
+                    <Grid Style="{StaticResource GaugeContainer}">
+                        <Ellipse Style="{StaticResource GaugeCircle}" />
+                        <BoxView Style="{StaticResource ZeroMarker}" />
+                        <BoxView Style="{StaticResource BaseNeedle}" Color="{StaticResource MainApplicationColor}" Rotation="{Binding RotationZ}" />
+                        <Ellipse Style="{StaticResource CenterCap}" />
+                    </Grid>
+                    <Label Text="{Binding DisplayZ}" Style="{StaticResource SensorDataLabel}" />
+                </VerticalStackLayout>
+            </Grid>
+            <VerticalStackLayout Grid.Row="1" Style="{StaticResource SensorStatusVsl}">
+                <Button Text="{Binding IsMonitoring, Converter={StaticResource BoolToButtonTextConverter}}" Command="{Binding ToggleCommand}" Style="{StaticResource HorizontalFilledButton}" />
+            </VerticalStackLayout>
+        </Grid>
+    </controls:DataGuard>
 </abstract:ApplicationPage>
