@@ -3,9 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SensorsAndPeripherals.Views.Sensors.BarometerPage"
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"
+             xmlns:controls="clr-namespace:SensorsAndPeripherals.Controls"
              Title="{StaticResource BarometerTitle}">
-    
-    <VerticalStackLayout>
 
-    </VerticalStackLayout>
+    <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource SensorNotSupported}">
+        <Grid RowDefinitions="Auto, *, Auto" Padding="0,10,0,10">
+            <Label Text="{Binding DisplayText}" HorizontalOptions="Center" FontSize="24" FontAttributes="Bold" />
+            <VerticalStackLayout Grid.Row="2" Style="{StaticResource SensorStatusVsl}">
+                <Button Text="{Binding IsMonitoring, Converter={StaticResource BoolToButtonTextConverter}}" Command="{Binding ToggleCommand}" Style="{StaticResource HorizontalFilledButton}" />
+            </VerticalStackLayout>
+        </Grid>
+    </controls:DataGuard>
 </abstract:ApplicationPage>
