@@ -1,4 +1,5 @@
-﻿using SensorsAndPeripherals.Interfaces;
+﻿using SensorsAndPeripherals.Constants;
+using SensorsAndPeripherals.Interfaces;
 using SensorsAndPeripherals.Models.CustomEventArgs;
 using SensorsAndPeripherals.ViewModels.Abstract;
 
@@ -27,13 +28,20 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
 
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                DisplayText = $"{lux:F0} lx";
                 Intensity = intensity;
+                // for better readability, update text only every X ms
+                if ((DateTime.Now - lastTextUpdateTime).TotalMilliseconds > SensorConstants.TEXT_VISUALIZATION_INTERVAL_MS)
+                {
+                    DisplayText = $"{lux:F0} lx";
+                    lastTextUpdateTime = DateTime.Now;
+                }
             });
         }
         #endregion
 
         #region properties
+        protected override SensorSpeed DefaultSpeed => SensorSpeed.UI;
+
         public double Intensity
         {
             get;

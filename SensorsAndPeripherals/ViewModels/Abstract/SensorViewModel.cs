@@ -7,6 +7,10 @@ namespace SensorsAndPeripherals.ViewModels.Abstract
         where TService : class, ISensorService<TEventArgs>
         where TEventArgs : EventArgs
     {
+        #region variables
+        protected DateTime lastTextUpdateTime;
+        #endregion
+
         #region services
         protected readonly TService sensorService = DependencyService.Get<TService>();
         #endregion
@@ -53,7 +57,7 @@ namespace SensorsAndPeripherals.ViewModels.Abstract
         #endregion
 
         #region properties
-        protected virtual SensorSpeed DefaultSpeed => SensorSpeed.UI;
+        protected virtual SensorSpeed DefaultSpeed => SensorSpeed.Game;
 
         public bool IsSupported
         {

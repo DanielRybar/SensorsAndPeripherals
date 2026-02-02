@@ -9,9 +9,8 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         #region variables
         private readonly double multiplier = 15.0;
         private readonly double maxRadius = 125.0;
-        private readonly double smoothFactor = 0.2;
-        private double lastX = 0.0;
-        private double lastY = 0.0;
+        private double smoothedX = 0.0;
+        private double smoothedY = 0.0;
         #endregion
 
         #region constructor
@@ -29,10 +28,8 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
             // low-pass filter for X and Y
             double currentRawX = e.Reading.Acceleration.X;
             double currentRawY = e.Reading.Acceleration.Y;
-            double smoothedX = (currentRawX * smoothFactor) + (lastX * (1 - smoothFactor));
-            double smoothedY = (currentRawY * smoothFactor) + (lastY * (1 - smoothFactor));
-            lastX = smoothedX;
-            lastY = smoothedY;
+            smoothedX = (currentRawX * SensorConstants.SMOOTH_FACTOR) + (this.smoothedX * (1 - SensorConstants.SMOOTH_FACTOR));
+            smoothedY = (currentRawY * SensorConstants.SMOOTH_FACTOR) + (this.smoothedY * (1 - SensorConstants.SMOOTH_FACTOR));
 
             // normalize from n * ag to m/s²
             double x = smoothedX * SensorConstants.GRAVITIONAL_ACCELERATION;
@@ -61,18 +58,21 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
 
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                DisplayX = displayX;
-                DisplayY = displayY;
-                DisplayZ = displayZ;
                 BallX = ballX;
                 BallY = ballY;
+                // for better readability, update text only every X ms
+                if ((DateTime.Now - lastTextUpdateTime).TotalMilliseconds > SensorConstants.TEXT_VISUALIZATION_INTERVAL_MS)
+                {
+                    DisplayX = displayX;
+                    DisplayY = displayY;
+                    DisplayZ = displayZ;
+                    lastTextUpdateTime = DateTime.Now;
+                }
             });
         }
         #endregion
 
         #region properties
-        protected override SensorSpeed DefaultSpeed => SensorSpeed.Game;
-
         public double BallX
         {
             get;

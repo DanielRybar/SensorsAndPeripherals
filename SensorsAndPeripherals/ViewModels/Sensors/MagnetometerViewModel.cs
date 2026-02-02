@@ -1,4 +1,5 @@
-﻿using SensorsAndPeripherals.Interfaces;
+﻿using SensorsAndPeripherals.Constants;
+using SensorsAndPeripherals.Interfaces;
 using SensorsAndPeripherals.ViewModels.Abstract;
 
 namespace SensorsAndPeripherals.ViewModels.Sensors
@@ -7,6 +8,10 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
     {
         #region variables
         private readonly string[] directions = ["S", "SV", "V", "JV", "J", "JZ", "Z", "SZ", "S"];
+        private double smoothedHeading = 0.0;
+        private double smoothedMagX = 0.0;
+        private double smoothedMagY = 0.0;
+        private double smoothedMagZ = 0.0;
         #endregion
 
         #region constructor
@@ -22,18 +27,36 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         protected override void OnReadingChanged(object? sender, MagnetometerChangedEventArgs e)
         {
             var data = e.Reading.MagneticField;
-            double headingRadians = Math.Atan2(data.Y, data.X);
-            double headingDegrees = headingRadians * (180 / Math.PI);
-            double heading = headingDegrees - 90;
-            if (heading < 0) heading += 360;
+
+            // smoothing values
+            smoothedMagX += SensorConstants.SMOOTH_FACTOR * (data.X - smoothedMagX);
+            smoothedMagY += SensorConstants.SMOOTH_FACTOR * (data.Y - smoothedMagY);
+            smoothedMagZ += SensorConstants.SMOOTH_FACTOR * (data.Z - smoothedMagZ);
+
+            double headingRadians = Math.Atan2(smoothedMagY, smoothedMagX);
+            double targetHeading = headingRadians * SensorConstants.RAD_TO_DEG;
+            targetHeading -= 90;
+            if (targetHeading < 0) targetHeading += 360;
+
+            double delta = targetHeading - smoothedHeading;
+            if (delta > 180) delta -= 360;
+            else if (delta < -180) delta += 360;
+            smoothedHeading += SensorConstants.SMOOTH_FACTOR * delta;
+            if (smoothedHeading < 0) smoothedHeading += 360;
+            else if (smoothedHeading >= 360) smoothedHeading -= 360;
 
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                Heading = heading;
-                DisplayText = $"{heading:F0}° {GetDirectionName(heading)}";
-                DisplayX = $"X: {data.X:F2} µT";
-                DisplayY = $"Y: {data.Y:F2} µT";
-                DisplayZ = $"Z: {data.Z:F2} µT";
+                Heading = smoothedHeading;
+                // for better readability, update text only every X ms
+                if ((DateTime.Now - lastTextUpdateTime).TotalMilliseconds > SensorConstants.TEXT_VISUALIZATION_INTERVAL_MS)
+                {
+                    DisplayText = $"{smoothedHeading:F0}° {GetDirectionName(smoothedHeading)}";
+                    DisplayX = $"X: {smoothedMagX:F2} µT";
+                    DisplayY = $"Y: {smoothedMagY:F2} µT";
+                    DisplayZ = $"Z: {smoothedMagZ:F2} µT";
+                    lastTextUpdateTime = DateTime.Now;
+                }
             });
         }
         #endregion

@@ -1,4 +1,5 @@
-﻿using SensorsAndPeripherals.Interfaces;
+﻿using SensorsAndPeripherals.Constants;
+using SensorsAndPeripherals.Interfaces;
 using SensorsAndPeripherals.ViewModels.Abstract;
 
 namespace SensorsAndPeripherals.ViewModels.Sensors
@@ -6,7 +7,9 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
     public class RotationSensorViewModel : SensorViewModel<IRotationSensorService, OrientationSensorChangedEventArgs>
     {
         #region variables
-        private readonly double radToDeg = 180.0 / Math.PI;
+        private double smoothedPitch = 0.0;
+        private double smoothedRoll = 0.0;
+        private double smoothedYaw = 0.0;
         #endregion
 
         #region constructor
@@ -42,19 +45,39 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
             double yaw = Math.Atan2(siny_cosp, cosy_cosp);
 
             // rad to deg
-            double rollDeg = roll * radToDeg;
-            double pitchDeg = pitch * radToDeg;
-            double yawDeg = yaw * radToDeg;
+            double rollDeg = roll * SensorConstants.RAD_TO_DEG;
+            double pitchDeg = pitch * SensorConstants.RAD_TO_DEG;
+            double yawDeg = yaw * SensorConstants.RAD_TO_DEG;
+
+            // smoothing angles
+            smoothedPitch = SmoothAngle(smoothedPitch, pitchDeg);
+            smoothedRoll = SmoothAngle(smoothedRoll, rollDeg);
+            smoothedYaw = SmoothAngle(smoothedYaw, yawDeg);
 
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                DisplayX = $"{pitchDeg:F2}°";
-                DisplayY = $"{rollDeg:F2}°";
-                DisplayZ = $"{yawDeg:F2}°";
-                RotationX = pitchDeg;
-                RotationY = rollDeg;
-                RotationZ = yawDeg;
+                RotationX = smoothedPitch;
+                RotationY = smoothedRoll;
+                RotationZ = smoothedYaw;
+                // for better readability, update text only every X ms
+                if ((DateTime.Now - lastTextUpdateTime).TotalMilliseconds > SensorConstants.TEXT_VISUALIZATION_INTERVAL_MS)
+                {
+                    DisplayX = $"{smoothedPitch:F2}°";
+                    DisplayY = $"{smoothedRoll:F2}°";
+                    DisplayZ = $"{smoothedYaw:F2}°";
+                    lastTextUpdateTime = DateTime.Now;
+                }
             });
+        }
+        #endregion
+
+        #region methods
+        private static double SmoothAngle(double current, double target)
+        {
+            double diff = target - current;
+            while (diff < -180) diff += 360;
+            while (diff > 180) diff -= 360;
+            return current + SensorConstants.SMOOTH_FACTOR * diff;
         }
         #endregion
 
