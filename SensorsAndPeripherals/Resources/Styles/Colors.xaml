@@ -16,6 +16,8 @@
     <Color x:Key="Transparent">Transparent</Color>
     <Color x:Key="LightRed">#FF4500</Color>
     <Color x:Key="LightGreen">#32CD32</Color>
+    <Color x:Key="Orange">Orange</Color>
+    <Color x:Key="BulbYellow">#FFD700</Color>
 
     <Color x:Key="Primary">#107DAC</Color>
     <Color x:Key="PrimaryDark">#ac99ea</Color>
