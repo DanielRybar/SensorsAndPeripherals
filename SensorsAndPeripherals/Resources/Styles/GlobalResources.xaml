@@ -29,6 +29,9 @@
     <x:String x:Key="SensorNotSupported">Senzor na tomto zařízení není podporován.</x:String>
     <x:String x:Key="ToggleOnText">Zapnout</x:String>
     <x:String x:Key="ToggleOffText">Vypnout</x:String>
+    
+    <!-- Doubles -->
+    <x:Double x:Key="ScaleLiquidContainerGridHeightRequest">480</x:Double>
 
     <!-- Converters -->
     <conv:BoolToButtonTextConverter x:Key="BoolToButtonTextConverter" TextWhenTrue="{StaticResource ToggleOffText}" TextWhenFalse="{StaticResource ToggleOnText}" />

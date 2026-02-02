@@ -616,4 +616,61 @@
         <Setter Property="Aspect" Value="Uniform" />
         <Setter Property="Data" Value="M12,2A7,7 0 0,0 5,9C5,11.38 6.19,13.47 8,14.74V17A1,1 0 0,0 9,18H15A1,1 0 0,0 16,17V14.74C17.81,13.47 19,11.38 19,9A7,7 0 0,0 12,2M9,21A1,1 0 0,0 10,22H14A1,1 0 0,0 15,21V20H9V21Z" />
     </Style>
+
+    <Style TargetType="Label" x:Key="ScaleLabel">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray900}, Dark={StaticResource Gray500}}" />
+    </Style>
+
+    <Style TargetType="BoxView" x:Key="ScaleMarker">
+        <Setter Property="HeightRequest" Value="2" />
+        <Setter Property="WidthRequest" Value="20" />
+        <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray600}}" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="End" />
+        <Setter Property="Margin" Value="0,0,-65,0" />
+        <Setter Property="ZIndex" Value="2" />
+    </Style>
+
+    <Style TargetType="Border" x:Key="ScaleOuterTubeBorder">
+        <Setter Property="Stroke" Value="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray600}}" />
+        <Setter Property="StrokeThickness" Value="4" />
+        <Setter Property="WidthRequest" Value="60" />
+        <Setter Property="VerticalOptions" Value="Fill" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Transparent}" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 30" />
+    </Style>
+
+    <Style TargetType="Border" x:Key="ScaleInnerMaskBorder">
+        <Setter Property="StrokeThickness" Value="0" />
+        <Setter Property="Margin" Value="4" />
+        <Setter Property="BackgroundColor" Value="{StaticResource Transparent}" />
+        <Setter Property="StrokeShape" Value="RoundRectangle 24" />
+    </Style>
+
+    <Style TargetType="Grid" x:Key="ScaleLiquidContainerGrid">
+        <Setter Property="HeightRequest" Value="{StaticResource ScaleLiquidContainerGridHeightRequest}" />
+        <Setter Property="VerticalOptions" Value="Fill" />
+    </Style>
+
+    <Style TargetType="BoxView" x:Key="ScaleLiquidBackgroundBoxView">
+        <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource WhiteWithAlpha}, Dark={StaticResource OffBlackWithAlpha}}" />
+        <Setter Property="VerticalOptions" Value="Fill" />
+        <Setter Property="HorizontalOptions" Value="Fill" />
+    </Style>
+
+    <Style TargetType="BoxView" x:Key="ScaleActiveLiquidBoxView">
+        <Setter Property="Color" Value="{StaticResource MainApplicationColor}" />
+        <Setter Property="VerticalOptions" Value="End" />
+        <Setter Property="HorizontalOptions" Value="Fill" />
+        <Setter Property="Shadow">
+            <Setter.Value>
+                <Shadow Brush="{StaticResource MainApplicationColor}"
+                    Offset="0,0"
+                    Radius="20"
+                    Opacity="0.6" />
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

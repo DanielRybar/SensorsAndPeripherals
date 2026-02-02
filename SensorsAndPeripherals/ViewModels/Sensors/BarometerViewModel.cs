@@ -9,6 +9,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         #region variables
         private readonly float minPressure = 960f;
         private readonly float maxPressure = 1060f;
+        private readonly double maxContainerHeight = (double)App.Current!.Resources["ScaleLiquidContainerGridHeightRequest"];
         #endregion
 
         #region constructor
@@ -22,12 +23,12 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         protected override void OnReadingChanged(object? sender, BarometerChangedEventArgs e)
         {
             double pressure = e.Reading.PressureInHectopascals;
-            double scale = (pressure - minPressure) / (maxPressure - minPressure);
-            scale = Math.Clamp(scale, 0.0, 1.0);
+            double percentage = (pressure - minPressure) / (maxPressure - minPressure);
+            percentage = Math.Clamp(percentage, 0.0, 1.0);
 
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                BarHeightScale = scale;
+                BarHeightPx = percentage * maxContainerHeight;
                 // for better readability, update text only every X ms
                 if ((DateTime.Now - lastTextUpdateTime).TotalMilliseconds > SensorConstants.TEXT_VISUALIZATION_INTERVAL_MS)
                 {
@@ -41,11 +42,11 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         #region properties
         protected override SensorSpeed DefaultSpeed => SensorSpeed.UI;
 
-        public double BarHeightScale
+        public double BarHeightPx
         {
             get;
             set => SetProperty(ref field, value);
-        } = 0.5;
+        } = 0.0;
         #endregion
     }
 }

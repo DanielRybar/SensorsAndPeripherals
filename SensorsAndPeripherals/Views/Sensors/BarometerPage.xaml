@@ -9,6 +9,22 @@
     <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource SensorNotSupported}">
         <Grid RowDefinitions="Auto, *, Auto" Padding="0,10,0,10">
             <Label Text="{Binding DisplayText}" HorizontalOptions="Center" FontSize="24" FontAttributes="Bold" />
+            <Grid Grid.Row="1" ColumnDefinitions="*, Auto, *" WidthRequest="200" HeightRequest="500">
+                <Grid Margin="0,0,10,0">
+                    <Label Text="1060" Style="{StaticResource ScaleLabel}" VerticalOptions="Start" HorizontalOptions="End" />
+                    <BoxView Style="{StaticResource ScaleMarker}" />
+                    <Label Text="1013" Style="{StaticResource ScaleLabel}" VerticalOptions="Center" HorizontalOptions="End" Margin="0,0,5,0" />
+                    <Label Text="960" Style="{StaticResource ScaleLabel}" VerticalOptions="End" HorizontalOptions="End" />
+                </Grid>
+                <Border Grid.Column="1" Style="{StaticResource ScaleOuterTubeBorder}">
+                    <Border Style="{StaticResource ScaleInnerMaskBorder}">
+                        <Grid Style="{StaticResource ScaleLiquidContainerGrid}">
+                            <BoxView Style="{StaticResource ScaleLiquidBackgroundBoxView}" />
+                            <BoxView Style="{StaticResource ScaleActiveLiquidBoxView}" HeightRequest="{Binding BarHeightPx}" />
+                        </Grid>
+                    </Border>
+                </Border>
+            </Grid>
             <VerticalStackLayout Grid.Row="2" Style="{StaticResource SensorStatusVsl}">
                 <Button Text="{Binding IsMonitoring, Converter={StaticResource BoolToButtonTextConverter}}" Command="{Binding ToggleCommand}" Style="{StaticResource HorizontalFilledButton}" />
             </VerticalStackLayout>
