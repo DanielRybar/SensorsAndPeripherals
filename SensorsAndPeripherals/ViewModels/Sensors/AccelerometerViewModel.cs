@@ -1,11 +1,10 @@
 ﻿using SensorsAndPeripherals.Constants;
 using SensorsAndPeripherals.Interfaces;
 using SensorsAndPeripherals.ViewModels.Abstract;
-using System.Windows.Input;
 
 namespace SensorsAndPeripherals.ViewModels.Sensors
 {
-    public class AccelerometerViewModel : BaseViewModel
+    public class AccelerometerViewModel : SensorViewModel<IAccelerometerService, AccelerometerChangedEventArgs>
     {
         #region variables
         private readonly double multiplier = 15.0;
@@ -15,25 +14,17 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         private double lastY = 0.0;
         #endregion
 
-        #region services
-        private readonly IAccelerometerService accelerometerService = DependencyService.Get<IAccelerometerService>();
-        #endregion
-
         #region constructor
         public AccelerometerViewModel()
         {
-            IsSupported = accelerometerService.IsSupported;
-            IsMonitoring = accelerometerService.IsMonitoring;
-            ToggleCommand = new Command(ToggleSensor, () => IsSupported);
+            DisplayX = $"X: {0:F2} m/s²";
+            DisplayY = $"Y: {0:F2} m/s²";
+            DisplayZ = $"Z: {0:F2} m/s²";
         }
         #endregion
 
-        #region commands
-        public ICommand ToggleCommand { get; private set; }
-        #endregion
-
         #region event handlers
-        private void OnReadingChanged(object? sender, AccelerometerChangedEventArgs e)
+        protected override void OnReadingChanged(object? sender, AccelerometerChangedEventArgs e)
         {
             // low-pass filter for X and Y
             double currentRawX = e.Reading.Acceleration.X;
@@ -79,46 +70,8 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         }
         #endregion
 
-        #region methods
-        private void ToggleSensor()
-        {
-            if (IsMonitoring)
-            {
-                StopSensor();
-            }
-            else
-            {
-                StartSensor();
-            }
-        }
-
-        private void StartSensor()
-        {
-            accelerometerService.ReadingChanged += OnReadingChanged;
-            accelerometerService.Start(SensorSpeed.Game);
-            IsMonitoring = true;
-        }
-
-        public void StopSensor()
-        {
-            accelerometerService.Stop();
-            accelerometerService.ReadingChanged -= OnReadingChanged;
-            IsMonitoring = false;
-        }
-        #endregion
-
         #region properties
-        public bool IsSupported
-        {
-            get;
-            set => SetProperty(ref field, value);
-        }
-
-        public bool IsMonitoring
-        {
-            get;
-            set => SetProperty(ref field, value);
-        }
+        protected override SensorSpeed DefaultSpeed => SensorSpeed.Game;
 
         public double BallX
         {
@@ -131,24 +84,6 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
             get;
             set => SetProperty(ref field, value);
         }
-
-        public string DisplayX
-        {
-            get;
-            set => SetProperty(ref field, value);
-        } = $"X: {0:F2} m/s²";
-
-        public string DisplayY
-        {
-            get;
-            set => SetProperty(ref field, value);
-        } = $"Y: {0:F2} m/s²";
-
-        public string DisplayZ
-        {
-            get;
-            set => SetProperty(ref field, value);
-        } = $"Z: {0:F2} m/s²";
         #endregion
     }
 }

@@ -1,35 +1,24 @@
 ﻿using SensorsAndPeripherals.Interfaces;
 using SensorsAndPeripherals.ViewModels.Abstract;
-using System.Windows.Input;
 
 namespace SensorsAndPeripherals.ViewModels.Sensors
 {
-    public class GyroscopeViewModel : BaseViewModel
+    public class GyroscopeViewModel : SensorViewModel<IGyroscopeService, GyroscopeChangedEventArgs>
     {
         #region variables
         private readonly double maxRotationSpeed = 200.0;
         private readonly double maxNeedleAngle = 150.0;
         #endregion
 
-        #region services
-        private readonly IGyroscopeService gyroscopeService = DependencyService.Get<IGyroscopeService>();
-        #endregion
-
         #region constructor
         public GyroscopeViewModel()
         {
-            IsSupported = gyroscopeService.IsSupported;
-            IsMonitoring = gyroscopeService.IsMonitoring;
-            ToggleCommand = new Command(ToggleSensor, () => IsSupported);
+            DisplayX = DisplayY = DisplayZ = $"{0:F2}°/s";
         }
         #endregion
 
-        #region commands
-        public ICommand ToggleCommand { get; private set; }
-        #endregion
-
         #region event handlers
-        private void OnReadingChanged(object? sender, GyroscopeChangedEventArgs e)
+        protected override void OnReadingChanged(object? sender, GyroscopeChangedEventArgs e)
         {
             var data = e.Reading.AngularVelocity;
             // rad/s to deg/s
@@ -60,65 +49,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         }
         #endregion
 
-        #region methods
-        private void ToggleSensor()
-        {
-            if (IsMonitoring)
-            {
-                StopSensor();
-            }
-            else
-            {
-                StartSensor();
-            }
-        }
-
-        private void StartSensor()
-        {
-            gyroscopeService.ReadingChanged += OnReadingChanged;
-            gyroscopeService.Start(SensorSpeed.UI);
-            IsMonitoring = true;
-        }
-
-        public void StopSensor()
-        {
-            gyroscopeService.Stop();
-            gyroscopeService.ReadingChanged -= OnReadingChanged;
-            IsMonitoring = false;
-        }
-        #endregion
-
         #region properties
-        public bool IsSupported
-        {
-            get;
-            set => SetProperty(ref field, value);
-        }
-
-        public bool IsMonitoring
-        {
-            get;
-            set => SetProperty(ref field, value);
-        }
-
-        public string DisplayX
-        {
-            get;
-            set => SetProperty(ref field, value);
-        } = $"{0:F2}°/s";
-
-        public string DisplayY
-        {
-            get;
-            set => SetProperty(ref field, value);
-        } = $"{0:F2}°/s";
-
-        public string DisplayZ
-        {
-            get;
-            set => SetProperty(ref field, value);
-        } = $"{0:F2}°/s";
-
         public double RotationX
         {
             get;
