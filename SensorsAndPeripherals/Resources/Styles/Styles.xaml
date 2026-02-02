@@ -554,8 +554,8 @@
 
     <Style TargetType="Ellipse" x:Key="CenterCap">
         <Setter Property="Fill" Value="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray500}}" />
-        <Setter Property="WidthRequest" Value="12" />
-        <Setter Property="HeightRequest" Value="12" />
+        <Setter Property="WidthRequest" Value="14" />
+        <Setter Property="HeightRequest" Value="14" />
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />
     </Style>
