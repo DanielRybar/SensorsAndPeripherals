@@ -31,6 +31,7 @@ namespace SensorsAndPeripherals
             DependencyService.Register<IGyroscopeService, GyroscopeService>();
             DependencyService.Register<IMagnetometerService, MagnetometerService>();
             DependencyService.Register<IRotationSensorService, RotationSensorService>();
+            DependencyService.Register<ILightSensorService, Platforms.Android.Services.LightSensorService>();
             DependencyService.Register<ISensorListService, Platforms.Android.Services.SensorListService>();
 
             return builder.Build();

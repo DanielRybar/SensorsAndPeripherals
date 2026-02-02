@@ -52,12 +52,6 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
             get;
             set => SetProperty(ref field, value);
         }
-
-        public string DisplayText
-        {
-            get;
-            set => SetProperty(ref field, value);
-        } = string.Empty;
         #endregion
     }
 }

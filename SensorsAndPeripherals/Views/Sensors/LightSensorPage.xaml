@@ -6,6 +6,9 @@
              Title="{StaticResource LightSensorTitle}">
     
     <VerticalStackLayout>
-
+        <VerticalStackLayout Grid.Row="2" Style="{StaticResource SensorStatusVsl}">
+            <Label Text="{Binding DisplayText}" Style="{StaticResource SensorDataLabel}" />
+            <Button Text="{Binding IsMonitoring, Converter={StaticResource BoolToButtonTextConverter}}" Command="{Binding ToggleCommand}" Style="{StaticResource HorizontalFilledButton}" />
+        </VerticalStackLayout>
     </VerticalStackLayout>
 </abstract:ApplicationPage>
