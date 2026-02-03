@@ -54,6 +54,14 @@ namespace SensorsAndPeripherals.ViewModels.Abstract
             sensorService.ReadingChanged -= OnReadingChanged;
             IsMonitoring = false;
         }
+
+        protected string FormatValue(double value, int decimalPlaces, string unit)
+        {
+            double rounded = Math.Round(value, decimalPlaces);
+            double epsilon = Math.Pow(10, -(decimalPlaces + 1));
+            if (Math.Abs(rounded) < epsilon) rounded = 0d; // avoid -0
+            return $"{rounded.ToString("F" + decimalPlaces)}{unit}";
+        }
         #endregion
 
         #region properties

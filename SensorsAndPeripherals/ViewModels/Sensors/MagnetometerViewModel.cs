@@ -52,9 +52,9 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
                 if ((DateTime.Now - lastTextUpdateTime).TotalMilliseconds > SensorConstants.TEXT_VISUALIZATION_INTERVAL_MS)
                 {
                     DisplayText = $"{smoothedHeading:F0}° {GetDirectionName(smoothedHeading)}";
-                    DisplayX = $"X: {smoothedMagX:F2} µT";
-                    DisplayY = $"Y: {smoothedMagY:F2} µT";
-                    DisplayZ = $"Z: {smoothedMagZ:F2} µT";
+                    DisplayX = $"X: {FormatValue(smoothedMagX, 2, " µT")}";
+                    DisplayY = $"Y: {FormatValue(smoothedMagY, 2, " µT")}";
+                    DisplayZ = $"Z: {FormatValue(smoothedMagZ, 2, " µT")}";
                     lastTextUpdateTime = DateTime.Now;
                 }
             });

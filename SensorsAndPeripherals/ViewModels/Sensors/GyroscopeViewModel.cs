@@ -17,7 +17,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         #region constructor
         public GyroscopeViewModel()
         {
-            DisplayX = DisplayY = DisplayZ = $"{0:F2}°/s";
+            DisplayText = DisplayX = DisplayY = DisplayZ = $"{0:F2}°/s";
         }
         #endregion
 
@@ -33,10 +33,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
             smoothedX += SensorConstants.SMOOTH_FACTOR * (rawX - smoothedX);
             smoothedY += SensorConstants.SMOOTH_FACTOR * (rawY - smoothedY);
             smoothedZ += SensorConstants.SMOOTH_FACTOR * (rawZ - smoothedZ);
-
-            string strX = $"{smoothedX:F2}°/s";
-            string strY = $"{smoothedY:F2}°/s";
-            string strZ = $"{smoothedZ:F2}°/s";
+            double totalSpeed = Math.Sqrt(Math.Pow(smoothedX, 2) + Math.Pow(smoothedY, 2) + Math.Pow(smoothedZ, 2));
 
             double rotX = smoothedX / maxRotationSpeed * maxNeedleAngle;
             double rotY = smoothedY / maxRotationSpeed * maxNeedleAngle;
@@ -53,9 +50,10 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
                 // for better readability, update text only every X ms
                 if ((DateTime.Now - lastTextUpdateTime).TotalMilliseconds > SensorConstants.TEXT_VISUALIZATION_INTERVAL_MS)
                 {
-                    DisplayX = strX;
-                    DisplayY = strY;
-                    DisplayZ = strZ;
+                    DisplayX = FormatValue(smoothedX, 2, "°/s");
+                    DisplayY = FormatValue(smoothedY, 2, "°/s");
+                    DisplayZ = FormatValue(smoothedZ, 2, "°/s");
+                    DisplayText = FormatValue(totalSpeed, 2, "°/s");
                     lastTextUpdateTime = DateTime.Now;
                 }
             });

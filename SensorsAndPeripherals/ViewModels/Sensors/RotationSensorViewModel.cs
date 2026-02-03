@@ -15,7 +15,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         #region constructor
         public RotationSensorViewModel()
         {
-            DisplayX = DisplayY = DisplayZ = $"{0:F2}°";
+            DisplayText = DisplayX = DisplayY = DisplayZ = $"{0:F2}°";
         }
         #endregion
 
@@ -53,6 +53,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
             smoothedPitch = SmoothAngle(smoothedPitch, pitchDeg);
             smoothedRoll = SmoothAngle(smoothedRoll, rollDeg);
             smoothedYaw = SmoothAngle(smoothedYaw, yawDeg);
+            double totalTilt = Math.Sqrt(Math.Pow(smoothedPitch, 2) + Math.Pow(smoothedRoll, 2));
 
             MainThread.BeginInvokeOnMainThread(() =>
             {
@@ -62,9 +63,10 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
                 // for better readability, update text only every X ms
                 if ((DateTime.Now - lastTextUpdateTime).TotalMilliseconds > SensorConstants.TEXT_VISUALIZATION_INTERVAL_MS)
                 {
-                    DisplayX = $"{smoothedPitch:F2}°";
-                    DisplayY = $"{smoothedRoll:F2}°";
-                    DisplayZ = $"{smoothedYaw:F2}°";
+                    DisplayX = FormatValue(smoothedPitch, 2, "°");
+                    DisplayY = FormatValue(smoothedRoll, 2, "°");
+                    DisplayZ = FormatValue(smoothedYaw, 2, "°");
+                    DisplayText = FormatValue(totalTilt, 2, "°");
                     lastTextUpdateTime = DateTime.Now;
                 }
             });

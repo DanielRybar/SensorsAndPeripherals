@@ -673,4 +673,11 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style TargetType="Label" BasedOn="{StaticResource CenteredLabel}" x:Key="DisplayTextCaption">
+        <Setter Property="TextTransform" Value="Uppercase" />
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray500}}" />
+        <Setter Property="CharacterSpacing" Value="2" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
 </ResourceDictionary>

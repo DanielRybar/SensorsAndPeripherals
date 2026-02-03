@@ -35,9 +35,6 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
             double x = smoothedX * SensorConstants.GRAVITIONAL_ACCELERATION;
             double y = smoothedY * SensorConstants.GRAVITIONAL_ACCELERATION;
             double z = e.Reading.Acceleration.Z * SensorConstants.GRAVITIONAL_ACCELERATION;
-            string displayX = $"X: {x:F2} m/s²";
-            string displayY = $"Y: {y:F2} m/s²";
-            string displayZ = $"Z: {z:F2} m/s²";
 
             // for better visualization
             double rawX = x * multiplier;
@@ -63,9 +60,9 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
                 // for better readability, update text only every X ms
                 if ((DateTime.Now - lastTextUpdateTime).TotalMilliseconds > SensorConstants.TEXT_VISUALIZATION_INTERVAL_MS)
                 {
-                    DisplayX = displayX;
-                    DisplayY = displayY;
-                    DisplayZ = displayZ;
+                    DisplayX = $"X: {FormatValue(x, 2, " m/s²")}";
+                    DisplayY = $"Y: {FormatValue(y, 2, " m/s²")}";
+                    DisplayZ = $"Z: {FormatValue(z, 2, " m/s²")}";
                     lastTextUpdateTime = DateTime.Now;
                 }
             });
