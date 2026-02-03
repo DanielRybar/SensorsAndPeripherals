@@ -10,7 +10,7 @@
         <Grid RowDefinitions="Auto, *, Auto" Padding="0,10,0,10">
             <Label Text="{Binding DisplayText}" HorizontalOptions="Center" FontSize="24" FontAttributes="Bold" />
             <Grid Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" Scale="0.75">
-                <Path Style="{StaticResource BulbSvg}" Fill="{StaticResource Gray600}" Stroke="{StaticResource Gray500}" StrokeThickness="2" />
+                <Path Style="{StaticResource BulbSvg}" Fill="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray600}}" Stroke="{StaticResource Gray400}" StrokeThickness="2" />
                 <Path Style="{StaticResource BulbSvg}" Fill="{StaticResource BulbYellow}" Stroke="{StaticResource Orange}" StrokeThickness="0" Opacity="{Binding Intensity}">
                     <Path.Shadow>
                         <Shadow Brush="{StaticResource BulbYellow}" Offset="0,0" Radius="30" Opacity="{Binding Intensity}"/>
