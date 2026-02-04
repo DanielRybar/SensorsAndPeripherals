@@ -5,7 +5,8 @@ namespace SensorsAndPeripherals.Navigation
 {
     public partial class AppShell : Shell
     {
-        private readonly string defaultRoute = nameof(AboutAppPage);
+        private readonly string defaultRoute = $"//{nameof(AboutAppPage)}";
+
         public AppShell()
         {
             InitializeComponent();
@@ -15,10 +16,10 @@ namespace SensorsAndPeripherals.Navigation
         {
             base.OnNavigated(args);
 
-            var currentRoute = CurrentItem?.Route;
-            if (!string.IsNullOrEmpty(currentRoute))
+            var currentLocation = args?.Current?.Location?.OriginalString;
+            if (!string.IsNullOrEmpty(currentLocation))
             {
-                Preferences.Set(LocalStorageKeys.DEFAULT_MODULE, currentRoute);
+                Preferences.Set(LocalStorageKeys.DEFAULT_MODULE, currentLocation);
             }
         }
 
@@ -26,15 +27,32 @@ namespace SensorsAndPeripherals.Navigation
         {
             base.OnAppearing();
 
-            var savedModule = Preferences.Get(LocalStorageKeys.DEFAULT_MODULE, string.Empty);
-            var targetItem = Items.FirstOrDefault(x => x.Route == savedModule);
-            if (targetItem is not null)
+            var savedRoute = Preferences.Get(LocalStorageKeys.DEFAULT_MODULE, string.Empty);
+            if (string.IsNullOrEmpty(savedRoute))
             {
-                await GoToAsync($"//{savedModule}");
+                await GoToAsync(defaultRoute);
+                return;
+            }
+
+            bool routeExists = Items
+                .SelectMany(flyoutItem => flyoutItem.Items)
+                .SelectMany(tab => tab.Items)
+                .Any(content => savedRoute.EndsWith(content.Route));
+
+            if (routeExists)
+            {
+                try
+                {
+                    await GoToAsync(savedRoute);
+                }
+                catch
+                {
+                    await GoToAsync(defaultRoute);
+                }
             }
             else
             {
-                await GoToAsync($"//{defaultRoute}");
+                await GoToAsync(defaultRoute);
             }
         }
     }
