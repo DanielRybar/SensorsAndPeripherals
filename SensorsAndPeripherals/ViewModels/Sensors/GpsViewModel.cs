@@ -17,15 +17,15 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         {
             GetLastKnownCachedLocationCommand = new Command(async () =>
             {
-                await HandleLocation(fromCache: true);
+                await GetLocation(fromCache: true);
             });
             GetCurrentFineLocationCommand = new Command(async () =>
             {
-                await HandleLocation(fromCache: false, isFine: true);
+                await GetLocation(fromCache: false, isFine: true);
             });
             GetCurrentCoarseLocationCommand = new Command(async () =>
             {
-                await HandleLocation(fromCache: false, isFine: false);
+                await GetLocation(fromCache: false, isFine: false);
             });
         }
         #endregion
@@ -37,7 +37,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         #endregion
 
         #region methods
-        private async Task HandleLocation(bool fromCache, bool isFine = true)
+        private async Task GetLocation(bool fromCache, bool isFine = true)
         {
             IsWorking = true;
             (LocationStatus status, Location? location) result;
