@@ -63,10 +63,10 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
                     ResultLocation = new LocationInfo
                     {
                         Latitude = result.location!.Latitude,
-                        Longitude = result.location!.Longitude,
-                        Altitude = result.location!.Altitude,
-                        Accuracy = result.location!.Accuracy,
-                        Timestamp = result.location!.Timestamp.ToLocalTime()
+                        Longitude = result.location.Longitude,
+                        Altitude = result.location.Altitude,
+                        Accuracy = result.location.Accuracy,
+                        Timestamp = result.location.Timestamp.ToLocalTime()
                     };
                     break;
                 case LocationStatus.ObtainedButNull:
@@ -106,19 +106,19 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         {
             get;
             set => SetProperty(ref field, value);
-        } = new();
+        }
 
         public bool IsResultVisible
         {
             get;
             set => SetProperty(ref field, value);
-        } = true;
+        } = false;
 
         public string StatusMessage
         {
             get;
             set => SetProperty(ref field, value);
-        } = string.Empty;
+        } = "Pro zobrazení souřadnic stiskněte jedno z tlačítek níže.";
         #endregion
     }
 }

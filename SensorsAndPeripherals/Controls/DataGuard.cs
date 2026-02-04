@@ -32,7 +32,11 @@
                 {
                     HorizontalOptions = LayoutOptions.Center,
                     VerticalOptions = LayoutOptions.Center,
-                    IsVisible = true
+                    IsVisible = true,
+                    LineBreakMode = LineBreakMode.WordWrap,
+                    HorizontalTextAlignment = TextAlignment.Center,
+                    VerticalTextAlignment = TextAlignment.Center,
+                    Padding = new Thickness(10, 0, 10, 0)
                 };
                 emptyLabel.SetBinding(Label.TextProperty, new Binding(nameof(EmptyText), source: RelativeBindingSource.TemplatedParent));
 
