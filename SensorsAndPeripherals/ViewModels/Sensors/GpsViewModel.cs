@@ -71,7 +71,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
                     break;
                 case LocationStatus.ObtainedButNull:
                     IsResultVisible = false;
-                    StatusMessage = "Polohu se nepodařilo zjistit (žádná data nejsou k dispozici).";
+                    StatusMessage = "Polohu se nepodařilo zjistit (žádná data nejsou k\u00A0dispozici).";
                     break;
                 case LocationStatus.NotSupported:
                     IsResultVisible = false;
@@ -79,11 +79,11 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
                     break;
                 case LocationStatus.NotEnabled:
                     IsResultVisible = false;
-                    StatusMessage = "GPS je vypnutá. Prosím, zapněte ji v nastavení telefonu.";
+                    StatusMessage = "GPS je vypnutá. Prosím, zapněte ji v\u00A0nastavení telefonu.";
                     break;
                 case LocationStatus.PermissionDenied:
                     IsResultVisible = false;
-                    StatusMessage = "Aplikace nemá oprávnění k poloze. Povolte přístup v nastavení aplikace.";
+                    StatusMessage = "Aplikace nemá oprávnění k poloze. Povolte přístup v\u00A0nastavení aplikace.";
                     break;
                 case LocationStatus.OperationCancelled:
                     IsResultVisible = false;
@@ -92,7 +92,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
                 case LocationStatus.UnknownError:
                 default:
                     IsResultVisible = false;
-                    StatusMessage = "Došlo k neznámé chybě při zjišťování polohy.";
+                    StatusMessage = "Došlo k\u00A0neznámé chybě při zjišťování polohy.";
                     break;
             }
             IsWorking = false;
@@ -112,13 +112,13 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         {
             get;
             set => SetProperty(ref field, value);
-        } = false;
+        }
 
         public string StatusMessage
         {
             get;
             set => SetProperty(ref field, value);
-        } = "Pro zobrazení souřadnic stiskněte jedno z tlačítek níže.";
+        } = "Pro zobrazení souřadnic stiskněte některé z\u00A0tlačítek níže.";
         #endregion
     }
 }

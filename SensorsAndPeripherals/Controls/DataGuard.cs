@@ -36,7 +36,7 @@
                     LineBreakMode = LineBreakMode.WordWrap,
                     HorizontalTextAlignment = TextAlignment.Center,
                     VerticalTextAlignment = TextAlignment.Center,
-                    Padding = new Thickness(10, 0, 10, 0)
+                    Padding = new Thickness(20, 0, 20, 0)
                 };
                 emptyLabel.SetBinding(Label.TextProperty, new Binding(nameof(EmptyText), source: RelativeBindingSource.TemplatedParent));
 
