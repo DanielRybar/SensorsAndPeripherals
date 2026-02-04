@@ -12,23 +12,23 @@
             <VerticalStackLayout Spacing="30" VerticalOptions="Center">
                 <VerticalStackLayout>
                     <Label Text="Zeměpisná šířka" Style="{StaticResource DisplayTextCaption}" />
-                    <Label Text="{Binding ResultLocation.Latitude, StringFormat='{0:F5}°', TargetNullValue='-'}" HorizontalOptions="Center" FontSize="24" FontAttributes="Bold" />
+                    <Label Text="{Binding ResultLocation.Latitude, StringFormat='{0:F5}°', TargetNullValue='-'}" Style="{StaticResource DisplayTextValue}" />
                 </VerticalStackLayout>
                 <VerticalStackLayout>
                     <Label Text="Zeměpisná délka" Style="{StaticResource DisplayTextCaption}" />
-                    <Label Text="{Binding ResultLocation.Longitude, StringFormat='{0:F5}°', TargetNullValue='-'}" HorizontalOptions="Center" FontSize="24" FontAttributes="Bold" />
+                    <Label Text="{Binding ResultLocation.Longitude, StringFormat='{0:F5}°', TargetNullValue='-'}" Style="{StaticResource DisplayTextValue}" />
                 </VerticalStackLayout>
                 <VerticalStackLayout>
                     <Label Text="Nadmořská výška" Style="{StaticResource DisplayTextCaption}" />
-                    <Label Text="{Binding ResultLocation.Altitude, StringFormat='{0:F1} m', TargetNullValue='-'}" HorizontalOptions="Center" FontSize="24" FontAttributes="Bold" />
+                    <Label Text="{Binding ResultLocation.Altitude, StringFormat='{0:F1} m', TargetNullValue='-'}" Style="{StaticResource DisplayTextValue}" />
                 </VerticalStackLayout>
                 <VerticalStackLayout>
                     <Label Text="Přesnost" Style="{StaticResource DisplayTextCaption}" />
-                    <Label Text="{Binding ResultLocation.Accuracy, StringFormat='± {0:F1} m', TargetNullValue='-'}" HorizontalOptions="Center" FontSize="24" FontAttributes="Bold" />
+                    <Label Text="{Binding ResultLocation.Accuracy, StringFormat='± {0:F1} m', TargetNullValue='-'}" Style="{StaticResource DisplayTextValue}" />
                 </VerticalStackLayout>
                 <VerticalStackLayout>
                     <Label Text="Časové razítko" Style="{StaticResource DisplayTextCaption}" />
-                    <Label Text="{Binding ResultLocation.Timestamp, StringFormat='{0:dd.MM.yyyy HH:mm:ss}', TargetNullValue='-'}" HorizontalOptions="Center" FontSize="24" FontAttributes="Bold" />
+                    <Label Text="{Binding ResultLocation.Timestamp, StringFormat='{0:dd.MM.yyyy HH:mm:ss}', TargetNullValue='-'}" Style="{StaticResource DisplayTextValue}" />
                 </VerticalStackLayout>
             </VerticalStackLayout>
         </controls:DataGuard>

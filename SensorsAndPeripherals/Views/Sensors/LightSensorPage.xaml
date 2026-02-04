@@ -8,7 +8,7 @@
 
     <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource SensorNotSupported}">
         <Grid RowDefinitions="Auto, *, Auto" Padding="0,10,0,10">
-            <Label Text="{Binding DisplayText}" HorizontalOptions="Center" FontSize="24" FontAttributes="Bold" />
+            <Label Text="{Binding DisplayText}" Style="{StaticResource DisplayTextValue}" />
             <Grid Grid.Row="1" VerticalOptions="Center" HorizontalOptions="Center" Scale="0.75">
                 <Path Style="{StaticResource BulbSvg}" Fill="{AppThemeBinding Light={StaticResource Gray100}, Dark={StaticResource Gray600}}" Stroke="{StaticResource Gray400}" StrokeThickness="2" />
                 <Path Style="{StaticResource BulbSvg}" Fill="{StaticResource BulbYellow}" Stroke="{StaticResource Orange}" StrokeThickness="0" Opacity="{Binding Intensity}">

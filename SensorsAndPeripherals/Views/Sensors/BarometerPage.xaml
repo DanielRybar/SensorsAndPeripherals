@@ -8,7 +8,7 @@
 
     <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource SensorNotSupported}">
         <Grid RowDefinitions="Auto, *, Auto" Padding="0,10,0,10">
-            <Label Text="{Binding DisplayText}" HorizontalOptions="Center" FontSize="24" FontAttributes="Bold" />
+            <Label Text="{Binding DisplayText}" Style="{StaticResource DisplayTextValue}" />
             <Grid Grid.Row="1" ColumnDefinitions="*, Auto, *" WidthRequest="200" HeightRequest="500">
                 <Grid Margin="0,0,10,0">
                     <Label Text="1060" Style="{StaticResource ScaleLabel}" VerticalOptions="Start" HorizontalOptions="End" />
