@@ -686,4 +686,15 @@
         <Setter Property="FontSize" Value="24" />
         <Setter Property="HorizontalOptions" Value="Center" />
     </Style>
+
+    <Style TargetType="HorizontalStackLayout" x:Key="GpsLogoHsl">
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="Spacing" Value="10" />
+    </Style>
+
+    <Style TargetType="Image" x:Key="CenteredImage">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
 </ResourceDictionary>

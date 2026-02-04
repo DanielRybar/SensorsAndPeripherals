@@ -35,5 +35,6 @@
 
     <!-- Converters -->
     <conv:BoolToButtonTextConverter x:Key="BoolToButtonTextConverter" TextWhenTrue="{StaticResource ToggleOffText}" TextWhenFalse="{StaticResource ToggleOnText}" />
+    <conv:BoolToNegativeBoolConverter x:Key="BoolToNegativeBoolConverter" />
 
 </ResourceDictionary>
