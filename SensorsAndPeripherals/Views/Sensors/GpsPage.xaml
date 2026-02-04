@@ -3,13 +3,39 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SensorsAndPeripherals.Views.Sensors.GpsPage"
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"
+             xmlns:controls="clr-namespace:SensorsAndPeripherals.Controls"
              IsWorking="{Binding IsWorking}"
              Title="{StaticResource GpsTitle}">
-    
-    <VerticalStackLayout>
-        <Button Text="Poslední známá lokace (cache)" Command="{Binding GetLastKnownCachedLocationCommand}" />
-        <Button Text="Přesná lokace (fine)" Command="{Binding GetCurrentFineLocationCommand}" />
-        <Button Text="Přibližná lokace (coarse)" Command="{Binding GetCurrentCoarseLocationCommand}" />
-        <Label Text="{Binding ResultText}" />
-    </VerticalStackLayout>
+
+    <Grid Padding="0,10,0,10" RowDefinitions="*, Auto">
+        <controls:DataGuard HasData="{Binding IsResultVisible}" EmptyText="{Binding StatusMessage}">
+            <VerticalStackLayout Spacing="30" VerticalOptions="Center">
+                <VerticalStackLayout>
+                    <Label Text="Zeměpisná šířka" Style="{StaticResource DisplayTextCaption}" />
+                    <Label Text="{Binding ResultLocation.Latitude, StringFormat='{0:F5}°', TargetNullValue='-'}" HorizontalOptions="Center" FontSize="24" FontAttributes="Bold" />
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Label Text="Zeměpisná délka" Style="{StaticResource DisplayTextCaption}" />
+                    <Label Text="{Binding ResultLocation.Longitude, StringFormat='{0:F5}°', TargetNullValue='-'}" HorizontalOptions="Center" FontSize="24" FontAttributes="Bold" />
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Label Text="Nadmořská výška" Style="{StaticResource DisplayTextCaption}" />
+                    <Label Text="{Binding ResultLocation.Altitude, StringFormat='{0:F1} m', TargetNullValue='-'}" HorizontalOptions="Center" FontSize="24" FontAttributes="Bold" />
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Label Text="Přesnost" Style="{StaticResource DisplayTextCaption}" />
+                    <Label Text="{Binding ResultLocation.Accuracy, StringFormat='± {0:F1} m', TargetNullValue='-'}" HorizontalOptions="Center" FontSize="24" FontAttributes="Bold" />
+                </VerticalStackLayout>
+                <VerticalStackLayout>
+                    <Label Text="Časové razítko" Style="{StaticResource DisplayTextCaption}" />
+                    <Label Text="{Binding ResultLocation.Timestamp, StringFormat='{0:dd.MM.yyyy HH:mm:ss}', TargetNullValue='-'}" HorizontalOptions="Center" FontSize="24" FontAttributes="Bold" />
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </controls:DataGuard>
+        <VerticalStackLayout Grid.Row="1" Style="{StaticResource SensorStatusVsl}">
+            <Button Text="Poslední známá lokace" Command="{Binding GetLastKnownCachedLocationCommand}" Style="{StaticResource HorizontalFilledButton}" />
+            <Button Text="Přesná lokace" Command="{Binding GetCurrentFineLocationCommand}" Style="{StaticResource HorizontalFilledButton}" />
+            <Button Text="Přibližná lokace" Command="{Binding GetCurrentCoarseLocationCommand}" Style="{StaticResource HorizontalFilledButton}" />
+        </VerticalStackLayout>
+    </Grid>
 </abstract:ApplicationPage>
