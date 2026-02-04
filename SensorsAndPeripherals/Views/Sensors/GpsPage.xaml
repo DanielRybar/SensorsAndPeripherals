@@ -3,9 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SensorsAndPeripherals.Views.Sensors.GpsPage"
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"
+             IsWorking="{Binding IsWorking}"
              Title="{StaticResource GpsTitle}">
     
     <VerticalStackLayout>
-
+        <Button Text="Poslední známá lokace (cache)" Command="{Binding GetLastKnownCachedLocationCommand}" />
+        <Button Text="Přesná lokace (fine)" Command="{Binding GetCurrentFineLocationCommand}" />
+        <Button Text="Přibližná lokace (coarse)" Command="{Binding GetCurrentCoarseLocationCommand}" />
+        <Label Text="{Binding ResultText}" />
     </VerticalStackLayout>
 </abstract:ApplicationPage>

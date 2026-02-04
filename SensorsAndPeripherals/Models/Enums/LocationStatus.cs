@@ -7,6 +7,7 @@
         NotSupported,
         NotEnabled,
         PermissionDenied,
+        OperationCancelled,
         UnknownError
     }
 }

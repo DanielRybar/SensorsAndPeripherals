@@ -5,29 +5,46 @@ namespace SensorsAndPeripherals.Services
 {
     public class GeolocationService : IGeolocationService
     {
-        public async Task<(LocationStatus status, Location? location)> GetCachedLocation()
+        private CancellationTokenSource? cancelTokenSource;
+
+        public async Task<(LocationStatus status, Location? location)> GetLastKnownCachedLocation()
         {
-            return await GetLocation(isFine: false);
+            return await GetLocation(fromCache: true);
         }
 
-        public async Task<(LocationStatus status, Location? location)> GetCurrentLocation()
+        public async Task<(LocationStatus status, Location? location)> GetCurrentFineLocation()
         {
-            return await GetLocation(isFine: true);
+            return await GetLocation(fromCache: false, isFine: true);
         }
 
-        private static async Task<(LocationStatus status, Location? location)> GetLocation(bool isFine)
+        public async Task<(LocationStatus status, Location? location)> GetCurrentCoarseLocation()
+        {
+            return await GetLocation(fromCache: false, isFine: false);
+        }
+
+        public void CancelCurrentLocationRequest()
+        {
+            if (cancelTokenSource is not null && !cancelTokenSource.IsCancellationRequested)
+            {
+                cancelTokenSource?.Cancel();
+            }
+        }
+
+        private async Task<(LocationStatus status, Location? location)> GetLocation(bool fromCache, bool isFine = true)
         {
             try
             {
                 Location? location = null;
-                if (isFine)
+                if (fromCache)
                 {
-                    var request = new GeolocationRequest(GeolocationAccuracy.Best, TimeSpan.FromSeconds(10));
-                    location = await Geolocation.Default.GetLocationAsync(request, CancellationToken.None);
+                    location = await Geolocation.Default.GetLastKnownLocationAsync();
                 }
                 else
                 {
-                    location = await Geolocation.Default.GetLastKnownLocationAsync();
+                    CancelCurrentLocationRequest();
+                    var request = new GeolocationRequest(isFine ? GeolocationAccuracy.Best : GeolocationAccuracy.Low, TimeSpan.FromSeconds(10));
+                    cancelTokenSource = new CancellationTokenSource();
+                    location = await Geolocation.Default.GetLocationAsync(request, cancelTokenSource.Token);
                 }
                 if (location is not null)
                 {
@@ -47,9 +64,21 @@ namespace SensorsAndPeripherals.Services
             {
                 return (LocationStatus.PermissionDenied, null);
             }
+            catch (OperationCanceledException)
+            {
+                return (LocationStatus.OperationCancelled, null);
+            }
             catch (Exception)
             {
                 return (LocationStatus.UnknownError, null);
+            }
+            finally
+            {
+                if (!fromCache && cancelTokenSource is not null)
+                {
+                    cancelTokenSource.Dispose();
+                    cancelTokenSource = null;
+                }
             }
         }
     }
