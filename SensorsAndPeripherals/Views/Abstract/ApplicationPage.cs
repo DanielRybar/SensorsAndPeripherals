@@ -1,9 +1,13 @@
-﻿using CommunityToolkit.Maui.PlatformConfiguration.AndroidSpecific;
+﻿using CommunityToolkit.Maui.Core;
+using CommunityToolkit.Maui.PlatformConfiguration.AndroidSpecific;
+using Toast = CommunityToolkit.Maui.Alerts.Toast;
 
 namespace SensorsAndPeripherals.Views.Abstract
 {
     public abstract partial class ApplicationPage : ContentPage
     {
+        private DateTime lastBackButtonPressedTime;
+
         protected abstract string InfoText { get; }
 
         // Bindable Property for Loading Overlay
@@ -83,10 +87,22 @@ namespace SensorsAndPeripherals.Views.Abstract
 
         protected override bool OnBackButtonPressed()
         {
-            if (Shell.Current.FlyoutIsPresented) 
+            if (Shell.Current.FlyoutIsPresented)
             {
                 Shell.Current.FlyoutIsPresented = false;
+                return true;
             }
+            if ((DateTime.Now - lastBackButtonPressedTime).TotalSeconds < 2)
+            {
+                return base.OnBackButtonPressed();
+            }
+            lastBackButtonPressedTime = DateTime.Now;
+
+            MainThread.BeginInvokeOnMainThread(async () =>
+            {
+                await Toast.Make("Stiskněte znovu pro ukončení aplikace", ToastDuration.Short).Show();
+            });
+
             return true;
         }
     }
