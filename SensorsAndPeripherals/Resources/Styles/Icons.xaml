@@ -130,4 +130,11 @@
         Color="{StaticResource White}"
         Glyph="&#xf059;" />
 
+    <FontImageSource
+        x:Key="ToolbarPinIcon"
+        FontFamily="FontAwesomeSolid"
+        Size="25"
+        Color="{StaticResource White}"
+        Glyph="&#xf5a0;" />
+
 </ResourceDictionary>

@@ -22,6 +22,24 @@ namespace SensorsAndPeripherals.Services
             return await GetLocation(fromCache: false, isFine: false);
         }
 
+        public async Task<Placemark?> GetPlacemarkFromCoordinates(double latitude, double longitude)
+        {
+            try
+            {
+                var placemarks = await Geocoding.Default.GetPlacemarksAsync(latitude, longitude);
+                var placemark = placemarks?.FirstOrDefault();
+                if (placemark is not null)
+                {
+                    return placemark;
+                }
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public void CancelCurrentLocationRequest()
         {
             if (cancelTokenSource is not null && !cancelTokenSource.IsCancellationRequested)

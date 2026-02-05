@@ -11,6 +11,10 @@ public partial class GpsPage : ApplicationPage
     {
         InitializeComponent();
         BindingContext = viewModel = new GpsViewModel();
+        viewModel.ShowAddressDialogRequested += async address =>
+        {
+            await DisplayAlertAsync("Adresa", address, "OK");
+        };
     }
 
     protected override void OnDisappearing()

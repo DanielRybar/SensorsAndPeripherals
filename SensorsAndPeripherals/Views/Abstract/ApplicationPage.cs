@@ -40,6 +40,7 @@ namespace SensorsAndPeripherals.Views.Abstract
                 ToolbarItems.Add(new ToolbarItem
                 {
                     IconImageSource = App.Current!.Resources["ToolbarHelpIcon"] as FontImageSource,
+                    Priority = 1,
                     Command = new Command(async () =>
                     {
                         await DisplayAlertAsync("Informace", InfoText, "OK");

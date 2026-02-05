@@ -9,5 +9,6 @@ namespace SensorsAndPeripherals.Models
         public double? Altitude { get; set => SetProperty(ref field, value); }
         public double? Accuracy { get; set => SetProperty(ref field, value); }
         public DateTimeOffset Timestamp { get; set => SetProperty(ref field, value); }
+        public string? Address { get; set => SetProperty(ref field, value); } = string.Empty;
     }
 }

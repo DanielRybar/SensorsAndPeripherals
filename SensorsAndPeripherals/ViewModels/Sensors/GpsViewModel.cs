@@ -27,6 +27,11 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
             {
                 await GetLocation(fromCache: false, isFine: false);
             });
+            GetAddressFromCoordinatesCommand = new Command(() =>
+            {
+                ShowAddressDialogRequested?.Invoke(ResultLocation?.Address ?? "Adresa není k dispozici.");
+            }, 
+            () => IsResultVisible && !IsWorking);
         }
         #endregion
 
@@ -34,12 +39,18 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         public ICommand GetLastKnownCachedLocationCommand { get; private set; }
         public ICommand GetCurrentFineLocationCommand { get; private set; }
         public ICommand GetCurrentCoarseLocationCommand { get; private set; }
+        public ICommand GetAddressFromCoordinatesCommand { get; private set; }
+        #endregion
+
+        #region delegates
+        public event Action<string>? ShowAddressDialogRequested;
         #endregion
 
         #region methods
         private async Task GetLocation(bool fromCache, bool isFine = true)
         {
             IsWorking = true;
+            (GetAddressFromCoordinatesCommand as Command)!.ChangeCanExecute();
             (LocationStatus status, Location? location) result;
             if (fromCache)
             {
@@ -66,7 +77,8 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
                         Longitude = result.location.Longitude,
                         Altitude = result.location.Altitude,
                         Accuracy = result.location.Accuracy,
-                        Timestamp = result.location.Timestamp.ToLocalTime()
+                        Timestamp = result.location.Timestamp.ToLocalTime(),
+                        Address = await GetAddress(result.location.Latitude, result.location.Longitude)
                     };
                     break;
                 case LocationStatus.ObtainedButNull:
@@ -96,6 +108,21 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
                     break;
             }
             IsWorking = false;
+            (GetAddressFromCoordinatesCommand as Command)!.ChangeCanExecute();
+        }
+
+        private async Task<string?> GetAddress(double latitude, double longitude)
+        {
+            var placemark = await geolocationService.GetPlacemarkFromCoordinates(latitude, longitude);
+            if (placemark is not null)
+            {
+                var streetWithNumber = $"{placemark.Thoroughfare} {placemark.SubThoroughfare}".Trim();
+                var locality = !string.IsNullOrEmpty(placemark.Locality) 
+                    ? $"{placemark.Locality}, {placemark.CountryName}".Trim()
+                    : placemark.CountryName.Trim();
+                return $"{streetWithNumber}\n{locality}";
+            }
+            return null;
         }
 
         public void CancelCurrentLocationRequest() => geolocationService.CancelCurrentLocationRequest();

@@ -7,6 +7,7 @@ namespace SensorsAndPeripherals.Interfaces
         Task<(LocationStatus status, Location? location)> GetLastKnownCachedLocation();
         Task<(LocationStatus status, Location? location)> GetCurrentFineLocation();
         Task<(LocationStatus status, Location? location)> GetCurrentCoarseLocation();
+        Task<Placemark?> GetPlacemarkFromCoordinates(double latitude, double longitude);
         void CancelCurrentLocationRequest();
     }
 }

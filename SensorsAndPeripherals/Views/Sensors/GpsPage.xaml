@@ -7,6 +7,10 @@
              IsWorking="{Binding IsWorking}"
              Title="{StaticResource GpsTitle}">
 
+    <abstract:ApplicationPage.ToolbarItems>
+        <ToolbarItem IconImageSource="{StaticResource ToolbarPinIcon}" Command="{Binding GetAddressFromCoordinatesCommand}" Priority="0" />
+    </abstract:ApplicationPage.ToolbarItems>
+
     <Grid Padding="0,10,0,10" RowDefinitions="*, Auto">
         <VerticalStackLayout Spacing="20" VerticalOptions="Center">
             <HorizontalStackLayout Style="{StaticResource GpsLogoHsl}" IsVisible="{Binding IsResultVisible, Converter={StaticResource BoolToNegativeBoolConverter}}">
