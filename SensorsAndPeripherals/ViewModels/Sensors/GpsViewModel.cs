@@ -30,7 +30,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
             GetAddressFromCoordinatesCommand = new Command(() =>
             {
                 ShowAddressDialogRequested?.Invoke(ResultLocation?.Address ?? "Adresa není k dispozici.");
-            }, 
+            },
             () => IsResultVisible && !IsWorking);
         }
         #endregion
@@ -116,11 +116,36 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
             var placemark = await geolocationService.GetPlacemarkFromCoordinates(latitude, longitude);
             if (placemark is not null)
             {
-                var streetWithNumber = $"{placemark.Thoroughfare} {placemark.SubThoroughfare}".Trim();
-                var locality = !string.IsNullOrEmpty(placemark.Locality) 
-                    ? $"{placemark.Locality}, {placemark.CountryName}".Trim()
-                    : placemark.CountryName.Trim();
-                return $"{streetWithNumber}\n{locality}";
+                var addressLines = new List<string>();
+                string streetLine = $"{placemark.Thoroughfare} {placemark.SubThoroughfare}".Trim();
+                if (string.IsNullOrEmpty(streetLine) && !string.IsNullOrEmpty(placemark.FeatureName))
+                {
+                    streetLine = placemark.FeatureName;
+                }
+                if (!string.IsNullOrWhiteSpace(streetLine))
+                {
+                    addressLines.Add(streetLine);
+                }
+                if (!string.IsNullOrWhiteSpace(placemark.SubLocality) && placemark.SubLocality != placemark.Locality)
+                {
+                    addressLines.Add(placemark.SubLocality);
+                }
+                string cityLine = $"{placemark.PostalCode} {placemark.Locality}".Trim();
+                if (!string.IsNullOrWhiteSpace(cityLine))
+                {
+                    addressLines.Add(cityLine);
+                }
+                string adminArea = placemark.AdminArea;
+                if (!string.IsNullOrWhiteSpace(adminArea))
+                {
+                    addressLines.Add(adminArea);
+                }
+                if (!string.IsNullOrWhiteSpace(placemark.CountryName))
+                {
+                    addressLines.Add(placemark.CountryName);
+                }
+
+                return string.Join("\n", addressLines);
             }
             return null;
         }
