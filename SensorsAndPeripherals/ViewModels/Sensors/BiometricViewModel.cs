@@ -78,10 +78,10 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
 
             AuthResult = result switch
             {
-                BiometricAuthResult.Success => "Ověření úspěšné.",
-                BiometricAuthResult.Failed => "Ověření selhalo.",
-                BiometricAuthResult.NotAvailable => App.Current!.Resources["BiometricSensorNotSupported"] as string ?? "Ověření není dostupné.",
-                _ => "Neznámý výsledek ověření."
+                BiometricAuthResult.Success => "Ověření úspěšné",
+                BiometricAuthResult.Failed => "Ověření selhalo",
+                BiometricAuthResult.NotAvailable => "Ověření není dostupné",
+                _ => "Neznámý výsledek ověření"
             };
             IsWorking = false;
         }
@@ -123,7 +123,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         {
             get;
             set => SetProperty(ref field, value);
-        } = "Zatím neověřeno.";
+        } = "Zatím neověřeno";
         #endregion
     }
 }

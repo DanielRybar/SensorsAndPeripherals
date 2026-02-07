@@ -13,7 +13,7 @@
 
     <Grid Padding="0,10,0,10" RowDefinitions="*, Auto">
         <VerticalStackLayout Spacing="20" VerticalOptions="Center">
-            <HorizontalStackLayout Style="{StaticResource GpsLogoHsl}" IsVisible="{Binding IsResultVisible, Converter={StaticResource BoolToNegativeBoolConverter}}">
+            <HorizontalStackLayout Style="{StaticResource LogoHsl}" IsVisible="{Binding IsResultVisible, Converter={StaticResource BoolToNegativeBoolConverter}}">
                 <Image Source="pointer.png" WidthRequest="130" HeightRequest="130" Rotation="180" Style="{StaticResource CenteredImage}" />
                 <Image Source="logo_dark.png" WidthRequest="150" HeightRequest="150" Style="{StaticResource CenteredImage}" />
             </HorizontalStackLayout>

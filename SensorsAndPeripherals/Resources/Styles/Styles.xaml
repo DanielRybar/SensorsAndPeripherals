@@ -687,7 +687,13 @@
         <Setter Property="HorizontalOptions" Value="Center" />
     </Style>
 
-    <Style TargetType="HorizontalStackLayout" x:Key="GpsLogoHsl">
+    <Style TargetType="HorizontalStackLayout" x:Key="LogoHsl">
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="Spacing" Value="10" />
+    </Style>
+
+    <Style TargetType="VerticalStackLayout" x:Key="LogoVsl">
         <Setter Property="VerticalOptions" Value="Center" />
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="Spacing" Value="10" />
