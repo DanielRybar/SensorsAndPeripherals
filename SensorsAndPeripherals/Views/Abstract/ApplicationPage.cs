@@ -84,6 +84,24 @@ namespace SensorsAndPeripherals.Views.Abstract
         {
             base.OnAppearing();
             On<Microsoft.Maui.Controls.PlatformConfiguration.Android>().SetColor(App.Current!.Resources["BarColor"] as Color ?? Colors.Black);
+            ToolbarFixBug();
+        }
+
+        /// <summary>
+        /// https://github.com/dotnet/maui/issues/7823#issuecomment-1387094629
+        /// </summary>
+        private void ToolbarFixBug()
+        {
+            var toolbarItems = this.ToolbarItems.ToList();
+            ToolbarItems.Clear();
+            Task.Run(async () =>
+            {
+                if (toolbarItems?.Count > 0)
+                {
+                    await Task.Delay(50);
+                    Dispatcher.Dispatch(() => toolbarItems.ForEach((toolbar) => this.ToolbarItems.Add(toolbar)));
+                }
+            });
         }
 
         protected override bool OnBackButtonPressed()
