@@ -4,10 +4,17 @@ namespace SensorsAndPeripherals.Views.Sensors;
 
 public partial class BiometricPage : ApplicationPage
 {
-	public BiometricPage()
-	{
-		InitializeComponent();
-	}
+    private readonly ViewModels.Sensors.BiometricViewModel viewModel;
 
-	protected override string InfoText => "";
+    public BiometricPage()
+    {
+        InitializeComponent();
+        BindingContext = viewModel = new ViewModels.Sensors.BiometricViewModel();
+        viewModel.ShowBiometricTypesDialogRequested += async types =>
+        {
+            await DisplayAlertAsync("Dostupné typy ovìøení", types, "OK");
+        };
+    }
+    
+    protected override string InfoText => "";
 }

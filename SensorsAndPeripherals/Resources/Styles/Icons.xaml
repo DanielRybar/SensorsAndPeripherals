@@ -137,4 +137,11 @@
         Color="{StaticResource White}"
         Glyph="&#xf5a0;" />
 
+    <FontImageSource
+        x:Key="ToolbarFingerprintIcon"
+        FontFamily="FontAwesomeSolid"
+        Size="25"
+        Color="{StaticResource White}"
+        Glyph="&#xf577;" />
+
 </ResourceDictionary>

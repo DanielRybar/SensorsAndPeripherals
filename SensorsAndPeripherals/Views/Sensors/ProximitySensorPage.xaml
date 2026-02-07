@@ -8,7 +8,7 @@
 
     <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource SensorNotSupported}">
         <Grid Padding="0,10,0,10">
-            <Label Text="{Binding DisplayText}" HorizontalOptions="Center" VerticalOptions="Center" FontSize="24" FontAttributes="Bold" />
+            <Label Text="{Binding DisplayText}" Style="{StaticResource DisplayTextValue}" />
             <VerticalStackLayout Style="{StaticResource SensorStatusVsl}">
                 <Button Text="{Binding IsMonitoring, Converter={StaticResource BoolToButtonTextConverter}}" Command="{Binding ToggleCommand}" Style="{StaticResource HorizontalFilledButton}" />
             </VerticalStackLayout>

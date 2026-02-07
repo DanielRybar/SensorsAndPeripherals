@@ -14,13 +14,7 @@ namespace SensorsAndPeripherals.ViewModels.Abstract
             return true;
         }
 
-        public string Title
-        {
-            get;
-            set => SetProperty(ref field, value);
-        } = string.Empty;
-
-        public bool IsWorking
+        public virtual bool IsWorking
         {
             get;
             set => SetProperty(ref field, value);

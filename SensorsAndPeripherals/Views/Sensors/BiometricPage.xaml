@@ -3,9 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SensorsAndPeripherals.Views.Sensors.BiometricPage"
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"
+             xmlns:controls="clr-namespace:SensorsAndPeripherals.Controls"  
+             IsWorking="{Binding IsWorking}"
              Title="{StaticResource BiometricTitle}">
-    
-    <VerticalStackLayout>
 
-    </VerticalStackLayout>
+    <abstract:ApplicationPage.ToolbarItems>
+        <ToolbarItem IconImageSource="{StaticResource ToolbarFingerprintIcon}" Command="{Binding GetAvailableBiometricTypesCommand}" Priority="0" />
+    </abstract:ApplicationPage.ToolbarItems>
+
+    <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource BiometricSensorNotSupported}">
+        <Grid Padding="0,10,0,10">
+            <Label Text="{Binding AuthResult}" Style="{StaticResource DisplayTextValue}" />
+            <VerticalStackLayout Style="{StaticResource SensorStatusVsl}">
+                <Button Text="Použít silnou metodu (otisk)" Command="{Binding PerformStrongAuthenticationCommand}" Style="{StaticResource HorizontalFilledButton}" />
+                <Button Text="Použít slabou metodu (otisk/obličej)" Command="{Binding PerformWeakAuthenticationCommand}" Style="{StaticResource HorizontalFilledButton}" />
+            </VerticalStackLayout>
+        </Grid>
+    </controls:DataGuard>
 </abstract:ApplicationPage>
