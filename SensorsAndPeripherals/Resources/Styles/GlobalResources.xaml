@@ -28,6 +28,7 @@
     <x:String x:Key="EmptyViewText">Žádná data nejsou k&#160;dispozici.</x:String>
     <x:String x:Key="SensorNotSupported">Senzor na&#160;tomto zařízení není podporován.</x:String>
     <x:String x:Key="BiometricSensorNotSupported">Biometrické ověření není dostupné.</x:String>
+    <x:String x:Key="CameraNotSupported">Pořízení obrázku není dostupné.</x:String>
     <x:String x:Key="ToggleOnText">Zapnout</x:String>
     <x:String x:Key="ToggleOffText">Vypnout</x:String>
     
@@ -37,5 +38,6 @@
     <!-- Converters -->
     <conv:BoolToButtonTextConverter x:Key="BoolToButtonTextConverter" TextWhenTrue="{StaticResource ToggleOffText}" TextWhenFalse="{StaticResource ToggleOnText}" />
     <conv:BoolToNegativeBoolConverter x:Key="BoolToNegativeBoolConverter" />
+    <conv:FilePathToImageSourceConverter x:Key="FilePathToImageSourceConverter" />
 
 </ResourceDictionary>

@@ -1,19 +1,40 @@
 ﻿using SensorsAndPeripherals.Interfaces.Peripherals;
+using System.Diagnostics;
 
 namespace SensorsAndPeripherals.Services.Peripherals
 {
     public class CameraService : ICameraService
     {
-        public bool IsSupported => throw new NotImplementedException();
+        public bool IsSupported => MediaPicker.Default.IsCaptureSupported;
 
-        public Task<bool> SavePhotoToCacheAsync()
+        public async Task<FileResult?> TakePhotoAsync()
         {
-            throw new NotImplementedException();
+            if (IsSupported)
+            {
+                return await MediaPicker.Default.CapturePhotoAsync();
+            }
+            return null;
         }
 
-        public Task<FileResult?> TakePhotoAsync()
+        public async Task<string?> SavePhotoToCacheAsync(FileResult? photo)
         {
-            throw new NotImplementedException();
+            if (photo is not null)
+            {
+                string localPath = Path.Combine(FileSystem.CacheDirectory, photo.FileName);
+                try
+                {
+                    using Stream sourceStream = await photo.OpenReadAsync();
+                    using FileStream destinationStream = File.Create(localPath);
+                    await sourceStream.CopyToAsync(destinationStream);
+                    return localPath;
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Error saving photo to cache: {ex.Message}");
+                    return null;
+                }
+            }
+            return null;
         }
     }
 }

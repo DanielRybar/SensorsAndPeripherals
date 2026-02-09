@@ -4,6 +4,6 @@
     {
         bool IsSupported { get; }
         Task<FileResult?> TakePhotoAsync();
-        Task<bool> SavePhotoToCacheAsync();
+        Task<string?> SavePhotoToCacheAsync(FileResult? photo);
     }
 }

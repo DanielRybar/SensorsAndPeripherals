@@ -14,6 +14,11 @@ namespace SensorsAndPeripherals.ViewModels.Abstract
             return true;
         }
 
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null!)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         public virtual bool IsWorking
         {
             get;

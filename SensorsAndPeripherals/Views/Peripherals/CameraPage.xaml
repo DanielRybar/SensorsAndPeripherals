@@ -2,10 +2,19 @@
 <abstract:ApplicationPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SensorsAndPeripherals.Views.Peripherals.CameraPage"
-             xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"             
+             xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"  
+             xmlns:controls="clr-namespace:SensorsAndPeripherals.Controls"
+             IsWorking="{Binding IsWorking}"
              Title="{StaticResource CameraTitle}">
 
-    <VerticalStackLayout>
-
-    </VerticalStackLayout>
+    <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource CameraNotSupported}">
+        <Grid RowDefinitions="*, Auto" Padding="0,10,0,10">
+            <controls:DataGuard HasData="{Binding HasPhoto}" EmptyText="{Binding StatusMessage}">
+                <Image Source="{Binding PhotoPath, Converter={StaticResource FilePathToImageSourceConverter}}" Aspect="AspectFit" Style="{StaticResource CenteredImage}" />
+            </controls:DataGuard>
+            <VerticalStackLayout Grid.Row="1" Style="{StaticResource SensorStatusVsl}">
+                <Button Text="Pořídit fotografii" Command="{Binding TakeAndDisplayPhotoCommand}" Style="{StaticResource HorizontalFilledButton}" />
+            </VerticalStackLayout>
+        </Grid>
+    </controls:DataGuard>
 </abstract:ApplicationPage>
