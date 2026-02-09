@@ -1,6 +1,6 @@
-﻿using SensorsAndPeripherals.Interfaces;
+﻿using SensorsAndPeripherals.Interfaces.Sensors;
 
-namespace SensorsAndPeripherals.Services
+namespace SensorsAndPeripherals.Services.Sensors
 {
     public class GyroscopeService : IGyroscopeService
     {

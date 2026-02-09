@@ -1,24 +1,24 @@
 ﻿using Android.Content;
 using Android.Hardware;
 using Android.Runtime;
-using SensorsAndPeripherals.Interfaces;
+using SensorsAndPeripherals.Interfaces.Sensors;
 using SensorsAndPeripherals.Models.CustomEventArgs;
 
-namespace SensorsAndPeripherals.Platforms.Android.Services
+namespace SensorsAndPeripherals.Platforms.Android.Services.Sensors
 {
-    public class ProximitySensorService : Java.Lang.Object, ISensorEventListener, IProximitySensorService
+    public class LightSensorService : Java.Lang.Object, ISensorEventListener, ILightSensorService
     {
         private readonly SensorManager? sensorManager;
-        private readonly Sensor? proximitySensor;
+        private readonly Sensor? lightSensor;
 
-        public event EventHandler<ProximitySensorChangedEventArgs>? ReadingChanged;
+        public event EventHandler<LightSensorChangedEventArgs>? ReadingChanged;
         public bool IsMonitoring { get; private set; } = false;
-        public bool IsSupported => proximitySensor is not null;
+        public bool IsSupported => lightSensor is not null;
 
-        public ProximitySensorService()
+        public LightSensorService()
         {
             sensorManager = global::Android.App.Application.Context.GetSystemService(Context.SensorService) as SensorManager;
-            proximitySensor = sensorManager?.GetDefaultSensor(SensorType.Proximity);
+            lightSensor = sensorManager?.GetDefaultSensor(SensorType.Light);
         }
 
         public void Start(SensorSpeed speed)
@@ -32,7 +32,7 @@ namespace SensorsAndPeripherals.Platforms.Android.Services
                     SensorSpeed.UI => SensorDelay.Ui,
                     _ => SensorDelay.Normal
                 };
-                sensorManager.RegisterListener(this, proximitySensor, delay);
+                sensorManager.RegisterListener(this, lightSensor, delay);
                 IsMonitoring = true;
             }
         }
@@ -41,17 +41,17 @@ namespace SensorsAndPeripherals.Platforms.Android.Services
         {
             if (IsMonitoring && sensorManager != null)
             {
-                sensorManager.UnregisterListener(this, proximitySensor);
+                sensorManager.UnregisterListener(this, lightSensor);
                 IsMonitoring = false;
             }
         }
 
         public void OnSensorChanged(SensorEvent? e)
         {
-            if (e is not null && e.Sensor?.Type == SensorType.Proximity && e.Values is not null)
+            if (e is not null && e.Sensor?.Type == SensorType.Light && e.Values is not null)
             {
-                float distance = e.Values[0];
-                ReadingChanged?.Invoke(this, new ProximitySensorChangedEventArgs(distance));
+                float lux = e.Values[0];
+                ReadingChanged?.Invoke(this, new LightSensorChangedEventArgs(lux));
             }
         }
 

@@ -1,8 +1,8 @@
 ﻿using SensorsAndPeripherals.Models.Enums;
 
-namespace SensorsAndPeripherals.Interfaces
+namespace SensorsAndPeripherals.Interfaces.Sensors
 {
-    public interface IGeolocationService
+    public interface IGpsService
     {
         Task<(LocationStatus status, Location? location)> GetLastKnownCachedLocationAsync();
         Task<(LocationStatus status, Location? location)> GetCurrentFineLocationAsync();

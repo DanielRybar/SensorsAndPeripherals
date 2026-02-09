@@ -1,9 +1,9 @@
-﻿using SensorsAndPeripherals.Interfaces;
+﻿using SensorsAndPeripherals.Interfaces.Sensors;
 using SensorsAndPeripherals.Models.Enums;
 
-namespace SensorsAndPeripherals.Services
+namespace SensorsAndPeripherals.Services.Sensors
 {
-    public class GeolocationService : IGeolocationService
+    public class GpsService : IGpsService
     {
         private CancellationTokenSource? cancelTokenSource;
 

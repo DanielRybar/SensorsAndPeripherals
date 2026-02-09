@@ -1,7 +1,10 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using SensorsAndPeripherals.Interfaces;
-using SensorsAndPeripherals.Services;
+using SensorsAndPeripherals.Interfaces.Peripherals;
+using SensorsAndPeripherals.Interfaces.Sensors;
+using SensorsAndPeripherals.Services.Peripherals;
+using SensorsAndPeripherals.Services.Sensors;
 
 namespace SensorsAndPeripherals
 {
@@ -32,10 +35,11 @@ namespace SensorsAndPeripherals
             DependencyService.Register<IMagnetometerService, MagnetometerService>();
             DependencyService.Register<IRotationSensorService, RotationSensorService>();
             DependencyService.Register<IBarometerService, BarometerService>();
-            DependencyService.Register<IGeolocationService, GeolocationService>();
+            DependencyService.Register<IGpsService, GpsService>();
             DependencyService.Register<IBiometricService, BiometricService>();
-            DependencyService.Register<ILightSensorService, Platforms.Android.Services.LightSensorService>();
-            DependencyService.Register<IProximitySensorService, Platforms.Android.Services.ProximitySensorService>();
+            DependencyService.Register<ICameraService, CameraService>();
+            DependencyService.Register<ILightSensorService, Platforms.Android.Services.Sensors.LightSensorService>();
+            DependencyService.Register<IProximitySensorService, Platforms.Android.Services.Sensors.ProximitySensorService>();
             DependencyService.Register<ISensorListService, Platforms.Android.Services.SensorListService>();
 
             return builder.Build();

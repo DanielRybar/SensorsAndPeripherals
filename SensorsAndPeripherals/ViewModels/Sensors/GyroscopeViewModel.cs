@@ -1,5 +1,5 @@
 ﻿using SensorsAndPeripherals.Constants;
-using SensorsAndPeripherals.Interfaces;
+using SensorsAndPeripherals.Interfaces.Sensors;
 using SensorsAndPeripherals.ViewModels.Abstract;
 
 namespace SensorsAndPeripherals.ViewModels.Sensors

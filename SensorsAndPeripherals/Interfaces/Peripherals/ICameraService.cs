@@ -1,4 +1,4 @@
-﻿namespace SensorsAndPeripherals.Interfaces
+﻿namespace SensorsAndPeripherals.Interfaces.Peripherals
 {
     public interface ICameraService
     {

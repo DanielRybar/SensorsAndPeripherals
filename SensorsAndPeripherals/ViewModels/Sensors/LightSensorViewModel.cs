@@ -1,5 +1,5 @@
 ﻿using SensorsAndPeripherals.Constants;
-using SensorsAndPeripherals.Interfaces;
+using SensorsAndPeripherals.Interfaces.Sensors;
 using SensorsAndPeripherals.Models.CustomEventArgs;
 using SensorsAndPeripherals.ViewModels.Abstract;
 

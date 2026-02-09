@@ -1,6 +1,6 @@
 ﻿using SensorsAndPeripherals.Interfaces.Generic;
 
-namespace SensorsAndPeripherals.Interfaces
+namespace SensorsAndPeripherals.Interfaces.Sensors
 {
     public interface IGyroscopeService : ISensorService<GyroscopeChangedEventArgs>
     {

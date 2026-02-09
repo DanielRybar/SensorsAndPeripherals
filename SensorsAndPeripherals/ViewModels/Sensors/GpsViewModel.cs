@@ -1,4 +1,4 @@
-﻿using SensorsAndPeripherals.Interfaces;
+﻿using SensorsAndPeripherals.Interfaces.Sensors;
 using SensorsAndPeripherals.Models;
 using SensorsAndPeripherals.ViewModels.Abstract;
 using System.Windows.Input;
@@ -9,7 +9,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
     public class GpsViewModel : BaseViewModel
     {
         #region services
-        private readonly IGeolocationService geolocationService = DependencyService.Get<IGeolocationService>();
+        private readonly IGpsService gpsService = DependencyService.Get<IGpsService>();
         #endregion
 
         #region constructor
@@ -54,17 +54,17 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
             (LocationStatus status, Location? location) result;
             if (fromCache)
             {
-                result = await geolocationService.GetLastKnownCachedLocationAsync();
+                result = await gpsService.GetLastKnownCachedLocationAsync();
             }
             else
             {
                 if (isFine)
                 {
-                    result = await geolocationService.GetCurrentFineLocationAsync();
+                    result = await gpsService.GetCurrentFineLocationAsync();
                 }
                 else
                 {
-                    result = await geolocationService.GetCurrentCoarseLocationAsync();
+                    result = await gpsService.GetCurrentCoarseLocationAsync();
                 }
             }
             switch (result.status)
@@ -113,7 +113,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
 
         private async Task<string?> GetAddress(double latitude, double longitude)
         {
-            var placemark = await geolocationService.GetPlacemarkFromCoordinatesAsync(latitude, longitude);
+            var placemark = await gpsService.GetPlacemarkFromCoordinatesAsync(latitude, longitude);
             if (placemark is not null)
             {
                 var addressLines = new List<string>();
@@ -150,7 +150,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
             return null;
         }
 
-        public void CancelCurrentLocationRequest() => geolocationService.CancelCurrentLocationRequest();
+        public void CancelCurrentLocationRequest() => gpsService.CancelCurrentLocationRequest();
         #endregion
 
         #region properties

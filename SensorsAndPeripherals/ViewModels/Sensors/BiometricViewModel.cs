@@ -1,4 +1,4 @@
-﻿using SensorsAndPeripherals.Interfaces;
+﻿using SensorsAndPeripherals.Interfaces.Sensors;
 using SensorsAndPeripherals.Models.Enums;
 using SensorsAndPeripherals.ViewModels.Abstract;
 using System.Windows.Input;

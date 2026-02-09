@@ -1,7 +1,7 @@
 ﻿using Plugin.Maui.Biometric;
 using SensorsAndPeripherals.Models.Enums;
 
-namespace SensorsAndPeripherals.Interfaces
+namespace SensorsAndPeripherals.Interfaces.Sensors
 {
     public interface IBiometricService
     {
