@@ -8,7 +8,7 @@ namespace SensorsAndPeripherals.Converters
         {
             if (value is string filePath && File.Exists(filePath))
             {
-                return ImageSource.FromStream(() => File.OpenRead(filePath));
+                return ImageSource.FromFile(filePath);
             }
             return value;
         }
