@@ -4,10 +4,10 @@ namespace SensorsAndPeripherals.Interfaces
 {
     public interface IGeolocationService
     {
-        Task<(LocationStatus status, Location? location)> GetLastKnownCachedLocation();
-        Task<(LocationStatus status, Location? location)> GetCurrentFineLocation();
-        Task<(LocationStatus status, Location? location)> GetCurrentCoarseLocation();
-        Task<Placemark?> GetPlacemarkFromCoordinates(double latitude, double longitude);
+        Task<(LocationStatus status, Location? location)> GetLastKnownCachedLocationAsync();
+        Task<(LocationStatus status, Location? location)> GetCurrentFineLocationAsync();
+        Task<(LocationStatus status, Location? location)> GetCurrentCoarseLocationAsync();
+        Task<Placemark?> GetPlacemarkFromCoordinatesAsync(double latitude, double longitude);
         void CancelCurrentLocationRequest();
     }
 }

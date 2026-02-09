@@ -5,8 +5,8 @@ namespace SensorsAndPeripherals.Interfaces
 {
     public interface IBiometricService
     {
-        Task<bool> IsAvailable();
-        Task<BiometricType[]?> GetBiometricTypes();
-        Task<BiometricAuthResult> Authenticate(string title, string description, string negativeText, AuthenticatorStrength strength);
+        Task<bool> IsAvailableAsync();
+        Task<BiometricType[]?> GetBiometricTypesAsync();
+        Task<BiometricAuthResult> AuthenticateAsync(string title, string description, string negativeText, AuthenticatorStrength strength);
     }
 }

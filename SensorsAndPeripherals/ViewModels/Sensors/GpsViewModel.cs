@@ -54,17 +54,17 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
             (LocationStatus status, Location? location) result;
             if (fromCache)
             {
-                result = await geolocationService.GetLastKnownCachedLocation();
+                result = await geolocationService.GetLastKnownCachedLocationAsync();
             }
             else
             {
                 if (isFine)
                 {
-                    result = await geolocationService.GetCurrentFineLocation();
+                    result = await geolocationService.GetCurrentFineLocationAsync();
                 }
                 else
                 {
-                    result = await geolocationService.GetCurrentCoarseLocation();
+                    result = await geolocationService.GetCurrentCoarseLocationAsync();
                 }
             }
             switch (result.status)
@@ -113,7 +113,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
 
         private async Task<string?> GetAddress(double latitude, double longitude)
         {
-            var placemark = await geolocationService.GetPlacemarkFromCoordinates(latitude, longitude);
+            var placemark = await geolocationService.GetPlacemarkFromCoordinatesAsync(latitude, longitude);
             if (placemark is not null)
             {
                 var addressLines = new List<string>();

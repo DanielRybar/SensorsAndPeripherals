@@ -18,7 +18,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
             Task.Run(async () =>
             {
                 MainThread.BeginInvokeOnMainThread(() => IsWorking = true);
-                var available = await biometricService.IsAvailable();
+                var available = await biometricService.IsAvailableAsync();
                 MainThread.BeginInvokeOnMainThread(() =>
                 {
                     IsSupported = available;
@@ -29,7 +29,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
             GetAvailableBiometricTypesCommand = new Command(async () =>
             {
                 IsWorking = true;
-                var result = await biometricService.GetBiometricTypes();
+                var result = await biometricService.GetBiometricTypesAsync();
                 if (result is not null)
                 {
                     ShowBiometricTypesDialogRequested?.Invoke(string.Join(", ", result.Select(t => t.ToString())));
@@ -70,7 +70,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         private async Task PerformAuthentication(AuthenticatorStrength strength)
         {
             IsWorking = true;
-            var result = await biometricService.Authenticate(
+            var result = await biometricService.AuthenticateAsync(
                 "Ověření identity",
                 "Pro pokračování je třeba ověřit vaši identitu pomocí biometrického ověření.",
                 "Použít heslo",

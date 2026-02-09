@@ -8,23 +8,23 @@ namespace SensorsAndPeripherals.Services
     {
         private readonly IBiometric auth = BiometricAuthenticationService.Default;
 
-        public async Task<bool> IsAvailable()
+        public async Task<bool> IsAvailableAsync()
         {
             return await auth.GetAuthenticationStatusAsync() == BiometricHwStatus.Success;
         }
 
-        public async Task<BiometricType[]?> GetBiometricTypes()
+        public async Task<BiometricType[]?> GetBiometricTypesAsync()
         {
-            if (await IsAvailable())
+            if (await IsAvailableAsync())
             {
                 return await auth.GetEnrolledBiometricTypesAsync();
             }
             return null;
         }
 
-        public async Task<BiometricAuthResult> Authenticate(string title, string description, string negativeText, AuthenticatorStrength strength)
+        public async Task<BiometricAuthResult> AuthenticateAsync(string title, string description, string negativeText, AuthenticatorStrength strength)
         {
-            if (!await IsAvailable())
+            if (!await IsAvailableAsync())
             {
                 return BiometricAuthResult.NotAvailable;
             }

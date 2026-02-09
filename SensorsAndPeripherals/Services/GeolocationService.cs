@@ -7,22 +7,22 @@ namespace SensorsAndPeripherals.Services
     {
         private CancellationTokenSource? cancelTokenSource;
 
-        public async Task<(LocationStatus status, Location? location)> GetLastKnownCachedLocation()
+        public async Task<(LocationStatus status, Location? location)> GetLastKnownCachedLocationAsync()
         {
             return await GetLocation(fromCache: true);
         }
 
-        public async Task<(LocationStatus status, Location? location)> GetCurrentFineLocation()
+        public async Task<(LocationStatus status, Location? location)> GetCurrentFineLocationAsync()
         {
             return await GetLocation(fromCache: false, isFine: true);
         }
 
-        public async Task<(LocationStatus status, Location? location)> GetCurrentCoarseLocation()
+        public async Task<(LocationStatus status, Location? location)> GetCurrentCoarseLocationAsync()
         {
             return await GetLocation(fromCache: false, isFine: false);
         }
 
-        public async Task<Placemark?> GetPlacemarkFromCoordinates(double latitude, double longitude)
+        public async Task<Placemark?> GetPlacemarkFromCoordinatesAsync(double latitude, double longitude)
         {
             try
             {
