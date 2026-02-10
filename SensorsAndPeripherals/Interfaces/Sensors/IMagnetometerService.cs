@@ -1,4 +1,4 @@
-﻿using SensorsAndPeripherals.Interfaces.Generic;
+﻿using SensorsAndPeripherals.Interfaces.Base;
 
 namespace SensorsAndPeripherals.Interfaces.Sensors
 {

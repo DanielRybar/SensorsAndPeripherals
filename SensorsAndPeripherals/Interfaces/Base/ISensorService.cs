@@ -1,4 +1,4 @@
-﻿namespace SensorsAndPeripherals.Interfaces.Generic
+﻿namespace SensorsAndPeripherals.Interfaces.Base
 {
     public interface ISensorService<TEventArgs> where TEventArgs : EventArgs
     {

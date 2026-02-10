@@ -1,4 +1,4 @@
-﻿using SensorsAndPeripherals.Interfaces.Generic;
+﻿using SensorsAndPeripherals.Interfaces.Base;
 using SensorsAndPeripherals.Models.CustomEventArgs;
 
 namespace SensorsAndPeripherals.Interfaces.Sensors

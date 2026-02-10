@@ -4,23 +4,18 @@ using System.Windows.Input;
 
 namespace SensorsAndPeripherals.ViewModels.Peripherals
 {
-    public class CameraViewModel : BaseViewModel
+    public class CameraViewModel : PeripheralViewModel<ICameraService>
     {
-        #region services
-        private readonly ICameraService cameraService = DependencyService.Get<ICameraService>();
-        #endregion
-
         #region constructor
         public CameraViewModel()
         {
-            IsSupported = cameraService.IsSupported;
             TakeAndDisplayPhotoCommand = new Command(async () =>
             {
                 IsWorking = true;
-                var photoFileResult = await cameraService.TakePhotoAsync();
+                var photoFileResult = await peripheralService.TakePhotoAsync();
                 if (photoFileResult is not null)
                 {
-                    var resultPath = await cameraService.SavePhotoToCacheAsync(photoFileResult);
+                    var resultPath = await peripheralService.SavePhotoToCacheAsync(photoFileResult);
                     if (!string.IsNullOrEmpty(resultPath))
                     {
                         PhotoPath = resultPath;
@@ -46,12 +41,6 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         #endregion
 
         #region properties
-        public bool IsSupported
-        {
-            get;
-            set => SetProperty(ref field, value);
-        }
-
         public string StatusMessage
         {
             get;

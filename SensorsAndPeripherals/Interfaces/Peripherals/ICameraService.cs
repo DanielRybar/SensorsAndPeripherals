@@ -1,8 +1,9 @@
-﻿namespace SensorsAndPeripherals.Interfaces.Peripherals
+﻿using SensorsAndPeripherals.Interfaces.Base;
+
+namespace SensorsAndPeripherals.Interfaces.Peripherals
 {
-    public interface ICameraService
+    public interface ICameraService : IPeripheralService
     {
-        bool IsSupported { get; }
         Task<FileResult?> TakePhotoAsync();
         Task<string?> SavePhotoToCacheAsync(FileResult? photo);
     }

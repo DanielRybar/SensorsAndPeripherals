@@ -1,4 +1,4 @@
-﻿using SensorsAndPeripherals.Interfaces.Generic;
+﻿using SensorsAndPeripherals.Interfaces.Base;
 using System.Windows.Input;
 
 namespace SensorsAndPeripherals.ViewModels.Abstract

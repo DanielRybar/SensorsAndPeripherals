@@ -1,8 +1,9 @@
-﻿namespace SensorsAndPeripherals.Interfaces.Peripherals
+﻿using SensorsAndPeripherals.Interfaces.Base;
+
+namespace SensorsAndPeripherals.Interfaces.Peripherals
 {
-    public interface IVibrationService
+    public interface IVibrationService : IPeripheralService
     {
-        bool IsSupported { get; }
         void Vibrate(int durationInMilliseconds);
         void CancelVibration();
         void PerformHapticFeedback(HapticFeedbackType feedbackType);

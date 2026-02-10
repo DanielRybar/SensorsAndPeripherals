@@ -1,13 +1,23 @@
+using SensorsAndPeripherals.ViewModels.Peripherals;
 using SensorsAndPeripherals.Views.Abstract;
 
 namespace SensorsAndPeripherals.Views.Peripherals;
 
 public partial class VibrationPage : ApplicationPage
 {
-	public VibrationPage()
-	{
-		InitializeComponent();
-	}
+    private readonly VibrationViewModel viewModel;
+
+    public VibrationPage()
+    {
+        InitializeComponent();
+        BindingContext = viewModel = new VibrationViewModel();
+    }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        viewModel.CancelVibration();
+    }
 
     protected override string InfoText => "";
 }
