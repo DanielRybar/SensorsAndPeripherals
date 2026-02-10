@@ -10,8 +10,8 @@
              Title="{StaticResource VibrationTitle}">
 
     <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource VibrationNotSupported}">
-        <Grid RowDefinitions="*, *, *" Style="{StaticResource MainGridStyle}">
-            <VerticalStackLayout Spacing="10" VerticalOptions="Center" Padding="10">
+        <Grid RowDefinitions="Auto, *, Auto" Style="{StaticResource MainGridStyle}">
+            <VerticalStackLayout Style="{StaticResource SensorStatusVsl}" Padding="20,10,20,10">
                 <Label Text="Vibrace" Style="{StaticResource DisplayTextCaption}" />
                 <Entry Keyboard="Numeric" Placeholder="Zadejte dobu pro&#160;vibraci v&#160;milisekundách" ReturnType="Done">
                     <Entry.Behaviors>
@@ -25,11 +25,13 @@
                 </Entry>
                 <Label Text="{Binding DurationText, StringFormat='Validní doba je {0}.'}" 
                        IsVisible="{Binding IsValid, Source={x:Reference NumericValidator}, Converter={StaticResource BoolToNegativeBoolConverter}}"
-                       FontSize="Caption" />
+                       FontSize="Caption" 
+                       TextColor="{StaticResource LightRed}" />
                 <Button Text="Vibrovat" Command="{Binding VibrateCommand}" Style="{StaticResource HorizontalFilledButton}" />
+                <Label IsVisible="{Binding IsValid, Source={x:Reference NumericValidator}}" /> <!-- for space blocking -->
             </VerticalStackLayout>
-            <Image Grid.Row="1" Style="{StaticResource CenteredImage}" Aspect="AspectFit" Source="vibration.png" />
-            <VerticalStackLayout Grid.Row="2" Spacing="10" VerticalOptions="Center" Padding="10">
+            <Image Source="vibration.png" Grid.Row="1" Style="{StaticResource CenteredImage}" Aspect="AspectFit" WidthRequest="250" />
+            <VerticalStackLayout Grid.Row="2" Style="{StaticResource SensorStatusVsl}">
                 <Label Text="Haptická zpětná vazba" Style="{StaticResource DisplayTextCaption}" />
                 <Button Text="Kliknutí na tlačítko" Command="{Binding PerformShortHapticFeedbackCommand}" Style="{StaticResource HorizontalFilledButton}" />
                 <Button Text="Podržení tlačítka" Style="{StaticResource HorizontalFilledButton}">
