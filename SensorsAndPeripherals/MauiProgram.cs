@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using SensorsAndPeripherals.Controls;
 using SensorsAndPeripherals.Interfaces;
 using SensorsAndPeripherals.Interfaces.Peripherals;
 using SensorsAndPeripherals.Interfaces.Sensors;
@@ -23,6 +24,10 @@ namespace SensorsAndPeripherals
                     fonts.AddFont("Poppins-Regular.ttf", "PoppinsRegular");
                     fonts.AddFont("fa-solid-900.ttf", "FontAwesomeSolid");
                     fonts.AddFont("fa-regular-400.ttf", "FontAwesomeRegular");
+                })
+                .ConfigureMauiHandlers(handlers =>
+                {
+                    handlers.AddHandler<ExtendedEntry, Platforms.Android.Handlers.ExtendedEntryHandler>();
                 });
 
 #if DEBUG

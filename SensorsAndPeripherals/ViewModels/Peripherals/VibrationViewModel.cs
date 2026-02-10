@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui.Alerts;
 using SensorsAndPeripherals.Interfaces.Peripherals;
 using SensorsAndPeripherals.ViewModels.Abstract;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows.Input;
 
 namespace SensorsAndPeripherals.ViewModels.Peripherals
@@ -59,7 +60,9 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             set => SetProperty(ref field, value);
         }
 
+        [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Properties are bound in the View.")]
         public int MinDuration => 1;
+        [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Properties are bound in the View.")]
         public int MaxDuration => 10000;
         public string DurationText => $"{MinDuration} až {MaxDuration} ms";
         #endregion

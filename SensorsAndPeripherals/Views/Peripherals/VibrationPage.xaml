@@ -13,16 +13,20 @@
         <Grid RowDefinitions="Auto, *, Auto" Style="{StaticResource MainGridStyle}">
             <VerticalStackLayout Style="{StaticResource SensorStatusVsl}" Padding="20,10,20,10">
                 <Label Text="Vibrace" Style="{StaticResource DisplayTextCaption}" />
-                <Entry Text="{Binding Duration}" Keyboard="Numeric" Placeholder="Zadejte dobu pro&#160;vibraci v&#160;milisekundách" ReturnType="Done">
-                    <Entry.Behaviors>
+                <controls:ExtendedEntry 
+                    Text="{Binding Duration}" 
+                    Keyboard="Numeric" 
+                    Placeholder="Zadejte dobu pro&#160;vibraci v&#160;milisekundách" 
+                    ReturnType="Done">
+                    <controls:ExtendedEntry.Behaviors>
                         <toolkit:NumericValidationBehavior 
                             x:Name="NumericValidator"
                             Flags="ValidateOnValueChanged" 
                             MinimumValue="{Binding Source={x:Reference Page}, Path=BindingContext.MinDuration}" 
                             MaximumValue="{Binding Source={x:Reference Page}, Path=BindingContext.MaxDuration}" 
                             MaximumDecimalPlaces="0" />
-                    </Entry.Behaviors>
-                </Entry>
+                    </controls:ExtendedEntry.Behaviors>
+                </controls:ExtendedEntry>
                 <Label Text="{Binding DurationText, StringFormat='Validní doba je {0}.'}" 
                        IsVisible="{Binding IsValid, Source={x:Reference NumericValidator}, Converter={StaticResource BoolToNegativeBoolConverter}}"
                        FontSize="Caption" 
@@ -38,7 +42,7 @@
                     <Button.Behaviors>
                         <toolkit:TouchBehavior 
                             LongPressCommand="{Binding Source={x:Reference Page}, Path=BindingContext.PerformLongHapticFeedbackCommand}"
-                            LongPressDuration="1500" />
+                            LongPressDuration="1000" />
                     </Button.Behaviors>
                 </Button>
             </VerticalStackLayout>
