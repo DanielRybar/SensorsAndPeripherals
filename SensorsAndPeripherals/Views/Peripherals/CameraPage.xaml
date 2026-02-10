@@ -8,7 +8,7 @@
              Title="{StaticResource CameraTitle}">
 
     <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource CameraNotSupported}">
-        <Grid RowDefinitions="*, Auto" Padding="0,10,0,10">
+        <Grid RowDefinitions="*, Auto" Style="{StaticResource MainGridStyle}">
             <controls:DataGuard HasData="{Binding HasPhoto}" EmptyText="{Binding StatusMessage}">
                 <Image Source="{Binding PhotoPath, Converter={StaticResource FilePathToImageSourceConverter}}" Aspect="AspectFit" Style="{StaticResource CenteredImage}" />
             </controls:DataGuard>

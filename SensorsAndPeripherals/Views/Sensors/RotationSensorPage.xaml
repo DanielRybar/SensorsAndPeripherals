@@ -7,7 +7,7 @@
              Title="{StaticResource RotationSensorTitle}">
 
     <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource SensorNotSupported}">
-        <Grid RowDefinitions="Auto, *, Auto" Padding="0,10,0,10">
+        <Grid RowDefinitions="Auto, *, Auto" Style="{StaticResource MainGridStyle}">
             <VerticalStackLayout>
                 <Label Text="Celkový náklon" Style="{StaticResource DisplayTextCaption}" />
                 <Label Text="{Binding DisplayText}" Style="{StaticResource DisplayTextValue}" />

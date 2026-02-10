@@ -540,6 +540,10 @@
         <Setter Property="FontAttributes" Value="Bold" />
     </Style>
 
+    <Style TargetType="Grid" x:Key="MainGridStyle">
+        <Setter Property="Padding" Value="0,10,0,10" />
+    </Style>
+
     <Style TargetType="Grid" x:Key="GaugeContainer">
         <Setter Property="WidthRequest" Value="160" />
         <Setter Property="HeightRequest" Value="160" />

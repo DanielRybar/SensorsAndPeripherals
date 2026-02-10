@@ -12,7 +12,7 @@
     </abstract:ApplicationPage.ToolbarItems>
 
     <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource BiometricSensorNotSupported}">
-        <Grid Padding="0,10,0,10" RowDefinitions="*, Auto">
+        <Grid Style="{StaticResource MainGridStyle}" RowDefinitions="*, Auto">
             <VerticalStackLayout Style="{StaticResource LogoVsl}">
                 <Image Source="fingerprint.png" WidthRequest="150" HeightRequest="150" Style="{StaticResource CenteredImage}" />
                 <Label Text="{Binding AuthResult}" Style="{StaticResource DisplayTextValue}" />

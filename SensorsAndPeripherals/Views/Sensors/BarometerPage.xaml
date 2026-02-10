@@ -7,7 +7,7 @@
              Title="{StaticResource BarometerTitle}">
 
     <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource SensorNotSupported}">
-        <Grid RowDefinitions="Auto, *, Auto" Padding="0,10,0,10">
+        <Grid RowDefinitions="Auto, *, Auto" Style="{StaticResource MainGridStyle}">
             <Label Text="{Binding DisplayText}" Style="{StaticResource DisplayTextValue}" />
             <Grid Grid.Row="1" ColumnDefinitions="*, Auto, *" WidthRequest="200" HeightRequest="500">
                 <Grid Margin="0,0,10,0">

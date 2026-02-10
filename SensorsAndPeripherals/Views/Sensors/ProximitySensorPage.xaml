@@ -7,7 +7,7 @@
              Title="{StaticResource ProximitySensorTitle}">
 
     <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource SensorNotSupported}">
-        <Grid Padding="0,10,0,10">
+        <Grid Style="{StaticResource MainGridStyle}">
             <Label Text="{Binding DisplayText}" Style="{StaticResource DisplayTextValue}" />
             <VerticalStackLayout Style="{StaticResource SensorStatusVsl}">
                 <Button Text="{Binding IsMonitoring, Converter={StaticResource BoolToButtonTextConverter}}" Command="{Binding ToggleCommand}" Style="{StaticResource HorizontalFilledButton}" />
