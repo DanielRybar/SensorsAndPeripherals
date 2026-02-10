@@ -10,6 +10,8 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         #region constructor
         public VibrationViewModel()
         {
+            Duration = MinDuration + (MaxDuration - MinDuration) / 2;
+
             VibrateCommand = new Command(async () =>
             {
                 if (Duration > MaxDuration || Duration < MinDuration)
