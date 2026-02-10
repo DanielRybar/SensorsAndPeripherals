@@ -38,6 +38,7 @@ namespace SensorsAndPeripherals
             DependencyService.Register<IGpsService, GpsService>();
             DependencyService.Register<IBiometricService, BiometricService>();
             DependencyService.Register<ICameraService, CameraService>();
+            DependencyService.Register<IVibrationService, VibrationService>();
             DependencyService.Register<ILightSensorService, Platforms.Android.Services.Sensors.LightSensorService>();
             DependencyService.Register<IProximitySensorService, Platforms.Android.Services.Sensors.ProximitySensorService>();
             DependencyService.Register<ISensorListService, Platforms.Android.Services.SensorListService>();
