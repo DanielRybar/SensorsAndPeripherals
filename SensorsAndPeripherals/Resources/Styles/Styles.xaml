@@ -2,7 +2,8 @@
 <?xaml-comp compile="true" ?>
 <ResourceDictionary 
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:SensorsAndPeripherals.Controls">
 
     <Style TargetType="ActivityIndicator">
         <Setter Property="Color" Value="{AppThemeBinding Light={StaticResource Primary}, Dark={StaticResource White}}" />
@@ -721,4 +722,19 @@
         <Setter Property="HorizontalOptions" Value="Center" />
         <Setter Property="VerticalOptions" Value="Center" />
     </Style>
+
+    <Style TargetType="controls:ExtendedEntry" x:Key="NumericDefaultEntry">
+        <Setter Property="CursorColor" Value="{StaticResource MainApplicationColor}" />
+        <Setter Property="UnderlineColor" Value="{StaticResource MainApplicationColor}" />
+        <Setter Property="FontFamily" Value="PoppinsRegular" />
+        <Setter Property="Keyboard" Value="Numeric" />
+        <Setter Property="ReturnType" Value="Done" />
+    </Style>
+
+    <Style TargetType="Label" x:Key="ErrorMessageLabel">
+        <Setter Property="TextColor" Value="{StaticResource LightRed}" />
+        <Setter Property="FontSize" Value="Caption" />
+        <Setter Property="Padding" Value="0,0,0,5" />
+    </Style>
+    
 </ResourceDictionary>
