@@ -17,7 +17,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             {
                 if (Duration > MaxDuration || Duration < MinDuration)
                 {
-                    await Toast.Make($"Zadejte validní dobu vibrace mezi {MinDuration} a {MaxDuration} ms!").Show();
+                    await Toast.Make($"Zadejte validní dobu vibrace mezi {MinDuration:N0} a {MaxDuration:N0} ms!").Show();
                     return;
                 }
                 CancelVibration();
@@ -63,8 +63,8 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Properties are bound in the View.")]
         public int MinDuration => 1;
         [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Properties are bound in the View.")]
-        public int MaxDuration => 15000;
-        public string DurationText => $"{MinDuration} až {MaxDuration} ms";
+        public int MaxDuration => 10000;
+        public string DurationText => $"{MinDuration:N0} až {MaxDuration:N0} ms";
         #endregion
     }
 }

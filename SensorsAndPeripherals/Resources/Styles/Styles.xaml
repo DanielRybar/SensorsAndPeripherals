@@ -729,6 +729,7 @@
         <Setter Property="FontFamily" Value="PoppinsRegular" />
         <Setter Property="Keyboard" Value="Numeric" />
         <Setter Property="ReturnType" Value="Done" />
+        <Setter Property="MaxLength" Value="10" />
     </Style>
 
     <Style TargetType="Label" x:Key="ErrorMessageLabel">
