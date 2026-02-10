@@ -14,7 +14,7 @@
     <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource BiometricSensorNotSupported}">
         <Grid Style="{StaticResource MainGridStyle}" RowDefinitions="*, Auto">
             <VerticalStackLayout Style="{StaticResource LogoVsl}">
-                <Image Source="fingerprint.png" WidthRequest="150" HeightRequest="150" Style="{StaticResource CenteredImage}" />
+                <Image Source="user_shield.png" WidthRequest="150" HeightRequest="150" Style="{StaticResource CenteredImage}" />
                 <Label Text="{Binding AuthResult}" Style="{StaticResource DisplayTextValue}" />
             </VerticalStackLayout>
             <VerticalStackLayout Grid.Row="1" Style="{StaticResource SensorStatusVsl}">

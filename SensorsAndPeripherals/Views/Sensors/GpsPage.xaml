@@ -14,8 +14,7 @@
     <Grid Style="{StaticResource MainGridStyle}" RowDefinitions="*, Auto">
         <VerticalStackLayout Spacing="20" VerticalOptions="Center">
             <HorizontalStackLayout Style="{StaticResource LogoHsl}" IsVisible="{Binding IsResultVisible, Converter={StaticResource BoolToNegativeBoolConverter}}">
-                <Image Source="pointer.png" WidthRequest="130" HeightRequest="130" Rotation="180" Style="{StaticResource CenteredImage}" />
-                <Image Source="logo_dark.png" WidthRequest="150" HeightRequest="150" Style="{StaticResource CenteredImage}" />
+                <Image Source="location.png" WidthRequest="140" HeightRequest="140" Style="{StaticResource CenteredImage}" />
             </HorizontalStackLayout>
             <controls:DataGuard HasData="{Binding IsResultVisible}" EmptyText="{Binding StatusMessage}">
                 <VerticalStackLayout Spacing="30" VerticalOptions="Center">

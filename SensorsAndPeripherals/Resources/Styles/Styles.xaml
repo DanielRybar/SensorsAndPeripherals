@@ -498,6 +498,12 @@
         <Setter Property="HorizontalOptions" Value="Fill" />
         <Setter Property="BackgroundColor" Value="{StaticResource MainApplicationColor}" />
         <Setter Property="TextColor" Value="{StaticResource White}" />
+        <Style.Triggers>
+            <Trigger TargetType="Button" Property="IsEnabled" Value="False">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource Gray200}, Dark={StaticResource Gray400}}" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray100}}" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style TargetType="Grid" x:Key="LoadingLayout">

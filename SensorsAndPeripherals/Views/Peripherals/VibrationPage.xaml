@@ -2,13 +2,44 @@
 <abstract:ApplicationPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SensorsAndPeripherals.Views.Peripherals.VibrationPage"
+             x:Name="Page"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"
              xmlns:controls="clr-namespace:SensorsAndPeripherals.Controls"
+             HideSoftInputOnTapped="True"
              Title="{StaticResource VibrationTitle}">
 
     <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource VibrationNotSupported}">
-        <Grid Style="{StaticResource MainGridStyle}">
-
+        <Grid RowDefinitions="*, *, *" Style="{StaticResource MainGridStyle}">
+            <VerticalStackLayout Spacing="10" VerticalOptions="Center" Padding="10">
+                <Label Text="Vibrace" Style="{StaticResource DisplayTextCaption}" />
+                <Entry Keyboard="Numeric" Placeholder="Zadejte dobu pro&#160;vibraci v&#160;milisekundách" ReturnType="Done">
+                    <Entry.Behaviors>
+                        <toolkit:NumericValidationBehavior 
+                            x:Name="NumericValidator"
+                            Flags="ValidateOnValueChanged" 
+                            MinimumValue="{Binding Source={x:Reference Page}, Path=BindingContext.MinDuration}" 
+                            MaximumValue="{Binding Source={x:Reference Page}, Path=BindingContext.MaxDuration}" 
+                            MaximumDecimalPlaces="0" />
+                    </Entry.Behaviors>
+                </Entry>
+                <Label Text="{Binding DurationText, StringFormat='Validní doba je {0}.'}" 
+                       IsVisible="{Binding IsValid, Source={x:Reference NumericValidator}, Converter={StaticResource BoolToNegativeBoolConverter}}"
+                       FontSize="Caption" />
+                <Button Text="Vibrovat" Command="{Binding VibrateCommand}" Style="{StaticResource HorizontalFilledButton}" />
+            </VerticalStackLayout>
+            <Image Grid.Row="1" Style="{StaticResource CenteredImage}" Aspect="AspectFit" Source="vibration.png" />
+            <VerticalStackLayout Grid.Row="2" Spacing="10" VerticalOptions="Center" Padding="10">
+                <Label Text="Haptická zpětná vazba" Style="{StaticResource DisplayTextCaption}" />
+                <Button Text="Kliknutí na tlačítko" Command="{Binding PerformShortHapticFeedbackCommand}" Style="{StaticResource HorizontalFilledButton}" />
+                <Button Text="Podržení tlačítka" Style="{StaticResource HorizontalFilledButton}">
+                    <Button.Behaviors>
+                        <toolkit:TouchBehavior 
+                            LongPressCommand="{Binding Source={x:Reference Page}, Path=BindingContext.PerformLongHapticFeedbackCommand}"
+                            LongPressDuration="1500" />
+                    </Button.Behaviors>
+                </Button>
+            </VerticalStackLayout>
         </Grid>
     </controls:DataGuard>
 </abstract:ApplicationPage>
