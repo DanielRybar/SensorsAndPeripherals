@@ -65,7 +65,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         public int MinDuration => 1;
         [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Properties are bound in the View.")]
         public int MaxDuration => 5000;
-        public string DurationText => $"{MinDuration:N0} až {MaxDuration:N0} ms";
+        public string DurationText => $"{MinDuration:N0} do {MaxDuration:N0} ms";
         #endregion
     }
 }

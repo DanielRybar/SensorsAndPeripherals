@@ -18,7 +18,7 @@ namespace SensorsAndPeripherals.ViewModels
                     Subject = subject,
                     Body = body,
                     BodyFormat = EmailBodyFormat.PlainText,
-                    To = ["daniel.rybar1@tul.cz"]
+                    To = ["EmailDR".GetStringFromResource()]
                 };
                 await Email.Default.ComposeAsync(msg);
             });

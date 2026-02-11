@@ -14,6 +14,7 @@
     <x:String x:Key="Peripherals">Komunikační periferie</x:String>
     <x:String x:Key="OtherItems">Ostatní položky</x:String>
     <x:String x:Key="CopyrightDR">© Daniel Rybář, 2026</x:String>
+    <x:String x:Key="EmailDR">daniel.rybar1@tul.cz</x:String>
     <x:String x:Key="AccelerometerTitle">Akcelerometr</x:String>
     <x:String x:Key="BarometerTitle">Barometr</x:String>
     <x:String x:Key="BiometricTitle">Biometrické ověření</x:String>

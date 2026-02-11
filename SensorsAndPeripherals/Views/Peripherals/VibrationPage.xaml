@@ -23,7 +23,7 @@
                             MaximumDecimalPlaces="0" />
                     </controls:ExtendedEntry.Behaviors>
                 </controls:ExtendedEntry>
-                <Label Text="{Binding DurationText, StringFormat='Zadejte celé číslo v rozsahu {0}.'}" 
+                <Label Text="{Binding DurationText, StringFormat='Zadejte celé číslo v rozsahu od {0}.'}" 
                        IsVisible="{Binding IsValid, Source={x:Reference NumericValidator}, Converter={StaticResource BoolToNegativeBoolConverter}}"
                        Style="{StaticResource ErrorMessageLabel}" />
                 <Button Text="{StaticResource SimpleVibrationButton}" Command="{Binding VibrateCommand}" Style="{StaticResource HorizontalFilledButton}" />
