@@ -5,7 +5,36 @@
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"
              Title="{StaticResource AboutAppTitle}">
 
-    <VerticalStackLayout>
-
-    </VerticalStackLayout>
+    <ScrollView Style="{StaticResource AboutAppMainView}">
+        <Grid RowDefinitions="*, Auto" Style="{StaticResource MainGridStyle}">
+            <VerticalStackLayout VerticalOptions="Center" Spacing="20" Padding="20,0">
+                <VerticalStackLayout Spacing="15">
+                    <Image Source="{AppThemeBinding Light=logo_dark.png, Dark=logo_light.png}" HeightRequest="130" WidthRequest="150" />
+                    <Label Text="Senzory a periferie" Style="{StaticResource AboutAppTitleStyle}" />
+                </VerticalStackLayout>
+                <Label Text="{StaticResource ShortAppDescription}" Style="{StaticResource CenteredLabel}" />
+                <FlexLayout JustifyContent="SpaceEvenly" Margin="0,10,0,10">
+                    <Image Source="csharp.png" Style="{StaticResource AboutAppImage}" AutomationId="csharp">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="DevImage_Tapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image Source="net_logo.png" Style="{StaticResource AboutAppImage}" AutomationId="net">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="DevImage_Tapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image Source="dotnet_bot.png" Style="{StaticResource AboutAppImage}" AutomationId="maui">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="DevImage_Tapped" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </FlexLayout>
+                <Label Style="{StaticResource CenteredLabel}" Text="{StaticResource LongAppDescription}" />
+            </VerticalStackLayout>
+            <VerticalStackLayout Grid.Row="1" Style="{StaticResource SensorStatusVsl}">
+                <Button Command="{Binding SendFeedbackCommand}" Text="{StaticResource SendFeedbackCaption}" Style="{StaticResource HorizontalFilledButton}" />
+            </VerticalStackLayout>
+        </Grid>
+    </ScrollView>
 </abstract:ApplicationPage>
