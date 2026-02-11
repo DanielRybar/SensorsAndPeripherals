@@ -1,3 +1,4 @@
+using SensorsAndPeripherals.Helpers;
 using SensorsAndPeripherals.Views.Abstract;
 
 namespace SensorsAndPeripherals.Views.Sensors;
@@ -12,7 +13,7 @@ public partial class BiometricPage : ApplicationPage
         BindingContext = viewModel = new ViewModels.Sensors.BiometricViewModel();
         viewModel.ShowBiometricTypesDialogRequested += async types =>
         {
-            await DisplayAlertAsync("Dostupné typy ovìøení", types, "OK");
+            await DisplayAlertAsync("BiometricAvailableTypes".GetStringFromResource(), types, "OK");
         };
     }
     

@@ -1,4 +1,5 @@
-﻿using SensorsAndPeripherals.Interfaces.Sensors;
+﻿using SensorsAndPeripherals.Helpers;
+using SensorsAndPeripherals.Interfaces.Sensors;
 using SensorsAndPeripherals.Models.Enums;
 using SensorsAndPeripherals.ViewModels.Abstract;
 using System.Windows.Input;
@@ -36,7 +37,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
                 }
                 else
                 {
-                    ShowBiometricTypesDialogRequested?.Invoke("Žádné biometrické senzory nenalezeny.");
+                    ShowBiometricTypesDialogRequested?.Invoke("BiometricSensorsNotFound".GetStringFromResource());
                 }
                 IsWorking = false;
             },
@@ -71,17 +72,17 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         {
             IsWorking = true;
             var result = await biometricService.AuthenticateAsync(
-                "Ověření identity",
-                "Pro pokračování je třeba ověřit vaši identitu pomocí biometrického ověření.",
-                "Použít heslo",
+                "PerformAuthentication01".GetStringFromResource(),
+                "PerformAuthentication02".GetStringFromResource(),
+                "PerformAuthentication03".GetStringFromResource(),
                 strength);
 
             AuthResult = result switch
             {
-                BiometricAuthResult.Success => "Ověření úspěšné",
-                BiometricAuthResult.Failed => "Ověření selhalo",
-                BiometricAuthResult.NotAvailable => "Ověření není dostupné",
-                _ => "Neznámý výsledek ověření"
+                BiometricAuthResult.Success => "BiometricStatusSuccess".GetStringFromResource(),
+                BiometricAuthResult.Failed => "BiometricStatusFailed".GetStringFromResource(),
+                BiometricAuthResult.NotAvailable => "BiometricStatusNotAvailable".GetStringFromResource(),
+                _ => "BiometricStatusUnknown".GetStringFromResource()
             };
             IsWorking = false;
         }
@@ -123,7 +124,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         {
             get;
             set => SetProperty(ref field, value);
-        } = "Zatím neověřeno";
+        } = "BiometricInit".GetStringFromResource();
         #endregion
     }
 }

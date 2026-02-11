@@ -19,7 +19,7 @@
     <Shell.FlyoutHeader>
         <StackLayout Style="{StaticResource ShellStackLayout}">
             <Image Source="logo_dark.png" Style="{StaticResource ShellLogoStyle}" />
-            <Label Text="Senzory a periferie" Style="{StaticResource ShellLabel}" FontFamily="PoppinsRegular" />
+            <Label Text="{StaticResource ApplicationName}" Style="{StaticResource ShellLabel}" FontFamily="PoppinsRegular" />
         </StackLayout>
     </Shell.FlyoutHeader>
 

@@ -1,4 +1,5 @@
-﻿using SensorsAndPeripherals.Interfaces.Sensors;
+﻿using SensorsAndPeripherals.Helpers;
+using SensorsAndPeripherals.Interfaces.Sensors;
 using SensorsAndPeripherals.Models;
 using SensorsAndPeripherals.ViewModels.Abstract;
 using System.Windows.Input;
@@ -29,7 +30,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
             });
             GetAddressFromCoordinatesCommand = new Command(() =>
             {
-                ShowAddressDialogRequested?.Invoke(ResultLocation?.Address ?? "Adresa není k dispozici.");
+                ShowAddressDialogRequested?.Invoke(ResultLocation?.Address ?? "GpsAddressNotAvailable".GetStringFromResource());
             },
             () => IsResultVisible && !IsWorking);
         }
@@ -83,28 +84,28 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
                     break;
                 case LocationStatus.ObtainedButNull:
                     IsResultVisible = false;
-                    StatusMessage = "Polohu se nepodařilo zjistit (žádná data nejsou k\u00A0dispozici).";
+                    StatusMessage = "GpsLocationStatusObtainedButNull".GetStringFromResource();
                     break;
                 case LocationStatus.NotSupported:
                     IsResultVisible = false;
-                    StatusMessage = "Toto zařízení nepodporuje zjišťování polohy.";
+                    StatusMessage = "GpsLocationStatusNotSupported".GetStringFromResource();
                     break;
                 case LocationStatus.NotEnabled:
                     IsResultVisible = false;
-                    StatusMessage = "GPS je vypnutá. Prosím, zapněte ji v\u00A0nastavení telefonu.";
+                    StatusMessage = "GpsLocationStatusNotEnabled".GetStringFromResource();
                     break;
                 case LocationStatus.PermissionDenied:
                     IsResultVisible = false;
-                    StatusMessage = "Aplikace nemá oprávnění k poloze. Povolte přístup v\u00A0nastavení aplikace.";
+                    StatusMessage = "GpsLocationStatusPermissionDenied".GetStringFromResource();
                     break;
                 case LocationStatus.OperationCancelled:
                     IsResultVisible = false;
-                    StatusMessage = "Získávání polohy bylo zrušeno.";
+                    StatusMessage = "GpsLocationStatusOperationCancelled".GetStringFromResource();
                     break;
                 case LocationStatus.UnknownError:
                 default:
                     IsResultVisible = false;
-                    StatusMessage = "Došlo k\u00A0neznámé chybě při zjišťování polohy.";
+                    StatusMessage = "GpsLocationStatusUnknownError".GetStringFromResource();
                     break;
             }
             IsWorking = false;
@@ -170,7 +171,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         {
             get;
             set => SetProperty(ref field, value);
-        } = "Pro zobrazení souřadnic stiskněte některé z\u00A0tlačítek níže.";
+        } = "GpsInit".GetStringFromResource();
         #endregion
     }
 }

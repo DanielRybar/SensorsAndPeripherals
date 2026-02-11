@@ -12,8 +12,8 @@
     <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource VibrationNotSupported}">
         <Grid RowDefinitions="Auto, *, Auto" Style="{StaticResource MainGridStyle}">
             <VerticalStackLayout Style="{StaticResource SensorStatusVsl}" Padding="20,10,20,10">
-                <Label Text="Vibrace" Style="{StaticResource DisplayTextCaption}" />
-                <controls:ExtendedEntry Text="{Binding Duration}" Placeholder="Zadejte dobu pro&#160;vibraci v&#160;milisekundách" Style="{StaticResource NumericDefaultEntry}">
+                <Label Text="{StaticResource SimpleVibration}" Style="{StaticResource DisplayTextCaption}" />
+                <controls:ExtendedEntry Text="{Binding Duration}" Placeholder="{StaticResource SimpleVibrationPlaceholder}" Style="{StaticResource NumericDefaultEntry}">
                     <controls:ExtendedEntry.Behaviors>
                         <toolkit:NumericValidationBehavior 
                             x:Name="NumericValidator"
@@ -26,14 +26,14 @@
                 <Label Text="{Binding DurationText, StringFormat='Zadejte celé číslo v rozsahu {0}.'}" 
                        IsVisible="{Binding IsValid, Source={x:Reference NumericValidator}, Converter={StaticResource BoolToNegativeBoolConverter}}"
                        Style="{StaticResource ErrorMessageLabel}" />
-                <Button Text="Vibrovat" Command="{Binding VibrateCommand}" Style="{StaticResource HorizontalFilledButton}" />
+                <Button Text="{StaticResource SimpleVibrationButton}" Command="{Binding VibrateCommand}" Style="{StaticResource HorizontalFilledButton}" />
                 <Label Text="&#160;" Style="{StaticResource ErrorMessageLabel}" IsVisible="{Binding IsValid, Source={x:Reference NumericValidator}}" /> <!-- for space blocking -->
             </VerticalStackLayout>
             <Image Source="vibration.png" Grid.Row="1" Style="{StaticResource CenteredImage}" Aspect="AspectFit" WidthRequest="250" />
             <VerticalStackLayout Grid.Row="2" Style="{StaticResource SensorStatusVsl}">
-                <Label Text="Haptická zpětná vazba" Style="{StaticResource DisplayTextCaption}" />
-                <Button Text="Kliknutí na tlačítko" Command="{Binding PerformShortHapticFeedbackCommand}" Style="{StaticResource HorizontalFilledButton}" />
-                <Button Text="Delší podržení tlačítka" Style="{StaticResource HorizontalFilledButton}">
+                <Label Text="{StaticResource HapticFeedback}" Style="{StaticResource DisplayTextCaption}" />
+                <Button Text="{StaticResource HapticFeedbackClick}" Command="{Binding PerformShortHapticFeedbackCommand}" Style="{StaticResource HorizontalFilledButton}" />
+                <Button Text="{StaticResource HapticFeedbackLongPress}" Style="{StaticResource HorizontalFilledButton}">
                     <Button.Behaviors>
                         <toolkit:TouchBehavior 
                             LongPressCommand="{Binding Source={x:Reference Page}, Path=BindingContext.PerformLongHapticFeedbackCommand}"

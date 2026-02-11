@@ -10,7 +10,7 @@
             <VerticalStackLayout VerticalOptions="Center" Spacing="20" Padding="20,0">
                 <VerticalStackLayout Spacing="15">
                     <Image Source="{AppThemeBinding Light=logo_dark.png, Dark=logo_light.png}" HeightRequest="130" WidthRequest="150" />
-                    <Label Text="Senzory a periferie" Style="{StaticResource AboutAppTitleStyle}" />
+                    <Label Text="{StaticResource ApplicationName}" Style="{StaticResource AboutAppTitleStyle}" />
                 </VerticalStackLayout>
                 <Label Text="{StaticResource ShortAppDescription}" Style="{StaticResource CenteredLabel}" />
                 <FlexLayout JustifyContent="SpaceEvenly" Margin="0,10,0,10">

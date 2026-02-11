@@ -7,7 +7,7 @@
              Title="{StaticResource OverviewTitle}">
 
     <Grid RowDefinitions="Auto, *" Padding="20" RowSpacing="10">
-        <Button Text="Načíst senzory" Command="{Binding GetSensorsCommand}" Style="{StaticResource HorizontalFilledButton}" />
+        <Button Text="{StaticResource LoadSensors}" Command="{Binding GetSensorsCommand}" Style="{StaticResource HorizontalFilledButton}" />
 
         <CollectionView x:Name="MainCollectionView" Grid.Row="1" ItemsSource="{Binding Sensors}" Style="{StaticResource SensorOverview}">
             <CollectionView.EmptyView>
@@ -21,7 +21,7 @@
                         <VerticalStackLayout Spacing="5">
                             <Label Text="{Binding Name}" Style="{StaticResource SensorOverviewTitle}" />
                             <HorizontalStackLayout Spacing="5">
-                                <Label Text="Výrobce:" FontAttributes="Bold" />
+                                <Label Text="{StaticResource SensorVendor}" FontAttributes="Bold" />
                                 <Label Text="{Binding Vendor}" LineBreakMode="TailTruncation" />
                             </HorizontalStackLayout>
                             <Grid ColumnDefinitions="*, *">

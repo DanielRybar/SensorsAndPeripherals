@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.PlatformConfiguration.AndroidSpecific;
+using SensorsAndPeripherals.Helpers;
 using Toast = CommunityToolkit.Maui.Alerts.Toast;
 
 namespace SensorsAndPeripherals.Views.Abstract
@@ -43,7 +44,7 @@ namespace SensorsAndPeripherals.Views.Abstract
                     Priority = 1,
                     Command = new Command(async () =>
                     {
-                        await DisplayAlertAsync("Informace", InfoText, "OK");
+                        await DisplayAlertAsync("Information".GetStringFromResource(), InfoText, "OK");
                     })
                 });
             }
@@ -119,7 +120,7 @@ namespace SensorsAndPeripherals.Views.Abstract
 
             MainThread.BeginInvokeOnMainThread(async () =>
             {
-                await Toast.Make("Stiskněte znovu pro ukončení aplikace", ToastDuration.Short).Show();
+                await Toast.Make("BackButtonExit".GetStringFromResource(), ToastDuration.Short).Show();
             });
 
             return true;

@@ -18,8 +18,8 @@
                 <Label Text="{Binding AuthResult}" Style="{StaticResource DisplayTextValue}" />
             </VerticalStackLayout>
             <VerticalStackLayout Grid.Row="1" Style="{StaticResource SensorStatusVsl}">
-                <Button Text="Použít silnou metodu (otisk)" Command="{Binding PerformStrongAuthenticationCommand}" Style="{StaticResource HorizontalFilledButton}" />
-                <Button Text="Použít slabou metodu (otisk/obličej)" Command="{Binding PerformWeakAuthenticationCommand}" Style="{StaticResource HorizontalFilledButton}" />
+                <Button Text="{StaticResource BiometricStrongButton}" Command="{Binding PerformStrongAuthenticationCommand}" Style="{StaticResource HorizontalFilledButton}" />
+                <Button Text="{StaticResource BiometricWeakButton}" Command="{Binding PerformWeakAuthenticationCommand}" Style="{StaticResource HorizontalFilledButton}" />
             </VerticalStackLayout>
         </Grid>
     </controls:DataGuard>

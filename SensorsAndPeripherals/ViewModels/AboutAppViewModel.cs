@@ -1,4 +1,5 @@
-﻿using SensorsAndPeripherals.ViewModels.Abstract;
+﻿using SensorsAndPeripherals.Helpers;
+using SensorsAndPeripherals.ViewModels.Abstract;
 using System.Windows.Input;
 
 namespace SensorsAndPeripherals.ViewModels
@@ -10,8 +11,8 @@ namespace SensorsAndPeripherals.ViewModels
         {
             SendFeedbackCommand = new Command(async () =>
             {
-                string subject = App.Current!.Resources["FeedbackEmailSubject"] as string ?? string.Empty;
-                string body = App.Current!.Resources["FeedbackEmailBody"] as string ?? string.Empty;
+                string subject = "FeedbackEmailSubject".GetStringFromResource();
+                string body = "FeedbackEmailBody".GetStringFromResource();
                 var msg = new EmailMessage
                 {
                     Subject = subject,

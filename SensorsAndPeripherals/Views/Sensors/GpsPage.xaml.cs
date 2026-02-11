@@ -1,3 +1,4 @@
+using SensorsAndPeripherals.Helpers;
 using SensorsAndPeripherals.ViewModels.Sensors;
 using SensorsAndPeripherals.Views.Abstract;
 
@@ -13,7 +14,7 @@ public partial class GpsPage : ApplicationPage
         BindingContext = viewModel = new GpsViewModel();
         viewModel.ShowAddressDialogRequested += async address =>
         {
-            await DisplayAlertAsync("Adresa", address, "OK");
+            await DisplayAlertAsync("GpsAddress".GetStringFromResource(), address, "OK");
         };
     }
 

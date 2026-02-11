@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui.Alerts;
+using SensorsAndPeripherals.Helpers;
 using SensorsAndPeripherals.Interfaces.Peripherals;
 using SensorsAndPeripherals.ViewModels.Abstract;
 using System.Diagnostics.CodeAnalysis;
@@ -17,7 +18,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             {
                 if (Duration > MaxDuration || Duration < MinDuration)
                 {
-                    await Toast.Make($"Zadejte validní dobu vibrace mezi {MinDuration:N0} a {MaxDuration:N0} ms!").Show();
+                    await Toast.Make($"{"VibrationErrorToast".GetStringFromResource()} {MinDuration:N0} a {MaxDuration:N0} ms!").Show();
                     return;
                 }
                 CancelVibration();

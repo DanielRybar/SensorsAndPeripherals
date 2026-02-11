@@ -1,4 +1,5 @@
-﻿using SensorsAndPeripherals.Interfaces.Peripherals;
+﻿using SensorsAndPeripherals.Helpers;
+using SensorsAndPeripherals.Interfaces.Peripherals;
 using SensorsAndPeripherals.ViewModels.Abstract;
 using System.Windows.Input;
 
@@ -23,13 +24,13 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
                     else
                     {
                         PhotoPath = null;
-                        StatusMessage = "Došlo k chybě při ukládání fotografie.";
+                        StatusMessage = "CameraSavingError".GetStringFromResource();
                     }
                 }
                 else
                 {
                     PhotoPath = null;
-                    StatusMessage = "Došlo k chybě při pořizování fotografie.";
+                    StatusMessage = "CameraShootingError".GetStringFromResource();
                 }
                 IsWorking = false;
             }, () => IsSupported);
@@ -45,7 +46,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         {
             get;
             set => SetProperty(ref field, value);
-        } = "Pro pořízení fotografie stiskněte tlačítko níže.";
+        } = "CameraInit".GetStringFromResource();
 
         public string? PhotoPath
         {

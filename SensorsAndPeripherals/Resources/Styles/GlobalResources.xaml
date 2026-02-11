@@ -6,6 +6,7 @@
     xmlns:conv="clr-namespace:SensorsAndPeripherals.Converters">
 
     <!-- Strings -->
+    <x:String x:Key="ApplicationName">Senzory a periferie</x:String>
     <x:String x:Key="AccelerometerTitle">Akcelerometr</x:String>
     <x:String x:Key="BarometerTitle">Barometr</x:String>
     <x:String x:Key="BiometricTitle">Biometrické ověření</x:String>
@@ -28,16 +29,63 @@
     <x:String x:Key="EmptyViewText">Žádná data nejsou k&#160;dispozici.</x:String>
     <x:String x:Key="SensorNotSupported">Senzor na&#160;tomto zařízení není podporován.</x:String>
     <x:String x:Key="BiometricSensorNotSupported">Biometrické ověření není k&#160;dispozici.</x:String>
+    <x:String x:Key="BiometricSensorsNotFound">Žádné biometrické senzory nenalezeny.</x:String>
     <x:String x:Key="CameraNotSupported">Pořízení obrázku není k&#160;dispozici.</x:String>
     <x:String x:Key="VibrationNotSupported">Vibrace nejsou na&#160;tomto zařízení dostupné.</x:String>
     <x:String x:Key="ToggleOnText">Zapnout</x:String>
     <x:String x:Key="ToggleOffText">Vypnout</x:String>
+    <x:String x:Key="BackButtonExit">Stiskněte znovu pro ukončení aplikace</x:String>
+    <x:String x:Key="Information">Informace</x:String>
 
+    <x:String x:Key="LoadSensors">Načíst senzory</x:String>
+    <x:String x:Key="SensorVendor">Výrobce:</x:String>
+    <x:String x:Key="GyroscopeMagnitude">Celková rychlost otáčení</x:String>
+    <x:String x:Key="RotationSensorMagnitude">Celkový náklon</x:String>
+    <x:String x:Key="PerformAuthentication01">Ověření identity</x:String>
+    <x:String x:Key="PerformAuthentication02">Pro pokračování je třeba ověřit vaši identitu pomocí biometrického ověření.</x:String>
+    <x:String x:Key="PerformAuthentication03">Použít heslo</x:String>
+    <x:String x:Key="BiometricStatusSuccess">Ověření úspěšné</x:String>
+    <x:String x:Key="BiometricStatusFailed">Ověření selhalo</x:String>
+    <x:String x:Key="BiometricStatusNotAvailable">Ověření není dostupné</x:String>
+    <x:String x:Key="BiometricStatusUnknown">Neznámý výsledek ověření</x:String>
+    <x:String x:Key="BiometricInit">Zatím neověřeno</x:String>
+    <x:String x:Key="BiometricWeakButton">Použít slabou metodu (otisk/obličej)</x:String>
+    <x:String x:Key="BiometricStrongButton">Použít silnou metodu (otisk)</x:String>
+    <x:String x:Key="BiometricAvailableTypes">Dostupné typy ověření</x:String>
+    <x:String x:Key="GpsInit">Pro zobrazení souřadnic stiskněte některé z&#160;tlačítek níže.</x:String>
+    <x:String x:Key="GpsLocationStatusObtainedButNull">Polohu se nepodařilo zjistit (žádná data nejsou k&#160;dispozici).</x:String>
+    <x:String x:Key="GpsLocationStatusNotSupported">Toto zařízení nepodporuje zjišťování polohy.</x:String>
+    <x:String x:Key="GpsLocationStatusNotEnabled">GPS je vypnutá. Prosím, zapněte ji v&#160;nastavení telefonu.</x:String>
+    <x:String x:Key="GpsLocationStatusPermissionDenied">Aplikace nemá oprávnění k poloze. Povolte přístup v&#160;nastavení aplikace.</x:String>
+    <x:String x:Key="GpsLocationStatusOperationCancelled">Získávání polohy bylo zrušeno.</x:String>
+    <x:String x:Key="GpsLocationStatusUnknownError">Došlo k&#160;neznámé chybě při&#160;zjišťování polohy.</x:String>
+    <x:String x:Key="GpsAddressNotAvailable">Adresa není k dispozici.</x:String>
+    <x:String x:Key="GpsLatitude">Zeměpisná šířka</x:String>
+    <x:String x:Key="GpsLongitude">Zeměpisná délka</x:String>
+    <x:String x:Key="GpsAltitude">Nadmořská výška</x:String>
+    <x:String x:Key="GpsAccuracy">Přesnost</x:String>
+    <x:String x:Key="GpsTimestamp">Časové razítko</x:String>
+    <x:String x:Key="GpsAddress">Adresa</x:String>
+    <x:String x:Key="GpsLastKnownLocation">Poslední známá lokace</x:String>
+    <x:String x:Key="GpsFineLocation">Přesná lokace</x:String>
+    <x:String x:Key="GpsCoarseLocation">Přibližná lokace</x:String>
+    <x:String x:Key="CameraSavingError">Došlo k chybě při ukládání fotografie.</x:String>
+    <x:String x:Key="CameraShootingError">Došlo k chybě při pořizování fotografie.</x:String>
+    <x:String x:Key="CameraInit">Pro pořízení fotografie stiskněte tlačítko níže.</x:String>
+    <x:String x:Key="CameraTakePhoto">Pořídit fotografii</x:String>
+    <x:String x:Key="SimpleVibration">Vibrace</x:String>
+    <x:String x:Key="SimpleVibrationButton">Vibrovat</x:String>
+    <x:String x:Key="SimpleVibrationPlaceholder">Zadejte dobu pro&#160;vibraci v&#160;milisekundách</x:String>
+    <x:String x:Key="HapticFeedback">Haptická zpětná vazba</x:String>
+    <x:String x:Key="HapticFeedbackClick">Kliknutí na tlačítko</x:String>
+    <x:String x:Key="HapticFeedbackLongPress">Delší podržení tlačítka</x:String>
+    <x:String x:Key="VibrationErrorToast">Zadejte validní dobu vibrace mezi</x:String>
     <x:String x:Key="SendFeedbackCaption">Odeslat zpětnou vazbu</x:String>
     <x:String x:Key="FeedbackEmailSubject">Zpětná vazba k aplikaci Senzory a periferie</x:String>
     <x:String x:Key="FeedbackEmailBody">Ahoj,&#10;&#10;posílám ti zpětnou vazbu ke tvé aplikaci. Chtěl/a bych ti aplikaci pochválit / zkritizovat / nahlásit chybu:&#10;&#10;</x:String>
     <x:String x:Key="ShortAppDescription">Senzory a periferie je mobilní aplikace pro&#160;Android vyvinutá pomocí frameworku .NET MAUI.</x:String>
-    <x:String x:Key="LongAppDescription">Aplikace slouží k&#160;demonstraci praktického využití mobilních senzorů a&#160;periferií. Je navržena s&#160;velkým důrazem na&#160;přehlednost a&#160;srozumitelnost. Má potenciál sloužit pro výuku v &#160;oblasti vývoje mobilních aplikací.</x:String>
+    <x:String x:Key="LongAppDescription">Aplikace slouží k&#160;demonstraci praktického využití mobilních senzorů a&#160;periferií. Je navržena s&#160;velkým důrazem na&#160;přehlednost a&#160;srozumitelnost. Má potenciál sloužit pro výuku v&#160;oblasti vývoje mobilních aplikací.</x:String>
+    
     <!-- Doubles -->
     <x:Double x:Key="ScaleLiquidContainerGridHeightRequest">480</x:Double>
 

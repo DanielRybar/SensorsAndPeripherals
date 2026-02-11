@@ -19,32 +19,32 @@
             <controls:DataGuard HasData="{Binding IsResultVisible}" EmptyText="{Binding StatusMessage}">
                 <VerticalStackLayout Spacing="30" VerticalOptions="Center">
                     <VerticalStackLayout>
-                        <Label Text="Zeměpisná šířka" Style="{StaticResource DisplayTextCaption}" />
+                        <Label Text="{StaticResource GpsLatitude}" Style="{StaticResource DisplayTextCaption}" />
                         <Label Text="{Binding ResultLocation.Latitude, StringFormat='{0:F5}°'}" Style="{StaticResource DisplayTextValue}" />
                     </VerticalStackLayout>
                     <VerticalStackLayout>
-                        <Label Text="Zeměpisná délka" Style="{StaticResource DisplayTextCaption}" />
+                        <Label Text="{StaticResource GpsLongitude}" Style="{StaticResource DisplayTextCaption}" />
                         <Label Text="{Binding ResultLocation.Longitude, StringFormat='{0:F5}°'}" Style="{StaticResource DisplayTextValue}" />
                     </VerticalStackLayout>
                     <VerticalStackLayout>
-                        <Label Text="Nadmořská výška" Style="{StaticResource DisplayTextCaption}" />
+                        <Label Text="{StaticResource GpsAltitude}" Style="{StaticResource DisplayTextCaption}" />
                         <Label Text="{Binding ResultLocation.Altitude, StringFormat='{0:F1} m', TargetNullValue='-'}" Style="{StaticResource DisplayTextValue}" />
                     </VerticalStackLayout>
                     <VerticalStackLayout>
-                        <Label Text="Přesnost" Style="{StaticResource DisplayTextCaption}" />
+                        <Label Text="{StaticResource GpsAccuracy}" Style="{StaticResource DisplayTextCaption}" />
                         <Label Text="{Binding ResultLocation.Accuracy, StringFormat='± {0:F1} m', TargetNullValue='-'}" Style="{StaticResource DisplayTextValue}" />
                     </VerticalStackLayout>
                     <VerticalStackLayout>
-                        <Label Text="Časové razítko" Style="{StaticResource DisplayTextCaption}" />
+                        <Label Text="{StaticResource GpsTimestamp}" Style="{StaticResource DisplayTextCaption}" />
                         <Label Text="{Binding ResultLocation.Timestamp, StringFormat='{0:dd.MM.yyyy HH:mm:ss}'}" Style="{StaticResource DisplayTextValue}" />
                     </VerticalStackLayout>
                 </VerticalStackLayout>
             </controls:DataGuard>
         </VerticalStackLayout>
         <VerticalStackLayout Grid.Row="1" Style="{StaticResource SensorStatusVsl}">
-            <Button Text="Poslední známá lokace" Command="{Binding GetLastKnownCachedLocationCommand}" Style="{StaticResource HorizontalFilledButton}" />
-            <Button Text="Přesná lokace" Command="{Binding GetCurrentFineLocationCommand}" Style="{StaticResource HorizontalFilledButton}" />
-            <Button Text="Přibližná lokace" Command="{Binding GetCurrentCoarseLocationCommand}" Style="{StaticResource HorizontalFilledButton}" />
+            <Button Text="{StaticResource GpsLastKnownLocation}" Command="{Binding GetLastKnownCachedLocationCommand}" Style="{StaticResource HorizontalFilledButton}" />
+            <Button Text="{StaticResource GpsFineLocation}" Command="{Binding GetCurrentFineLocationCommand}" Style="{StaticResource HorizontalFilledButton}" />
+            <Button Text="{StaticResource GpsCoarseLocation}" Command="{Binding GetCurrentCoarseLocationCommand}" Style="{StaticResource HorizontalFilledButton}" />
         </VerticalStackLayout>
     </Grid>
 </abstract:ApplicationPage>
