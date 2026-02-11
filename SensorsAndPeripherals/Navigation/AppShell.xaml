@@ -24,7 +24,7 @@
     </Shell.FlyoutHeader>
 
     <!-- Sensors -->
-    <controls:MenuSeparator Text="Pohybové senzory" />
+    <controls:MenuSeparator Text="{StaticResource MotionSensors}" />
     
     <FlyoutItem Title="{StaticResource AccelerometerTitle}" Icon="{StaticResource AccelerometerIcon}">
         <ShellContent ContentTemplate="{DataTemplate sensors:AccelerometerPage}" Route="AccelerometerPage" />
@@ -42,7 +42,7 @@
         <ShellContent ContentTemplate="{DataTemplate sensors:RotationSensorPage}" Route="RotationSensorPage" />
     </FlyoutItem>
 
-    <controls:MenuSeparator Text="Environmentální senzory" />
+    <controls:MenuSeparator Text="{StaticResource EnvironmentalSensors}" />
 
     <FlyoutItem Title="{StaticResource LightSensorTitle}" Icon="{StaticResource LightIcon}">
         <ShellContent ContentTemplate="{DataTemplate sensors:LightSensorPage}" Route="LightSensorPage" />
@@ -52,7 +52,7 @@
         <ShellContent ContentTemplate="{DataTemplate sensors:BarometerPage}" Route="BarometerPage" />
     </FlyoutItem>
 
-    <controls:MenuSeparator Text="Polohové senzory" />
+    <controls:MenuSeparator Text="{StaticResource PositionSensors}" />
 
     <FlyoutItem Title="{StaticResource GpsTitle}" Icon="{StaticResource GpsIcon}">
         <ShellContent ContentTemplate="{DataTemplate sensors:GpsPage}" Route="GpsPage" />
@@ -62,14 +62,14 @@
         <ShellContent ContentTemplate="{DataTemplate sensors:ProximitySensorPage}" Route="ProximitySensorPage" />
     </FlyoutItem>
 
-    <controls:MenuSeparator Text="Biometrické senzory" />
+    <controls:MenuSeparator Text="{StaticResource BiometricSensors}" />
 
     <FlyoutItem Title="{StaticResource BiometricTitle}" Icon="{StaticResource BiometricIcon}">
         <ShellContent ContentTemplate="{DataTemplate sensors:BiometricPage}" Route="BiometricPage" />
     </FlyoutItem>
 
     <!-- Peripherals -->
-    <controls:MenuSeparator Text="Komunikační periferie" />
+    <controls:MenuSeparator Text="{StaticResource Peripherals}" />
     
     <FlyoutItem Title="{StaticResource NfcTitle}" Icon="{StaticResource NfcIcon}">
         <ShellContent ContentTemplate="{DataTemplate peripherals:NfcPage}" Route="NfcPage" />
@@ -96,7 +96,7 @@
     </FlyoutItem>
 
     <!-- Other items -->
-    <controls:MenuSeparator Text="Ostatní položky" />
+    <controls:MenuSeparator Text="{StaticResource OtherItems}" />
 
     <FlyoutItem Title="{StaticResource OverviewTitle}" Icon="{StaticResource OverviewIcon}">
         <ShellContent ContentTemplate="{DataTemplate views:OverviewPage}" Route="OverviewPage" />
@@ -108,6 +108,6 @@
 
     <!-- Footer -->
     <Shell.FlyoutFooter>
-        <Label Text="© Daniel Rybář, 2026" Style="{StaticResource ShellLabel}" />
+        <Label Text="{StaticResource CopyrightDR}" Style="{StaticResource ShellLabel}" />
     </Shell.FlyoutFooter>
 </Shell>

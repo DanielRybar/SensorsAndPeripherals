@@ -7,6 +7,13 @@
 
     <!-- Strings -->
     <x:String x:Key="ApplicationName">Senzory a periferie</x:String>
+    <x:String x:Key="MotionSensors">Pohybové senzory</x:String>
+    <x:String x:Key="EnvironmentalSensors">Environmentální senzory</x:String>
+    <x:String x:Key="PositionSensors">Polohové senzory</x:String>
+    <x:String x:Key="BiometricSensors">Biometrické senzory</x:String>
+    <x:String x:Key="Peripherals">Komunikační periferie</x:String>
+    <x:String x:Key="OtherItems">Ostatní položky</x:String>
+    <x:String x:Key="CopyrightDR">© Daniel Rybář, 2026</x:String>
     <x:String x:Key="AccelerometerTitle">Akcelerometr</x:String>
     <x:String x:Key="BarometerTitle">Barometr</x:String>
     <x:String x:Key="BiometricTitle">Biometrické ověření</x:String>
