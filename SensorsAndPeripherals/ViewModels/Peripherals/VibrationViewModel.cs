@@ -16,7 +16,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
 
             VibrateCommand = new Command(async () =>
             {
-                if (Duration > MaxDuration || Duration < MinDuration)
+                if (!IsDurationValid)
                 {
                     await Toast.Make($"{"VibrationErrorToast".GetStringFromResource()} {MinDuration:N0} a {MaxDuration:N0} ms!").Show();
                     return;
@@ -60,6 +60,12 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             get;
             set => SetProperty(ref field, value);
         }
+
+        public bool IsDurationValid
+        {
+            get;
+            set => SetProperty(ref field, value);
+        } = true;
 
         [SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Properties are bound in the View.")]
         public int MinDuration => 1;

@@ -92,7 +92,7 @@
     <x:String x:Key="FeedbackEmailSubject">Zpětná vazba k aplikaci Senzory a periferie</x:String>
     <x:String x:Key="FeedbackEmailBody">Ahoj,&#10;&#10;posílám ti zpětnou vazbu ke tvé aplikaci. Chtěl/a bych ti aplikaci pochválit / zkritizovat / nahlásit chybu:&#10;&#10;</x:String>
     <x:String x:Key="ShortAppDescription">Senzory a periferie je mobilní aplikace pro&#160;Android vyvinutá pomocí frameworku .NET MAUI.</x:String>
-    <x:String x:Key="LongAppDescription">Aplikace slouží k&#160;demonstraci praktického využití mobilních senzorů a&#160;periferií. Je navržena s&#160;velkým důrazem na&#160;přehlednost a&#160;srozumitelnost. Má potenciál sloužit pro výuku v&#160;oblasti vývoje mobilních aplikací.</x:String>
+    <x:String x:Key="LongAppDescription">Aplikace slouží pro&#160;demonstraci praktického využití mobilních senzorů a&#160;periferií. Je navržena s&#160;velkým důrazem na&#160;přehlednost a&#160;srozumitelnost. Má potenciál sloužit pro výuku v&#160;oblasti vývoje mobilních aplikací.</x:String>
     
     <!-- Doubles -->
     <x:Double x:Key="ScaleLiquidContainerGridHeightRequest">480</x:Double>

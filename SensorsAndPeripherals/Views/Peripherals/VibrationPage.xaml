@@ -16,18 +16,18 @@
                 <controls:ExtendedEntry Text="{Binding Duration}" Placeholder="{StaticResource SimpleVibrationPlaceholder}" Style="{StaticResource NumericDefaultEntry}">
                     <controls:ExtendedEntry.Behaviors>
                         <toolkit:NumericValidationBehavior 
-                            x:Name="NumericValidator"
                             Flags="ValidateOnValueChanged" 
+                            IsValid="{Binding Source={x:Reference Page}, Path=BindingContext.IsDurationValid, Mode=OneWayToSource}"
                             MinimumValue="{Binding Source={x:Reference Page}, Path=BindingContext.MinDuration}" 
                             MaximumValue="{Binding Source={x:Reference Page}, Path=BindingContext.MaxDuration}" 
                             MaximumDecimalPlaces="0" />
                     </controls:ExtendedEntry.Behaviors>
                 </controls:ExtendedEntry>
                 <Label Text="{Binding DurationText, StringFormat='Zadejte celé číslo v rozsahu od {0}.'}" 
-                       IsVisible="{Binding IsValid, Source={x:Reference NumericValidator}, Converter={StaticResource BoolToNegativeBoolConverter}}"
+                       IsVisible="{Binding IsDurationValid, Converter={StaticResource BoolToNegativeBoolConverter}}"
                        Style="{StaticResource ErrorMessageLabel}" />
                 <Button Text="{StaticResource SimpleVibrationButton}" Command="{Binding VibrateCommand}" Style="{StaticResource HorizontalFilledButton}" />
-                <Label Text="&#160;" Style="{StaticResource ErrorMessageLabel}" IsVisible="{Binding IsValid, Source={x:Reference NumericValidator}}" /> <!-- for space blocking -->
+                <Label Text="&#160;" Style="{StaticResource ErrorMessageLabel}" IsVisible="{Binding IsDurationValid}" /> <!-- for space blocking -->
             </VerticalStackLayout>
             <Image Source="vibration.png" Grid.Row="1" Style="{StaticResource CenteredImage}" Aspect="AspectFit" WidthRequest="250" />
             <VerticalStackLayout Grid.Row="2" Style="{StaticResource SensorStatusVsl}">
