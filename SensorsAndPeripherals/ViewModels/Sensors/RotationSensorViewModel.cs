@@ -1,4 +1,5 @@
 ﻿using SensorsAndPeripherals.Constants;
+using SensorsAndPeripherals.Helpers;
 using SensorsAndPeripherals.Interfaces.Sensors;
 using SensorsAndPeripherals.ViewModels.Abstract;
 
@@ -7,6 +8,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
     public class RotationSensorViewModel : SensorViewModel<IRotationSensorService, OrientationSensorChangedEventArgs>
     {
         #region variables
+        private readonly string unit = "Degree".GetStringFromResource();
         private double smoothedPitch = 0.0;
         private double smoothedRoll = 0.0;
         private double smoothedYaw = 0.0;
@@ -15,7 +17,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         #region constructor
         public RotationSensorViewModel()
         {
-            DisplayText = DisplayX = DisplayY = DisplayZ = $"{0:F2}°";
+            DisplayText = DisplayX = DisplayY = DisplayZ = $"{0:F2}{unit}";
         }
         #endregion
 
@@ -63,10 +65,10 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
                 // for better readability, update text only every X ms
                 if ((DateTime.Now - lastTextUpdateTime).TotalMilliseconds > SensorConstants.TEXT_VISUALIZATION_INTERVAL_MS)
                 {
-                    DisplayX = FormatValue(smoothedPitch, 2, "°");
-                    DisplayY = FormatValue(smoothedRoll, 2, "°");
-                    DisplayZ = FormatValue(smoothedYaw, 2, "°");
-                    DisplayText = FormatValue(totalTilt, 2, "°");
+                    DisplayX = FormatValue(smoothedPitch, 2, unit);
+                    DisplayY = FormatValue(smoothedRoll, 2, unit);
+                    DisplayZ = FormatValue(smoothedYaw, 2, unit);
+                    DisplayText = FormatValue(totalTilt, 2, unit);
                     lastTextUpdateTime = DateTime.Now;
                 }
             });

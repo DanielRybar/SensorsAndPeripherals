@@ -45,6 +45,10 @@
     <x:String x:Key="BackButtonExit">Stiskněte znovu pro ukončení aplikace</x:String>
     <x:String x:Key="Information">Informace</x:String>
 
+    <x:String x:Key="MetersPerSecondSquared">m/s²</x:String>
+    <x:String x:Key="DegreePerSecond">°/s</x:String>
+    <x:String x:Key="MicroTesla">µT</x:String>
+    <x:String x:Key="Degree">°</x:String>
     <x:String x:Key="LoadSensors">Načíst senzory</x:String>
     <x:String x:Key="SensorVendor">Výrobce:</x:String>
     <x:String x:Key="GyroscopeMagnitude">Celková rychlost otáčení</x:String>

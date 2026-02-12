@@ -1,4 +1,5 @@
 ﻿using SensorsAndPeripherals.Constants;
+using SensorsAndPeripherals.Helpers;
 using SensorsAndPeripherals.Interfaces.Sensors;
 using SensorsAndPeripherals.ViewModels.Abstract;
 
@@ -8,6 +9,8 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
     {
         #region variables
         private readonly string[] directions = ["S", "SV", "V", "JV", "J", "JZ", "Z", "SZ", "S"];
+        private readonly string microTeslaUnit = "MicroTesla".GetStringFromResource();
+        private readonly string degreeUnit = "Degree".GetStringFromResource();
         private double smoothedHeading = 0.0;
         private double smoothedMagX = 0.0;
         private double smoothedMagY = 0.0;
@@ -17,9 +20,9 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         #region constructor
         public MagnetometerViewModel()
         {
-            DisplayX = $"X: {0:F2} µT";
-            DisplayY = $"Y: {0:F2} µT";
-            DisplayZ = $"Z: {0:F2} µT";
+            DisplayX = $"X: {0:F2} {microTeslaUnit}";
+            DisplayY = $"Y: {0:F2} {microTeslaUnit}";
+            DisplayZ = $"Z: {0:F2} {microTeslaUnit}";
         }
         #endregion
 
@@ -51,10 +54,10 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
                 // for better readability, update text only every X ms
                 if ((DateTime.Now - lastTextUpdateTime).TotalMilliseconds > SensorConstants.TEXT_VISUALIZATION_INTERVAL_MS)
                 {
-                    DisplayText = $"{smoothedHeading:F0}° {GetDirectionName(smoothedHeading)}";
-                    DisplayX = $"X: {FormatValue(smoothedMagX, 2, " µT")}";
-                    DisplayY = $"Y: {FormatValue(smoothedMagY, 2, " µT")}";
-                    DisplayZ = $"Z: {FormatValue(smoothedMagZ, 2, " µT")}";
+                    DisplayText = $"{smoothedHeading:F0}{degreeUnit} {GetDirectionName(smoothedHeading)}";
+                    DisplayX = $"X: {FormatValue(smoothedMagX, 2, $" {microTeslaUnit}")}";
+                    DisplayY = $"Y: {FormatValue(smoothedMagY, 2, $" {microTeslaUnit}")}";
+                    DisplayZ = $"Z: {FormatValue(smoothedMagZ, 2, $" {microTeslaUnit}")}";
                     lastTextUpdateTime = DateTime.Now;
                 }
             });
