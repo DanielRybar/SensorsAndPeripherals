@@ -11,7 +11,14 @@ namespace SensorsAndPeripherals.Services.Peripherals
         {
             if (IsSupported)
             {
-                return await MediaPicker.Default.CapturePhotoAsync();
+                try
+                {
+                    return await MediaPicker.Default.CapturePhotoAsync();
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine($"Error while capturing the photo: {ex.Message}");
+                }
             }
             return null;
         }
