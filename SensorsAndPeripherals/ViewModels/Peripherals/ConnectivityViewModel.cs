@@ -10,7 +10,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         #region constructor
         public ConnectivityViewModel()
         {
-            GetConnectionStatusCommand = new Command(GetConnectionStatus, () => IsSupported);
+            GetConnectionStatusCommand = new Command(GetConnectionStatus);
             TestInternetConnectionCommand = new Command(async () =>
             {
                 IsWorking = true;
@@ -18,7 +18,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
                 InternetConnectionTestResult = await peripheralService.TestInternetConnectionAsync();
                 GetConnectionStatus();
                 IsWorking = false;
-            }, () => IsSupported);
+            });
         }
         #endregion
 
@@ -31,6 +31,10 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         private void GetConnectionStatus()
         {
             IsConnectedToNetwork = peripheralService.IsConnectedToNetwork;
+            if (!IsConnectedToNetwork)
+            {
+                InternetConnectionTestResult = null;
+            }
             var profiles = peripheralService.GetConnectionProfiles();
             var translatedProfiles = profiles.Select(profile => profile switch
             {
@@ -39,19 +43,12 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
                 ConnectionProfile.Unknown => "UnknownProfileCaption".GetStringFromResource(),
                 _ => profile.ToString()
             });
-            if (translatedProfiles.Any())
-            {
-                ConnectionProfiles = string.Join(", ", translatedProfiles);
-            }
-            else
-            {
-                ConnectionProfiles = null;
-            }
+            ConnectionProfiles = translatedProfiles.Any() ? string.Join("\n", translatedProfiles) : null;
         }
         #endregion
 
         #region properties
-        public bool? IsConnectedToNetwork
+        public bool IsConnectedToNetwork
         {
             get;
             set => SetProperty(ref field, value);

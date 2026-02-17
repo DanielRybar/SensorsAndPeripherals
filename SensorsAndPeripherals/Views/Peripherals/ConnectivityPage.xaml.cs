@@ -13,5 +13,11 @@ public partial class ConnectivityPage : ApplicationPage
         BindingContext = viewModel = new ConnectivityViewModel();
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        viewModel.GetConnectionStatusCommand.Execute(null);
+    }
+
     protected override string InfoText => "";
 }
