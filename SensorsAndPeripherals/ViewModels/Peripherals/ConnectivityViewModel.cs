@@ -36,7 +36,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
                 InternetConnectionTestResult = null;
             }
             var profiles = peripheralService.GetConnectionProfiles();
-            var translatedProfiles = profiles.Select(profile => profile switch
+            var translatedProfiles = profiles.Distinct().Select(profile => profile switch
             {
                 ConnectionProfile.Cellular => "CellularCaption".GetStringFromResource(),
                 ConnectionProfile.WiFi => "WifiCaption".GetStringFromResource(),
