@@ -44,6 +44,7 @@
     <x:String x:Key="ToggleOffText">Vypnout</x:String>
     <x:String x:Key="BackButtonExit">Stiskněte znovu pro ukončení aplikace</x:String>
     <x:String x:Key="Information">Informace</x:String>
+    <x:String x:Key="DefaultTargetNullValue">-</x:String>
 
     <x:String x:Key="MetersPerSecondSquared">m/s²</x:String>
     <x:String x:Key="DegreePerSecond">°/s</x:String>
@@ -92,6 +93,9 @@
     <x:String x:Key="HapticFeedbackClick">Kliknutí na tlačítko</x:String>
     <x:String x:Key="HapticFeedbackLongPress">Delší podržení tlačítka</x:String>
     <x:String x:Key="VibrationErrorToast">Zadejte validní dobu vibrace mezi</x:String>
+    <x:String x:Key="WifiCaption">Wi-Fi</x:String>
+    <x:String x:Key="CellularCaption">Mobilní data</x:String>
+    <x:String x:Key="UnknownProfileCaption">Neznámý profil</x:String>
     <x:String x:Key="SendFeedbackCaption">Odeslat zpětnou vazbu</x:String>
     <x:String x:Key="FeedbackEmailSubject">Zpětná vazba k aplikaci Senzory a periferie</x:String>
     <x:String x:Key="FeedbackEmailBody">Ahoj,&#10;&#10;posílám ti zpětnou vazbu ke tvé aplikaci. Chtěl/a bych ti aplikaci pochválit / zkritizovat / nahlásit chybu:&#10;&#10;</x:String>

@@ -3,9 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SensorsAndPeripherals.Views.Peripherals.ConnectivityPage"
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"
+             IsWorking="{Binding IsWorking}"
              Title="{StaticResource ConnectivityTitle}">
 
     <VerticalStackLayout>
-
+        <Button Text="a" Command="{Binding GetConnectionStatusCommand}" />
+        <Button Text="b" Command="{Binding TestInternetConnectionCommand}" />
+        <Label Text="{Binding IsConnectedToNetwork, TargetNullValue={StaticResource DefaultTargetNullValue}}" />
+        <Label Text="{Binding InternetConnectionTestResult, TargetNullValue={StaticResource DefaultTargetNullValue}}" />
+        <Label Text="{Binding ConnectionProfiles, TargetNullValue={StaticResource DefaultTargetNullValue}}" />
     </VerticalStackLayout>
 </abstract:ApplicationPage>

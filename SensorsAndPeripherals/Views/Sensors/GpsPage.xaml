@@ -28,11 +28,11 @@
                     </VerticalStackLayout>
                     <VerticalStackLayout>
                         <Label Text="{StaticResource GpsAltitude}" Style="{StaticResource DisplayTextCaption}" />
-                        <Label Text="{Binding ResultLocation.Altitude, StringFormat='{0:F1} m', TargetNullValue='-'}" Style="{StaticResource DisplayTextValue}" />
+                        <Label Text="{Binding ResultLocation.Altitude, StringFormat='{0:F1} m', TargetNullValue={StaticResource DefaultTargetNullValue}}" Style="{StaticResource DisplayTextValue}" />
                     </VerticalStackLayout>
                     <VerticalStackLayout>
                         <Label Text="{StaticResource GpsAccuracy}" Style="{StaticResource DisplayTextCaption}" />
-                        <Label Text="{Binding ResultLocation.Accuracy, StringFormat='± {0:F1} m', TargetNullValue='-'}" Style="{StaticResource DisplayTextValue}" />
+                        <Label Text="{Binding ResultLocation.Accuracy, StringFormat='± {0:F1} m', TargetNullValue={StaticResource DefaultTargetNullValue}}" Style="{StaticResource DisplayTextValue}" />
                     </VerticalStackLayout>
                     <VerticalStackLayout>
                         <Label Text="{StaticResource GpsTimestamp}" Style="{StaticResource DisplayTextCaption}" />
