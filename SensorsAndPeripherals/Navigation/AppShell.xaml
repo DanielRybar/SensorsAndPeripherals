@@ -79,8 +79,8 @@
         <ShellContent ContentTemplate="{DataTemplate peripherals:BluetoothPage}" Route="BluetoothPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="{StaticResource WifiTitle}" Icon="{StaticResource WifiIcon}">
-        <ShellContent ContentTemplate="{DataTemplate peripherals:WifiPage}" Route="WifiPage" />
+    <FlyoutItem Title="{StaticResource ConnectivityTitle}" Icon="{StaticResource ConnectivityIcon}">
+        <ShellContent ContentTemplate="{DataTemplate peripherals:ConnectivityPage}" Route="ConnectivityPage" />
     </FlyoutItem>
 
     <FlyoutItem Title="{StaticResource CameraTitle}" Icon="{StaticResource CameraIcon}">

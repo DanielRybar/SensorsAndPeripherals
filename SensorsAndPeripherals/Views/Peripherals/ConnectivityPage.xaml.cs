@@ -2,9 +2,9 @@ using SensorsAndPeripherals.Views.Abstract;
 
 namespace SensorsAndPeripherals.Views.Peripherals;
 
-public partial class WifiPage : ApplicationPage
+public partial class ConnectivityPage : ApplicationPage
 {
-	public WifiPage()
+	public ConnectivityPage()
 	{
 		InitializeComponent();
 	}

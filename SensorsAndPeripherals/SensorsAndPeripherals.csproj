@@ -79,7 +79,7 @@
 	  <MauiXaml Update="Views\Peripherals\VibrationPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Peripherals\WifiPage.xaml">
+	  <MauiXaml Update="Views\Peripherals\ConnectivityPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Sensors\AccelerometerPage.xaml">

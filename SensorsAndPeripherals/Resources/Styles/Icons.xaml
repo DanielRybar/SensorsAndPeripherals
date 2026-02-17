@@ -96,7 +96,7 @@
         Glyph="&#xf3ce;" />
 
     <FontImageSource
-        x:Key="WifiIcon"
+        x:Key="ConnectivityIcon"
         FontFamily="FontAwesomeSolid"
         Size="50"
         Color="{StaticResource MainApplicationColor}"

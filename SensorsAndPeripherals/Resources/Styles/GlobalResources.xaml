@@ -29,7 +29,7 @@
     <x:String x:Key="CameraTitle">Kamera</x:String>
     <x:String x:Key="NfcTitle">NFC</x:String>
     <x:String x:Key="VibrationTitle">Vibrace a haptika</x:String>
-    <x:String x:Key="WifiTitle">Konektivita</x:String>
+    <x:String x:Key="ConnectivityTitle">Konektivita</x:String>
     <x:String x:Key="OverviewTitle">Přehled dostupných senzorů</x:String>
     <x:String x:Key="AboutAppTitle">O aplikaci</x:String>
 
