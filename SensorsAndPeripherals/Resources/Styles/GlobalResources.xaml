@@ -98,7 +98,7 @@
     <x:String x:Key="HapticFeedbackLongPress">Delší podržení tlačítka</x:String>
     <x:String x:Key="VibrationErrorToast">Zadejte validní dobu vibrace mezi</x:String>
     <x:String x:Key="WifiCaption">Wi-Fi</x:String>
-    <x:String x:Key="CellularCaption">Mobilní data</x:String>
+    <x:String x:Key="CellularCaption">Mobilní síť</x:String>
     <x:String x:Key="UnknownProfileCaption">Neznámý profil</x:String>
     <x:String x:Key="NetworkState">Stav sítě</x:String>
     <x:String x:Key="ActiveProfiles">Aktivní rozhraní</x:String>
