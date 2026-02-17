@@ -9,21 +9,21 @@
     <Grid Style="{StaticResource MainGridStyle}" RowDefinitions="*, Auto">
         <VerticalStackLayout Spacing="30" VerticalOptions="Center">
             <VerticalStackLayout>
-                <Label Text="Je zařízení připojeno k síti?" Style="{StaticResource DisplayTextCaption}" />
-                <Label Text="{Binding IsConnectedToNetwork}" Style="{StaticResource DisplayTextValue}" />
+                <Label Text="{StaticResource NetworkState}" Style="{StaticResource DisplayTextCaption}" />
+                <Label Text="{Binding IsConnectedToNetwork, Converter={StaticResource ConnectivityStatusConverter}}" Style="{StaticResource DisplayTextValue}" />
             </VerticalStackLayout>
             <VerticalStackLayout>
-                <Label Text="Přes co je zařízení připojeno?" Style="{StaticResource DisplayTextCaption}" />
+                <Label Text="{StaticResource ActiveProfiles}" Style="{StaticResource DisplayTextCaption}" />
                 <Label Text="{Binding ConnectionProfiles, TargetNullValue={StaticResource DefaultTargetNullValue}}" Style="{StaticResource DisplayTextValue}" />
             </VerticalStackLayout>
             <VerticalStackLayout>
-                <Label Text="Výsledek testu internetového připojení" Style="{StaticResource DisplayTextCaption}" />
-                <Label Text="{Binding InternetConnectionTestResult, TargetNullValue={StaticResource DefaultTargetNullValue}}" Style="{StaticResource DisplayTextValue}" />
+                <Label Text="{StaticResource InternetAvailability}" Style="{StaticResource DisplayTextCaption}" />
+                <Label Text="{Binding InternetConnectionTestResult, Converter={StaticResource InternetAvailabilityConverter}, TargetNullValue={StaticResource DefaultTargetNullValue}}" Style="{StaticResource DisplayTextValue}" />
             </VerticalStackLayout>
         </VerticalStackLayout>
         <VerticalStackLayout Grid.Row="1" Style="{StaticResource SensorStatusVsl}">
-            <Button Text="Zobrazit síťové informace" Command="{Binding GetConnectionStatusCommand}" Style="{StaticResource HorizontalFilledButton}" />
-            <Button Text="Test internetového připojení" Command="{Binding TestInternetConnectionCommand}" Style="{StaticResource HorizontalFilledButton}" />
+            <Button Text="{StaticResource TestConnectionStatus}" Command="{Binding GetConnectionStatusCommand}" Style="{StaticResource HorizontalFilledButton}" />
+            <Button Text="{StaticResource TestInternetAvailability}" Command="{Binding TestInternetConnectionCommand}" Style="{StaticResource HorizontalFilledButton}" />
         </VerticalStackLayout>
     </Grid>
 </abstract:ApplicationPage>

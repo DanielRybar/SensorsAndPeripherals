@@ -10,7 +10,7 @@
         <Grid Style="{StaticResource MainGridStyle}">
             <Label Text="{Binding DisplayText}" Style="{StaticResource DisplayTextValue}" />
             <VerticalStackLayout Style="{StaticResource SensorStatusVsl}">
-                <Button Text="{Binding IsMonitoring, Converter={StaticResource BoolToButtonTextConverter}}" Command="{Binding ToggleCommand}" Style="{StaticResource HorizontalFilledButton}" />
+                <Button Text="{Binding IsMonitoring, Converter={StaticResource OnOffButtonConverter}}" Command="{Binding ToggleCommand}" Style="{StaticResource HorizontalFilledButton}" />
             </VerticalStackLayout>
         </Grid>
     </controls:DataGuard>

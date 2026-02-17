@@ -23,7 +23,7 @@
                 <Label Text="{Binding DisplayX}" Style="{StaticResource SensorDataLabel}" />
                 <Label Text="{Binding DisplayY}" Style="{StaticResource SensorDataLabel}"/>
                 <Label Text="{Binding DisplayZ}" Style="{StaticResource SensorDataLabel}" />
-                <Button Text="{Binding IsMonitoring, Converter={StaticResource BoolToButtonTextConverter}}" Command="{Binding ToggleCommand}" Style="{StaticResource HorizontalFilledButton}" />
+                <Button Text="{Binding IsMonitoring, Converter={StaticResource OnOffButtonConverter}}" Command="{Binding ToggleCommand}" Style="{StaticResource HorizontalFilledButton}" />
             </VerticalStackLayout>
         </Grid>
     </controls:DataGuard>

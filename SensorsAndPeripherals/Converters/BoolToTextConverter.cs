@@ -2,7 +2,7 @@
 
 namespace SensorsAndPeripherals.Converters
 {
-    public class BoolToButtonTextConverter : IValueConverter
+    public class BoolToTextConverter : IValueConverter
     {
         public string? TextWhenTrue { get; set; }
         public string? TextWhenFalse { get; set; }

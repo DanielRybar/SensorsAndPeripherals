@@ -45,6 +45,10 @@
     <x:String x:Key="BackButtonExit">Stiskněte znovu pro ukončení aplikace</x:String>
     <x:String x:Key="Information">Informace</x:String>
     <x:String x:Key="DefaultTargetNullValue">-</x:String>
+    <x:String x:Key="Connected">Připojeno</x:String>
+    <x:String x:Key="NotConnected">Nepřipojeno</x:String>
+    <x:String x:Key="Available">Dostupný</x:String>
+    <x:String x:Key="Unavailable">Nedostupný</x:String>
 
     <x:String x:Key="MetersPerSecondSquared">m/s²</x:String>
     <x:String x:Key="DegreePerSecond">°/s</x:String>
@@ -96,6 +100,11 @@
     <x:String x:Key="WifiCaption">Wi-Fi</x:String>
     <x:String x:Key="CellularCaption">Mobilní data</x:String>
     <x:String x:Key="UnknownProfileCaption">Neznámý profil</x:String>
+    <x:String x:Key="NetworkState">Stav sítě</x:String>
+    <x:String x:Key="ActiveProfiles">Aktivní rozhraní</x:String>
+    <x:String x:Key="InternetAvailability">Dostupnost internetu</x:String>
+    <x:String x:Key="TestConnectionStatus">Zjistit stav připojení</x:String>
+    <x:String x:Key="TestInternetAvailability">Ověřit dostupnost internetu</x:String>
     <x:String x:Key="SendFeedbackCaption">Odeslat zpětnou vazbu</x:String>
     <x:String x:Key="FeedbackEmailSubject">Zpětná vazba k aplikaci Senzory a periferie</x:String>
     <x:String x:Key="FeedbackEmailBody">Ahoj,&#10;&#10;posílám ti zpětnou vazbu ke tvé aplikaci. Chtěl/a bych ti aplikaci pochválit / zkritizovat / nahlásit chybu:&#10;&#10;</x:String>
@@ -106,7 +115,9 @@
     <x:Double x:Key="ScaleLiquidContainerGridHeightRequest">480</x:Double>
 
     <!-- Converters -->
-    <conv:BoolToButtonTextConverter x:Key="BoolToButtonTextConverter" TextWhenTrue="{StaticResource ToggleOffText}" TextWhenFalse="{StaticResource ToggleOnText}" />
+    <conv:BoolToTextConverter x:Key="OnOffButtonConverter" TextWhenTrue="{StaticResource ToggleOffText}" TextWhenFalse="{StaticResource ToggleOnText}" />
+    <conv:BoolToTextConverter x:Key="ConnectivityStatusConverter" TextWhenTrue="{StaticResource Connected}" TextWhenFalse="{StaticResource NotConnected}" />
+    <conv:BoolToTextConverter x:Key="InternetAvailabilityConverter" TextWhenTrue="{StaticResource Available}" TextWhenFalse="{StaticResource Unavailable}" />
     <conv:BoolToNegativeBoolConverter x:Key="BoolToNegativeBoolConverter" />
     <conv:FilePathToImageSourceConverter x:Key="FilePathToImageSourceConverter" />
 
