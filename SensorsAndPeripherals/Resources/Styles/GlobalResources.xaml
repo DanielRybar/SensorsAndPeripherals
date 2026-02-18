@@ -33,7 +33,9 @@
     <x:String x:Key="OverviewTitle">Přehled dostupných senzorů</x:String>
     <x:String x:Key="AboutAppTitle">O aplikaci</x:String>
 
-    <x:String x:Key="LoadingText">Načítání dat</x:String>
+    <x:String x:Key="LoadingDataText">Načítání dat</x:String>
+    <x:String x:Key="LoadingCameraText">Načítání kamery</x:String>
+    <x:String x:Key="VerificationText">Ověřování</x:String>
     <x:String x:Key="EmptyViewText">Žádná data nejsou k&#160;dispozici.</x:String>
     <x:String x:Key="SensorNotSupported">Senzor na&#160;tomto zařízení není podporován.</x:String>
     <x:String x:Key="BiometricSensorNotSupported">Biometrické ověření není k&#160;dispozici.</x:String>

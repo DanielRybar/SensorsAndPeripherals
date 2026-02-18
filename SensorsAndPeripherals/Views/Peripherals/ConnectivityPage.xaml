@@ -4,6 +4,7 @@
              x:Class="SensorsAndPeripherals.Views.Peripherals.ConnectivityPage"
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"
              IsWorking="{Binding IsWorking}"
+             LoadingText="{StaticResource VerificationText}"
              Title="{StaticResource ConnectivityTitle}">
 
     <Grid Style="{StaticResource MainGridStyle}" RowDefinitions="*, Auto">

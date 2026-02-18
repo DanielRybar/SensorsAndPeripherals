@@ -5,6 +5,7 @@
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"  
              xmlns:controls="clr-namespace:SensorsAndPeripherals.Controls"
              IsWorking="{Binding IsWorking}"
+             LoadingText="{StaticResource LoadingCameraText}"
              Title="{StaticResource CameraTitle}">
 
     <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource CameraNotSupported}">

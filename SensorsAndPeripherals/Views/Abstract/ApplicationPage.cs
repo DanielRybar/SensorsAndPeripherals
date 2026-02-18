@@ -24,6 +24,19 @@ namespace SensorsAndPeripherals.Views.Abstract
             set => SetValue(IsWorkingProperty, value);
         }
 
+        // Bindable Property for Loading Text
+        public static readonly BindableProperty LoadingTextProperty = BindableProperty.Create(
+            propertyName: nameof(LoadingText),
+            returnType: typeof(string),
+            declaringType: typeof(ApplicationPage),
+            defaultValue: "LoadingDataText".GetStringFromResource());
+
+        public string LoadingText
+        {
+            get => (string)GetValue(LoadingTextProperty);
+            set => SetValue(LoadingTextProperty, value);
+        }
+
         public ApplicationPage(bool showInfoToolbarItem = true)
         {
             ControlTemplate = new ControlTemplate(() =>
@@ -63,10 +76,9 @@ namespace SensorsAndPeripherals.Views.Abstract
                 IsRunning = true,
                 Color = App.Current!.Resources["MainApplicationColor"] as Color
             };
-            var loadingLabel = new Label
-            {
-                Text = App.Current!.Resources["LoadingText"] as string
-            };
+
+            var loadingLabel = new Label();
+            loadingLabel.SetBinding(Label.TextProperty, new Binding(nameof(LoadingText), source: RelativeBindingSource.TemplatedParent));
 
             vsl.Children.Add(activityIndicator);
             vsl.Children.Add(loadingLabel);

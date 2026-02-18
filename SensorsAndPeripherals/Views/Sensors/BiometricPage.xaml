@@ -5,6 +5,7 @@
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"
              xmlns:controls="clr-namespace:SensorsAndPeripherals.Controls"  
              IsWorking="{Binding IsWorking}"
+             LoadingText="{StaticResource VerificationText}"
              Title="{StaticResource BiometricTitle}">
 
     <abstract:ApplicationPage.ToolbarItems>
