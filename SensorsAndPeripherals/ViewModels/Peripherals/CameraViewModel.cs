@@ -1,5 +1,6 @@
 ﻿using SensorsAndPeripherals.Helpers;
 using SensorsAndPeripherals.Interfaces.Peripherals;
+using SensorsAndPeripherals.Models.Enums;
 using SensorsAndPeripherals.ViewModels.Abstract;
 using System.Windows.Input;
 
@@ -13,26 +14,45 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             TakeAndDisplayPhotoCommand = new Command(async () =>
             {
                 IsWorking = true;
-                var photoFileResult = await peripheralService.TakePhotoAsync();
-                if (photoFileResult is not null)
+                StatusMessage = string.Empty;
+                try
                 {
-                    var resultPath = await peripheralService.SavePhotoToCacheAsync(photoFileResult);
-                    if (!string.IsNullOrEmpty(resultPath))
+                    var (cameraResult, fileResult) = await peripheralService.TakePhotoAsync();
+                    switch (cameraResult)
                     {
-                        PhotoPath = resultPath;
-                    }
-                    else
-                    {
-                        PhotoPath = null;
-                        StatusMessage = "CameraSavingError".GetStringFromResource();
+                        case CameraResult.Ok:
+                            if (fileResult is not null)
+                            {
+                                var resultPath = await peripheralService.SavePhotoToCacheAsync(fileResult);
+                                if (!string.IsNullOrEmpty(resultPath))
+                                {
+                                    PhotoPath = resultPath;
+                                }
+                                else
+                                {
+                                    PhotoPath = null;
+                                    StatusMessage = "CameraSavingError".GetStringFromResource();
+                                }
+                            }
+                            break;
+                        case CameraResult.PermissionDenied:
+                            PhotoPath = null;
+                            StatusMessage = "CameraPermissionDenied".GetStringFromResource();
+                            break;
+                        case CameraResult.Cancelled:
+                            StatusMessage = "CameraInit".GetStringFromResource();
+                            break;
+                        case CameraResult.Error:
+                        default:
+                            PhotoPath = null;
+                            StatusMessage = "CameraShootingError".GetStringFromResource();
+                            break;
                     }
                 }
-                else
+                finally
                 {
-                    PhotoPath = null;
-                    StatusMessage = "CameraShootingError".GetStringFromResource();
+                    IsWorking = false;
                 }
-                IsWorking = false;
             }, () => IsSupported);
         }
         #endregion

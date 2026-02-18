@@ -90,6 +90,7 @@
     <x:String x:Key="GpsCoarseLocation">Přibližná lokace</x:String>
     <x:String x:Key="CameraSavingError">Došlo k chybě při ukládání fotografie.</x:String>
     <x:String x:Key="CameraShootingError">Došlo k chybě při pořizování fotografie.</x:String>
+    <x:String x:Key="CameraPermissionDenied">Aplikace nemá oprávnění ke kameře. Povolte přístup v&#160;nastavení aplikace.</x:String>
     <x:String x:Key="CameraInit">Pro pořízení fotografie stiskněte tlačítko níže.</x:String>
     <x:String x:Key="CameraTakePhoto">Pořídit fotografii</x:String>
     <x:String x:Key="SimpleVibration">Vibrace</x:String>
