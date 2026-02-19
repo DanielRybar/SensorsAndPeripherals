@@ -16,10 +16,10 @@ namespace SensorsAndPeripherals.Services.Peripherals
                 if (status != PermissionStatus.Granted)
                 {
                     status = await Permissions.RequestAsync<Permissions.Camera>();
-                }
-                if (status != PermissionStatus.Granted)
-                {
-                    return (CameraResult.PermissionDenied, null);
+                    if (status != PermissionStatus.Granted)
+                    {
+                        return (CameraResult.PermissionDenied, null);
+                    }
                 }
 
                 try

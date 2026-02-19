@@ -47,6 +47,7 @@ namespace SensorsAndPeripherals
             DependencyService.Register<IConnectivityService, ConnectivityService>();
             DependencyService.Register<ILightSensorService, Platforms.Android.Services.Sensors.LightSensorService>();
             DependencyService.Register<IProximitySensorService, Platforms.Android.Services.Sensors.ProximitySensorService>();
+            DependencyService.Register<IAudioService, Platforms.Android.Services.Peripherals.AudioService>();
             DependencyService.Register<ISensorListService, Platforms.Android.Services.SensorListService>();
 
             return builder.Build();
