@@ -110,7 +110,7 @@
         Glyph="&#xf030;" />
 
     <FontImageSource
-        x:Key="AcousticIcon"
+        x:Key="AudioIcon"
         FontFamily="FontAwesomeSolid"
         Size="50"
         Color="{StaticResource MainApplicationColor}"

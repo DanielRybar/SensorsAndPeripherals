@@ -64,7 +64,7 @@
 	  <MauiXaml Update="Views\OverviewPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Peripherals\AcousticPage.xaml">
+	  <MauiXaml Update="Views\Peripherals\AudioPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Peripherals\BluetoothPage.xaml">

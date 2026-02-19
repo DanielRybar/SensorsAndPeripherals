@@ -2,9 +2,9 @@ using SensorsAndPeripherals.Views.Abstract;
 
 namespace SensorsAndPeripherals.Views.Peripherals;
 
-public partial class AcousticPage : ApplicationPage
+public partial class AudioPage : ApplicationPage
 {
-	public AcousticPage()
+	public AudioPage()
 	{
 		InitializeComponent();
 	}

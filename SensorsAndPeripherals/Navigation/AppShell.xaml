@@ -87,8 +87,8 @@
         <ShellContent ContentTemplate="{DataTemplate peripherals:CameraPage}" Route="CameraPage" />
     </FlyoutItem>
 
-    <FlyoutItem Title="{StaticResource AcousticTitle}" Icon="{StaticResource AcousticIcon}">
-        <ShellContent ContentTemplate="{DataTemplate peripherals:AcousticPage}" Route="AcousticPage" />
+    <FlyoutItem Title="{StaticResource AudioTitle}" Icon="{StaticResource AudioIcon}">
+        <ShellContent ContentTemplate="{DataTemplate peripherals:AudioPage}" Route="AudioPage" />
     </FlyoutItem>
 
     <FlyoutItem Title="{StaticResource VibrationTitle}" Icon="{StaticResource VibrationIcon}">
