@@ -93,6 +93,7 @@
     <x:String x:Key="CameraPermissionDenied">Aplikace nemá oprávnění ke kameře. Povolte přístup v&#160;nastavení aplikace.</x:String>
     <x:String x:Key="CameraInit">Pro pořízení fotografie stiskněte tlačítko níže.</x:String>
     <x:String x:Key="CameraTakePhoto">Pořídit fotografii</x:String>
+    <x:String x:Key="RecordingError">Došlo k chybě při nahrávání zvuku.</x:String>
     <x:String x:Key="SimpleVibration">Vibrace</x:String>
     <x:String x:Key="SimpleVibrationButton">Vibrovat</x:String>
     <x:String x:Key="SimpleVibrationPlaceholder">Zadejte dobu pro&#160;vibraci v&#160;milisekundách</x:String>
