@@ -12,6 +12,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         #region variables
         private readonly IDispatcherTimer timer = App.Current!.Dispatcher.CreateTimer();
         private readonly Stopwatch stopwatch = new();
+        private readonly TimeSpan maxRecordingDuration = TimeSpan.FromMinutes(5);
         private TimeSpan totalDuration;
         #endregion
 
@@ -21,7 +22,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             timer.Interval = TimeSpan.FromMilliseconds(PeripheralConstants.TEXT_VISUALIZATION_INTERVAL_MS);
             timer.Tick += (s, e) => UpdateTimeDisplay();
             ToggleRecordCommand = new Command(async () => await ToggleRecordingAsync());
-            TogglePlayCommand = new Command(TogglePlaybackAsync);
+            TogglePlayCommand = new Command(TogglePlayback);
             ToggleSpeakerCommand = new Command(ToggleSpeakerMode);
         }
         #endregion
@@ -43,7 +44,6 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             {
                 totalDuration = peripheralService.GetAudioDuration(RecordedFilePath!);
                 TimeDisplay = totalDuration.ToString(@"mm\:ss");
-                OnPropertyChanged(nameof(HasRecordedFile));
             }
             else
             {
@@ -51,10 +51,9 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             }
         }
 
-        private async Task StartRecording()
+        private async Task StartRecordingAsync()
         {
             RecordedFilePath = null;
-            OnPropertyChanged(nameof(HasRecordedFile));
             bool started = await peripheralService.StartRecordingAsync();
             if (started)
             {
@@ -72,6 +71,12 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         {
             if (IsRecording)
             {
+                if (stopwatch.Elapsed >= maxRecordingDuration)
+                {
+                    StopRecording();
+                    StatusMessage = "RecordingTooLong".GetStringFromResource();
+                    return;
+                }
                 TimeDisplay = stopwatch.Elapsed.ToString(@"mm\:ss");
             }
             else if (IsPlaying)
@@ -86,17 +91,18 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
 
         private async Task ToggleRecordingAsync()
         {
+            if (IsPlaying) return;
             if (IsRecording)
             {
                 StopRecording();
             }
             else
             {
-                await StartRecording();
+                await StartRecordingAsync();
             }
         }
 
-        private async void TogglePlaybackAsync()
+        private void TogglePlayback()
         {
             if (!HasRecordedFile) return;
             if (IsPlaying)
@@ -112,6 +118,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
                 peripheralService.SetSpeakerMode(IsLoudspeaker);
                 peripheralService.PlayAudio(RecordedFilePath!, () =>
                 {
+                    if (!IsPlaying) return;
                     MainThread.BeginInvokeOnMainThread(ResetPlaybackUI);
                 });
             }
@@ -137,28 +144,34 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         #endregion
 
         #region properties
-        public bool IsRecording 
-        { 
-            get; 
-            set => SetProperty(ref field, value); 
+        public bool IsRecording
+        {
+            get;
+            set => SetProperty(ref field, value);
         }
 
-        public bool IsPlaying 
-        { 
-            get; 
+        public bool IsPlaying
+        {
+            get;
             set => SetProperty(ref field, value);
         }
 
         public string? RecordedFilePath
         {
             get;
-            set => SetProperty(ref field, value);
+            set
+            {
+                if (SetProperty(ref field, value))
+                {
+                    OnPropertyChanged(nameof(HasRecordedFile));
+                }
+            }
         } = string.Empty;
 
-        public string TimeDisplay 
-        { 
-            get; 
-            set => SetProperty(ref field, value); 
+        public string TimeDisplay
+        {
+            get;
+            set => SetProperty(ref field, value);
         } = "00:00";
 
         public bool IsLoudspeaker
@@ -169,7 +182,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
 
         public string StatusMessage
         {
-            get => field;
+            get;
             set => SetProperty(ref field, value);
         } = string.Empty;
 
