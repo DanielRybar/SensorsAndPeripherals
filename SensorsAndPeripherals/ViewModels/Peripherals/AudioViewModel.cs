@@ -127,11 +127,11 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
                 IsPlaying = true;
                 stopwatch.Restart();
                 timer.Start();
-                peripheralService.SetSpeakerMode(IsLoudspeaker);
                 peripheralService.PlayAudio(RecordedFilePath!, () =>
                 {
                     MainThread.BeginInvokeOnMainThread(ResetPlaybackUI);
                 });
+                peripheralService.SetSpeakerMode(IsLoudspeaker);
             }
 
         }
