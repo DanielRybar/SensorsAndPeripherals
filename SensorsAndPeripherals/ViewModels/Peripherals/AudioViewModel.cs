@@ -21,9 +21,9 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         {
             timer.Interval = TimeSpan.FromMilliseconds(PeripheralConstants.TEXT_VISUALIZATION_INTERVAL_MS);
             timer.Tick += (s, e) => UpdateTimeDisplay();
-            ToggleRecordCommand = new Command(async () => await ToggleRecordingAsync());
-            TogglePlayCommand = new Command(TogglePlayback);
-            ToggleSpeakerCommand = new Command(ToggleSpeakerMode);
+            ToggleRecordCommand = new Command(async () => await ToggleRecordingAsync(), () => IsSupported);
+            TogglePlayCommand = new Command(TogglePlayback, () => IsSupported);
+            ToggleSpeakerCommand = new Command(ToggleSpeakerMode, () => IsSupported);
         }
         #endregion
 
@@ -53,6 +53,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
 
         private async Task StartRecordingAsync()
         {
+            IsWorking = true;
             RecordedFilePath = null;
             bool started = await peripheralService.StartRecordingAsync();
             if (started)
@@ -65,6 +66,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             {
                 StatusMessage = "RecordingError".GetStringFromResource();
             }
+            IsWorking = false;
         }
 
         private void UpdateTimeDisplay()

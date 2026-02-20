@@ -22,6 +22,10 @@ namespace SensorsAndPeripherals.Platforms.Android.Services.Peripherals
 
         public async Task<bool> StartRecordingAsync()
         {
+            if (!IsSupported)
+            {
+                return false;
+            }
             var status = await Permissions.CheckStatusAsync<Permissions.Microphone>();
             if (status != PermissionStatus.Granted)
             {
@@ -72,6 +76,10 @@ namespace SensorsAndPeripherals.Platforms.Android.Services.Peripherals
 
         public void PlayAudio(string filePath, Action onPlaybackFinished)
         {
+            if (!IsSupported)
+            {
+                return;
+            }
             StopPlayback();
             try
             {
