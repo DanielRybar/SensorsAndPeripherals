@@ -3,9 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SensorsAndPeripherals.Views.Peripherals.AudioPage"
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"
+             xmlns:controls="clr-namespace:SensorsAndPeripherals.Controls"
+             IsWorking="{Binding IsWorking}"
+             LoadingText="{StaticResource LoadingVoiceRecorder}"
              Title="{StaticResource AudioTitle}">
-    
-    <VerticalStackLayout>
 
-    </VerticalStackLayout>
+    <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource AudioNotSupported}">
+        <Grid Style="{StaticResource MainGridStyle}" RowDefinitions="Auto, *, Auto">
+            <VerticalStackLayout Style="{StaticResource SensorStatusVsl}" Padding="20,10,20,10">
+                <Label Text="{StaticResource Microphone}" Style="{StaticResource DisplayTextCaption}" />
+                <Button Text="{Binding IsRecording, Converter={StaticResource AudioToggleRecordConverter}}" Command="{Binding ToggleRecordCommand}" Style="{StaticResource HorizontalFilledButton}">
+                    <Button.Triggers>
+                        <DataTrigger TargetType="Button" Binding="{Binding IsRecording}" Value="True">
+                            <Setter Property="BackgroundColor" Value="{StaticResource LightRed}" />
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+                <Label Text="{Binding ErrorMessage}" Style="{StaticResource ErrorMessageLabel}" HorizontalOptions="Center" />
+            </VerticalStackLayout>
+            <Label Grid.Row="1" Text="{Binding TimeDisplay}" Style="{StaticResource DisplayTextValue}" VerticalOptions="Center" />
+            <VerticalStackLayout Grid.Row="2" Style="{StaticResource SensorStatusVsl}">
+                <Label Text="{StaticResource Speakers}" Style="{StaticResource DisplayTextCaption}" />
+                <Button Text="{Binding IsPlaying, Converter={StaticResource AudioTogglePlayConverter}}" Command="{Binding TogglePlayCommand}" Style="{StaticResource HorizontalFilledButton}">
+                    <Button.Triggers>
+                        <DataTrigger TargetType="Button" Binding="{Binding IsPlaying}" Value="True">
+                            <Setter Property="BackgroundColor" Value="{StaticResource LightRed}" />
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+                <Button Text="{Binding IsLoudspeaker, Converter={StaticResource AudioLoudspeakerConverter}}" Command="{Binding ToggleSpeakerCommand}" Style="{StaticResource HorizontalFilledButton}" />
+            </VerticalStackLayout>
+        </Grid>
+    </controls:DataGuard>
 </abstract:ApplicationPage>

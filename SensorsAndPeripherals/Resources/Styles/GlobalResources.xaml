@@ -53,6 +53,12 @@
     <x:String x:Key="NotConnected">Nepřipojeno</x:String>
     <x:String x:Key="Available">Dostupný</x:String>
     <x:String x:Key="Unavailable">Nedostupný</x:String>
+    <x:String x:Key="AudioStartRecording">Nahrát zprávu</x:String>
+    <x:String x:Key="AudioStopRecording">Zastavit nahrávání</x:String>
+    <x:String x:Key="AudioStartPlaying">Přehrát nahrávku</x:String>
+    <x:String x:Key="AudioStopPlaying">Zastavit přehrávání</x:String>
+    <x:String x:Key="AudioUseLoudspeaker">Režim hlasitého reproduktoru</x:String>
+    <x:String x:Key="AudioUseHeadphone">Režim sluchátka</x:String>
 
     <x:String x:Key="MetersPerSecondSquared">m/s²</x:String>
     <x:String x:Key="DegreePerSecond">°/s</x:String>
@@ -97,6 +103,8 @@
     <x:String x:Key="CameraTakePhoto">Pořídit fotografii</x:String>
     <x:String x:Key="RecordingError">Došlo k chybě při nahrávání zvuku.</x:String>
     <x:String x:Key="RecordingTooLong">Délka nahrávky překročila limit. Nahrávání bylo zastaveno.</x:String>
+    <x:String x:Key="Microphone">Mikrofon</x:String>
+    <x:String x:Key="Speakers">Reproduktory</x:String>
     <x:String x:Key="SimpleVibration">Vibrace</x:String>
     <x:String x:Key="SimpleVibrationButton">Vibrovat</x:String>
     <x:String x:Key="SimpleVibrationPlaceholder">Zadejte dobu pro&#160;vibraci v&#160;milisekundách</x:String>
@@ -125,6 +133,9 @@
     <conv:BoolToTextConverter x:Key="OnOffButtonConverter" TextWhenTrue="{StaticResource ToggleOffText}" TextWhenFalse="{StaticResource ToggleOnText}" />
     <conv:BoolToTextConverter x:Key="ConnectivityStatusConverter" TextWhenTrue="{StaticResource Connected}" TextWhenFalse="{StaticResource NotConnected}" />
     <conv:BoolToTextConverter x:Key="InternetAvailabilityConverter" TextWhenTrue="{StaticResource Available}" TextWhenFalse="{StaticResource Unavailable}" />
+    <conv:BoolToTextConverter x:Key="AudioToggleRecordConverter" TextWhenTrue="{StaticResource AudioStopRecording}" TextWhenFalse="{StaticResource AudioStartRecording}" />
+    <conv:BoolToTextConverter x:Key="AudioTogglePlayConverter" TextWhenTrue="{StaticResource AudioStopPlaying}" TextWhenFalse="{StaticResource AudioStartPlaying}" />
+    <conv:BoolToTextConverter x:Key="AudioLoudspeakerConverter" TextWhenTrue="{StaticResource AudioUseHeadphone}" TextWhenFalse="{StaticResource AudioUseLoudspeaker}" />
     <conv:BoolToNegativeBoolConverter x:Key="BoolToNegativeBoolConverter" />
     <conv:FilePathToImageSourceConverter x:Key="FilePathToImageSourceConverter" />
 

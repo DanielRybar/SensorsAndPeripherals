@@ -21,9 +21,9 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         {
             timer.Interval = TimeSpan.FromMilliseconds(PeripheralConstants.TEXT_VISUALIZATION_INTERVAL_MS);
             timer.Tick += (s, e) => UpdateTimeDisplay();
-            ToggleRecordCommand = new Command(async () => await ToggleRecordingAsync(), () => IsSupported);
-            TogglePlayCommand = new Command(TogglePlayback, () => IsSupported);
-            ToggleSpeakerCommand = new Command(ToggleSpeakerMode, () => IsSupported);
+            ToggleRecordCommand = new Command(async () => await ToggleRecordingAsync(), () => IsSupported && !IsPlaying);
+            TogglePlayCommand = new Command(TogglePlayback, () => IsSupported && !IsRecording && HasRecordedFile);
+            ToggleSpeakerCommand = new Command(ToggleSpeakerMode, () => IsSupported && HasRecordedFile);
         }
         #endregion
 
@@ -54,6 +54,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         private async Task StartRecordingAsync()
         {
             IsWorking = true;
+            await Task.Delay(500);
             RecordedFilePath = null;
             bool started = await peripheralService.StartRecordingAsync();
             if (started)
@@ -64,7 +65,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             }
             else
             {
-                StatusMessage = "RecordingError".GetStringFromResource();
+                ErrorMessage = "RecordingError".GetStringFromResource();
             }
             IsWorking = false;
         }
@@ -76,7 +77,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
                 if (stopwatch.Elapsed >= maxRecordingDuration)
                 {
                     StopRecording();
-                    StatusMessage = "RecordingTooLong".GetStringFromResource();
+                    ErrorMessage = "RecordingTooLong".GetStringFromResource();
                     return;
                 }
                 TimeDisplay = stopwatch.Elapsed.ToString(@"mm\:ss");
@@ -93,7 +94,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
 
         private async Task ToggleRecordingAsync()
         {
-            if (IsPlaying) return;
+            ErrorMessage = string.Empty;
             if (IsRecording)
             {
                 StopRecording();
@@ -106,7 +107,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
 
         private void TogglePlayback()
         {
-            if (!HasRecordedFile) return;
+            ErrorMessage = string.Empty;
             if (IsPlaying)
             {
                 peripheralService.StopPlayback();
@@ -120,7 +121,6 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
                 peripheralService.SetSpeakerMode(IsLoudspeaker);
                 peripheralService.PlayAudio(RecordedFilePath!, () =>
                 {
-                    if (!IsPlaying) return;
                     MainThread.BeginInvokeOnMainThread(ResetPlaybackUI);
                 });
             }
@@ -129,6 +129,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
 
         private void ToggleSpeakerMode()
         {
+            ErrorMessage = string.Empty;
             IsLoudspeaker = !IsLoudspeaker;
             if (IsPlaying)
             {
@@ -143,19 +144,38 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             timer.Stop();
             TimeDisplay = totalDuration.ToString(@"mm\:ss");
         }
+
+        private void RefreshCommands()
+        {
+            (ToggleRecordCommand as Command)!.ChangeCanExecute();
+            (TogglePlayCommand as Command)!.ChangeCanExecute();
+            (ToggleSpeakerCommand as Command)!.ChangeCanExecute();
+        }
         #endregion
 
         #region properties
         public bool IsRecording
         {
             get;
-            set => SetProperty(ref field, value);
+            set
+            {
+                if (SetProperty(ref field, value))
+                {
+                    RefreshCommands();
+                }
+            }
         }
 
         public bool IsPlaying
         {
             get;
-            set => SetProperty(ref field, value);
+            set
+            {
+                if (SetProperty(ref field, value))
+                {
+                    RefreshCommands();
+                }
+            }
         }
 
         public string? RecordedFilePath
@@ -166,6 +186,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
                 if (SetProperty(ref field, value))
                 {
                     OnPropertyChanged(nameof(HasRecordedFile));
+                    RefreshCommands();
                 }
             }
         } = string.Empty;
@@ -182,7 +203,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             set => SetProperty(ref field, value);
         } = true;
 
-        public string StatusMessage
+        public string ErrorMessage
         {
             get;
             set => SetProperty(ref field, value);
