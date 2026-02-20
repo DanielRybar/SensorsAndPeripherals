@@ -736,6 +736,7 @@
         <Setter Property="TextColor" Value="{StaticResource LightRed}" />
         <Setter Property="FontSize" Value="Caption" />
         <Setter Property="Padding" Value="0,0,0,5" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
     </Style>
 
     <Style TargetType="ScrollView" x:Key="AboutAppMainView">

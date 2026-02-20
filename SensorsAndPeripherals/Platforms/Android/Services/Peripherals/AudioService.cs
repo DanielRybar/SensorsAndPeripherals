@@ -2,6 +2,7 @@
 using Android.Media;
 using Android.OS;
 using SensorsAndPeripherals.Interfaces.Peripherals;
+using SensorsAndPeripherals.Models.Enums;
 using Debug = System.Diagnostics.Debug;
 
 namespace SensorsAndPeripherals.Platforms.Android.Services.Peripherals
@@ -20,11 +21,11 @@ namespace SensorsAndPeripherals.Platforms.Android.Services.Peripherals
 
         public bool IsSupported => CheckAvailability();
 
-        public async Task<bool> StartRecordingAsync()
+        public async Task<MicrophoneResult> StartRecordingAsync()
         {
             if (!IsSupported)
             {
-                return false;
+                return MicrophoneResult.NotSupported;
             }
             var status = await Permissions.CheckStatusAsync<Permissions.Microphone>();
             if (status != PermissionStatus.Granted)
@@ -32,7 +33,7 @@ namespace SensorsAndPeripherals.Platforms.Android.Services.Peripherals
                 status = await Permissions.RequestAsync<Permissions.Microphone>();
                 if (status != PermissionStatus.Granted)
                 {
-                    return false;
+                    return MicrophoneResult.PermissionDenied;
                 }
             }
             try
@@ -47,12 +48,12 @@ namespace SensorsAndPeripherals.Platforms.Android.Services.Peripherals
                 mediaRecorder.SetOutputFile(currentFilePath);
                 mediaRecorder.Prepare();
                 mediaRecorder.Start();
-                return true;
+                return MicrophoneResult.Ok;
             }
             catch (Exception ex)
             {
                 Debug.WriteLine($"Error while recording: {ex.Message}");
-                return false;
+                return MicrophoneResult.Error;
             }
         }
 

@@ -10,7 +10,7 @@
 
     <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource AudioNotSupported}">
         <Grid Style="{StaticResource MainGridStyle}" RowDefinitions="Auto, *, Auto">
-            <VerticalStackLayout Style="{StaticResource SensorStatusVsl}" Padding="20,10,20,10">
+            <VerticalStackLayout Style="{StaticResource SensorStatusVsl}" Padding="20,10,20,10" Spacing="10">
                 <Label Text="{StaticResource Microphone}" Style="{StaticResource DisplayTextCaption}" />
                 <Button Text="{Binding IsRecording, Converter={StaticResource AudioToggleRecordConverter}}" Command="{Binding ToggleRecordCommand}" Style="{StaticResource HorizontalFilledButton}">
                     <Button.Triggers>

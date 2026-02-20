@@ -1,6 +1,7 @@
 ﻿using SensorsAndPeripherals.Constants;
 using SensorsAndPeripherals.Helpers;
 using SensorsAndPeripherals.Interfaces.Peripherals;
+using SensorsAndPeripherals.Models.Enums;
 using SensorsAndPeripherals.ViewModels.Abstract;
 using System.Diagnostics;
 using System.Windows.Input;
@@ -56,16 +57,24 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             IsWorking = true;
             await Task.Delay(500);
             RecordedFilePath = null;
-            bool started = await peripheralService.StartRecordingAsync();
-            if (started)
+            var started = await peripheralService.StartRecordingAsync();
+            switch (started)
             {
-                IsRecording = true;
-                stopwatch.Restart();
-                timer.Start();
-            }
-            else
-            {
-                ErrorMessage = "RecordingError".GetStringFromResource();
+                case MicrophoneResult.Ok:
+                    IsRecording = true;
+                    stopwatch.Restart();
+                    timer.Start();
+                    break;
+                case MicrophoneResult.PermissionDenied:
+                    ErrorMessage = "MicrophonePermissionDenied".GetStringFromResource();
+                    break;
+                case MicrophoneResult.NotSupported:
+                    ErrorMessage = "AudioNotSupported".GetStringFromResource();
+                    break;
+                case MicrophoneResult.Error:
+                default:
+                    ErrorMessage = "RecordingError".GetStringFromResource();
+                    break;
             }
             IsWorking = false;
         }
