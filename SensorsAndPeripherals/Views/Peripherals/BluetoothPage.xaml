@@ -19,7 +19,9 @@
                         </DataTrigger>
                     </Button.Triggers>
                 </Button>
-                <Label Text="{Binding StatusMessage}" Style="{StaticResource ErrorMessageLabel}" HorizontalOptions="Center" />
+                <Label IsVisible="{Binding StatusMessage, Converter={StaticResource TextToBoolConverter}}" 
+                       Text="{Binding StatusMessage}" 
+                       Style="{StaticResource ErrorMessageLabel}" /> 
             </VerticalStackLayout>
             <Grid Grid.Row="1" Padding="20">
                 <CollectionView x:Name="MainCollectionView" ItemsSource="{Binding DiscoveredDevices}" Style="{StaticResource SensorOverview}">
@@ -51,8 +53,7 @@
                 </Button>
                 <Label IsVisible="{Binding StatusMessageDiscovering, Converter={StaticResource TextToBoolConverter}}" 
                        Text="{Binding StatusMessageDiscovering}" 
-                       Style="{StaticResource ErrorMessageLabel}" 
-                       HorizontalOptions="Center" />
+                       Style="{StaticResource ErrorMessageLabel}" />
             </VerticalStackLayout>
         </Grid>
     </controls:DataGuard>

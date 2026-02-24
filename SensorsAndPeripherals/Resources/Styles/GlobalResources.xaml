@@ -64,10 +64,10 @@
     <x:String x:Key="AudioUseHeadphone">Režim sluchátka</x:String>
     <x:String x:Key="BluetoothTurnOnPropagation">Zapnout propagaci</x:String>
     <x:String x:Key="BluetoothTurnOffPropagation">Vypnout propagaci</x:String>
-    <x:String x:Key="BluetoothTurnOnDiscovery">Zapnout objevování</x:String>
-    <x:String x:Key="BluetoothTurnOffDiscovery">Vypnout objevování</x:String>
+    <x:String x:Key="BluetoothTurnOnDiscovery">Zapnout skenování</x:String>
+    <x:String x:Key="BluetoothTurnOffDiscovery">Vypnout skenování</x:String>
     <x:String x:Key="BluetoothPropagationCaption">Vysílání do okolí</x:String>
-    <x:String x:Key="BluetoothDiscoveryCaption">Skenování okolních zařízení</x:String>
+    <x:String x:Key="BluetoothDiscoveryCaption">Hledání okolních zařízení</x:String>
     <x:String x:Key="BluetoothNotEnabled">Bluetooth je vypnuté. Prosím, zapněte jej v&#160;nastavení telefonu.</x:String>
     <x:String x:Key="BluetoothPermissionDenied">Aplikaci chybí potřebná oprávnění k&#160;Bluetooth.</x:String>
     <x:String x:Key="BluetoothUnknownError">Došlo k&#160;neznámé chybě při&#160;inicializaci Bluetooth.</x:String>

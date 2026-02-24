@@ -2,7 +2,7 @@
 
 namespace SensorsAndPeripherals.Converters
 {
-    internal class TextToBoolConverter : IValueConverter
+    public class TextToBoolConverter : IValueConverter
     {
         public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
         {
