@@ -3,9 +3,57 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SensorsAndPeripherals.Views.Peripherals.BluetoothPage"
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"
+             xmlns:controls="clr-namespace:SensorsAndPeripherals.Controls"
+             IsWorking="{Binding IsWorking}"
+             LoadingText="{Binding LoadingText}"
              Title="{StaticResource BluetoothTitle}">
 
-    <VerticalStackLayout>
-
-    </VerticalStackLayout>
+    <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource BluetoothNotSupported}">
+        <Grid Style="{StaticResource MainGridStyle}" RowDefinitions="Auto, *, Auto">
+            <VerticalStackLayout Style="{StaticResource SensorStatusVsl}" Padding="20,10,20,10" Spacing="10">
+                <Label Text="{StaticResource BluetoothPropagationCaption}" Style="{StaticResource DisplayTextCaption}" />
+                <Button Text="{Binding IsAdvertising, Converter={StaticResource BluetoothAdvertiseConverter}}" Command="{Binding ToggleAdvertisingCommand}" Style="{StaticResource HorizontalFilledButton}">
+                    <Button.Triggers>
+                        <DataTrigger TargetType="Button" Binding="{Binding IsAdvertising}" Value="True">
+                            <Setter Property="BackgroundColor" Value="{StaticResource LightRed}" />
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+                <Label Text="{Binding StatusMessage}" Style="{StaticResource ErrorMessageLabel}" HorizontalOptions="Center" />
+            </VerticalStackLayout>
+            <Grid Grid.Row="1" Padding="20">
+                <CollectionView x:Name="MainCollectionView" ItemsSource="{Binding DiscoveredDevices}" Style="{StaticResource SensorOverview}">
+                    <CollectionView.EmptyView>
+                        <Grid HeightRequest="{Binding Source={x:Reference MainCollectionView}, Path=Height}">
+                            <Image Source="bluetooth.png" Style="{StaticResource CenteredImage}" Aspect="AspectFit" WidthRequest="250" />
+                        </Grid>
+                    </CollectionView.EmptyView>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Border Style="{StaticResource SensorOverviewBorder}">
+                                <VerticalStackLayout Spacing="5">
+                                    <Label Text="{Binding MacAddress}" Style="{StaticResource SensorOverviewTitle}" HorizontalOptions="Center"  />
+                                    <Label Text="{Binding Name, TargetNullValue='Neznámé zařízení'}" Style="{StaticResource SensorOverviewStringType}" HorizontalOptions="Center" />
+                                </VerticalStackLayout>
+                            </Border>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Grid>
+            <VerticalStackLayout Grid.Row="2" Style="{StaticResource SensorStatusVsl}">
+                <Label Text="{StaticResource BluetoothDiscoveryCaption}" Style="{StaticResource DisplayTextCaption}" />
+                <Button Text="{Binding IsDiscovering, Converter={StaticResource BluetoothDiscoveryConverter}}" Command="{Binding ToggleDiscoveringCommand}" Style="{StaticResource HorizontalFilledButton}">
+                    <Button.Triggers>
+                        <DataTrigger TargetType="Button" Binding="{Binding IsDiscovering}" Value="True">
+                            <Setter Property="BackgroundColor" Value="{StaticResource LightRed}" />
+                        </DataTrigger>
+                    </Button.Triggers>
+                </Button>
+                <Label IsVisible="{Binding StatusMessageDiscovering, Converter={StaticResource TextToBoolConverter}}" 
+                       Text="{Binding StatusMessageDiscovering}" 
+                       Style="{StaticResource ErrorMessageLabel}" 
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
+        </Grid>
+    </controls:DataGuard>
 </abstract:ApplicationPage>

@@ -36,6 +36,8 @@
     <x:String x:Key="LoadingDataText">Načítání dat</x:String>
     <x:String x:Key="LoadingCameraText">Načítání kamery</x:String>
     <x:String x:Key="LoadingVoiceRecorder">Spouštím nahrávání</x:String>
+    <x:String x:Key="StartingBLEPropagation">Zahajuji BLE propagaci</x:String>
+    <x:String x:Key="ScanningStarted">Spouštím skenování</x:String>
     <x:String x:Key="VerificationText">Ověřování</x:String>
     <x:String x:Key="EmptyViewText">Žádná data nejsou k&#160;dispozici.</x:String>
     <x:String x:Key="SensorNotSupported">Senzor na&#160;tomto zařízení není podporován.</x:String>
@@ -60,6 +62,15 @@
     <x:String x:Key="AudioStopPlaying">Zastavit přehrávání</x:String>
     <x:String x:Key="AudioUseLoudspeaker">Režim hlasitého reproduktoru</x:String>
     <x:String x:Key="AudioUseHeadphone">Režim sluchátka</x:String>
+    <x:String x:Key="BluetoothTurnOnPropagation">Zapnout propagaci</x:String>
+    <x:String x:Key="BluetoothTurnOffPropagation">Vypnout propagaci</x:String>
+    <x:String x:Key="BluetoothTurnOnDiscovery">Zapnout objevování</x:String>
+    <x:String x:Key="BluetoothTurnOffDiscovery">Vypnout objevování</x:String>
+    <x:String x:Key="BluetoothPropagationCaption">Vysílání do okolí</x:String>
+    <x:String x:Key="BluetoothDiscoveryCaption">Skenování okolních zařízení</x:String>
+    <x:String x:Key="BluetoothNotEnabled">Bluetooth je vypnuté. Prosím, zapněte jej v&#160;nastavení telefonu.</x:String>
+    <x:String x:Key="BluetoothPermissionDenied">Aplikaci chybí potřebná oprávnění k&#160;Bluetooth.</x:String>
+    <x:String x:Key="BluetoothUnknownError">Došlo k&#160;neznámé chybě při&#160;inicializaci Bluetooth.</x:String>
 
     <x:String x:Key="MetersPerSecondSquared">m/s²</x:String>
     <x:String x:Key="DegreePerSecond">°/s</x:String>
@@ -138,7 +149,10 @@
     <conv:BoolToTextConverter x:Key="AudioToggleRecordConverter" TextWhenTrue="{StaticResource AudioStopRecording}" TextWhenFalse="{StaticResource AudioStartRecording}" />
     <conv:BoolToTextConverter x:Key="AudioTogglePlayConverter" TextWhenTrue="{StaticResource AudioStopPlaying}" TextWhenFalse="{StaticResource AudioStartPlaying}" />
     <conv:BoolToTextConverter x:Key="AudioLoudspeakerConverter" TextWhenTrue="{StaticResource AudioUseHeadphone}" TextWhenFalse="{StaticResource AudioUseLoudspeaker}" />
+    <conv:BoolToTextConverter x:Key="BluetoothAdvertiseConverter" TextWhenTrue="{StaticResource BluetoothTurnOffPropagation}" TextWhenFalse="{StaticResource BluetoothTurnOnPropagation}" />
+    <conv:BoolToTextConverter x:Key="BluetoothDiscoveryConverter" TextWhenTrue="{StaticResource BluetoothTurnOffDiscovery}" TextWhenFalse="{StaticResource BluetoothTurnOnDiscovery}" />
     <conv:BoolToNegativeBoolConverter x:Key="BoolToNegativeBoolConverter" />
+    <conv:TextToBoolConverter x:Key="TextToBoolConverter" />
     <conv:FilePathToImageSourceConverter x:Key="FilePathToImageSourceConverter" />
 
 </ResourceDictionary>
