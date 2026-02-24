@@ -11,6 +11,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         #region constructor
         public CameraViewModel()
         {
+            StatusMessage = "CameraInit".GetStringFromResource();
             TakeAndDisplayPhotoCommand = new Command(async () =>
             {
                 IsWorking = true;
@@ -62,12 +63,6 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         #endregion
 
         #region properties
-        public string StatusMessage
-        {
-            get;
-            set => SetProperty(ref field, value);
-        } = "CameraInit".GetStringFromResource();
-
         public string? PhotoPath
         {
             get;

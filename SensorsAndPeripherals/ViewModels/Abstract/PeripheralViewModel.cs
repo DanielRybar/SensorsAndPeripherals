@@ -22,6 +22,12 @@ namespace SensorsAndPeripherals.ViewModels.Abstract
             get;
             set => SetProperty(ref field, value);
         }
+
+        public string StatusMessage
+        {
+            get;
+            set => SetProperty(ref field, value);
+        } = string.Empty;
         #endregion
     }
 }

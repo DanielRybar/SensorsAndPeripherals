@@ -66,14 +66,14 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
                     timer.Start();
                     break;
                 case MicrophoneResult.PermissionDenied:
-                    ErrorMessage = "MicrophonePermissionDenied".GetStringFromResource();
+                    StatusMessage = "MicrophonePermissionDenied".GetStringFromResource();
                     break;
                 case MicrophoneResult.NotSupported:
-                    ErrorMessage = "AudioNotSupported".GetStringFromResource();
+                    StatusMessage = "AudioNotSupported".GetStringFromResource();
                     break;
                 case MicrophoneResult.Error:
                 default:
-                    ErrorMessage = "RecordingError".GetStringFromResource();
+                    StatusMessage = "RecordingError".GetStringFromResource();
                     break;
             }
             IsWorking = false;
@@ -86,7 +86,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
                 if (stopwatch.Elapsed >= maxRecordingDuration)
                 {
                     StopRecording();
-                    ErrorMessage = "RecordingTooLong".GetStringFromResource();
+                    StatusMessage = "RecordingTooLong".GetStringFromResource();
                     return;
                 }
                 TimeDisplay = stopwatch.Elapsed.ToString(@"mm\:ss");
@@ -103,7 +103,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
 
         private async Task ToggleRecordingAsync()
         {
-            ErrorMessage = string.Empty;
+            StatusMessage = string.Empty;
             if (IsRecording)
             {
                 StopRecording();
@@ -116,7 +116,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
 
         private void TogglePlayback()
         {
-            ErrorMessage = string.Empty;
+            StatusMessage = string.Empty;
             if (IsPlaying)
             {
                 peripheralService.StopPlayback();
@@ -138,7 +138,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
 
         private void ToggleSpeakerMode()
         {
-            ErrorMessage = string.Empty;
+            StatusMessage = string.Empty;
             IsLoudspeaker = !IsLoudspeaker;
             if (IsPlaying)
             {
@@ -211,12 +211,6 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             get;
             set => SetProperty(ref field, value);
         } = true;
-
-        public string ErrorMessage
-        {
-            get;
-            set => SetProperty(ref field, value);
-        } = string.Empty;
 
         public bool HasRecordedFile => !string.IsNullOrEmpty(RecordedFilePath);
         #endregion

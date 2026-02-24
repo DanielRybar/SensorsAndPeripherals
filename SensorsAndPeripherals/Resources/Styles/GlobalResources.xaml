@@ -41,6 +41,7 @@
     <x:String x:Key="SensorNotSupported">Senzor na&#160;tomto zařízení není podporován.</x:String>
     <x:String x:Key="BiometricSensorNotSupported">Biometrické ověření není k&#160;dispozici.</x:String>
     <x:String x:Key="BiometricSensorsNotFound">Žádné biometrické senzory nenalezeny.</x:String>
+    <x:String x:Key="BluetoothNotSupported">Bluetooth není k&#160;dispozici.</x:String>
     <x:String x:Key="CameraNotSupported">Pořízení obrázku není k&#160;dispozici.</x:String>
     <x:String x:Key="AudioNotSupported">Nahrávání zvuku není k&#160;dispozici.</x:String>
     <x:String x:Key="VibrationNotSupported">Vibrace nejsou na&#160;tomto zařízení dostupné.</x:String>
