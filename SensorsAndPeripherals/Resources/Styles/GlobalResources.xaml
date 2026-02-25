@@ -73,6 +73,7 @@
     <x:String x:Key="BluetoothPermissionDenied">Aplikaci chybí potřebná oprávnění k&#160;Bluetooth.</x:String>
     <x:String x:Key="BluetoothUnknownError">Došlo k&#160;neznámé chybě při&#160;inicializaci Bluetooth.</x:String>
     <x:String x:Key="BluetoothExternalTurnOff">Bluetooth bylo nečekaně vypnuto.</x:String>
+    <x:String x:Key="BluetoothAdapterName">Název zařízení</x:String>
 
     <x:String x:Key="MetersPerSecondSquared">m/s²</x:String>
     <x:String x:Key="DegreePerSecond">°/s</x:String>

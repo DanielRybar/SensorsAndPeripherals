@@ -19,21 +19,32 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
                     StopAdvertising();
                 else
                     await StartAdvertisingAsync();
-            }, () => IsSupported);
-
+            }, 
+            () => IsSupported);
             ToggleDiscoveringCommand = new Command(async () =>
             {
                 if (IsDiscovering)
                     StopDiscovering();
                 else
                     await StartDiscoveringAsync();
-            }, () => IsSupported);
+            }, 
+            () => IsSupported);
+            GetAdapterInfoCommand = new Command(async () =>
+            {
+                ShowAdapterInfoDialogRequested?.Invoke(await peripheralService.GetAdapterName() ?? "BluetoothUnknownDevice".GetStringFromResource());
+            }, 
+            () => IsSupported && !IsWorking);
         }
         #endregion
 
         #region commands
         public ICommand ToggleAdvertisingCommand { get; private set; }
         public ICommand ToggleDiscoveringCommand { get; private set; }
+        public ICommand GetAdapterInfoCommand { get; private set; }
+        #endregion
+
+        #region delegates
+        public event Action<string>? ShowAdapterInfoDialogRequested;
         #endregion
 
         #region methods
@@ -164,6 +175,18 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         #endregion
 
         #region properties
+        public override bool IsWorking
+        {
+            get;
+            set
+            {
+                if (SetProperty(ref field, value))
+                {
+                    (GetAdapterInfoCommand as Command)!.ChangeCanExecute();
+                }
+            }
+        }
+
         public bool IsAdvertising
         {
             get;

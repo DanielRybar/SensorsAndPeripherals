@@ -8,6 +8,10 @@
              LoadingText="{Binding LoadingText}"
              Title="{StaticResource BluetoothTitle}">
 
+    <abstract:ApplicationPage.ToolbarItems>
+        <ToolbarItem IconImageSource="{StaticResource ToolbarBluetoothDeviceIcon}" Command="{Binding GetAdapterInfoCommand}" Priority="0" />
+    </abstract:ApplicationPage.ToolbarItems>
+
     <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource BluetoothNotSupported}">
         <Grid Style="{StaticResource MainGridStyle}" RowDefinitions="Auto, *, Auto">
             <VerticalStackLayout Style="{StaticResource SensorStatusVsl}" Padding="20,10,20,10" Spacing="10">

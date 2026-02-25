@@ -8,6 +8,7 @@ namespace SensorsAndPeripherals.Interfaces.Peripherals
     {
         event EventHandler<BluetoothDeviceInfo>? DeviceDiscovered;
         event EventHandler<bool>? StateChanged;
+        Task<string?> GetAdapterName();
         // via Bluetooth Low Energy
         Task<BluetoothResult> StartAdvertisingAsync();
         void StopAdvertising();

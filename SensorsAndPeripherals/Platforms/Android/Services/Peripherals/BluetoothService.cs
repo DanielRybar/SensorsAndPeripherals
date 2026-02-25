@@ -4,6 +4,7 @@ using Android.Content;
 using SensorsAndPeripherals.Interfaces.Peripherals;
 using SensorsAndPeripherals.Models;
 using SensorsAndPeripherals.Models.Enums;
+using System.Diagnostics;
 
 namespace SensorsAndPeripherals.Platforms.Android.Services.Peripherals
 {
@@ -28,6 +29,15 @@ namespace SensorsAndPeripherals.Platforms.Android.Services.Peripherals
         }
 
         public bool IsSupported => adapter is not null;
+
+        public async Task<string?> GetAdapterName()
+        {
+            if (await CheckBluetoothPermissionAsync())
+            {
+                return adapter?.Name;
+            }
+            return null;
+        }
 
         public event EventHandler<BluetoothDeviceInfo>? DeviceDiscovered;
 
@@ -113,7 +123,15 @@ namespace SensorsAndPeripherals.Platforms.Android.Services.Peripherals
             adapter?.CancelDiscovery();
             if (receiver is not null)
             {
-                global::Android.App.Application.Context.UnregisterReceiver(receiver);
+                try
+                {
+                    global::Android.App.Application.Context.UnregisterReceiver(receiver);
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Error while unregistering the discovery receiver: " + ex.Message);
+                }
+                receiver.Dispose();
                 receiver = null;
             }
         }
@@ -159,6 +177,30 @@ namespace SensorsAndPeripherals.Platforms.Android.Services.Peripherals
 
         public override void OnStartSuccess(AdvertiseSettings? settingsInEffect) => base.OnStartSuccess(settingsInEffect);
         public override void OnStartFailure(AdvertiseFailure errorCode) => isAdvertising = false;
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                StopDiscovering();
+                StopAdvertising();
+                if (stateReceiver is not null)
+                {
+                    try
+                    {
+                        global::Android.App.Application.Context.UnregisterReceiver(stateReceiver);
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine("Error while unregistering the state receiver: " + ex.Message);
+                    }
+                    stateReceiver.Dispose();
+                    stateReceiver = null;
+                }
+                DeviceDiscovered = null;
+                StateChanged = null;
+            }
+            base.Dispose(disposing);
+        }
     }
 
     public class BluetoothDeviceReceiver(Action<BluetoothDeviceInfo> onDeviceFound) : BroadcastReceiver

@@ -144,4 +144,11 @@
         Color="{StaticResource White}"
         Glyph="&#xf577;" />
 
+    <FontImageSource
+        x:Key="ToolbarBluetoothDeviceIcon"
+        FontFamily="FontAwesomeSolid"
+        Size="25"
+        Color="{StaticResource White}"
+        Glyph="&#xf3cf;" />
+
 </ResourceDictionary>
