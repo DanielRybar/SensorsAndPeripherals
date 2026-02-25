@@ -13,8 +13,6 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         #region constructor
         public BluetoothViewModel()
         {
-            peripheralService.DeviceDiscovered += OnDeviceDiscovered;
-
             ToggleAdvertisingCommand = new Command(async () =>
             {
                 if (IsAdvertising)
@@ -39,11 +37,19 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         #endregion
 
         #region methods
-        public void StopDiscoveringAndAdvertising()
+        public void Initialize()
+        {
+            HandleBluetoothEvents(register: false);
+            HandleBluetoothEvents(register: true);
+        }
+
+        public void CleanUp()
         {
             StopAdvertising();
             StopDiscovering();
+            HandleBluetoothEvents(register: false);
             StatusMessage = StatusMessageDiscovering = string.Empty;
+            DiscoveredDevices.Clear();
         }
 
         private async Task StartAdvertisingAsync()
@@ -72,36 +78,76 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             IsWorking = true;
             await Task.Delay(500);
             DiscoveredDevices.Clear();
-            peripheralService.DeviceDiscovered += OnDeviceDiscovered;
             var result = await peripheralService.StartDiscoveringAsync();
             StatusMessageDiscovering = HandleBluetoothResult(result);
             if (result == BluetoothResult.Success)
             {
                 IsDiscovering = true;
             }
-            else
-            {
-                peripheralService.DeviceDiscovered -= OnDeviceDiscovered;
-            }
             IsWorking = false;
         }
 
         private void StopDiscovering()
         {
-            peripheralService.DeviceDiscovered -= OnDeviceDiscovered;
             peripheralService.StopDiscovering();
             IsDiscovering = false;
         }
 
         private void OnDeviceDiscovered(object? sender, BluetoothDeviceInfo info)
         {
+            if (!IsDiscovering)
+            {
+                return;
+            }
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                if (!DiscoveredDevices.Any(x => x.MacAddress == info.MacAddress))
+                var device = DiscoveredDevices.FirstOrDefault(x => x.MacAddress == info.MacAddress);
+                if (device is not null)
+                {
+                    int index = DiscoveredDevices.IndexOf(device);
+                    DiscoveredDevices[index] = info;
+                }
+                else
                 {
                     DiscoveredDevices.Add(info);
                 }
             });
+        }
+
+        private void OnBluetoothStateChanged(object? sender, bool isOn)
+        {
+            MainThread.BeginInvokeOnMainThread(() =>
+            {
+                if (isOn)
+                {
+                    StatusMessage = StatusMessageDiscovering = string.Empty;
+                    return;
+                }
+                if (IsAdvertising)
+                {
+                    StopAdvertising();
+                    StatusMessage = "BluetoothExternalTurnOff".GetStringFromResource();
+                }
+                if (IsDiscovering)
+                {
+                    StopDiscovering();
+                    StatusMessageDiscovering = "BluetoothExternalTurnOff".GetStringFromResource();
+                }
+            });
+        }
+
+        private void HandleBluetoothEvents(bool register)
+        {
+            if (register)
+            {
+                peripheralService.DeviceDiscovered += OnDeviceDiscovered;
+                peripheralService.StateChanged += OnBluetoothStateChanged;
+            }
+            else
+            {
+                peripheralService.DeviceDiscovered -= OnDeviceDiscovered;
+                peripheralService.StateChanged -= OnBluetoothStateChanged;
+            }
         }
 
         private static string HandleBluetoothResult(BluetoothResult result)

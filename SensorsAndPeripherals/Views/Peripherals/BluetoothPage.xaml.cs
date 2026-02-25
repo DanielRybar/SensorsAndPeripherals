@@ -13,10 +13,16 @@ public partial class BluetoothPage : ApplicationPage
 		BindingContext = viewModel = new BluetoothViewModel();
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        viewModel.Initialize();
+    }
+
     protected override void OnDisappearing()
     {
         base.OnDisappearing();
-        viewModel.StopDiscoveringAndAdvertising();
+        viewModel.CleanUp();
     }
 
     protected override string InfoText => "";

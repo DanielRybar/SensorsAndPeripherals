@@ -7,6 +7,7 @@ namespace SensorsAndPeripherals.Interfaces.Peripherals
     public interface IBluetoothService : IPeripheralService
     {
         event EventHandler<BluetoothDeviceInfo>? DeviceDiscovered;
+        event EventHandler<bool>? StateChanged;
         // via Bluetooth Low Energy
         Task<BluetoothResult> StartAdvertisingAsync();
         void StopAdvertising();

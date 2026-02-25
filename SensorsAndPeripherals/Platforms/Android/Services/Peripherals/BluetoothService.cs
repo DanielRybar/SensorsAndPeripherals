@@ -11,18 +11,27 @@ namespace SensorsAndPeripherals.Platforms.Android.Services.Peripherals
     {
         private readonly BluetoothAdapter? adapter;
         private BluetoothLeAdvertiser? advertiser;
-        private HybridDeviceReceiver? receiver;
+        private BluetoothDeviceReceiver? receiver;
+        private BluetoothStateReceiver? stateReceiver;
         private bool isAdvertising;
 
         public BluetoothService()
         {
             var manager = global::Android.App.Application.Context.GetSystemService(Context.BluetoothService) as BluetoothManager;
             adapter = manager?.Adapter;
+            if (adapter is not null)
+            {
+                stateReceiver = new BluetoothStateReceiver((isOn) => StateChanged?.Invoke(this, isOn));
+                var filter = new IntentFilter(BluetoothAdapter.ActionStateChanged);
+                global::Android.App.Application.Context.RegisterReceiver(stateReceiver, filter);
+            }
         }
 
         public bool IsSupported => adapter is not null;
 
         public event EventHandler<BluetoothDeviceInfo>? DeviceDiscovered;
+
+        public event EventHandler<bool>? StateChanged;
 
         // via Bluetooth Low Energy
         public async Task<BluetoothResult> StartAdvertisingAsync()
@@ -85,7 +94,7 @@ namespace SensorsAndPeripherals.Platforms.Android.Services.Peripherals
                 return BluetoothResult.PermissionDenied;
             }
 
-            receiver = new HybridDeviceReceiver((deviceInfo) => DeviceDiscovered?.Invoke(this, deviceInfo));
+            receiver = new BluetoothDeviceReceiver((deviceInfo) => DeviceDiscovered?.Invoke(this, deviceInfo));
             var filter = new IntentFilter(BluetoothDevice.ActionFound);
             global::Android.App.Application.Context.RegisterReceiver(receiver, filter);
             try
@@ -152,7 +161,7 @@ namespace SensorsAndPeripherals.Platforms.Android.Services.Peripherals
         public override void OnStartFailure(AdvertiseFailure errorCode) => isAdvertising = false;
     }
 
-    public class HybridDeviceReceiver(Action<BluetoothDeviceInfo> onDeviceFound) : BroadcastReceiver
+    public class BluetoothDeviceReceiver(Action<BluetoothDeviceInfo> onDeviceFound) : BroadcastReceiver
     {
         public override void OnReceive(Context? context, Intent? intent)
         {
@@ -181,6 +190,25 @@ namespace SensorsAndPeripherals.Platforms.Android.Services.Peripherals
                         info.Name = device.Alias;
                     }
                     onDeviceFound?.Invoke(info);
+                }
+            }
+        }
+    }
+
+    public class BluetoothStateReceiver(Action<bool> onStateChanged) : BroadcastReceiver
+    {
+        public override void OnReceive(Context? context, Intent? intent)
+        {
+            if (intent?.Action == BluetoothAdapter.ActionStateChanged)
+            {
+                var state = (State)intent.GetIntExtra(BluetoothAdapter.ExtraState, BluetoothAdapter.Error);
+                if (state == State.Off)
+                {
+                    onStateChanged?.Invoke(false);
+                }
+                else if (state == State.On)
+                {
+                    onStateChanged?.Invoke(true);
                 }
             }
         }
