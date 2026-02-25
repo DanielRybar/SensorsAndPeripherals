@@ -24,7 +24,7 @@
                        Style="{StaticResource ErrorMessageLabel}" /> 
             </VerticalStackLayout>
             <Grid Grid.Row="1" Padding="20">
-                <CollectionView x:Name="MainCollectionView" ItemsSource="{Binding DiscoveredDevices}" Style="{StaticResource SensorOverview}">
+                <CollectionView x:Name="MainCollectionView" ItemsSource="{Binding DiscoveredDevices}" Style="{StaticResource SensorCollectionView}">
                     <CollectionView.EmptyView>
                         <Grid HeightRequest="{Binding Source={x:Reference MainCollectionView}, Path=Height}">
                             <Image Source="bluetooth.png" Style="{StaticResource CenteredImage}" Aspect="AspectFit" WidthRequest="250" />
@@ -34,8 +34,8 @@
                         <DataTemplate>
                             <Border Style="{StaticResource SensorOverviewBorder}">
                                 <VerticalStackLayout Spacing="5">
-                                    <Label Text="{Binding MacAddress}" Style="{StaticResource SensorOverviewTitle}" HorizontalOptions="Center"  />
-                                    <Label Text="{Binding Name, TargetNullValue='Neznámé zařízení'}" Style="{StaticResource SensorOverviewStringType}" HorizontalOptions="Center" />
+                                    <Label Text="{Binding MacAddress}" Style="{StaticResource CollectionViewItemTitle}" HorizontalOptions="Center"  />
+                                    <Label Text="{Binding Name, TargetNullValue={StaticResource BluetoothUnknownDevice}}" Style="{StaticResource CollectionViewItemType}" HorizontalOptions="Center" />
                                 </VerticalStackLayout>
                             </Border>
                         </DataTemplate>

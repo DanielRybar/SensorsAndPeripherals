@@ -9,7 +9,7 @@
     <Grid RowDefinitions="Auto, *" Padding="20" RowSpacing="10">
         <Button Text="{StaticResource LoadSensors}" Command="{Binding GetSensorsCommand}" Style="{StaticResource HorizontalFilledButton}" />
 
-        <CollectionView x:Name="MainCollectionView" Grid.Row="1" ItemsSource="{Binding Sensors}" Style="{StaticResource SensorOverview}">
+        <CollectionView x:Name="MainCollectionView" Grid.Row="1" ItemsSource="{Binding Sensors}" Style="{StaticResource SensorCollectionView}">
             <CollectionView.EmptyView>
                 <Grid HeightRequest="{Binding Source={x:Reference MainCollectionView}, Path=Height}">
                     <Label Text="{StaticResource EmptyViewText}" HorizontalOptions="Center" VerticalOptions="Center" />
@@ -19,7 +19,7 @@
                 <DataTemplate>
                     <Border Style="{StaticResource SensorOverviewBorder}">
                         <VerticalStackLayout Spacing="5">
-                            <Label Text="{Binding Name}" Style="{StaticResource SensorOverviewTitle}" />
+                            <Label Text="{Binding Name}" Style="{StaticResource CollectionViewItemTitle}" />
                             <HorizontalStackLayout Spacing="5">
                                 <Label Text="{StaticResource SensorVendor}" FontAttributes="Bold" />
                                 <Label Text="{Binding Vendor}" LineBreakMode="TailTruncation" />
@@ -28,7 +28,7 @@
                                 <Label Grid.Column="0" Text="{Binding Version, StringFormat='Verze: {0}'}"  FontSize="Small" />
                                 <Label Grid.Column="1" Text="{Binding Power, StringFormat='Spotřeba: {0:F3} mA'}" FontSize="Small" HorizontalOptions="End" />
                             </Grid>
-                            <Label Text="{Binding StringType}" Style="{StaticResource SensorOverviewStringType}" />
+                            <Label Text="{Binding StringType}" Style="{StaticResource CollectionViewItemType}" />
                         </VerticalStackLayout>
                     </Border>
                 </DataTemplate>

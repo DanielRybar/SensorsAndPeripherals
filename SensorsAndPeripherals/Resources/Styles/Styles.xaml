@@ -469,7 +469,7 @@
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray600}, Dark={StaticResource Gray100}}" />
     </Style>
 
-    <Style TargetType="CollectionView" x:Key="SensorOverview">
+    <Style TargetType="CollectionView" x:Key="SensorCollectionView">
         <Setter Property="SelectionMode" Value="None" />
         <Setter Property="VerticalScrollBarVisibility" Value="Never" />
         <Setter Property="HorizontalScrollBarVisibility" Value="Never" />
@@ -483,13 +483,13 @@
         <Setter Property="Margin" Value="0,0,0,10" />
     </Style>
 
-    <Style TargetType="Label" x:Key="SensorOverviewTitle">
+    <Style TargetType="Label" x:Key="CollectionViewItemTitle">
         <Setter Property="FontAttributes" Value="Bold" />
         <Setter Property="FontSize" Value="16" />
         <Setter Property="TextColor" Value="{StaticResource MainApplicationColor}" />
     </Style>
 
-    <Style TargetType="Label" x:Key="SensorOverviewStringType">
+    <Style TargetType="Label" x:Key="CollectionViewItemType">
         <Setter Property="FontAttributes" Value="Italic" />
         <Setter Property="FontSize" Value="Header" />
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray500}, Dark={StaticResource Gray200}}" />

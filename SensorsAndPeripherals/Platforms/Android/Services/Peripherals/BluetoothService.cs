@@ -111,24 +111,21 @@ namespace SensorsAndPeripherals.Platforms.Android.Services.Peripherals
 
         private static async Task<bool> CheckAdvertisingPermissionsAsync()
         {
-            bool btStatus = await CheckBluetoothPermissionAsync();
-            if (OperatingSystem.IsAndroidVersionAtLeast(31))
-            {
-                bool advStatus = await CheckBluetoothAdvertisePermissionAsync();
-                return btStatus && advStatus;
-            }
-            return btStatus;
+            return await CheckBluetoothPermissionAsync();
         }
 
         private static async Task<bool> CheckDiscoveringPermissionsAsync()
         {
-            bool btStatus = await CheckBluetoothPermissionAsync();
-            if (!OperatingSystem.IsAndroidVersionAtLeast(31))
+            if (OperatingSystem.IsAndroidVersionAtLeast(31))
             {
+                return await CheckBluetoothPermissionAsync();
+            }
+            else
+            {
+                bool btStatus = await CheckBluetoothPermissionAsync();
                 bool locStatus = await CheckLocationWhenInUsePermissionAsync();
                 return btStatus && locStatus;
             }
-            return btStatus;
         }
 
         private static async Task<bool> CheckBluetoothPermissionAsync()
@@ -139,16 +136,6 @@ namespace SensorsAndPeripherals.Platforms.Android.Services.Peripherals
                 btStatus = await Permissions.RequestAsync<Permissions.Bluetooth>();
             }
             return btStatus == PermissionStatus.Granted;
-        }
-
-        private static async Task<bool> CheckBluetoothAdvertisePermissionAsync()
-        {
-            var advStatus = await Permissions.CheckStatusAsync<BluetoothAdvertisePermission>();
-            if (advStatus != PermissionStatus.Granted)
-            {
-                advStatus = await Permissions.RequestAsync<BluetoothAdvertisePermission>();
-            }
-            return advStatus == PermissionStatus.Granted;
         }
 
         private static async Task<bool> CheckLocationWhenInUsePermissionAsync()
@@ -163,22 +150,6 @@ namespace SensorsAndPeripherals.Platforms.Android.Services.Peripherals
 
         public override void OnStartSuccess(AdvertiseSettings? settingsInEffect) => base.OnStartSuccess(settingsInEffect);
         public override void OnStartFailure(AdvertiseFailure errorCode) => isAdvertising = false;
-    }
-
-    public class BluetoothAdvertisePermission : Permissions.BasePlatformPermission
-    {
-        public override (string androidPermission, bool isRuntime)[] RequiredPermissions
-        {
-            get
-            {
-                var result = new List<(string androidPermission, bool isRuntime)>();
-                if (OperatingSystem.IsAndroidVersionAtLeast(31))
-                {
-                    result.Add((global::Android.Manifest.Permission.BluetoothAdvertise, true));
-                }
-                return [.. result];
-            }
-        }
     }
 
     public class HybridDeviceReceiver(Action<BluetoothDeviceInfo> onDeviceFound) : BroadcastReceiver
@@ -205,6 +176,10 @@ namespace SensorsAndPeripherals.Platforms.Android.Services.Peripherals
                         Name = device.Name,
                         MacAddress = device.Address
                     };
+                    if (string.IsNullOrEmpty(info.Name) && OperatingSystem.IsAndroidVersionAtLeast(30))
+                    {
+                        info.Name = device.Alias;
+                    }
                     onDeviceFound?.Invoke(info);
                 }
             }

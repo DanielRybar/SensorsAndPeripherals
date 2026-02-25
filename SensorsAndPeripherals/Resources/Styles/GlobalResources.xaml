@@ -36,8 +36,8 @@
     <x:String x:Key="LoadingDataText">Načítání dat</x:String>
     <x:String x:Key="LoadingCameraText">Načítání kamery</x:String>
     <x:String x:Key="LoadingVoiceRecorder">Spouštím nahrávání</x:String>
-    <x:String x:Key="StartingBLEPropagation">Zahajuji BLE propagaci</x:String>
-    <x:String x:Key="ScanningStarted">Spouštím skenování</x:String>
+    <x:String x:Key="StartingBLEPropagation">Start BLE propagace</x:String>
+    <x:String x:Key="ScanningStarted">Spouštění skenování</x:String>
     <x:String x:Key="VerificationText">Ověřování</x:String>
     <x:String x:Key="EmptyViewText">Žádná data nejsou k&#160;dispozici.</x:String>
     <x:String x:Key="SensorNotSupported">Senzor na&#160;tomto zařízení není podporován.</x:String>
@@ -68,6 +68,7 @@
     <x:String x:Key="BluetoothTurnOffDiscovery">Vypnout skenování</x:String>
     <x:String x:Key="BluetoothPropagationCaption">Vysílání do okolí</x:String>
     <x:String x:Key="BluetoothDiscoveryCaption">Hledání okolních zařízení</x:String>
+    <x:String x:Key="BluetoothUnknownDevice">Neznámé zařízení</x:String>
     <x:String x:Key="BluetoothNotEnabled">Bluetooth je vypnuté. Prosím, zapněte jej v&#160;nastavení telefonu.</x:String>
     <x:String x:Key="BluetoothPermissionDenied">Aplikaci chybí potřebná oprávnění k&#160;Bluetooth.</x:String>
     <x:String x:Key="BluetoothUnknownError">Došlo k&#160;neznámé chybě při&#160;inicializaci Bluetooth.</x:String>
