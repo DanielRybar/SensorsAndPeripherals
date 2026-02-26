@@ -50,7 +50,6 @@
     <x:String x:Key="ToggleOnText">Zapnout</x:String>
     <x:String x:Key="ToggleOffText">Vypnout</x:String>
     <x:String x:Key="BackButtonExit">Stiskněte znovu pro ukončení aplikace</x:String>
-    <x:String x:Key="Information">Informace</x:String>
     <x:String x:Key="DefaultTargetNullValue">-</x:String>
     <x:String x:Key="Connected">Připojeno</x:String>
     <x:String x:Key="NotConnected">Nepřipojeno</x:String>

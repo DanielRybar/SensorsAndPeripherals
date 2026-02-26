@@ -5,6 +5,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <FontImageSource
+        x:Key="PopupCloseIcon"
+        FontFamily="FontAwesomeSolid"
+        Size="30"
+        Color="{StaticResource MainApplicationColor}"
+        Glyph="&#xf057;" />
+    
+    <FontImageSource
         x:Key="OverviewIcon"
         FontFamily="FontAwesomeSolid"
         Size="50"

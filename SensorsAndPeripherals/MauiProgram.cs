@@ -16,7 +16,17 @@ namespace SensorsAndPeripherals
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
-                .UseMauiCommunityToolkit()
+                .UseMauiCommunityToolkit(static options =>
+                {
+                    options.SetPopupDefaults(new DefaultPopupSettings
+                    {
+                        CanBeDismissedByTappingOutsideOfPopup = false,
+                        HorizontalOptions = LayoutOptions.Fill,
+                        VerticalOptions = LayoutOptions.Fill,
+                        Margin = 0,
+                        Padding = 0
+                    });
+                })
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
