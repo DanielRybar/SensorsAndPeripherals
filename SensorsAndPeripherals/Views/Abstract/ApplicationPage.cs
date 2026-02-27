@@ -11,6 +11,8 @@ namespace SensorsAndPeripherals.Views.Abstract
 
         protected abstract string InfoText { get; }
 
+        protected virtual string InfoToolbarItemsText => string.Empty;
+
         // Bindable Property for Loading Overlay
         public static readonly BindableProperty IsWorkingProperty = BindableProperty.Create(
                     propertyName: nameof(IsWorking),
@@ -37,6 +39,16 @@ namespace SensorsAndPeripherals.Views.Abstract
             set => SetValue(LoadingTextProperty, value);
         }
 
+        private List<string>? GetNonDefaultToolbarItems()
+        {
+            var items = ToolbarItems?.Where(item => item.Priority != 1)?.ToList();
+            if (items is not null)
+            {
+                return items.Select(item => item?.IconImageSource is FontImageSource fis ? fis.Glyph : string.Empty).ToList() ?? [];
+            }
+            return [];
+        }
+
         public ApplicationPage(bool showInfoToolbarItem = true)
         {
             ControlTemplate = new ControlTemplate(() =>
@@ -57,7 +69,17 @@ namespace SensorsAndPeripherals.Views.Abstract
                     Priority = 1,
                     Command = new Command(async () =>
                     {
-                        await DisplayAlertAsync("Information".GetStringFromResource(), InfoText, "OK");
+                        var dict = new Dictionary<string, string>();
+                        var iconsText = InfoToolbarItemsText.Split(';');
+                        var toolbarIcons = GetNonDefaultToolbarItems();
+                        if (iconsText?.Length > 0 && iconsText?.Length == toolbarIcons?.Count)
+                        {
+                            for (int i = 0; i < toolbarIcons?.Count; i++)
+                            {
+                                dict.Add(toolbarIcons[i], iconsText![i]);
+                            }
+                        }
+                        await PopupExtensions.CreateAndDisplayPopupAsync(InfoText, dict);
                     })
                 });
             }

@@ -135,6 +135,8 @@
     <x:String x:Key="InternetAvailability">Dostupnost internetu</x:String>
     <x:String x:Key="TestConnectionStatus">Zjistit stav připojení</x:String>
     <x:String x:Key="TestInternetAvailability">Ověřit dostupnost internetu</x:String>
+    <x:String x:Key="PopupDescriptionLabel">Stručný popis</x:String>
+    <x:String x:Key="PopupIconsLabel">Pomocné ikonky</x:String>
     <x:String x:Key="SendFeedbackCaption">Odeslat zpětnou vazbu</x:String>
     <x:String x:Key="FeedbackEmailSubject">Zpětná vazba k aplikaci Senzory a periferie</x:String>
     <x:String x:Key="FeedbackEmailBody">Ahoj,&#10;&#10;posílám ti zpětnou vazbu ke tvé aplikaci. Chtěl/a bych ti aplikaci pochválit / zkritizovat / nahlásit chybu:&#10;&#10;</x:String>
