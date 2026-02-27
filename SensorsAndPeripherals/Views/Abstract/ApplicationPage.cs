@@ -8,9 +8,9 @@ namespace SensorsAndPeripherals.Views.Abstract
     public abstract partial class ApplicationPage : ContentPage
     {
         private DateTime lastBackButtonPressedTime;
+        private readonly Color mainApplicationColor = App.Current?.Resources["MainApplicationColor"] as Color ?? Colors.Black;
 
         protected abstract string InfoText { get; }
-
         protected virtual string InfoToolbarItemsText => string.Empty;
 
         // Bindable Property for Loading Overlay
@@ -80,6 +80,8 @@ namespace SensorsAndPeripherals.Views.Abstract
                             }
                         }
                         await PopupExtensions.CreateAndDisplayPopupAsync(InfoText, dict);
+                        await Task.Delay(100);
+                        Shell.Current.SetAppThemeColor(Shell.BackgroundColorProperty, mainApplicationColor, mainApplicationColor);
                     })
                 });
             }
@@ -96,7 +98,7 @@ namespace SensorsAndPeripherals.Views.Abstract
             var activityIndicator = new ActivityIndicator
             {
                 IsRunning = true,
-                Color = App.Current!.Resources["MainApplicationColor"] as Color
+                Color = mainApplicationColor
             };
 
             var loadingLabel = new Label();

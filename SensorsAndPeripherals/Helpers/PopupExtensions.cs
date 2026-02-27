@@ -19,6 +19,11 @@ namespace SensorsAndPeripherals.Helpers
             var darkColor = App.Current?.Resources["OffBlackWithAlpha"] as Color;
             var popup = new Popup();
             popup.SetAppThemeColor(Popup.BackgroundColorProperty, lightColor, darkColor);
+            popup.Closed += (s, e) =>
+            {
+                var stealthColor = (App.Current?.Resources["MainApplicationColor"] as Color)!.WithAlpha(0.99f);
+                Shell.Current.SetAppThemeColor(Shell.BackgroundColorProperty, stealthColor, stealthColor);
+            };
 
             var grid = new Grid
             {
