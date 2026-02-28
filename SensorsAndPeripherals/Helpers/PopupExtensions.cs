@@ -10,8 +10,8 @@ namespace SensorsAndPeripherals.Helpers
     {
         public static async Task CreateAndDisplayPopupAsync(string description, Dictionary<string, string> toolbarItems)
         {
-            var lightColor = App.Current?.Resources["ColorLightWithAlpha"] as Color;
-            var darkColor = App.Current?.Resources["OffBlackWithAlpha"] as Color;
+            var lightColor = App.Current?.Resources["PopupLightBackgroundColor"] as Color;
+            var darkColor = App.Current?.Resources["PopupDarkBackgroundColor"] as Color;
             var popup = new Popup();
             popup.SetAppThemeColor(Popup.BackgroundColorProperty, lightColor, darkColor);
             popup.Closed += (s, e) =>
