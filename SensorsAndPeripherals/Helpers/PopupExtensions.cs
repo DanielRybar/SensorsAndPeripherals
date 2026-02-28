@@ -10,11 +10,6 @@ namespace SensorsAndPeripherals.Helpers
     {
         public static async Task CreateAndDisplayPopupAsync(string description, Dictionary<string, string> toolbarItems)
         {
-            if (string.IsNullOrEmpty(description))
-            {
-                return;
-            }
-
             var lightColor = App.Current?.Resources["ColorLightWithAlpha"] as Color;
             var darkColor = App.Current?.Resources["OffBlackWithAlpha"] as Color;
             var popup = new Popup();

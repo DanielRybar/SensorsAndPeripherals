@@ -69,6 +69,10 @@ namespace SensorsAndPeripherals.Views.Abstract
                     Priority = 1,
                     Command = new Command(async () =>
                     {
+                        if (string.IsNullOrEmpty(InfoText))
+                        {
+                            return;
+                        }
                         var dict = new Dictionary<string, string>();
                         var iconsText = InfoToolbarItemsText.Split(';');
                         var toolbarIcons = GetNonDefaultToolbarItems();
