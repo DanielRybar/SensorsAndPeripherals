@@ -16,6 +16,7 @@ public partial class BiometricPage : ApplicationPage
             await DisplayAlertAsync("BiometricAvailableTypes".GetStringFromResource(), types, "OK");
         };
     }
-    
+
+    protected override string InfoToolbarItemsText => string.Empty;
     protected override string InfoText => "";
 }

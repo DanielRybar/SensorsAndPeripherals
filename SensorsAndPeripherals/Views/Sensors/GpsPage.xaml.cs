@@ -24,5 +24,6 @@ public partial class GpsPage : ApplicationPage
         viewModel.CancelCurrentLocationRequest();
     }
 
+    protected override string InfoToolbarItemsText => string.Empty;
     protected override string InfoText => "";
 }

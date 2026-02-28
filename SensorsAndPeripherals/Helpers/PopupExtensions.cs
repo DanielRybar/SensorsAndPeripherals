@@ -16,6 +16,7 @@ namespace SensorsAndPeripherals.Helpers
             popup.SetAppThemeColor(Popup.BackgroundColorProperty, lightColor, darkColor);
             popup.Closed += (s, e) =>
             {
+                // https://github.com/CommunityToolkit/Maui/issues/2923
                 var stealthColor = (App.Current?.Resources["MainApplicationColor"] as Color)!.WithAlpha(0.99f);
                 Shell.Current.SetAppThemeColor(Shell.BackgroundColorProperty, stealthColor, stealthColor);
             };

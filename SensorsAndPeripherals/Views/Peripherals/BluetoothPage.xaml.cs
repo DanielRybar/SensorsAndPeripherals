@@ -30,5 +30,6 @@ public partial class BluetoothPage : ApplicationPage
         viewModel.CleanUp();
     }
 
+    protected override string InfoToolbarItemsText => string.Empty;
     protected override string InfoText => "";
 }

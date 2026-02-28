@@ -84,6 +84,7 @@ namespace SensorsAndPeripherals.Views.Abstract
                             }
                         }
                         await PopupExtensions.CreateAndDisplayPopupAsync(InfoText, dict);
+                        // https://github.com/CommunityToolkit/Maui/issues/2923
                         await Task.Delay(100);
                         Shell.Current.SetAppThemeColor(Shell.BackgroundColorProperty, mainApplicationColor, mainApplicationColor);
                     })
@@ -129,20 +130,21 @@ namespace SensorsAndPeripherals.Views.Abstract
         }
 
         /// <summary>
-        /// https://github.com/dotnet/maui/issues/7823#issuecomment-1387094629
+        /// https://github.com/dotnet/maui/issues/7823
         /// </summary>
-        private void ToolbarFixBug()
+        private async void ToolbarFixBug()
         {
-            var toolbarItems = this.ToolbarItems.ToList();
-            ToolbarItems.Clear();
-            Task.Run(async () =>
+            if (ToolbarItems.Count == 0) return;
+            var originalIcons = ToolbarItems.Select(t => t.IconImageSource).ToList();
+            foreach (var item in ToolbarItems)
             {
-                if (toolbarItems?.Count > 0)
-                {
-                    await Task.Delay(50);
-                    Dispatcher.Dispatch(() => toolbarItems.ForEach((toolbar) => this.ToolbarItems.Add(toolbar)));
-                }
-            });
+                item.IconImageSource = null;
+            }
+            await Task.Delay(100);
+            for (int i = 0; i < ToolbarItems.Count; i++)
+            {
+                ToolbarItems[i].IconImageSource = originalIcons[i];
+            }
         }
 
         protected override bool OnBackButtonPressed()

@@ -23,7 +23,7 @@
                         </DataTrigger>
                     </Button.Triggers>
                 </Button>
-                <Label IsVisible="{Binding StatusMessage, Converter={StaticResource TextToBoolConverter}}" 
+                <Label IsVisible="{Binding StatusMessage, Converter={StaticResource IsStringNotNullOrEmptyConverter}}" 
                        Text="{Binding StatusMessage}" 
                        Style="{StaticResource ErrorMessageLabel}" /> 
             </VerticalStackLayout>
@@ -55,7 +55,7 @@
                         </DataTrigger>
                     </Button.Triggers>
                 </Button>
-                <Label IsVisible="{Binding StatusMessageDiscovering, Converter={StaticResource TextToBoolConverter}}" 
+                <Label IsVisible="{Binding StatusMessageDiscovering, Converter={StaticResource IsStringNotNullOrEmptyConverter}}" 
                        Text="{Binding StatusMessageDiscovering}" 
                        Style="{StaticResource ErrorMessageLabel}" />
             </VerticalStackLayout>
