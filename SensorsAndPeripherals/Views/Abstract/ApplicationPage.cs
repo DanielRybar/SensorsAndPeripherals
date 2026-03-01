@@ -8,6 +8,7 @@ namespace SensorsAndPeripherals.Views.Abstract
     public abstract partial class ApplicationPage : ContentPage
     {
         private DateTime lastBackButtonPressedTime;
+        private bool popupWasOpened;
         private readonly Color mainApplicationColor = App.Current?.Resources["MainApplicationColor"] as Color ?? Colors.Black;
 
         protected abstract string InfoText { get; }
@@ -73,6 +74,8 @@ namespace SensorsAndPeripherals.Views.Abstract
                         {
                             return;
                         }
+                        popupWasOpened = true;
+
                         var dict = new Dictionary<string, string>();
                         var iconsText = InfoToolbarItemsText.Split(';');
                         var toolbarIcons = GetNonDefaultToolbarItems();
@@ -126,6 +129,11 @@ namespace SensorsAndPeripherals.Views.Abstract
         {
             base.OnAppearing();
             On<Microsoft.Maui.Controls.PlatformConfiguration.Android>().SetColor(App.Current!.Resources["BarColor"] as Color ?? Colors.Black);
+            if (popupWasOpened)
+            {
+                popupWasOpened = false;
+                return;
+            }
             ToolbarFixBug();
         }
 
