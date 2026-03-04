@@ -52,6 +52,7 @@ namespace SensorsAndPeripherals
             DependencyService.Register<IBarometerService, BarometerService>();
             DependencyService.Register<IGpsService, GpsService>();
             DependencyService.Register<IBiometricService, BiometricService>();
+            DependencyService.Register<INfcService, NfcService>();
             DependencyService.Register<ICameraService, CameraService>();
             DependencyService.Register<IVibrationService, VibrationService>();
             DependencyService.Register<IConnectivityService, ConnectivityService>();
