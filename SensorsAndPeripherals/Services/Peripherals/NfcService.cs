@@ -20,7 +20,6 @@ namespace SensorsAndPeripherals.Services.Peripherals
                 CrossNFC.Current.OnMessageReceived += Current_OnMessageReceived;
                 CrossNFC.Current.OnMessagePublished += Current_OnMessagePublished;
                 CrossNFC.Current.OnTagDiscovered += Current_OnTagDiscovered;
-                CrossNFC.Current.OnTagListeningStatusChanged += Current_OnTagListeningStatusChanged;
             }
         }
 
@@ -64,6 +63,7 @@ namespace SensorsAndPeripherals.Services.Peripherals
             try
             {
                 CrossNFC.Current.StartPublishing();
+                CrossNFC.Current.StartListening();
             }
             catch
             {
@@ -80,21 +80,6 @@ namespace SensorsAndPeripherals.Services.Peripherals
             writeTcs?.TrySetResult((NfcStatus.OperationCancelled, false));
             scanTcs = null;
             writeTcs = null;
-        }
-
-        private void Current_OnTagListeningStatusChanged(bool isListening)
-        {
-            if (!isListening)
-            {
-                if (scanTcs?.Task.IsCompleted == false)
-                {
-                    scanTcs?.TrySetResult((NfcStatus.UnknownError, null));
-                }
-                if (writeTcs?.Task.IsCompleted == false)
-                {
-                    writeTcs?.TrySetResult((NfcStatus.UnknownError, false));
-                }
-            }
         }
 
         private void Current_OnTagDiscovered(ITagInfo tagInfo, bool format)
