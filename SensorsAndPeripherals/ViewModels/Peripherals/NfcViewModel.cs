@@ -29,7 +29,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         #endregion
 
         #region delegates
-        public event Action<string?>? ShowReadingResultRequested;
+        public event Func<string?, Task>? ShowReadingResultRequested;
         #endregion
 
         #region methods
@@ -50,8 +50,8 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             switch (status)
             {
                 case NfcStatus.Success:
+                    await ShowReadingResultRequested?.Invoke(content)!;
                     StatusMessage = string.Empty;
-                    ShowReadingResultRequested?.Invoke(content);
                     break;
                 case NfcStatus.NotSupported:
                     StatusMessage = "NFCNotSupported".GetStringFromResource();
@@ -63,7 +63,6 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
                     StatusMessage = "NfcEmpty".GetStringFromResource();
                     break;
                 case NfcStatus.OperationCancelled:
-                    StatusMessage = "NfcOperationCancelled".GetStringFromResource();
                     break;
                 case NfcStatus.UnknownError:
                 default:
@@ -82,15 +81,27 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             }
             StatusMessage = "NfcPerformReading".GetStringFromResource();
             var status = await peripheralService.WriteAsync(MessageToWrite);
-            StatusMessage = status switch
+            switch (status)
             {
-                NfcStatus.Success => "NfcWriteSuccess".GetStringFromResource(),
-                NfcStatus.NotSupported => "NFCNotSupported".GetStringFromResource(),
-                NfcStatus.NotEnabled => "NfcNotEnabled".GetStringFromResource(),
-                NfcStatus.WriteFailed => "NfcWriteFailed".GetStringFromResource(),
-                NfcStatus.OperationCancelled => "NfcOperationCancelled".GetStringFromResource(),
-                _ => "NfcWriteError".GetStringFromResource(),
-            };
+                case NfcStatus.Success:
+                    StatusMessage = "NfcWriteSuccess".GetStringFromResource();
+                    break;
+                case NfcStatus.NotSupported:
+                    StatusMessage = "NFCNotSupported".GetStringFromResource();
+                    break;
+                case NfcStatus.NotEnabled:
+                    StatusMessage = "NfcNotEnabled".GetStringFromResource();
+                    break;
+                case NfcStatus.WriteFailed:
+                    StatusMessage = "NfcWriteFailed".GetStringFromResource();
+                    break;
+                case NfcStatus.OperationCancelled:
+                    break;
+                case NfcStatus.UnknownError:
+                default:
+                    StatusMessage = "NfcWriteError".GetStringFromResource();
+                    break;
+            }
         }
         #endregion
 

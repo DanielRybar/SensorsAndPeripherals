@@ -30,13 +30,7 @@
 
                 var emptyLabel = new Label
                 {
-                    HorizontalOptions = LayoutOptions.Center,
-                    VerticalOptions = LayoutOptions.Center,
-                    IsVisible = true,
-                    LineBreakMode = LineBreakMode.WordWrap,
-                    HorizontalTextAlignment = TextAlignment.Center,
-                    VerticalTextAlignment = TextAlignment.Center,
-                    Padding = new Thickness(20, 0, 20, 0)
+                    Style = App.Current!.Resources["DataGuardEmptyLabel"] as Style
                 };
                 emptyLabel.SetBinding(Label.TextProperty, new Binding(nameof(EmptyText), source: RelativeBindingSource.TemplatedParent));
 

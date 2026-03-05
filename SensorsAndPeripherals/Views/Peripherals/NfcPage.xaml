@@ -28,16 +28,9 @@
                 <Button Text="{StaticResource NfcWriteButtonTitle}" Command="{Binding WriteCommand}" Style="{StaticResource HorizontalFilledButton}" />
                 <Label Text="&#160;" Style="{StaticResource ErrorMessageLabel}" IsVisible="{Binding IsMessageToWriteValid}" />  <!-- for space blocking -->
             </VerticalStackLayout>
-            <Image Grid.Row="1" 
-                   IsVisible="{Binding StatusMessage, Converter={StaticResource IsStringNullOrEmptyConverter}}" 
-                   Source="nfc.png" 
-                   Style="{StaticResource CenteredImage}" 
-                   Aspect="AspectFit"
-                   WidthRequest="250" />
-            <Label Grid.Row="1" 
-                   IsVisible="{Binding StatusMessage, Converter={StaticResource IsStringNotNullOrEmptyConverter}}" 
-                   Text="{Binding StatusMessage}" 
-                   Style="{StaticResource DisplayTextValue}" />
+            <controls:DataGuard Grid.Row="1" HasData="{Binding StatusMessage, Converter={StaticResource IsStringNullOrEmptyConverter}}" EmptyText="{Binding StatusMessage}">
+                <Image Grid.Row="1" Source="nfc.png" Style="{StaticResource CenteredImage}" Aspect="AspectFit" WidthRequest="250" />
+            </controls:DataGuard>
             <VerticalStackLayout Grid.Row="2" Style="{StaticResource SensorStatusVsl}">
                 <Label Text="{StaticResource NfcReadSection}" Style="{StaticResource DisplayTextCaption}" />
                 <Button Text="{StaticResource NfcReadButtonTitle}" Command="{Binding ScanCommand}" Style="{StaticResource HorizontalFilledButton}" />

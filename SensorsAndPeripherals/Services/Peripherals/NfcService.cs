@@ -7,6 +7,7 @@ namespace SensorsAndPeripherals.Services.Peripherals
 {
     public class NfcService : INfcService
     {
+        private readonly int maxWriteRetries = 4;
         private TaskCompletionSource<(NfcStatus, string?)>? scanTcs;
         private TaskCompletionSource<NfcStatus>? writeTcs;
         private string textToWrite = string.Empty;
@@ -33,6 +34,10 @@ namespace SensorsAndPeripherals.Services.Peripherals
             {
                 return Task.FromResult((NfcStatus.NotEnabled, (string?)null));
             }
+            if (scanTcs is not null && !scanTcs.Task.IsCompleted)
+            {
+                return scanTcs.Task;
+            }
             CancelCurrentRequests();
             scanTcs = new TaskCompletionSource<(NfcStatus, string?)>();
             try
@@ -56,6 +61,10 @@ namespace SensorsAndPeripherals.Services.Peripherals
             if (!CrossNFC.Current.IsAvailable || !CrossNFC.Current.IsEnabled)
             {
                 return Task.FromResult(NfcStatus.NotEnabled);
+            }
+            if (writeTcs is not null && !writeTcs.Task.IsCompleted)
+            {
+                return writeTcs.Task;
             }
             CancelCurrentRequests();
             textToWrite = content;
@@ -82,26 +91,38 @@ namespace SensorsAndPeripherals.Services.Peripherals
             writeTcs = null;
         }
 
-        private void Current_OnTagDiscovered(ITagInfo tagInfo, bool format)
+        private async void Current_OnTagDiscovered(ITagInfo tagInfo, bool format)
         {
             if (writeTcs is not null && !writeTcs.Task.IsCompleted)
             {
-                try
+                var record = new NFCNdefRecord
                 {
-                    var record = new NFCNdefRecord
+                    TypeFormat = NFCNdefTypeFormat.WellKnown,
+                    MimeType = "text/plain",
+                    Payload = NFCUtils.EncodeToByteArray(textToWrite)
+                };
+                tagInfo.Records = [record];
+                for (int i = 0; i < maxWriteRetries; i++)
+                {
+                    try
                     {
-                        TypeFormat = NFCNdefTypeFormat.WellKnown,
-                        MimeType = "text/plain",
-                        Payload = NFCUtils.EncodeToByteArray(textToWrite)
-                    };
-                    tagInfo.Records = [record];
-                    CrossNFC.Current.PublishMessage(tagInfo, false);
-                }
-                catch
-                {
-                    StopNfcActivities();
-                    writeTcs?.TrySetResult(NfcStatus.WriteFailed);
-                    writeTcs = null;
+                        CrossNFC.Current.PublishMessage(tagInfo, false);
+                        return;
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine($"NFC writing failed (attempt {i+1}/{maxWriteRetries}): {ex.Message}");
+                        if (i == maxWriteRetries - 1)
+                        {
+                            StopNfcActivities();
+                            writeTcs?.TrySetResult(NfcStatus.WriteFailed);
+                            writeTcs = null;
+                        }
+                        else
+                        {
+                            await Task.Delay(100);
+                        }
+                    }
                 }
             }
         }

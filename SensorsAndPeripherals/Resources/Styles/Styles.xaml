@@ -760,4 +760,13 @@
         <Setter Property="FontSize" Value="30" />
     </Style>
 
+    <Style TargetType="Label" x:Key="DataGuardEmptyLabel" BasedOn="{StaticResource CenteredLabel}">
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+        <Setter Property="IsVisible" Value="True" />
+        <Setter Property="LineBreakMode" Value="WordWrap" />
+        <Setter Property="Padding" Value="20,0,20,0" />
+        <Setter Property="FontSize" Value="15" />
+    </Style>
+
 </ResourceDictionary>
