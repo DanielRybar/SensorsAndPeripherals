@@ -6,7 +6,7 @@ namespace SensorsAndPeripherals.Interfaces.Peripherals
     public interface INfcService : IPeripheralService
     {
         Task<(NfcStatus status, string? content)> ScanAsync();
-        Task<(NfcStatus status, bool isSuccess)> WriteAsync(string content);
-        void CancelCurrentRequest();
+        Task<NfcStatus> WriteAsync(string content);
+        void CancelCurrentRequests();
     }
 }

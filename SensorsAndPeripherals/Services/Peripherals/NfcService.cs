@@ -8,7 +8,7 @@ namespace SensorsAndPeripherals.Services.Peripherals
     public class NfcService : INfcService
     {
         private TaskCompletionSource<(NfcStatus, string?)>? scanTcs;
-        private TaskCompletionSource<(NfcStatus, bool)>? writeTcs;
+        private TaskCompletionSource<NfcStatus>? writeTcs;
         private string textToWrite = string.Empty;
 
         public bool IsSupported => CrossNFC.IsSupported;
@@ -33,7 +33,7 @@ namespace SensorsAndPeripherals.Services.Peripherals
             {
                 return Task.FromResult((NfcStatus.NotEnabled, (string?)null));
             }
-            CancelCurrentRequest();
+            CancelCurrentRequests();
             scanTcs = new TaskCompletionSource<(NfcStatus, string?)>();
             try
             {
@@ -47,19 +47,19 @@ namespace SensorsAndPeripherals.Services.Peripherals
             return scanTcs.Task;
         }
 
-        public Task<(NfcStatus status, bool isSuccess)> WriteAsync(string content)
+        public Task<NfcStatus> WriteAsync(string content)
         {
             if (!IsSupported)
             {
-                return Task.FromResult((NfcStatus.NotSupported, false));
+                return Task.FromResult(NfcStatus.NotSupported);
             }
             if (!CrossNFC.Current.IsAvailable || !CrossNFC.Current.IsEnabled)
             {
-                return Task.FromResult((NfcStatus.NotEnabled, false));
+                return Task.FromResult(NfcStatus.NotEnabled);
             }
-            CancelCurrentRequest();
+            CancelCurrentRequests();
             textToWrite = content;
-            writeTcs = new TaskCompletionSource<(NfcStatus, bool)>();
+            writeTcs = new TaskCompletionSource<NfcStatus>();
             try
             {
                 CrossNFC.Current.StartPublishing();
@@ -67,17 +67,17 @@ namespace SensorsAndPeripherals.Services.Peripherals
             }
             catch
             {
-                return Task.FromResult((NfcStatus.UnknownError, false));
+                return Task.FromResult(NfcStatus.UnknownError);
             }
 
             return writeTcs.Task;
         }
 
-        public void CancelCurrentRequest()
+        public void CancelCurrentRequests()
         {
             StopNfcActivities();
             scanTcs?.TrySetResult((NfcStatus.OperationCancelled, null));
-            writeTcs?.TrySetResult((NfcStatus.OperationCancelled, false));
+            writeTcs?.TrySetResult(NfcStatus.OperationCancelled);
             scanTcs = null;
             writeTcs = null;
         }
@@ -100,7 +100,7 @@ namespace SensorsAndPeripherals.Services.Peripherals
                 catch
                 {
                     StopNfcActivities();
-                    writeTcs?.TrySetResult((NfcStatus.WriteFailed, false));
+                    writeTcs?.TrySetResult(NfcStatus.WriteFailed);
                     writeTcs = null;
                 }
             }
@@ -109,7 +109,7 @@ namespace SensorsAndPeripherals.Services.Peripherals
         private void Current_OnMessagePublished(ITagInfo tagInfo)
         {
             StopNfcActivities();
-            writeTcs?.TrySetResult((NfcStatus.Success, true));
+            writeTcs?.TrySetResult(NfcStatus.Success);
             writeTcs = null;
         }
 

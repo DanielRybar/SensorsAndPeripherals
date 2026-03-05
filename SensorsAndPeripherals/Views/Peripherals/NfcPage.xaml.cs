@@ -1,3 +1,4 @@
+using SensorsAndPeripherals.Helpers;
 using SensorsAndPeripherals.ViewModels.Peripherals;
 using SensorsAndPeripherals.Views.Abstract;
 
@@ -11,6 +12,16 @@ public partial class NfcPage : ApplicationPage
     {
         InitializeComponent();
         BindingContext = viewModel = new NfcViewModel();
+        viewModel.ShowReadingResultRequested += async content =>
+        {
+            await DisplayAlertAsync("NfcMessage".GetStringFromResource(), content, "OK");
+        };
+    }
+
+    protected override void OnDisappearing()
+    {
+        base.OnDisappearing();
+        viewModel.CancelCurrentRequests();
     }
 
     protected override string InfoText => "";

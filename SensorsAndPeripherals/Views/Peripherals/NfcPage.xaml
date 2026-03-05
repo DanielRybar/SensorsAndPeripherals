@@ -2,10 +2,46 @@
 <abstract:ApplicationPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SensorsAndPeripherals.Views.Peripherals.NfcPage"
+             x:Name="Page"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"
+             xmlns:controls="clr-namespace:SensorsAndPeripherals.Controls"
+             HideSoftInputOnTapped="True"
              Title="{StaticResource NfcTitle}">
 
-    <VerticalStackLayout>
-
-    </VerticalStackLayout>
+    <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource NFCNotSupported}">
+        <Grid RowDefinitions="Auto, *, Auto" Style="{StaticResource MainGridStyle}">
+            <VerticalStackLayout Style="{StaticResource SensorStatusVsl}" Padding="20,10,20,10">
+                <Label Text="{StaticResource NfcWriteSection}" Style="{StaticResource DisplayTextCaption}" />
+                <controls:ExtendedEntry Text="{Binding MessageToWrite}" Placeholder="{StaticResource NfcTextPlaceholder}" Style="{StaticResource ExtendedEntry}">
+                    <controls:ExtendedEntry.Behaviors>
+                        <toolkit:TextValidationBehavior
+                            Flags="ValidateOnValueChanged" 
+                            IsValid="{Binding Source={x:Reference Page}, Path=BindingContext.IsMessageToWriteValid, Mode=OneWayToSource}"
+                            MinimumLength="1"
+                            MaximumLength="{Binding Source={x:Reference Page}, Path=BindingContext.MaxTextLength}" />
+                    </controls:ExtendedEntry.Behaviors>
+                </controls:ExtendedEntry>
+                <Label Text="{Binding MaxTextLength, StringFormat='Délka textu musí být od 1 do {0} znaků.'}"
+                       IsVisible="{Binding IsMessageToWriteValid, Converter={StaticResource InvertedBoolConverter}}" 
+                       Style="{StaticResource ErrorMessageLabel}" />
+                <Button Text="{StaticResource NfcWriteButtonTitle}" Command="{Binding WriteCommand}" Style="{StaticResource HorizontalFilledButton}" />
+                <Label Text="&#160;" Style="{StaticResource ErrorMessageLabel}" IsVisible="{Binding IsMessageToWriteValid}" />  <!-- for space blocking -->
+            </VerticalStackLayout>
+            <Image Grid.Row="1" 
+                   IsVisible="{Binding StatusMessage, Converter={StaticResource IsStringNullOrEmptyConverter}}" 
+                   Source="nfc.png" 
+                   Style="{StaticResource CenteredImage}" 
+                   Aspect="AspectFit"
+                   WidthRequest="250" />
+            <Label Grid.Row="1" 
+                   IsVisible="{Binding StatusMessage, Converter={StaticResource IsStringNotNullOrEmptyConverter}}" 
+                   Text="{Binding StatusMessage}" 
+                   Style="{StaticResource DisplayTextValue}" />
+            <VerticalStackLayout Grid.Row="2" Style="{StaticResource SensorStatusVsl}">
+                <Label Text="{StaticResource NfcReadSection}" Style="{StaticResource DisplayTextCaption}" />
+                <Button Text="{StaticResource NfcReadButtonTitle}" Command="{Binding ScanCommand}" Style="{StaticResource HorizontalFilledButton}" />
+            </VerticalStackLayout>
+        </Grid>
+    </controls:DataGuard>
 </abstract:ApplicationPage>

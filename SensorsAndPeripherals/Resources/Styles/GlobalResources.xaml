@@ -44,6 +44,7 @@
     <x:String x:Key="SensorNotSupported">Senzor na&#160;tomto zařízení není podporován.</x:String>
     <x:String x:Key="BiometricSensorNotSupported">Biometrické ověření není k&#160;dispozici.</x:String>
     <x:String x:Key="BiometricSensorsNotFound">Žádné biometrické senzory nenalezeny.</x:String>
+    <x:String x:Key="NFCNotSupported">NFC není k&#160;dispozici.</x:String>
     <x:String x:Key="BluetoothNotSupported">Bluetooth není k&#160;dispozici.</x:String>
     <x:String x:Key="CameraNotSupported">Pořízení obrázku není k&#160;dispozici.</x:String>
     <x:String x:Key="AudioNotSupported">Nahrávání zvuku není k&#160;dispozici.</x:String>
@@ -111,6 +112,24 @@
     <x:String x:Key="GpsLastKnownLocation">Poslední známá lokace</x:String>
     <x:String x:Key="GpsFineLocation">Přesná lokace</x:String>
     <x:String x:Key="GpsCoarseLocation">Přibližná lokace</x:String>
+    <x:String x:Key="NfcWriteSection">Zápis zprávy</x:String>
+    <x:String x:Key="NfcWriteButtonTitle">Zapsat na štítek</x:String>
+    <x:String x:Key="NfcReadSection">Čtení zprávy</x:String>
+    <x:String x:Key="NfcReadButtonTitle">Přečíst štítek</x:String>
+    <x:String x:Key="NfcTextPlaceholder">Zadejte text</x:String>
+    <x:String x:Key="NfcDefaultValue">NFC zpráva</x:String>
+    <x:String x:Key="NfcMessage">Zpráva</x:String>
+    <x:String x:Key="NfcPerformScan">Přiložte NFC čip pro&#160;čtení.</x:String>
+    <x:String x:Key="NfcNotEnabled">NFC je vypnuté. Zapněte jej v&#160;nastavení.</x:String>
+    <x:String x:Key="NfcEmpty">Čip byl přečten, ale je prázdný.</x:String>
+    <x:String x:Key="NfcOperationCancelled">Operace byla zrušena.</x:String>
+    <x:String x:Key="NfcReadingError">Neznámá chyba při&#160;čtení.</x:String>
+    <x:String x:Key="NfcIsMessageToWriteValid1">Délka textu musí být od&#160;1 do&#160;</x:String>
+    <x:String x:Key="NfcIsMessageToWriteValid2">znaků!</x:String>
+    <x:String x:Key="NfcPerformReading">Přiložte NFC čip pro&#160;zápis.</x:String>
+    <x:String x:Key="NfcWriteError">Neznámá chyba při&#160;zápisu.</x:String>
+    <x:String x:Key="NfcWriteFailed">Zápis selhal. Možná je čip zamčený nebo jste s&#160;ním pohnuli.</x:String>
+    <x:String x:Key="NfcWriteSuccess">Zpráva byla úspěšně zapsána.</x:String>
     <x:String x:Key="CameraSavingError">Došlo k chybě při ukládání fotografie.</x:String>
     <x:String x:Key="CameraShootingError">Došlo k chybě při pořizování fotografie.</x:String>
     <x:String x:Key="CameraPermissionDenied">Aplikace nemá oprávnění ke kameře. Povolte přístup v&#160;nastavení aplikace.</x:String>
@@ -158,6 +177,7 @@
     <conv:BoolToTextConverter x:Key="BluetoothDiscoveryConverter" TextWhenTrue="{StaticResource BluetoothTurnOffDiscovery}" TextWhenFalse="{StaticResource BluetoothTurnOnDiscovery}" />
     <conv:FilePathToImageSourceConverter x:Key="FilePathToImageSourceConverter" />
     <toolkit:IsStringNotNullOrEmptyConverter x:Key="IsStringNotNullOrEmptyConverter" />
+    <toolkit:IsStringNullOrEmptyConverter x:Key="IsStringNullOrEmptyConverter" />
     <toolkit:InvertedBoolConverter x:Key="InvertedBoolConverter" />
 
 </ResourceDictionary>

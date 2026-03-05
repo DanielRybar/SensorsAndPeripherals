@@ -699,12 +699,15 @@
         <Setter Property="VerticalOptions" Value="Center" />
     </Style>
 
-    <Style TargetType="controls:ExtendedEntry" x:Key="NumericDefaultEntry">
+    <Style TargetType="controls:ExtendedEntry" x:Key="ExtendedEntry">
         <Setter Property="CursorColor" Value="{StaticResource MainApplicationColor}" />
         <Setter Property="UnderlineColor" Value="{StaticResource MainApplicationColor}" />
         <Setter Property="FontFamily" Value="PoppinsRegular" />
-        <Setter Property="Keyboard" Value="Numeric" />
         <Setter Property="ReturnType" Value="Done" />
+    </Style>
+
+    <Style TargetType="controls:ExtendedEntry" x:Key="NumericDefaultEntry" BasedOn="{StaticResource ExtendedEntry}">
+        <Setter Property="Keyboard" Value="Numeric" />
         <Setter Property="MaxLength" Value="10" />
     </Style>
 
