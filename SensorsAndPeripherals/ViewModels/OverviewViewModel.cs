@@ -1,4 +1,5 @@
-﻿using SensorsAndPeripherals.Interfaces;
+﻿using SensorsAndPeripherals.Constants;
+using SensorsAndPeripherals.Interfaces;
 using SensorsAndPeripherals.Models;
 using SensorsAndPeripherals.ViewModels.Abstract;
 using System.Collections.ObjectModel;
@@ -18,7 +19,7 @@ namespace SensorsAndPeripherals.ViewModels
             GetSensorsCommand = new Command(async () =>
             {
                 IsWorking = true;
-                await Task.Delay(500);
+                await Task.Delay(DelayConstants.LONG_DELAY);
                 Sensors.Clear();
                 var sensors = sensorListService.GetAllSensors().OrderBy(x => x.Power);
                 foreach (var sensor in sensors)

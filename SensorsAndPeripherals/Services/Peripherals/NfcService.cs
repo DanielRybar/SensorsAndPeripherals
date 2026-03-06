@@ -1,4 +1,5 @@
 ﻿using Plugin.NFC;
+using SensorsAndPeripherals.Constants;
 using SensorsAndPeripherals.Interfaces.Peripherals;
 using SensorsAndPeripherals.Models.Enums;
 using System.Diagnostics;
@@ -120,7 +121,7 @@ namespace SensorsAndPeripherals.Services.Peripherals
                             }
                             else
                             {
-                                await Task.Delay(100);
+                                await Task.Delay(DelayConstants.SHORT_DELAY);
                             }
                         }
                     }

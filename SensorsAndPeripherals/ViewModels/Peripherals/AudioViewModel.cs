@@ -77,7 +77,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         private async Task StartRecordingAsync()
         {
             IsWorking = true;
-            await Task.Delay(500);
+            await Task.Delay(DelayConstants.MEDIUM_DELAY);
             RecordedFilePath = null;
             var started = await peripheralService.StartRecordingAsync();
             switch (started)

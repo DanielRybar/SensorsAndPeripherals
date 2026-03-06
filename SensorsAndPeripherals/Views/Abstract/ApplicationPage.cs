@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Maui.PlatformConfiguration.AndroidSpecific;
+using SensorsAndPeripherals.Constants;
 using SensorsAndPeripherals.Helpers;
 using Toast = CommunityToolkit.Maui.Alerts.Toast;
 
@@ -88,7 +89,7 @@ namespace SensorsAndPeripherals.Views.Abstract
                         }
                         await PopupExtensions.CreateAndDisplayPopupAsync(InfoText, dict);
                         // https://github.com/CommunityToolkit/Maui/issues/2923
-                        await Task.Delay(100);
+                        await Task.Delay(DelayConstants.SHORT_DELAY);
                         Shell.Current.SetAppThemeColor(Shell.BackgroundColorProperty, mainApplicationColor, mainApplicationColor);
                     })
                 });
@@ -148,7 +149,7 @@ namespace SensorsAndPeripherals.Views.Abstract
             {
                 item.IconImageSource = null;
             }
-            await Task.Delay(100);
+            await Task.Delay(DelayConstants.SHORT_DELAY);
             for (int i = 0; i < ToolbarItems.Count; i++)
             {
                 ToolbarItems[i].IconImageSource = originalIcons[i];

@@ -12,7 +12,7 @@
         <CollectionView x:Name="MainCollectionView" Grid.Row="1" ItemsSource="{Binding Sensors}" Style="{StaticResource SensorCollectionView}">
             <CollectionView.EmptyView>
                 <Grid HeightRequest="{Binding Source={x:Reference MainCollectionView}, Path=Height}">
-                    <Label Text="{StaticResource EmptyViewText}" HorizontalOptions="Center" VerticalOptions="Center" Style="{StaticResource CenteredLabel}" />
+                    <Label Text="{StaticResource EmptyViewText}" Style="{StaticResource DataGuardEmptyLabel}" />
                 </Grid>
             </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>

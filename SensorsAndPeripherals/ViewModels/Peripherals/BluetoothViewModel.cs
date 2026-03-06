@@ -1,4 +1,5 @@
-﻿using SensorsAndPeripherals.Helpers;
+﻿using SensorsAndPeripherals.Constants;
+using SensorsAndPeripherals.Helpers;
 using SensorsAndPeripherals.Interfaces.Peripherals;
 using SensorsAndPeripherals.Models;
 using SensorsAndPeripherals.Models.Enums;
@@ -19,7 +20,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
                     StopAdvertising();
                 else
                     await StartAdvertisingAsync();
-            }, 
+            },
             () => IsSupported);
             ToggleDiscoveringCommand = new Command(async () =>
             {
@@ -27,12 +28,12 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
                     StopDiscovering();
                 else
                     await StartDiscoveringAsync();
-            }, 
+            },
             () => IsSupported);
             GetAdapterInfoCommand = new Command(async () =>
             {
                 ShowAdapterInfoDialogRequested?.Invoke(await peripheralService.GetAdapterName() ?? "BluetoothUnknownDevice".GetStringFromResource());
-            }, 
+            },
             () => IsSupported && !IsWorking);
         }
         #endregion
@@ -67,7 +68,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         {
             LoadingText = "StartingBLEPropagation".GetStringFromResource();
             IsWorking = true;
-            await Task.Delay(500);
+            await Task.Delay(DelayConstants.MEDIUM_DELAY);
             var result = await peripheralService.StartAdvertisingAsync();
             StatusMessage = HandleBluetoothResult(result);
             if (result == BluetoothResult.Success)
@@ -87,7 +88,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         {
             LoadingText = "ScanningStarted".GetStringFromResource();
             IsWorking = true;
-            await Task.Delay(500);
+            await Task.Delay(DelayConstants.MEDIUM_DELAY);
             DiscoveredDevices.Clear();
             var result = await peripheralService.StartDiscoveringAsync();
             StatusMessageDiscovering = HandleBluetoothResult(result);
