@@ -10,33 +10,34 @@ namespace SensorsAndPeripherals.Services.Peripherals
 
         public async Task<(CameraResult cameraResult, FileResult? fileResult)> TakePhotoAsync()
         {
-            if (IsSupported)
+            if (!IsSupported)
             {
-                var status = await Permissions.CheckStatusAsync<Permissions.Camera>();
+                return (CameraResult.Error, null);
+            }
+            var status = await Permissions.CheckStatusAsync<Permissions.Camera>();
+            if (status != PermissionStatus.Granted)
+            {
+                status = await Permissions.RequestAsync<Permissions.Camera>();
                 if (status != PermissionStatus.Granted)
                 {
-                    status = await Permissions.RequestAsync<Permissions.Camera>();
-                    if (status != PermissionStatus.Granted)
-                    {
-                        return (CameraResult.PermissionDenied, null);
-                    }
-                }
-
-                try
-                {
-                    var photo = await MediaPicker.Default.CapturePhotoAsync();
-                    if (photo is null)
-                    {
-                        return (CameraResult.Cancelled, null);
-                    }
-                    return (CameraResult.Ok, photo);
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine($"Error while capturing the photo: {ex.Message}");
+                    return (CameraResult.PermissionDenied, null);
                 }
             }
-            return (CameraResult.Error, null);
+
+            try
+            {
+                var photo = await MediaPicker.Default.CapturePhotoAsync();
+                if (photo is null)
+                {
+                    return (CameraResult.Cancelled, null);
+                }
+                return (CameraResult.Ok, photo);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"Error while capturing the photo: {ex.Message}");
+                return (CameraResult.Error, null);
+            }
         }
 
         public async Task<string?> SavePhotoToCacheAsync(FileResult? photo)

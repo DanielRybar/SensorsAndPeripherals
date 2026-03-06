@@ -20,6 +20,7 @@ public partial class AudioPage : ApplicationPage
         {
             viewModel.StopRecording();
         }
+        viewModel.StopPlayback();
     }
 
     protected override string InfoText => "";

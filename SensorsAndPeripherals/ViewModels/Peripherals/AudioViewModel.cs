@@ -8,13 +8,14 @@ using System.Windows.Input;
 
 namespace SensorsAndPeripherals.ViewModels.Peripherals
 {
-    public class AudioViewModel : PeripheralViewModel<IAudioService>
+    public class AudioViewModel : PeripheralViewModel<IAudioService>, IDisposable
     {
         #region variables
         private readonly IDispatcherTimer timer = App.Current!.Dispatcher.CreateTimer();
         private readonly Stopwatch stopwatch = new();
         private readonly TimeSpan maxRecordingDuration = TimeSpan.FromMinutes(5);
         private TimeSpan totalDuration;
+        private bool disposed;
         #endregion
 
         #region constructor
@@ -49,6 +50,27 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             else
             {
                 TimeDisplay = "00:00";
+            }
+        }
+
+        public void StopPlayback()
+        {
+            if (IsPlaying)
+            {
+                peripheralService.StopPlayback();
+                ResetPlaybackUI();
+            }
+        }
+
+        public void Dispose()
+        {
+            if (!disposed)
+            {
+                peripheralService.StopPlayback();
+                timer.Stop();
+                stopwatch.Stop();
+                disposed = true;
+                GC.SuppressFinalize(this);
             }
         }
 
@@ -119,8 +141,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             StatusMessage = string.Empty;
             if (IsPlaying)
             {
-                peripheralService.StopPlayback();
-                ResetPlaybackUI();
+                StopPlayback();
             }
             else
             {

@@ -52,34 +52,19 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         {
             IsWorking = true;
             (GetAddressFromCoordinatesCommand as Command)!.ChangeCanExecute();
-            (LocationStatus status, Location? location) result;
-            if (fromCache)
-            {
-                result = await gpsService.GetLastKnownCachedLocationAsync();
-            }
-            else
-            {
-                if (isFine)
-                {
-                    result = await gpsService.GetCurrentFineLocationAsync();
-                }
-                else
-                {
-                    result = await gpsService.GetCurrentCoarseLocationAsync();
-                }
-            }
-            switch (result.status)
+            var (status, location) = await FetchLocationAsync(fromCache, isFine);
+            switch (status)
             {
                 case LocationStatus.Obtained:
                     IsResultVisible = true;
                     ResultLocation = new LocationInfo
                     {
-                        Latitude = result.location!.Latitude,
-                        Longitude = result.location.Longitude,
-                        Altitude = result.location.Altitude,
-                        Accuracy = result.location.Accuracy,
-                        Timestamp = result.location.Timestamp.ToLocalTime(),
-                        Address = await GetAddress(result.location.Latitude, result.location.Longitude)
+                        Latitude = location!.Latitude,
+                        Longitude = location.Longitude,
+                        Altitude = location.Altitude,
+                        Accuracy = location.Accuracy,
+                        Timestamp = location.Timestamp.ToLocalTime(),
+                        Address = await GetAddress(location.Latitude, location.Longitude)
                     };
                     break;
                 case LocationStatus.ObtainedButNull:
@@ -112,43 +97,82 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
             (GetAddressFromCoordinatesCommand as Command)!.ChangeCanExecute();
         }
 
+        private Task<(LocationStatus status, Location? location)> FetchLocationAsync(bool fromCache, bool isFine)
+        {
+            if (fromCache)
+            {
+                return gpsService.GetLastKnownCachedLocationAsync();
+            }
+            return isFine
+                ? gpsService.GetCurrentFineLocationAsync()
+                : gpsService.GetCurrentCoarseLocationAsync();
+        }
+
         private async Task<string?> GetAddress(double latitude, double longitude)
         {
             var placemark = await gpsService.GetPlacemarkFromCoordinatesAsync(latitude, longitude);
-            if (placemark is not null)
+            if (placemark is null)
             {
-                var addressLines = new List<string>();
-                string streetLine = $"{placemark.Thoroughfare} {placemark.SubThoroughfare}".Trim();
-                if (string.IsNullOrEmpty(streetLine) && !string.IsNullOrEmpty(placemark.FeatureName))
-                {
-                    streetLine = placemark.FeatureName;
-                }
-                if (!string.IsNullOrWhiteSpace(streetLine))
-                {
-                    addressLines.Add(streetLine);
-                }
-                if (!string.IsNullOrWhiteSpace(placemark.SubLocality) && placemark.SubLocality != placemark.Locality)
-                {
-                    addressLines.Add(placemark.SubLocality);
-                }
-                string cityLine = $"{placemark.PostalCode} {placemark.Locality}".Trim();
-                if (!string.IsNullOrWhiteSpace(cityLine))
-                {
-                    addressLines.Add(cityLine);
-                }
-                string adminArea = placemark.AdminArea;
-                if (!string.IsNullOrWhiteSpace(adminArea))
-                {
-                    addressLines.Add(adminArea);
-                }
-                if (!string.IsNullOrWhiteSpace(placemark.CountryName))
-                {
-                    addressLines.Add(placemark.CountryName);
-                }
-
-                return string.Join("\n", addressLines);
+                return null;
             }
-            return null;
+            return BuildAddressString(placemark);
+        }
+
+        private static string BuildAddressString(Placemark placemark)
+        {
+            var lines = new List<string>();
+            AddStreetLine(placemark, lines);
+            AddSubLocalityLine(placemark, lines);
+            AddCityLine(placemark, lines);
+            AddAdminAreaLine(placemark, lines);
+            AddCountryLine(placemark, lines);
+            return string.Join("\n", lines);
+        }
+
+        private static void AddStreetLine(Placemark placemark, List<string> lines)
+        {
+            string street = $"{placemark.Thoroughfare} {placemark.SubThoroughfare}".Trim();
+            if (string.IsNullOrEmpty(street) && !string.IsNullOrEmpty(placemark.FeatureName))
+            {
+                street = placemark.FeatureName;
+            }
+            if (!string.IsNullOrWhiteSpace(street))
+            {
+                lines.Add(street);
+            }
+        }
+
+        private static void AddSubLocalityLine(Placemark placemark, List<string> lines)
+        {
+            if (!string.IsNullOrWhiteSpace(placemark.SubLocality) && placemark.SubLocality != placemark.Locality)
+            {
+                lines.Add(placemark.SubLocality);
+            }
+        }
+
+        private static void AddCityLine(Placemark placemark, List<string> lines)
+        {
+            string city = $"{placemark.PostalCode} {placemark.Locality}".Trim();
+            if (!string.IsNullOrWhiteSpace(city))
+            {
+                lines.Add(city);
+            }
+        }
+
+        private static void AddAdminAreaLine(Placemark placemark, List<string> lines)
+        {
+            if (!string.IsNullOrWhiteSpace(placemark.AdminArea))
+            {
+                lines.Add(placemark.AdminArea);
+            }
+        }
+
+        private static void AddCountryLine(Placemark placemark, List<string> lines)
+        {
+            if (!string.IsNullOrWhiteSpace(placemark.CountryName))
+            {
+                lines.Add(placemark.CountryName);
+            }
         }
 
         public void CancelCurrentLocationRequest() => gpsService.CancelCurrentLocationRequest();

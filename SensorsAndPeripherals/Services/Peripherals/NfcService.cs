@@ -93,37 +93,43 @@ namespace SensorsAndPeripherals.Services.Peripherals
 
         private async void Current_OnTagDiscovered(ITagInfo tagInfo, bool format)
         {
-            if (writeTcs is not null && !writeTcs.Task.IsCompleted)
+            try
             {
-                var record = new NFCNdefRecord
+                if (writeTcs is not null && !writeTcs.Task.IsCompleted)
                 {
-                    TypeFormat = NFCNdefTypeFormat.WellKnown,
-                    MimeType = "text/plain",
-                    Payload = NFCUtils.EncodeToByteArray(textToWrite)
-                };
-                tagInfo.Records = [record];
-                for (int i = 0; i < maxWriteRetries; i++)
-                {
-                    try
+                    var record = new NFCNdefRecord
                     {
-                        CrossNFC.Current.PublishMessage(tagInfo, false);
-                        return;
-                    }
-                    catch (Exception ex)
+                        TypeFormat = NFCNdefTypeFormat.WellKnown,
+                        MimeType = "text/plain",
+                        Payload = NFCUtils.EncodeToByteArray(textToWrite)
+                    };
+                    tagInfo.Records = [record];
+                    for (int i = 0; i < maxWriteRetries; i++)
                     {
-                        Debug.WriteLine($"NFC writing failed (attempt {i+1}/{maxWriteRetries}): {ex.Message}");
-                        if (i == maxWriteRetries - 1)
+                        try
                         {
-                            StopNfcActivities();
-                            writeTcs?.TrySetResult(NfcStatus.WriteFailed);
-                            writeTcs = null;
+                            CrossNFC.Current.PublishMessage(tagInfo, false);
+                            return;
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            await Task.Delay(100);
+                            Debug.WriteLine($"NFC writing failed (attempt {i + 1}/{maxWriteRetries}): {ex.Message}");
+                            if (i == maxWriteRetries - 1)
+                            {
+                                HandleWriteFailure();
+                            }
+                            else
+                            {
+                                await Task.Delay(100);
+                            }
                         }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine($"NFC tag discovery handling failed: {ex.Message}");
+                HandleWriteFailure();
             }
         }
 
@@ -154,6 +160,13 @@ namespace SensorsAndPeripherals.Services.Peripherals
             {
                 Debug.WriteLine("Error while stopping NFC activities " + ex.Message);
             }
+        }
+
+        private void HandleWriteFailure()
+        {
+            StopNfcActivities();
+            writeTcs?.TrySetResult(NfcStatus.WriteFailed);
+            writeTcs = null;
         }
     }
 }

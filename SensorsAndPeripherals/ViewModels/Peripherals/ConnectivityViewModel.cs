@@ -14,7 +14,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             TestInternetConnectionCommand = new Command(async () =>
             {
                 IsWorking = true;
-                await Task.Delay(500);
+                await Task.Delay(200);
                 InternetConnectionTestResult = await peripheralService.TestInternetConnectionAsync();
                 GetConnectionStatus();
                 IsWorking = false;

@@ -4,6 +4,7 @@
     {
         public const double GRAVITIONAL_ACCELERATION = 9.81;
         public const double SMOOTH_FACTOR = 0.2;
+        public const double SMOOTH_COMPLEMENT = 1.0 - SMOOTH_FACTOR;
         public const double RAD_TO_DEG = 180.0 / Math.PI;
         public const double TEXT_VISUALIZATION_INTERVAL_MS = 80.0;
     }

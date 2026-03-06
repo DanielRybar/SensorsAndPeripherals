@@ -16,17 +16,6 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         #region constructor
         public BiometricViewModel()
         {
-            Task.Run(async () =>
-            {
-                MainThread.BeginInvokeOnMainThread(() => IsWorking = true);
-                var available = await biometricService.IsAvailableAsync();
-                MainThread.BeginInvokeOnMainThread(() =>
-                {
-                    IsSupported = available;
-                    IsWorking = false;
-                });
-            });
-
             GetAvailableBiometricTypesCommand = new Command(async () =>
             {
                 IsWorking = true;
@@ -68,6 +57,13 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         #endregion
 
         #region methods
+        public async Task InitializeAsync()
+        {
+            IsWorking = true;
+            IsSupported = await biometricService.IsAvailableAsync();
+            IsWorking = false;
+        }
+
         private async Task PerformAuthentication(AuthenticatorStrength strength)
         {
             IsWorking = true;

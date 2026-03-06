@@ -17,6 +17,12 @@ public partial class BiometricPage : ApplicationPage
         };
     }
 
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+        await viewModel.InitializeAsync();
+    }
+
     protected override string InfoToolbarItemsText => string.Empty;
     protected override string InfoText => "";
 }

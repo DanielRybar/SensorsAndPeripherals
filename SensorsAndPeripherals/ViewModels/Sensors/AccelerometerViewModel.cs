@@ -30,8 +30,8 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
             // low-pass filter for X and Y
             double currentRawX = e.Reading.Acceleration.X;
             double currentRawY = e.Reading.Acceleration.Y;
-            smoothedX = (currentRawX * SensorConstants.SMOOTH_FACTOR) + (this.smoothedX * (1 - SensorConstants.SMOOTH_FACTOR));
-            smoothedY = (currentRawY * SensorConstants.SMOOTH_FACTOR) + (this.smoothedY * (1 - SensorConstants.SMOOTH_FACTOR));
+            smoothedX = (currentRawX * SensorConstants.SMOOTH_FACTOR) + (this.smoothedX * SensorConstants.SMOOTH_COMPLEMENT);
+            smoothedY = (currentRawY * SensorConstants.SMOOTH_FACTOR) + (this.smoothedY * SensorConstants.SMOOTH_COMPLEMENT);
 
             // normalize from n * ag to m/s^2
             double x = smoothedX * SensorConstants.GRAVITIONAL_ACCELERATION;

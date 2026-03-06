@@ -67,10 +67,13 @@ namespace SensorsAndPeripherals.Platforms.Android.Services.Peripherals
                     mediaRecorder.Release();
                     mediaRecorder = null;
                 }
-                return currentFilePath;
+                var path = currentFilePath;
+                currentFilePath = null;
+                return path;
             }
             catch
             {
+                currentFilePath = null;
                 return null;
             }
         }
