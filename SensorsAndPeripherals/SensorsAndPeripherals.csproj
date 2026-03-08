@@ -112,4 +112,8 @@
 	  </MauiXaml>
 	</ItemGroup>
 
+	<PropertyGroup>
+		<MauiEnableXamlCBindingWithSourceCompilation>true</MauiEnableXamlCBindingWithSourceCompilation>
+	</PropertyGroup>
+
 </Project>

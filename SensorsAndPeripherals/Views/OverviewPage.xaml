@@ -3,6 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SensorsAndPeripherals.Views.OverviewPage"
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"
+             xmlns:vm="clr-namespace:SensorsAndPeripherals.ViewModels"
+             xmlns:models="clr-namespace:SensorsAndPeripherals.Models"
+             x:DataType="vm:OverviewViewModel"
              IsWorking="{Binding IsWorking}"
              Title="{StaticResource OverviewTitle}">
 
@@ -16,7 +19,7 @@
                 </Grid>
             </CollectionView.EmptyView>
             <CollectionView.ItemTemplate>
-                <DataTemplate>
+                <DataTemplate x:DataType="models:SensorInfo">
                     <Border Style="{StaticResource SensorOverviewBorder}">
                         <VerticalStackLayout Spacing="5">
                             <Label Text="{Binding Name}" Style="{StaticResource CollectionViewItemTitle}" />

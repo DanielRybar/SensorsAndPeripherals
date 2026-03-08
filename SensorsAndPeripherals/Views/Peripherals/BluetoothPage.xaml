@@ -4,6 +4,9 @@
              x:Class="SensorsAndPeripherals.Views.Peripherals.BluetoothPage"
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"
              xmlns:controls="clr-namespace:SensorsAndPeripherals.Controls"
+             xmlns:vm="clr-namespace:SensorsAndPeripherals.ViewModels.Peripherals"
+             xmlns:models="clr-namespace:SensorsAndPeripherals.Models"
+             x:DataType="vm:BluetoothViewModel"
              IsWorking="{Binding IsWorking}"
              LoadingText="{Binding LoadingText}"
              Title="{StaticResource BluetoothTitle}">
@@ -35,7 +38,7 @@
                         </Grid>
                     </CollectionView.EmptyView>
                     <CollectionView.ItemTemplate>
-                        <DataTemplate>
+                        <DataTemplate x:DataType="models:BluetoothDeviceInfo">
                             <Border Style="{StaticResource SensorOverviewBorder}">
                                 <VerticalStackLayout Spacing="5">
                                     <Label Text="{Binding MacAddress}" Style="{StaticResource CollectionViewItemTitle}" HorizontalOptions="Center"  />

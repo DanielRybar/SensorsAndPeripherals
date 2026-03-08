@@ -4,6 +4,8 @@
              x:Class="SensorsAndPeripherals.Views.Peripherals.CameraPage"
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"  
              xmlns:controls="clr-namespace:SensorsAndPeripherals.Controls"
+             xmlns:vm="clr-namespace:SensorsAndPeripherals.ViewModels.Peripherals"
+             x:DataType="vm:CameraViewModel"
              IsWorking="{Binding IsWorking}"
              LoadingText="{StaticResource LoadingCameraText}"
              Title="{StaticResource CameraTitle}">

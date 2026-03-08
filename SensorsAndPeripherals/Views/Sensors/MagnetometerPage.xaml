@@ -4,6 +4,8 @@
              x:Class="SensorsAndPeripherals.Views.Sensors.MagnetometerPage"
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"
              xmlns:controls="clr-namespace:SensorsAndPeripherals.Controls"
+             xmlns:vm="clr-namespace:SensorsAndPeripherals.ViewModels.Sensors"
+             x:DataType="vm:MagnetometerViewModel"
              Title="{StaticResource MagnetometerTitle}">
     
     <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource SensorNotSupported}">

@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SensorsAndPeripherals.Views.Peripherals.ConnectivityPage"
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"
+             xmlns:vm="clr-namespace:SensorsAndPeripherals.ViewModels.Peripherals"
+             x:DataType="vm:ConnectivityViewModel"
              IsWorking="{Binding IsWorking}"
              LoadingText="{StaticResource VerificationText}"
              Title="{StaticResource ConnectivityTitle}">

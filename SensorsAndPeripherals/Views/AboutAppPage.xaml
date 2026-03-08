@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SensorsAndPeripherals.Views.AboutAppPage"
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"
+             xmlns:vm="clr-namespace:SensorsAndPeripherals.ViewModels"
+             x:DataType="vm:AboutAppViewModel"
              Title="{StaticResource AboutAppTitle}">
 
     <ScrollView Style="{StaticResource AboutAppMainView}">

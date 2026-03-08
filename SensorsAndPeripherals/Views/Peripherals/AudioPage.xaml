@@ -4,6 +4,8 @@
              x:Class="SensorsAndPeripherals.Views.Peripherals.AudioPage"
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"
              xmlns:controls="clr-namespace:SensorsAndPeripherals.Controls"
+             xmlns:vm="clr-namespace:SensorsAndPeripherals.ViewModels.Peripherals"
+             x:DataType="vm:AudioViewModel"
              IsWorking="{Binding IsWorking}"
              LoadingText="{StaticResource LoadingVoiceRecorder}"
              Title="{StaticResource AudioTitle}">

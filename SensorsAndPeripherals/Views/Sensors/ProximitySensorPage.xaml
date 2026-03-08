@@ -4,6 +4,8 @@
              x:Class="SensorsAndPeripherals.Views.Sensors.ProximitySensorPage"
              xmlns:abstract="clr-namespace:SensorsAndPeripherals.Views.Abstract"
              xmlns:controls="clr-namespace:SensorsAndPeripherals.Controls"
+             xmlns:vm="clr-namespace:SensorsAndPeripherals.ViewModels.Sensors"
+             x:DataType="vm:ProximitySensorViewModel"
              Title="{StaticResource ProximitySensorTitle}">
 
     <controls:DataGuard HasData="{Binding IsSupported}" EmptyText="{StaticResource SensorNotSupported}">
