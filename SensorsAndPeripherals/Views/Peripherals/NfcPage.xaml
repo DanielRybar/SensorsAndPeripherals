@@ -15,7 +15,10 @@
         <Grid RowDefinitions="Auto, *, Auto" Style="{StaticResource MainGridStyle}">
             <VerticalStackLayout Style="{StaticResource SensorStatusVsl}" Padding="20,10,20,10">
                 <Label Text="{StaticResource NfcWriteSection}" Style="{StaticResource DisplayTextCaption}" />
-                <controls:ExtendedEntry Text="{Binding MessageToWrite}" Placeholder="{StaticResource NfcTextPlaceholder}" Style="{StaticResource ExtendedEntry}">
+                <controls:ExtendedEntry IsEnabled="{Binding IsInputEnabled}" 
+                                        Text="{Binding MessageToWrite}" 
+                                        Placeholder="{StaticResource NfcTextPlaceholder}" 
+                                        Style="{StaticResource ExtendedEntry}">
                     <controls:ExtendedEntry.Behaviors>
                         <toolkit:TextValidationBehavior
                             Flags="ValidateOnValueChanged" 

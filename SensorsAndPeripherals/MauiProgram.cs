@@ -20,7 +20,6 @@ namespace SensorsAndPeripherals
                 {
                     options.SetPopupDefaults(new DefaultPopupSettings
                     {
-                        CanBeDismissedByTappingOutsideOfPopup = false,
                         HorizontalOptions = LayoutOptions.Fill,
                         VerticalOptions = LayoutOptions.Fill,
                         Margin = 0,

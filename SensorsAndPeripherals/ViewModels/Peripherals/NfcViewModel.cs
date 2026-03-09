@@ -37,6 +37,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         {
             peripheralService.CancelCurrentRequests();
             StatusMessage = string.Empty;
+            IsInputEnabled = true;
             if (!IsMessageToWriteValid)
             {
                 MessageToWrite = defaultMessageValue;
@@ -79,28 +80,37 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
                     $"{"NfcIsMessageToWriteValid1".GetStringFromResource()} {MaxTextLength} {"NfcIsMessageToWriteValid2".GetStringFromResource()}").Show();
                 return;
             }
-            StatusMessage = "NfcPerformReading".GetStringFromResource();
-            var status = await peripheralService.WriteAsync(MessageToWrite);
-            switch (status)
+
+            IsInputEnabled = false;
+            StatusMessage = "NfcPerformWriting".GetStringFromResource();
+            try
             {
-                case NfcStatus.Success:
-                    StatusMessage = "NfcWriteSuccess".GetStringFromResource();
-                    break;
-                case NfcStatus.NotSupported:
-                    StatusMessage = "NFCNotSupported".GetStringFromResource();
-                    break;
-                case NfcStatus.NotEnabled:
-                    StatusMessage = "NfcNotEnabled".GetStringFromResource();
-                    break;
-                case NfcStatus.WriteFailed:
-                    StatusMessage = "NfcWriteFailed".GetStringFromResource();
-                    break;
-                case NfcStatus.OperationCancelled:
-                    break;
-                case NfcStatus.UnknownError:
-                default:
-                    StatusMessage = "NfcWriteError".GetStringFromResource();
-                    break;
+                var status = await peripheralService.WriteAsync(MessageToWrite);
+                switch (status)
+                {
+                    case NfcStatus.Success:
+                        StatusMessage = "NfcWriteSuccess".GetStringFromResource();
+                        break;
+                    case NfcStatus.NotSupported:
+                        StatusMessage = "NFCNotSupported".GetStringFromResource();
+                        break;
+                    case NfcStatus.NotEnabled:
+                        StatusMessage = "NfcNotEnabled".GetStringFromResource();
+                        break;
+                    case NfcStatus.WriteFailed:
+                        StatusMessage = "NfcWriteFailed".GetStringFromResource();
+                        break;
+                    case NfcStatus.OperationCancelled:
+                        break;
+                    case NfcStatus.UnknownError:
+                    default:
+                        StatusMessage = "NfcWriteError".GetStringFromResource();
+                        break;
+                }
+            }
+            finally
+            {
+                IsInputEnabled = true;
             }
         }
         #endregion
@@ -113,6 +123,12 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         }
 
         public bool IsMessageToWriteValid
+        {
+            get;
+            set => SetProperty(ref field, value);
+        } = true;
+
+        public bool IsInputEnabled
         {
             get;
             set => SetProperty(ref field, value);

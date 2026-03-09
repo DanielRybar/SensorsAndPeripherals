@@ -125,7 +125,7 @@
     <x:String x:Key="NfcReadingError">Neznámá chyba při&#160;čtení.</x:String>
     <x:String x:Key="NfcIsMessageToWriteValid1">Délka textu musí být od&#160;1 do&#160;</x:String>
     <x:String x:Key="NfcIsMessageToWriteValid2">znaků!</x:String>
-    <x:String x:Key="NfcPerformReading">Přiložte NFC čip pro&#160;zápis.</x:String>
+    <x:String x:Key="NfcPerformWriting">Přiložte NFC čip pro&#160;zápis.</x:String>
     <x:String x:Key="NfcWriteError">Neznámá chyba při&#160;zápisu.</x:String>
     <x:String x:Key="NfcWriteFailed">Zápis selhal. Možná je čip zamčený, nebo jste s&#160;ním pohnuli.</x:String>
     <x:String x:Key="NfcWriteSuccess">Zpráva byla úspěšně zapsána.</x:String>
