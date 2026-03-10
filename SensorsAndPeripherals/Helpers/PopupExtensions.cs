@@ -10,20 +10,20 @@ namespace SensorsAndPeripherals.Helpers
     {
         public static async Task CreateAndDisplayPopupAsync(string description, Dictionary<string, string> toolbarItems)
         {
-            var lightColor = App.Current?.Resources["PopupLightBackgroundColor"] as Color;
-            var darkColor = App.Current?.Resources["PopupDarkBackgroundColor"] as Color;
+            var lightColor = "PopupLightBackgroundColor".SafeGetResource<Color>();
+            var darkColor = "PopupDarkBackgroundColor".SafeGetResource<Color>();
             var popup = new Popup();
             popup.SetAppThemeColor(Popup.BackgroundColorProperty, lightColor, darkColor);
             popup.Closed += (s, e) =>
             {
                 // https://github.com/CommunityToolkit/Maui/issues/2923
-                var stealthColor = (App.Current?.Resources["MainApplicationColor"] as Color)!.WithAlpha(0.99f);
+                var stealthColor = "MainApplicationColor".SafeGetResource<Color>().WithAlpha(0.99f);
                 Shell.Current.SetAppThemeColor(Shell.BackgroundColorProperty, stealthColor, stealthColor);
             };
 
             var grid = new Grid
             {
-                Style = App.Current?.Resources["MainGridStyle"] as Style,
+                Style = "MainGridStyle".SafeGetResource<Style>(),
                 RowDefinitions =
                 [
                     new RowDefinition { Height = GridLength.Auto },
@@ -37,7 +37,7 @@ namespace SensorsAndPeripherals.Helpers
                 HorizontalOptions = LayoutOptions.End,
                 VerticalOptions = LayoutOptions.Start,
                 BackgroundColor = Colors.Transparent,
-                ImageSource = App.Current?.Resources["PopupCloseIcon"] as FontImageSource
+                ImageSource = "PopupCloseIcon".SafeGetResource<FontImageSource>()
             };
             closeButton.Clicked += async (s, e) =>
             {
@@ -52,32 +52,32 @@ namespace SensorsAndPeripherals.Helpers
             };
             grid.Add(closeButton);
 
-            var mainVsl = new VerticalStackLayout { Style = App.Current?.Resources["PopupMainVsl"] as Style };
+            var mainVsl = new VerticalStackLayout { Style = "PopupMainVsl".SafeGetResource<Style>() };
             grid.Add(mainVsl, row: 1);
 
-            var vsl1 = new VerticalStackLayout { Style = App.Current?.Resources["PopupMinorVsl"] as Style };
+            var vsl1 = new VerticalStackLayout { Style = "PopupMinorVsl".SafeGetResource<Style>() };
             var labelDescHeadline = new Label
             {
-                Text = "PopupDescriptionLabel".GetStringFromResource(),
-                Style = App.Current?.Resources["PopupHeadlineStyle"] as Style
+                Text = "PopupDescriptionLabel".SafeGetResource<string>(),
+                Style = "PopupHeadlineStyle".SafeGetResource<Style>()
             };
             vsl1.Add(labelDescHeadline);
 
             var labelDesc = new Label
             {
                 Text = description,
-                Style = App.Current?.Resources["PopupDescStyle"] as Style
+                Style = "PopupDescStyle".SafeGetResource<Style>()
             };
             vsl1.Add(labelDesc);
             mainVsl.Add(vsl1);
 
             if (toolbarItems.Count > 0)
             {
-                var vsl2 = new VerticalStackLayout { Style = App.Current?.Resources["PopupMinorVsl"] as Style };
+                var vsl2 = new VerticalStackLayout { Style = "PopupMinorVsl".SafeGetResource<Style>() };
                 var labelIconsHeadline = new Label
                 {
-                    Text = "PopupIconsLabel".GetStringFromResource(),
-                    Style = App.Current?.Resources["PopupHeadlineStyle"] as Style
+                    Text = "PopupIconsLabel".SafeGetResource<string>(),
+                    Style = "PopupHeadlineStyle".SafeGetResource<Style>()
                 };
                 vsl2.Add(labelIconsHeadline);
 
@@ -86,13 +86,13 @@ namespace SensorsAndPeripherals.Helpers
                     var icon = new Label
                     {
                         Text = item.Key,
-                        Style = App.Current?.Resources["PopupIconLabel"] as Style
+                        Style = "PopupIconLabel".SafeGetResource<Style>()
                     };
                     vsl2.Add(icon);
                     var iconDesc = new Label
                     {
                         Text = item.Value,
-                        Style = App.Current?.Resources["CenteredLabel"] as Style
+                        Style = "CenteredLabel".SafeGetResource<Style>()
                     };
                     vsl2.Add(iconDesc);
                 }

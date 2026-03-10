@@ -4,6 +4,7 @@ using AndroidX.AppCompat.Widget;
 using Microsoft.Maui.Handlers;
 using Microsoft.Maui.Platform;
 using SensorsAndPeripherals.Controls;
+using SensorsAndPeripherals.Helpers;
 using BlendMode = Android.Graphics.BlendMode;
 
 namespace SensorsAndPeripherals.Platforms.Android.Handlers
@@ -24,10 +25,7 @@ namespace SensorsAndPeripherals.Platforms.Android.Handlers
         protected override void ConnectHandler(MauiAppCompatEditText platformView)
         {
             base.ConnectHandler(platformView);
-            if (App.Current?.Resources.TryGetValue("Gray200", out object colorObject) == true && colorObject is Microsoft.Maui.Graphics.Color color)
-            {
-                platformView.SetHighlightColor(color.ToPlatform());
-            }
+            platformView.SetHighlightColor("Gray200".SafeGetResource<Microsoft.Maui.Graphics.Color>().ToPlatform());
         }
 
         private static void MapUnderlineColor(ExtendedEntryHandler handler, ExtendedEntry entry)

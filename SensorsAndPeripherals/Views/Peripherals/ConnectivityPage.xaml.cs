@@ -20,5 +20,5 @@ public partial class ConnectivityPage : ApplicationPage
         viewModel.GetConnectionStatusCommand.Execute(null);
     }
 
-    protected override string InfoText => "ConnectivityInfoPopup".GetStringFromResource();
+    protected override string InfoText => "ConnectivityInfoPopup".SafeGetResource<string>();
 }

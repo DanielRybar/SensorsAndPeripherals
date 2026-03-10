@@ -24,5 +24,5 @@ public partial class AudioPage : ApplicationPage
         viewModel.StopPlayback();
     }
 
-    protected override string InfoText => "AudioInfoPopup".GetStringFromResource();
+    protected override string InfoText => "AudioInfoPopup".SafeGetResource<string>();
 }

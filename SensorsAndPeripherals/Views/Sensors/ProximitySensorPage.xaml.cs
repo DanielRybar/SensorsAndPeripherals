@@ -23,5 +23,5 @@ public partial class ProximitySensorPage : ApplicationPage
         }
     }
 
-    protected override string InfoText => "ProximitySensorInfoPopup".GetStringFromResource();
+    protected override string InfoText => "ProximitySensorInfoPopup".SafeGetResource<string>();
 }

@@ -10,7 +10,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         #region variables
         private readonly double maxRotationSpeed = 200.0;
         private readonly double maxNeedleAngle = 150.0;
-        private readonly string unit = "DegreePerSecond".GetStringFromResource();
+        private readonly string unit = "DegreePerSecond".SafeGetResource<string>();
         private double smoothedX = 0.0;
         private double smoothedY = 0.0;
         private double smoothedZ = 0.0;

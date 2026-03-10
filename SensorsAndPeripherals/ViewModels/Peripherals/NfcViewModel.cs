@@ -11,7 +11,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
     public class NfcViewModel : PeripheralViewModel<INfcService>
     {
         #region variables
-        private readonly string defaultMessageValue = "NfcDefaultValue".GetStringFromResource();
+        private readonly string defaultMessageValue = "NfcDefaultValue".SafeGetResource<string>();
         #endregion
 
         #region constructor
@@ -46,7 +46,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
 
         private async Task PerformScanAsync()
         {
-            StatusMessage = "NfcPerformScan".GetStringFromResource();
+            StatusMessage = "NfcPerformScan".SafeGetResource<string>();
             var (status, content) = await peripheralService.ScanAsync();
             switch (status)
             {
@@ -55,19 +55,19 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
                     StatusMessage = string.Empty;
                     break;
                 case NfcStatus.NotSupported:
-                    StatusMessage = "NFCNotSupported".GetStringFromResource();
+                    StatusMessage = "NFCNotSupported".SafeGetResource<string>();
                     break;
                 case NfcStatus.NotEnabled:
-                    StatusMessage = "NfcNotEnabled".GetStringFromResource();
+                    StatusMessage = "NfcNotEnabled".SafeGetResource<string>();
                     break;
                 case NfcStatus.ReadEmpty:
-                    StatusMessage = "NfcEmpty".GetStringFromResource();
+                    StatusMessage = "NfcEmpty".SafeGetResource<string>();
                     break;
                 case NfcStatus.OperationCancelled:
                     break;
                 case NfcStatus.UnknownError:
                 default:
-                    StatusMessage = "NfcReadingError".GetStringFromResource();
+                    StatusMessage = "NfcReadingError".SafeGetResource<string>();
                     break;
             }
         }
@@ -77,34 +77,34 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             if (!IsMessageToWriteValid)
             {
                 await Toast.Make(
-                    $"{"NfcIsMessageToWriteValid1".GetStringFromResource()} {MaxTextLength} {"NfcIsMessageToWriteValid2".GetStringFromResource()}").Show();
+                    $"{"NfcIsMessageToWriteValid1".SafeGetResource<string>()} {MaxTextLength} {"NfcIsMessageToWriteValid2".SafeGetResource<string>()}").Show();
                 return;
             }
 
             IsInputEnabled = false;
-            StatusMessage = "NfcPerformWriting".GetStringFromResource();
+            StatusMessage = "NfcPerformWriting".SafeGetResource<string>();
             try
             {
                 var status = await peripheralService.WriteAsync(MessageToWrite);
                 switch (status)
                 {
                     case NfcStatus.Success:
-                        StatusMessage = "NfcWriteSuccess".GetStringFromResource();
+                        StatusMessage = "NfcWriteSuccess".SafeGetResource<string>();
                         break;
                     case NfcStatus.NotSupported:
-                        StatusMessage = "NFCNotSupported".GetStringFromResource();
+                        StatusMessage = "NFCNotSupported".SafeGetResource<string>();
                         break;
                     case NfcStatus.NotEnabled:
-                        StatusMessage = "NfcNotEnabled".GetStringFromResource();
+                        StatusMessage = "NfcNotEnabled".SafeGetResource<string>();
                         break;
                     case NfcStatus.WriteFailed:
-                        StatusMessage = "NfcWriteFailed".GetStringFromResource();
+                        StatusMessage = "NfcWriteFailed".SafeGetResource<string>();
                         break;
                     case NfcStatus.OperationCancelled:
                         break;
                     case NfcStatus.UnknownError:
                     default:
-                        StatusMessage = "NfcWriteError".GetStringFromResource();
+                        StatusMessage = "NfcWriteError".SafeGetResource<string>();
                         break;
                 }
             }

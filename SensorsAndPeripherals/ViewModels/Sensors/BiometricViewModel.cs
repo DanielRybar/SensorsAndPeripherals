@@ -26,7 +26,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
                 }
                 else
                 {
-                    ShowBiometricTypesDialogRequested?.Invoke("BiometricSensorsNotFound".GetStringFromResource());
+                    ShowBiometricTypesDialogRequested?.Invoke("BiometricSensorsNotFound".SafeGetResource<string>());
                 }
                 IsWorking = false;
             },
@@ -68,17 +68,17 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         {
             IsWorking = true;
             var result = await biometricService.AuthenticateAsync(
-                "PerformAuthentication01".GetStringFromResource(),
-                "PerformAuthentication02".GetStringFromResource(),
-                "PerformAuthentication03".GetStringFromResource(),
+                "PerformAuthentication01".SafeGetResource<string>(),
+                "PerformAuthentication02".SafeGetResource<string>(),
+                "PerformAuthentication03".SafeGetResource<string>(),
                 strength);
 
             AuthResult = result switch
             {
-                BiometricAuthResult.Success => "BiometricStatusSuccess".GetStringFromResource(),
-                BiometricAuthResult.Failed => "BiometricStatusFailed".GetStringFromResource(),
-                BiometricAuthResult.NotAvailable => "BiometricStatusNotAvailable".GetStringFromResource(),
-                _ => "BiometricStatusUnknown".GetStringFromResource()
+                BiometricAuthResult.Success => "BiometricStatusSuccess".SafeGetResource<string>(),
+                BiometricAuthResult.Failed => "BiometricStatusFailed".SafeGetResource<string>(),
+                BiometricAuthResult.NotAvailable => "BiometricStatusNotAvailable".SafeGetResource<string>(),
+                _ => "BiometricStatusUnknown".SafeGetResource<string>()
             };
             IsWorking = false;
         }
@@ -120,7 +120,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         {
             get;
             set => SetProperty(ref field, value);
-        } = "BiometricInit".GetStringFromResource();
+        } = "BiometricInit".SafeGetResource<string>();
         #endregion
     }
 }

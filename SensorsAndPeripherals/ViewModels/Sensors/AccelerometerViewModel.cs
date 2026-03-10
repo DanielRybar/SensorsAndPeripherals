@@ -10,7 +10,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         #region variables
         private readonly double multiplier = 15.0;
         private readonly double maxRadius = 125.0;
-        private readonly string unit = "MetersPerSecondSquared".GetStringFromResource();
+        private readonly string unit = "MetersPerSecondSquared".SafeGetResource<string>();
         private double smoothedX = 0.0;
         private double smoothedY = 0.0;
         #endregion

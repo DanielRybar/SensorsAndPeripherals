@@ -10,7 +10,7 @@ namespace SensorsAndPeripherals.Views.Abstract
     {
         private DateTime lastBackButtonPressedTime;
         private bool popupWasOpened;
-        private readonly Color mainApplicationColor = App.Current?.Resources["MainApplicationColor"] as Color ?? Colors.Black;
+        private readonly Color mainApplicationColor = "MainApplicationColor".SafeGetResource<Color>();
 
         protected abstract string InfoText { get; }
         protected virtual string InfoToolbarItemsText => string.Empty;
@@ -33,7 +33,7 @@ namespace SensorsAndPeripherals.Views.Abstract
             propertyName: nameof(LoadingText),
             returnType: typeof(string),
             declaringType: typeof(ApplicationPage),
-            defaultValue: "LoadingDataText".GetStringFromResource());
+            defaultValue: "LoadingDataText".SafeGetResource<string>());
 
         public string LoadingText
         {
@@ -67,7 +67,7 @@ namespace SensorsAndPeripherals.Views.Abstract
             {
                 ToolbarItems.Add(new ToolbarItem
                 {
-                    IconImageSource = App.Current!.Resources["ToolbarHelpIcon"] as FontImageSource,
+                    IconImageSource = "ToolbarHelpIcon".SafeGetResource<FontImageSource>(),
                     Priority = 1,
                     Command = new Command(async () =>
                     {
@@ -118,7 +118,7 @@ namespace SensorsAndPeripherals.Views.Abstract
 
             var overlayGrid = new Grid
             {
-                Style = App.Current!.Resources["LoadingLayout"] as Style,
+                Style = "LoadingLayout".SafeGetResource<Style>(),
                 Children = { vsl }
             };
 
@@ -129,7 +129,7 @@ namespace SensorsAndPeripherals.Views.Abstract
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            On<Microsoft.Maui.Controls.PlatformConfiguration.Android>().SetColor(App.Current!.Resources["BarColor"] as Color ?? Colors.Black);
+            On<Microsoft.Maui.Controls.PlatformConfiguration.Android>().SetColor("BarColor".SafeGetResource<Color>());
             if (popupWasOpened)
             {
                 popupWasOpened = false;
@@ -171,7 +171,7 @@ namespace SensorsAndPeripherals.Views.Abstract
 
             MainThread.BeginInvokeOnMainThread(async () =>
             {
-                await Toast.Make("BackButtonExit".GetStringFromResource(), ToastDuration.Short).Show();
+                await Toast.Make("BackButtonExit".SafeGetResource<string>(), ToastDuration.Short).Show();
             });
 
             return true;

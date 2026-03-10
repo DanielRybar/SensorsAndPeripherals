@@ -23,5 +23,5 @@ public partial class LightSensorPage : ApplicationPage
         }
     }
 
-    protected override string InfoText => "LightSensorInfoPopup".GetStringFromResource();
+    protected override string InfoText => "LightSensorInfoPopup".SafeGetResource<string>();
 }

@@ -30,7 +30,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
             });
             GetAddressFromCoordinatesCommand = new Command(() =>
             {
-                ShowAddressDialogRequested?.Invoke(ResultLocation?.Address ?? "GpsAddressNotAvailable".GetStringFromResource());
+                ShowAddressDialogRequested?.Invoke(ResultLocation?.Address ?? "GpsAddressNotAvailable".SafeGetResource<string>());
             },
             () => IsResultVisible && !IsWorking);
         }
@@ -69,28 +69,28 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
                     break;
                 case LocationStatus.ObtainedButNull:
                     IsResultVisible = false;
-                    StatusMessage = "GpsLocationStatusObtainedButNull".GetStringFromResource();
+                    StatusMessage = "GpsLocationStatusObtainedButNull".SafeGetResource<string>();
                     break;
                 case LocationStatus.NotSupported:
                     IsResultVisible = false;
-                    StatusMessage = "GpsLocationStatusNotSupported".GetStringFromResource();
+                    StatusMessage = "GpsLocationStatusNotSupported".SafeGetResource<string>();
                     break;
                 case LocationStatus.NotEnabled:
                     IsResultVisible = false;
-                    StatusMessage = "GpsLocationStatusNotEnabled".GetStringFromResource();
+                    StatusMessage = "GpsLocationStatusNotEnabled".SafeGetResource<string>();
                     break;
                 case LocationStatus.PermissionDenied:
                     IsResultVisible = false;
-                    StatusMessage = "GpsLocationStatusPermissionDenied".GetStringFromResource();
+                    StatusMessage = "GpsLocationStatusPermissionDenied".SafeGetResource<string>();
                     break;
                 case LocationStatus.OperationCancelled:
                     IsResultVisible = false;
-                    StatusMessage = "GpsLocationStatusOperationCancelled".GetStringFromResource();
+                    StatusMessage = "GpsLocationStatusOperationCancelled".SafeGetResource<string>();
                     break;
                 case LocationStatus.UnknownError:
                 default:
                     IsResultVisible = false;
-                    StatusMessage = "GpsLocationStatusUnknownError".GetStringFromResource();
+                    StatusMessage = "GpsLocationStatusUnknownError".SafeGetResource<string>();
                     break;
             }
             IsWorking = false;
@@ -195,7 +195,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         {
             get;
             set => SetProperty(ref field, value);
-        } = "GpsInit".GetStringFromResource();
+        } = "GpsInit".SafeGetResource<string>();
         #endregion
     }
 }

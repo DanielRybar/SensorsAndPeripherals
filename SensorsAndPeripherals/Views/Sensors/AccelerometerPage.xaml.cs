@@ -23,5 +23,5 @@ public partial class AccelerometerPage : ApplicationPage
         }
     }
 
-    protected override string InfoText => "AccelerometerInfoPopup".GetStringFromResource();
+    protected override string InfoText => "AccelerometerInfoPopup".SafeGetResource<string>();
 }

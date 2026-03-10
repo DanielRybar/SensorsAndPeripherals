@@ -13,7 +13,7 @@ public partial class BiometricPage : ApplicationPage
         BindingContext = viewModel = new ViewModels.Sensors.BiometricViewModel();
         viewModel.ShowBiometricTypesDialogRequested += async types =>
         {
-            await DisplayAlertAsync("BiometricAvailableTypes".GetStringFromResource(), types, "OK");
+            await DisplayAlertAsync("BiometricAvailableTypes".SafeGetResource<string>(), types, "OK");
         };
     }
 
@@ -23,6 +23,6 @@ public partial class BiometricPage : ApplicationPage
         await viewModel.InitializeAsync();
     }
 
-    protected override string InfoToolbarItemsText => "BiometricSensorToolbarItemGetTypesPopup".GetStringFromResource();
-    protected override string InfoText => "BiometricSensorInfoPopup".GetStringFromResource();
+    protected override string InfoToolbarItemsText => "BiometricSensorToolbarItemGetTypesPopup".SafeGetResource<string>();
+    protected override string InfoText => "BiometricSensorInfoPopup".SafeGetResource<string>();
 }

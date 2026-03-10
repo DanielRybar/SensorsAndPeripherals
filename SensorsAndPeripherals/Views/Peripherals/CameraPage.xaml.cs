@@ -14,5 +14,5 @@ public partial class CameraPage : ApplicationPage
         BindingContext = viewModel = new CameraViewModel();
     }
 
-    protected override string InfoText => "CameraInfoPopup".GetStringFromResource();
+    protected override string InfoText => "CameraInfoPopup".SafeGetResource<string>();
 }

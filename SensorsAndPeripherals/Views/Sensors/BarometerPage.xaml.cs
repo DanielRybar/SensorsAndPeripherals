@@ -23,5 +23,5 @@ public partial class BarometerPage : ApplicationPage
         }
     }
 
-    protected override string InfoText => "BarometerInfoPopup".GetStringFromResource();
+    protected override string InfoText => "BarometerInfoPopup".SafeGetResource<string>();
 }

@@ -39,9 +39,9 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             var profiles = peripheralService.GetConnectionProfiles();
             var translatedProfiles = profiles.Distinct().Select(profile => profile switch
             {
-                ConnectionProfile.Cellular => "CellularCaption".GetStringFromResource(),
-                ConnectionProfile.WiFi => "WifiCaption".GetStringFromResource(),
-                ConnectionProfile.Unknown => "UnknownProfileCaption".GetStringFromResource(),
+                ConnectionProfile.Cellular => "CellularCaption".SafeGetResource<string>(),
+                ConnectionProfile.WiFi => "WifiCaption".SafeGetResource<string>(),
+                ConnectionProfile.Unknown => "UnknownProfileCaption".SafeGetResource<string>(),
                 _ => profile.ToString()
             });
             ConnectionProfiles = translatedProfiles.Any() ? string.Join("\n", translatedProfiles) : null;

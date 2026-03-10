@@ -20,5 +20,5 @@ public partial class VibrationPage : ApplicationPage
         viewModel.CancelVibration();
     }
 
-    protected override string InfoText => "VibrationInfoPopup".GetStringFromResource();
+    protected override string InfoText => "VibrationInfoPopup".SafeGetResource<string>();
 }

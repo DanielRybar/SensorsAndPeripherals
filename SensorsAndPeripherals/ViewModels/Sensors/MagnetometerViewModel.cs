@@ -9,8 +9,8 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
     {
         #region variables
         private readonly string[] directions = ["S", "SV", "V", "JV", "J", "JZ", "Z", "SZ", "S"];
-        private readonly string microTeslaUnit = "MicroTesla".GetStringFromResource();
-        private readonly string degreeUnit = "Degree".GetStringFromResource();
+        private readonly string microTeslaUnit = "MicroTesla".SafeGetResource<string>();
+        private readonly string degreeUnit = "Degree".SafeGetResource<string>();
         private double smoothedHeading = 0.0;
         private double smoothedMagX = 0.0;
         private double smoothedMagY = 0.0;

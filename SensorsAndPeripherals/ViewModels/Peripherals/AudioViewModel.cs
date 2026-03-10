@@ -88,14 +88,14 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
                     timer.Start();
                     break;
                 case MicrophoneResult.PermissionDenied:
-                    StatusMessage = "MicrophonePermissionDenied".GetStringFromResource();
+                    StatusMessage = "MicrophonePermissionDenied".SafeGetResource<string>();
                     break;
                 case MicrophoneResult.NotSupported:
-                    StatusMessage = "AudioNotSupported".GetStringFromResource();
+                    StatusMessage = "AudioNotSupported".SafeGetResource<string>();
                     break;
                 case MicrophoneResult.Error:
                 default:
-                    StatusMessage = "RecordingError".GetStringFromResource();
+                    StatusMessage = "RecordingError".SafeGetResource<string>();
                     break;
             }
             IsWorking = false;
@@ -108,7 +108,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
                 if (stopwatch.Elapsed >= maxRecordingDuration)
                 {
                     StopRecording();
-                    StatusMessage = "RecordingTooLong".GetStringFromResource();
+                    StatusMessage = "RecordingTooLong".SafeGetResource<string>();
                     return;
                 }
                 TimeDisplay = stopwatch.Elapsed.ToString(@"mm\:ss");

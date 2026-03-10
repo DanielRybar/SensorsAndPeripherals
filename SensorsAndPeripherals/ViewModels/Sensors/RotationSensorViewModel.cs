@@ -8,7 +8,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
     public class RotationSensorViewModel : SensorViewModel<IRotationSensorService, OrientationSensorChangedEventArgs>
     {
         #region variables
-        private readonly string unit = "Degree".GetStringFromResource();
+        private readonly string unit = "Degree".SafeGetResource<string>();
         private double smoothedPitch = 0.0;
         private double smoothedRoll = 0.0;
         private double smoothedYaw = 0.0;

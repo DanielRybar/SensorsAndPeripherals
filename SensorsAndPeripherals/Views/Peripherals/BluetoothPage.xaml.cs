@@ -14,7 +14,7 @@ public partial class BluetoothPage : ApplicationPage
         BindingContext = viewModel = new BluetoothViewModel();
         viewModel.ShowAdapterInfoDialogRequested += async name =>
         {
-            await DisplayAlertAsync("BluetoothAdapterName".GetStringFromResource(), name, "OK");
+            await DisplayAlertAsync("BluetoothAdapterName".SafeGetResource<string>(), name, "OK");
         };
     }
 
@@ -30,6 +30,6 @@ public partial class BluetoothPage : ApplicationPage
         viewModel.CleanUp();
     }
 
-    protected override string InfoToolbarItemsText => "BluetoothToolbarItemGetDeviceNamePopup".GetStringFromResource();
-    protected override string InfoText => "BluetoothInfoPopup".GetStringFromResource();
+    protected override string InfoToolbarItemsText => "BluetoothToolbarItemGetDeviceNamePopup".SafeGetResource<string>();
+    protected override string InfoText => "BluetoothInfoPopup".SafeGetResource<string>();
 }

@@ -11,14 +11,14 @@ namespace SensorsAndPeripherals.ViewModels
         {
             SendFeedbackCommand = new Command(async () =>
             {
-                string subject = "FeedbackEmailSubject".GetStringFromResource();
-                string body = "FeedbackEmailBody".GetStringFromResource();
+                string subject = "FeedbackEmailSubject".SafeGetResource<string>();
+                string body = "FeedbackEmailBody".SafeGetResource<string>();
                 var msg = new EmailMessage
                 {
                     Subject = subject,
                     Body = body,
                     BodyFormat = EmailBodyFormat.PlainText,
-                    To = ["EmailDR".GetStringFromResource()]
+                    To = ["EmailDR".SafeGetResource<string>()]
                 };
                 await Email.Default.ComposeAsync(msg);
             });

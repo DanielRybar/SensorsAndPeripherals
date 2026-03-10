@@ -18,7 +18,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             {
                 if (!IsDurationValid)
                 {
-                    await Toast.Make($"{"VibrationErrorToast".GetStringFromResource()} {MinDuration:N0} a {MaxDuration:N0} ms!").Show();
+                    await Toast.Make($"{"VibrationErrorToast".SafeGetResource<string>()} {MinDuration:N0} a {MaxDuration:N0} ms!").Show();
                     return;
                 }
                 CancelVibration();

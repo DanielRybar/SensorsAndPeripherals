@@ -14,7 +14,7 @@ public partial class GpsPage : ApplicationPage
         BindingContext = viewModel = new GpsViewModel();
         viewModel.ShowAddressDialogRequested += async address =>
         {
-            await DisplayAlertAsync("GpsAddress".GetStringFromResource(), address, "OK");
+            await DisplayAlertAsync("GpsAddress".SafeGetResource<string>(), address, "OK");
         };
     }
 
@@ -24,6 +24,6 @@ public partial class GpsPage : ApplicationPage
         viewModel.CancelCurrentLocationRequest();
     }
 
-    protected override string InfoToolbarItemsText => "GpsToolbarItemGetAddressPopup".GetStringFromResource();
-    protected override string InfoText => "GpsInfoPopup".GetStringFromResource();
+    protected override string InfoToolbarItemsText => "GpsToolbarItemGetAddressPopup".SafeGetResource<string>();
+    protected override string InfoText => "GpsInfoPopup".SafeGetResource<string>();
 }

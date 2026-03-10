@@ -1,4 +1,5 @@
 ﻿using SensorsAndPeripherals.Constants;
+using SensorsAndPeripherals.Helpers;
 using SensorsAndPeripherals.Interfaces.Sensors;
 using SensorsAndPeripherals.ViewModels.Abstract;
 
@@ -9,7 +10,7 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         #region variables
         private readonly float minPressure = 960f;
         private readonly float maxPressure = 1060f;
-        private readonly double maxContainerHeight = (double)App.Current!.Resources["ScaleLiquidContainerGridHeightRequest"];
+        private readonly double maxContainerHeight = "ScaleLiquidContainerGridHeightRequest".SafeGetResource<double>();
         #endregion
 
         #region constructor

@@ -1,4 +1,6 @@
-﻿namespace SensorsAndPeripherals.Controls
+﻿using SensorsAndPeripherals.Helpers;
+
+namespace SensorsAndPeripherals.Controls
 {
     public partial class DataGuard : ContentView
     {
@@ -30,7 +32,7 @@
 
                 var emptyLabel = new Label
                 {
-                    Style = App.Current!.Resources["DataGuardEmptyLabel"] as Style
+                    Style = "DataGuardEmptyLabel".SafeGetResource<Style>()
                 };
                 emptyLabel.SetBinding(Label.TextProperty, new Binding(nameof(EmptyText), source: RelativeBindingSource.TemplatedParent));
 

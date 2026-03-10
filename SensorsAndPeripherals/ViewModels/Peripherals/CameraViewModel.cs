@@ -11,7 +11,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         #region constructor
         public CameraViewModel()
         {
-            StatusMessage = "CameraInit".GetStringFromResource();
+            StatusMessage = "CameraInit".SafeGetResource<string>();
             TakeAndDisplayPhotoCommand = new Command(async () =>
             {
                 IsWorking = true;
@@ -32,21 +32,21 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
                                 else
                                 {
                                     PhotoPath = null;
-                                    StatusMessage = "CameraSavingError".GetStringFromResource();
+                                    StatusMessage = "CameraSavingError".SafeGetResource<string>();
                                 }
                             }
                             break;
                         case CameraResult.PermissionDenied:
                             PhotoPath = null;
-                            StatusMessage = "CameraPermissionDenied".GetStringFromResource();
+                            StatusMessage = "CameraPermissionDenied".SafeGetResource<string>();
                             break;
                         case CameraResult.Cancelled:
-                            StatusMessage = "CameraInit".GetStringFromResource();
+                            StatusMessage = "CameraInit".SafeGetResource<string>();
                             break;
                         case CameraResult.Error:
                         default:
                             PhotoPath = null;
-                            StatusMessage = "CameraShootingError".GetStringFromResource();
+                            StatusMessage = "CameraShootingError".SafeGetResource<string>();
                             break;
                     }
                 }

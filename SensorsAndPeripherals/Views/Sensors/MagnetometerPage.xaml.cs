@@ -23,5 +23,5 @@ public partial class MagnetometerPage : ApplicationPage
         }
     }
 
-    protected override string InfoText => "MagnetometerInfoPopup".GetStringFromResource();
+    protected override string InfoText => "MagnetometerInfoPopup".SafeGetResource<string>();
 }

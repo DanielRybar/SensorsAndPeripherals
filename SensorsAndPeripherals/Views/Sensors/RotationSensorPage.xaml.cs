@@ -23,5 +23,5 @@ public partial class RotationSensorPage : ApplicationPage
         }
     }
 
-    protected override string InfoText => "RotationSensorInfoPopup".GetStringFromResource();
+    protected override string InfoText => "RotationSensorInfoPopup".SafeGetResource<string>();
 }

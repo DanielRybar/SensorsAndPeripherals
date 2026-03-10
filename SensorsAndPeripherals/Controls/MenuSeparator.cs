@@ -1,4 +1,6 @@
-﻿namespace SensorsAndPeripherals.Controls
+﻿using SensorsAndPeripherals.Helpers;
+
+namespace SensorsAndPeripherals.Controls
 {
     public class MenuSeparator : MenuItem
     {
@@ -9,7 +11,7 @@
             {
                 var label = new Label
                 {
-                    Style = App.Current!.Resources["MenuSeparator"] as Style
+                    Style = "MenuSeparator".SafeGetResource<Style>()
                 };
 
                 label.SetBinding(Label.TextProperty, new Binding(nameof(Text), source: this));

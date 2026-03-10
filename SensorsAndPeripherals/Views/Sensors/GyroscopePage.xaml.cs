@@ -23,5 +23,5 @@ public partial class GyroscopePage : ApplicationPage
         }
     }
 
-    protected override string InfoText => "GyroscopeInfoPopup".GetStringFromResource();
+    protected override string InfoText => "GyroscopeInfoPopup".SafeGetResource<string>();
 }

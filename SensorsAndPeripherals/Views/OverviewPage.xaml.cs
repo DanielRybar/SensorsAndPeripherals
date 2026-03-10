@@ -14,5 +14,5 @@ public partial class OverviewPage : ApplicationPage
         BindingContext = viewModel = new OverviewViewModel();
     }
 
-    protected override string InfoText => "OverviewInfoPopup".GetStringFromResource();
+    protected override string InfoText => "OverviewInfoPopup".SafeGetResource<string>();
 }

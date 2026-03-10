@@ -32,7 +32,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             () => IsSupported);
             GetAdapterInfoCommand = new Command(async () =>
             {
-                ShowAdapterInfoDialogRequested?.Invoke(await peripheralService.GetAdapterName() ?? "BluetoothUnknownDevice".GetStringFromResource());
+                ShowAdapterInfoDialogRequested?.Invoke(await peripheralService.GetAdapterName() ?? "BluetoothUnknownDevice".SafeGetResource<string>());
             },
             () => IsSupported && !IsWorking);
         }
@@ -66,7 +66,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
 
         private async Task StartAdvertisingAsync()
         {
-            LoadingText = "StartingBLEPropagation".GetStringFromResource();
+            LoadingText = "StartingBLEPropagation".SafeGetResource<string>();
             IsWorking = true;
             await Task.Delay(DelayConstants.MEDIUM_DELAY);
             var result = await peripheralService.StartAdvertisingAsync();
@@ -86,7 +86,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
 
         private async Task StartDiscoveringAsync()
         {
-            LoadingText = "ScanningStarted".GetStringFromResource();
+            LoadingText = "ScanningStarted".SafeGetResource<string>();
             IsWorking = true;
             await Task.Delay(DelayConstants.MEDIUM_DELAY);
             DiscoveredDevices.Clear();
@@ -138,12 +138,12 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
                 if (IsAdvertising)
                 {
                     StopAdvertising();
-                    StatusMessage = "BluetoothExternalTurnOff".GetStringFromResource();
+                    StatusMessage = "BluetoothExternalTurnOff".SafeGetResource<string>();
                 }
                 if (IsDiscovering)
                 {
                     StopDiscovering();
-                    StatusMessageDiscovering = "BluetoothExternalTurnOff".GetStringFromResource();
+                    StatusMessageDiscovering = "BluetoothExternalTurnOff".SafeGetResource<string>();
                 }
             });
         }
@@ -167,10 +167,10 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             return result switch
             {
                 BluetoothResult.Success => string.Empty,
-                BluetoothResult.NotSupported => "BluetoothNotSupported".GetStringFromResource(),
-                BluetoothResult.NotEnabled => "BluetoothNotEnabled".GetStringFromResource(),
-                BluetoothResult.PermissionDenied => "BluetoothPermissionDenied".GetStringFromResource(),
-                _ => "BluetoothUnknownError".GetStringFromResource(),
+                BluetoothResult.NotSupported => "BluetoothNotSupported".SafeGetResource<string>(),
+                BluetoothResult.NotEnabled => "BluetoothNotEnabled".SafeGetResource<string>(),
+                BluetoothResult.PermissionDenied => "BluetoothPermissionDenied".SafeGetResource<string>(),
+                _ => "BluetoothUnknownError".SafeGetResource<string>(),
             };
         }
         #endregion

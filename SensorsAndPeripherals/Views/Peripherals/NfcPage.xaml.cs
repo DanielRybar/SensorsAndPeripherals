@@ -14,7 +14,7 @@ public partial class NfcPage : ApplicationPage
         BindingContext = viewModel = new NfcViewModel();
         viewModel.ShowReadingResultRequested += async content =>
         {
-            await DisplayAlertAsync("NfcMessage".GetStringFromResource(), content, "OK");
+            await DisplayAlertAsync("NfcMessage".SafeGetResource<string>(), content, "OK");
         };
     }
 
@@ -24,5 +24,5 @@ public partial class NfcPage : ApplicationPage
         viewModel.CancelCurrentRequests();
     }
 
-    protected override string InfoText => "NfcInfoPopup".GetStringFromResource();
+    protected override string InfoText => "NfcInfoPopup".SafeGetResource<string>();
 }
