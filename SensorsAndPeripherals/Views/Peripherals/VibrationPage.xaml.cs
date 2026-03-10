@@ -1,3 +1,4 @@
+using SensorsAndPeripherals.Helpers;
 using SensorsAndPeripherals.ViewModels.Peripherals;
 using SensorsAndPeripherals.Views.Abstract;
 
@@ -19,5 +20,5 @@ public partial class VibrationPage : ApplicationPage
         viewModel.CancelVibration();
     }
 
-    protected override string InfoText => "";
+    protected override string InfoText => "VibrationInfoPopup".GetStringFromResource();
 }

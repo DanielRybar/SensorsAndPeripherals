@@ -1,3 +1,4 @@
+using SensorsAndPeripherals.Helpers;
 using SensorsAndPeripherals.ViewModels.Sensors;
 using SensorsAndPeripherals.Views.Abstract;
 
@@ -5,12 +6,12 @@ namespace SensorsAndPeripherals.Views.Sensors;
 
 public partial class RotationSensorPage : ApplicationPage
 {
-	private readonly RotationSensorViewModel viewModel;
+    private readonly RotationSensorViewModel viewModel;
 
-	public RotationSensorPage()
-	{
-		InitializeComponent();
-		BindingContext = viewModel = new RotationSensorViewModel();
+    public RotationSensorPage()
+    {
+        InitializeComponent();
+        BindingContext = viewModel = new RotationSensorViewModel();
     }
 
     protected override void OnDisappearing()
@@ -22,5 +23,5 @@ public partial class RotationSensorPage : ApplicationPage
         }
     }
 
-    protected override string InfoText => "";
+    protected override string InfoText => "RotationSensorInfoPopup".GetStringFromResource();
 }

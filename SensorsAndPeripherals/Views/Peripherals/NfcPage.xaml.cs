@@ -24,5 +24,5 @@ public partial class NfcPage : ApplicationPage
         viewModel.CancelCurrentRequests();
     }
 
-    protected override string InfoText => "";
+    protected override string InfoText => "NfcInfoPopup".GetStringFromResource();
 }

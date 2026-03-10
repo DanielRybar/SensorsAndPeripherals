@@ -23,6 +23,6 @@ public partial class BiometricPage : ApplicationPage
         await viewModel.InitializeAsync();
     }
 
-    protected override string InfoToolbarItemsText => string.Empty;
-    protected override string InfoText => "";
+    protected override string InfoToolbarItemsText => "BiometricSensorToolbarItemGetTypesPopup".GetStringFromResource();
+    protected override string InfoText => "BiometricSensorInfoPopup".GetStringFromResource();
 }

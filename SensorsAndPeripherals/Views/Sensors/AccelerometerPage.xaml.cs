@@ -1,3 +1,4 @@
+using SensorsAndPeripherals.Helpers;
 using SensorsAndPeripherals.ViewModels.Sensors;
 using SensorsAndPeripherals.Views.Abstract;
 
@@ -5,12 +6,12 @@ namespace SensorsAndPeripherals.Views.Sensors;
 
 public partial class AccelerometerPage : ApplicationPage
 {
-	private readonly AccelerometerViewModel viewModel;
+    private readonly AccelerometerViewModel viewModel;
 
-	public AccelerometerPage()
-	{
-		InitializeComponent();
-		BindingContext = viewModel = new AccelerometerViewModel();
+    public AccelerometerPage()
+    {
+        InitializeComponent();
+        BindingContext = viewModel = new AccelerometerViewModel();
     }
 
     protected override void OnDisappearing()
@@ -22,5 +23,5 @@ public partial class AccelerometerPage : ApplicationPage
         }
     }
 
-    protected override string InfoText => "";
+    protected override string InfoText => "AccelerometerInfoPopup".GetStringFromResource();
 }

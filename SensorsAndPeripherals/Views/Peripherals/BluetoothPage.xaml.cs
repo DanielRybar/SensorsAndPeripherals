@@ -30,6 +30,6 @@ public partial class BluetoothPage : ApplicationPage
         viewModel.CleanUp();
     }
 
-    protected override string InfoToolbarItemsText => string.Empty;
-    protected override string InfoText => "";
+    protected override string InfoToolbarItemsText => "BluetoothToolbarItemGetDeviceNamePopup".GetStringFromResource();
+    protected override string InfoText => "BluetoothInfoPopup".GetStringFromResource();
 }

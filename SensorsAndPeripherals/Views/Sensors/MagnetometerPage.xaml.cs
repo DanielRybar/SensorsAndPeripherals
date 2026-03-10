@@ -1,3 +1,4 @@
+using SensorsAndPeripherals.Helpers;
 using SensorsAndPeripherals.ViewModels.Sensors;
 using SensorsAndPeripherals.Views.Abstract;
 
@@ -22,5 +23,5 @@ public partial class MagnetometerPage : ApplicationPage
         }
     }
 
-    protected override string InfoText => "";
+    protected override string InfoText => "MagnetometerInfoPopup".GetStringFromResource();
 }

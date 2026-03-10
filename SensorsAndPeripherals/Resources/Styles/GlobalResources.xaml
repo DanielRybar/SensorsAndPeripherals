@@ -161,7 +161,27 @@
     <x:String x:Key="FeedbackEmailBody">Ahoj,&#10;&#10;posílám ti zpětnou vazbu ke tvé aplikaci. Chtěl/a bych ti aplikaci pochválit / zkritizovat / nahlásit chybu:&#10;&#10;</x:String>
     <x:String x:Key="ShortAppDescription">Senzory a periferie je mobilní aplikace pro&#160;Android vyvinutá pomocí frameworku .NET MAUI.</x:String>
     <x:String x:Key="LongAppDescription">Aplikace slouží pro&#160;demonstraci praktického využití mobilních senzorů a&#160;periferií. Je navržena s&#160;velkým důrazem na&#160;přehlednost a&#160;srozumitelnost. Má potenciál sloužit pro výuku v&#160;oblasti vývoje mobilních aplikací.</x:String>
-    
+
+    <x:String x:Key="AccelerometerInfoPopup"></x:String>
+    <x:String x:Key="GyroscopeInfoPopup"></x:String>
+    <x:String x:Key="MagnetometerInfoPopup"></x:String>
+    <x:String x:Key="RotationSensorInfoPopup"></x:String>
+    <x:String x:Key="LightSensorInfoPopup"></x:String>
+    <x:String x:Key="BarometerInfoPopup"></x:String>
+    <x:String x:Key="GpsInfoPopup"></x:String>
+    <x:String x:Key="GpsToolbarItemGetAddressPopup"></x:String>
+    <x:String x:Key="ProximitySensorInfoPopup"></x:String>
+    <x:String x:Key="BiometricSensorInfoPopup"></x:String>
+    <x:String x:Key="BiometricSensorToolbarItemGetTypesPopup"></x:String>
+    <x:String x:Key="NfcInfoPopup"></x:String>
+    <x:String x:Key="BluetoothInfoPopup"></x:String>
+    <x:String x:Key="BluetoothToolbarItemGetDeviceNamePopup"></x:String>
+    <x:String x:Key="ConnectivityInfoPopup"></x:String>
+    <x:String x:Key="CameraInfoPopup"></x:String>
+    <x:String x:Key="AudioInfoPopup"></x:String>
+    <x:String x:Key="VibrationInfoPopup"></x:String>
+    <x:String x:Key="OverviewInfoPopup"></x:String>
+
     <!-- Doubles -->
     <x:Double x:Key="ScaleLiquidContainerGridHeightRequest">480</x:Double>
 

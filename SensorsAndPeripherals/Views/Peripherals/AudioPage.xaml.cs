@@ -1,3 +1,4 @@
+using SensorsAndPeripherals.Helpers;
 using SensorsAndPeripherals.ViewModels.Peripherals;
 using SensorsAndPeripherals.Views.Abstract;
 
@@ -5,12 +6,12 @@ namespace SensorsAndPeripherals.Views.Peripherals;
 
 public partial class AudioPage : ApplicationPage
 {
-	private readonly AudioViewModel viewModel;
+    private readonly AudioViewModel viewModel;
 
-	public AudioPage()
-	{
-		InitializeComponent();
-		BindingContext = viewModel = new AudioViewModel();
+    public AudioPage()
+    {
+        InitializeComponent();
+        BindingContext = viewModel = new AudioViewModel();
     }
 
     protected override void OnDisappearing()
@@ -23,5 +24,5 @@ public partial class AudioPage : ApplicationPage
         viewModel.StopPlayback();
     }
 
-    protected override string InfoText => "";
+    protected override string InfoText => "AudioInfoPopup".GetStringFromResource();
 }

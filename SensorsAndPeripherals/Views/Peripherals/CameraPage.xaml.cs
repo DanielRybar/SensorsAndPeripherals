@@ -1,3 +1,4 @@
+using SensorsAndPeripherals.Helpers;
 using SensorsAndPeripherals.ViewModels.Peripherals;
 using SensorsAndPeripherals.Views.Abstract;
 
@@ -13,5 +14,5 @@ public partial class CameraPage : ApplicationPage
         BindingContext = viewModel = new CameraViewModel();
     }
 
-    protected override string InfoText => "";
+    protected override string InfoText => "CameraInfoPopup".GetStringFromResource();
 }
