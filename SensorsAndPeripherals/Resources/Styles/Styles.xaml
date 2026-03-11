@@ -750,8 +750,8 @@
     </Style>
 
     <Style TargetType="VerticalStackLayout" x:Key="PopupMainVsl">
-        <Setter Property="Padding" Value="30" />
-        <Setter Property="Spacing" Value="20" />
+        <Setter Property="Padding" Value="30,10,30,30" />
+        <Setter Property="Spacing" Value="25" />
     </Style>
 
     <Style TargetType="VerticalStackLayout" x:Key="PopupMinorVsl">
@@ -759,13 +759,14 @@
     </Style>
 
     <Style TargetType="Label" BasedOn="{StaticResource DisplayTextCaption}" x:Key="PopupHeadlineStyle">
-        <Setter Property="FontSize" Value="20" />
-        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
+        <Setter Property="FontSize" Value="18" />
+        <Setter Property="TextColor" Value="{StaticResource MainApplicationColor}" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
     </Style>
 
     <Style TargetType="Label" x:Key="PopupDescStyle">
-        <Setter Property="HorizontalTextAlignment" Value="Justify" />
-        <Setter Property="LineBreakMode" Value="WordWrap" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="HorizontalTextAlignment" Value="Start" />
     </Style>
 
     <Style TargetType="Label" x:Key="PopupIconLabel" BasedOn="{StaticResource CenteredLabel}">

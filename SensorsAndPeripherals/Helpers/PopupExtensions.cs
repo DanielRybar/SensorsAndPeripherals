@@ -8,7 +8,7 @@ namespace SensorsAndPeripherals.Helpers
 {
     public static class PopupExtensions
     {
-        public static async Task CreateAndDisplayPopupAsync(string description, Dictionary<string, string> toolbarItems)
+        public static async Task CreateAndDisplayPopupAsync(string[] description, Dictionary<string, string> toolbarItems)
         {
             var lightColor = "PopupLightBackgroundColor".SafeGetResource<Color>();
             var darkColor = "PopupDarkBackgroundColor".SafeGetResource<Color>();
@@ -55,21 +55,47 @@ namespace SensorsAndPeripherals.Helpers
             var mainVsl = new VerticalStackLayout { Style = "PopupMainVsl".SafeGetResource<Style>() };
             grid.Add(mainVsl, row: 1);
 
-            var vsl1 = new VerticalStackLayout { Style = "PopupMinorVsl".SafeGetResource<Style>() };
-            var labelDescHeadline = new Label
+            if (description.Length > 2)
             {
-                Text = "PopupDescriptionLabel".SafeGetResource<string>(),
-                Style = "PopupHeadlineStyle".SafeGetResource<Style>()
-            };
-            vsl1.Add(labelDescHeadline);
+                var vslDesc = new VerticalStackLayout { Style = "PopupMinorVsl".SafeGetResource<Style>() };
+                vslDesc.Add(new Label
+                {
+                    Text = "PopupDescriptionLabel".SafeGetResource<string>(),
+                    Style = "PopupHeadlineStyle".SafeGetResource<Style>()
+                });
+                vslDesc.Add(new Label
+                {
+                    Text = description[0].Trim(),
+                    Style = "PopupDescStyle".SafeGetResource<Style>()
+                });
+                mainVsl.Add(vslDesc);
 
-            var labelDesc = new Label
-            {
-                Text = description,
-                Style = "PopupDescStyle".SafeGetResource<Style>()
-            };
-            vsl1.Add(labelDesc);
-            mainVsl.Add(vsl1);
+                var vslValues = new VerticalStackLayout { Style = "PopupMinorVsl".SafeGetResource<Style>() };
+                vslValues.Add(new Label
+                {
+                    Text = "PopupValuesLabel".SafeGetResource<string>(),
+                    Style = "PopupHeadlineStyle".SafeGetResource<Style>()
+                });
+                vslValues.Add(new Label
+                {
+                    Text = description[1].Trim(),
+                    Style = "PopupDescStyle".SafeGetResource<Style>()
+                });
+                mainVsl.Add(vslValues);
+
+                var vslUsage = new VerticalStackLayout { Style = "PopupMinorVsl".SafeGetResource<Style>() };
+                vslUsage.Add(new Label
+                {
+                    Text = "PopupUsageLabel".SafeGetResource<string>(),
+                    Style = "PopupHeadlineStyle".SafeGetResource<Style>()
+                });
+                vslUsage.Add(new Label
+                {
+                    Text = description[2].Trim(),
+                    Style = "PopupDescStyle".SafeGetResource<Style>()
+                });
+                mainVsl.Add(vslUsage);
+            }
 
             if (toolbarItems.Count > 0)
             {

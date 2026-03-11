@@ -154,7 +154,9 @@
     <x:String x:Key="InternetAvailability">Dostupnost internetu</x:String>
     <x:String x:Key="TestConnectionStatus">Zjistit stav připojení</x:String>
     <x:String x:Key="TestInternetAvailability">Ověřit dostupnost internetu</x:String>
-    <x:String x:Key="PopupDescriptionLabel">Stručný popis</x:String>
+    <x:String x:Key="PopupDescriptionLabel">Popis</x:String>
+    <x:String x:Key="PopupValuesLabel">Hodnoty</x:String>
+    <x:String x:Key="PopupUsageLabel">Využití</x:String>
     <x:String x:Key="PopupIconsLabel">Pomocné ikonky</x:String>
     <x:String x:Key="SendFeedbackCaption">Odeslat zpětnou vazbu</x:String>
     <x:String x:Key="FeedbackEmailSubject">Zpětná vazba k aplikaci Senzory a periferie</x:String>
@@ -162,8 +164,17 @@
     <x:String x:Key="ShortAppDescription">Senzory a periferie je mobilní aplikace pro&#160;Android vyvinutá pomocí frameworku .NET MAUI.</x:String>
     <x:String x:Key="LongAppDescription">Aplikace slouží pro&#160;demonstraci praktického využití mobilních senzorů a&#160;periferií. Je navržena s&#160;velkým důrazem na&#160;přehlednost a&#160;srozumitelnost. Má potenciál sloužit pro výuku v&#160;oblasti vývoje mobilních aplikací.</x:String>
 
-    <x:String x:Key="AccelerometerInfoPopup"></x:String>
-    <x:String x:Key="GyroscopeInfoPopup"></x:String>
+    <x:String x:Key="AccelerometerInfoPopup">
+Akcelerometr měří zrychlení působící na&#160;zařízení ve&#160;třech osách, přičemž měří jak zrychlení způsobené skutečným pohybem, tak i&#160;gravitační složku.;
+Výstupem jsou tři hodnoty typu float, které udávají zrychlení v&#160;metrech za&#160;sekundu na&#160;druhou (m/s²) pro&#160;osy X, Y a&#160;Z.;
+Používá se například ke&#160;zjištění, zda uživatel otřásl telefonem, k&#160;detekci náklonu ve&#160;hrách, pro&#160;měření různých aktivit, rozpoznání pádu nebo jako součást výpočtů pro&#160;navigaci.
+    </x:String>
+    <x:String x:Key="GyroscopeInfoPopup">
+Gyroskop měří úhlovou rychlost zařízení kolem dílčích os, tedy v&#160;podstatě to, jak rychle se zařízení otáčí.;
+Výstupem jsou tři hodnoty typu float, které udávají rychlost rotace v&#160;radiánech za&#160;sekundu (rad/s). Pro&#160;jednoduchost jsou zde převedeny na&#160;stupně za&#160;sekundu (°/s).&#10;
+Celková rychlost otáčení je vypočtena jako velikost výsledného vektoru úhlové rychlosti (pomocí euklidovské normy).;
+Používá se pro&#160;velmi přesné sledování rotace, pro&#160;stabilizaci kamery, v&#160;herních ovládáních, při&#160;natáčení panoramat, v&#160;navigaci a&#160;zejména v&#160;aplikacích pracujících s&#160;virtuální a&#160;rozšířenou realitou.
+    </x:String>
     <x:String x:Key="MagnetometerInfoPopup"></x:String>
     <x:String x:Key="RotationSensorInfoPopup"></x:String>
     <x:String x:Key="LightSensorInfoPopup"></x:String>
