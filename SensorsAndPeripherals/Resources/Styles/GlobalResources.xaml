@@ -175,7 +175,11 @@ Výstupem jsou tři hodnoty typu float, které udávají rychlost rotace v&#160;
 Celková rychlost otáčení je vypočtena jako velikost výsledného vektoru úhlové rychlosti (pomocí euklidovské normy).;
 Používá se pro&#160;velmi přesné sledování rotace, pro&#160;stabilizaci kamery, v&#160;herních ovládáních, při&#160;natáčení panoramat, v&#160;navigaci a&#160;zejména v&#160;aplikacích pracujících s&#160;virtuální a&#160;rozšířenou realitou.
     </x:String>
-    <x:String x:Key="MagnetometerInfoPopup"></x:String>
+    <x:String x:Key="MagnetometerInfoPopup">
+Magnetometr měří intenzitu a&#160;směr magnetického pole v&#160;okolí zařízení a&#160;umožňuje určit orientaci vůči světovým stranám. Svou funkcí tedy připomíná klasický kompas.;
+Výstupem jsou tři hodnoty typu float, které představují složky magnetického pole vzhledem k&#160;osám X, Y, Z. Jednotkou je mikrotesla (µT).;
+Magnetometr se využívá zejména jako kompas, v&#160;mapových aplikacích, při&#160;navigaci, pro&#160;zvýšení přesnosti orientace a&#160;v&#160;aplikacích pracujících s&#160;rozšířenou realitou.
+    </x:String>
     <x:String x:Key="RotationSensorInfoPopup"></x:String>
     <x:String x:Key="LightSensorInfoPopup"></x:String>
     <x:String x:Key="BarometerInfoPopup"></x:String>
