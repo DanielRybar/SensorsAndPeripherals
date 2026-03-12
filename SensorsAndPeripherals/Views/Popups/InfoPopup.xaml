@@ -11,8 +11,8 @@
                 BackgroundColor="{StaticResource Transparent}" 
                 ImageSource="{StaticResource PopupCloseIcon}"
                 Clicked="CloseButton_Clicked" />
-        <VerticalStackLayout x:Name="DescriptionLayout" Grid.Row="1" Style="{StaticResource PopupMainVsl}">
-            <VerticalStackLayout Style="{StaticResource PopupMinorVsl}">
+        <VerticalStackLayout Grid.Row="1" Style="{StaticResource PopupMainVsl}">
+            <VerticalStackLayout x:Name="DescriptionLayout" Style="{StaticResource PopupMinorVsl}">
                 <Label Text="{StaticResource PopupDescriptionLabel}" Style="{StaticResource PopupHeadlineStyle}" />
                 <Label x:Name="ItemDescription" Style="{StaticResource PopupDescStyle}" />
             </VerticalStackLayout>
