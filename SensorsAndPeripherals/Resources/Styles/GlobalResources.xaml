@@ -207,7 +207,10 @@ Využívá se například pro&#160;odhad nadmořské výšky zařízení, zpřes
     <x:String x:Key="CameraInfoPopup"></x:String>
     <x:String x:Key="AudioInfoPopup"></x:String>
     <x:String x:Key="VibrationInfoPopup"></x:String>
-    <x:String x:Key="OverviewInfoPopup"></x:String>
+    <x:String x:Key="OverviewInfoPopup">
+Tato stránka zobrazuje kompletní přehled senzorové výbavy zařízení. K&#160;získání seznamu se využívá systémová konstanta TYPE_ALL, která vrátí všechny dostupné fyzické i&#160;softwarově emulované senzory. GPS a&#160;biometrika zde zahrnuty nejsou, neb se k&#160;nim v&#160;systému přistupuje odlišným způsobem.&#10;
+Výsledný seznam běžně obsahuje i&#160;několik desítek položek. Tento vysoký počet je dán tím, že moderní operační systémy poskytují nejen základní senzory, ale i&#160;jejich nekalibrované verze (vracející surová data bez&#160;korekcí) nebo specifické interní senzory od&#160;výrobce (např. detektor uzavření pouzdra).
+    </x:String>
 
     <!-- Doubles -->
     <x:Double x:Key="ScaleLiquidContainerGridHeightRequest">480</x:Double>

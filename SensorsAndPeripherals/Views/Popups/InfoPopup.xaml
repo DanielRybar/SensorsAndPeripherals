@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="SensorsAndPeripherals.Views.Popups.InfoPopup"
+             BackgroundColor="{AppThemeBinding Light={StaticResource PopupLightBackgroundColor}, Dark={StaticResource PopupDarkBackgroundColor}}">
+
+    <Grid Style="{StaticResource MainGridStyle}" RowDefinitions="Auto, *" HorizontalOptions="Fill" VerticalOptions="Fill">
+        <Button HorizontalOptions="End" 
+                VerticalOptions="Start" 
+                BackgroundColor="{StaticResource Transparent}" 
+                ImageSource="{StaticResource PopupCloseIcon}"
+                Clicked="CloseButton_Clicked" />
+        <VerticalStackLayout x:Name="DescriptionLayout" Grid.Row="1" Style="{StaticResource PopupMainVsl}">
+            <VerticalStackLayout Style="{StaticResource PopupMinorVsl}">
+                <Label Text="{StaticResource PopupDescriptionLabel}" Style="{StaticResource PopupHeadlineStyle}" />
+                <Label x:Name="ItemDescription" Style="{StaticResource PopupDescStyle}" />
+            </VerticalStackLayout>
+            <VerticalStackLayout x:Name="ValuesLayout" Style="{StaticResource PopupMinorVsl}">
+                <Label Text="{StaticResource PopupValuesLabel}" Style="{StaticResource PopupHeadlineStyle}" />
+                <Label x:Name="ItemValues" Style="{StaticResource PopupDescStyle}" />
+            </VerticalStackLayout>
+            <VerticalStackLayout x:Name="UsageLayout" Style="{StaticResource PopupMinorVsl}">
+                <Label Text="{StaticResource PopupUsageLabel}" Style="{StaticResource PopupHeadlineStyle}" />
+                <Label x:Name="ItemUsage" Style="{StaticResource PopupDescStyle}" />
+            </VerticalStackLayout>
+            <VerticalStackLayout x:Name="IconsLayout" Style="{StaticResource PopupMinorVsl}">
+                <Label Text="{StaticResource PopupIconsLabel}" Style="{StaticResource PopupHeadlineStyle}" />
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </Grid>
+</toolkit:Popup>

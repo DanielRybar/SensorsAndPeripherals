@@ -87,7 +87,7 @@ namespace SensorsAndPeripherals.Views.Abstract
                                 dict.Add(toolbarIcons[i], iconsText![i]);
                             }
                         }
-                        await PopupExtensions.CreateAndDisplayPopupAsync(InfoText.Split(';'), dict);
+                        await PopupExtensions.CreateAndDisplayInfoPopupAsync(InfoText.Split(';'), dict);
                         // https://github.com/CommunityToolkit/Maui/issues/2923
                         await Task.Delay(DelayConstants.SHORT_DELAY);
                         Shell.Current.SetAppThemeColor(Shell.BackgroundColorProperty, mainApplicationColor, mainApplicationColor);
