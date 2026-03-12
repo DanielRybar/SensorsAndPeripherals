@@ -178,11 +178,23 @@ Používá se pro&#160;velmi přesné sledování rotace, pro&#160;stabilizaci k
     <x:String x:Key="MagnetometerInfoPopup">
 Magnetometr měří intenzitu a&#160;směr magnetického pole v&#160;okolí zařízení a&#160;umožňuje určit orientaci vůči světovým stranám. Svou funkcí tedy připomíná klasický kompas.;
 Výstupem jsou tři hodnoty typu float, které představují složky magnetického pole vzhledem k&#160;osám X, Y, Z. Jednotkou je mikrotesla (µT).;
-Magnetometr se využívá zejména jako kompas, v&#160;mapových aplikacích, při&#160;navigaci, pro&#160;zvýšení přesnosti orientace a&#160;v&#160;aplikacích pracujících s&#160;rozšířenou realitou.
+Používá se zejména jako kompas, v&#160;mapových aplikacích, při&#160;navigaci, pro&#160;zvýšení přesnosti orientace a&#160;v&#160;aplikacích pracujících s&#160;rozšířenou realitou.
     </x:String>
-    <x:String x:Key="RotationSensorInfoPopup"></x:String>
-    <x:String x:Key="LightSensorInfoPopup"></x:String>
-    <x:String x:Key="BarometerInfoPopup"></x:String>
+    <x:String x:Key="RotationSensorInfoPopup">
+Rotační senzor poskytuje orientaci zařízení v&#160;prostoru ve&#160;formě rotačního vektoru, který je interně reprezentován jako tzv. kvaternion. Tento vektor určuje osu rotace a&#160;úhel natočení kolem této osy.;
+Výstupem jsou čtyři hodnoty typu float, které představují dílčí složky kvaternionu (X, Y, Z, W). Tyto hodnoty nemají fyzikální jednotky a&#160;samy o&#160;sobě nepředstavují běžné úhly – v&#160;podstatě to jsou jen matematické koeficienty popisující rotaci.&#10;
+Pro&#160;jednoduchost jsou zde převedeny do&#160;formy Eulerových úhlů. Celkový náklon je vypočítán jako velikost vektoru složeného z&#160;úhlů Pitch a&#160;Roll (pomocí euklidovské normy).;
+Využívá se primárně pro&#160;stabilní a&#160;velmi přesnou detekci orientace zařízení. Je naprosto nezbytný v&#160;aplikacích pracujících s&#160;rozšířenou či&#160;virtuální realitou.    
+    </x:String>
+    <x:String x:Key="LightSensorInfoPopup">
+Světelný senzor měří intenzitu okolního světla. Disponuje jím naprostá většina moderních zařízení, zpravidla se nachází přímo u&#160;přední kamery, případně vedle ní.;
+Výstupem je jediná hodnota typu float, a&#160;to intenzita světla v&#160;luxech (lx).;
+Používá se zejména k&#160;automatické regulaci jasu displeje a&#160;adaptivnímu zobrazení obsahu.
+    </x:String>
+    <x:String x:Key="BarometerInfoPopup">
+Senzor tlaku neboli barometr měří atmosférický tlak.;
+Výstupem je jediná hodnota typu float, a&#160;to hodnota tlaku v&#160;hektopascalech (hPa).;
+Využívá se například pro&#160;odhad nadmořské výšky zařízení, zpřesnění navigace a&#160;lokalizace ve&#160;spojení s&#160;GPS, detekci stoupání a&#160;klesání nebo pro&#160;sledování lokálních změn počasí.</x:String>
     <x:String x:Key="GpsInfoPopup"></x:String>
     <x:String x:Key="GpsToolbarItemGetAddressPopup"></x:String>
     <x:String x:Key="ProximitySensorInfoPopup"></x:String>
