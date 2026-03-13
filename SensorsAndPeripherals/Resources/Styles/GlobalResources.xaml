@@ -92,7 +92,7 @@
     <x:String x:Key="BiometricStatusNotAvailable">Ověření není dostupné</x:String>
     <x:String x:Key="BiometricStatusUnknown">Neznámý výsledek ověření</x:String>
     <x:String x:Key="BiometricInit">Zatím neověřeno</x:String>
-    <x:String x:Key="BiometricWeakButton">Použít slabou metodu (otisk/obličej)</x:String>
+    <x:String x:Key="BiometricWeakButton">Použít slabou metodu (obličej)</x:String>
     <x:String x:Key="BiometricStrongButton">Použít silnou metodu (otisk)</x:String>
     <x:String x:Key="BiometricAvailableTypes">Dostupné typy ověření</x:String>
     <x:String x:Key="GpsInit">Pro zobrazení souřadnic stiskněte některé z&#160;tlačítek níže.</x:String>
@@ -209,8 +209,14 @@ Senzor blízkosti slouží k&#160;detekci přítomnosti objektů v&#160;těsné 
 Výstupem je vzdálenost v&#160;centimetrech (typu float), u&#160;většiny zařízení je však senzor pouze binární – vrací tedy buď hodnotu 0 (blízko), nebo hodnotu maximálního dosahu (daleko, například 5&#160;cm).;
 Jeho primárním účelem je detekce přiložení přístroje k&#160;uchu během telefonního hovoru, což systému umožní zhasnout displej a&#160;deaktivovat dotykovou vrstvu, aby nedošlo třeba k&#160;nechtěnému ukončení hovoru tváří.
     </x:String>
-    <x:String x:Key="BiometricSensorInfoPopup"></x:String>
-    <x:String x:Key="BiometricSensorToolbarItemGetTypesPopup"></x:String>
+    <x:String x:Key="BiometricSensorInfoPopup">
+Biometrické senzory slouží k&#160;autentizaci uživatele na&#160;základě jeho unikátních fyziologických charakteristik. Aplikace k&#160;naskenovaným datům nemá žádný přímý přístup – pouze vyvolá systémový dialog a&#160;následně obdrží výsledek ověření.&#10;
+Aby bylo možné senzory využít, musí být biometrie v&#160;zařízení předem nastavena. Pokud ověření selže nebo není dostupné, systém automaticky nabídne záložní metodu (zadaný PIN, heslo nebo gesto).&#10;
+Android řadí ověření otiskem prstu mezi silné metody, zatímco rozpoznání obličeje mezi slabé. Pouze silné metody lze využít pro&#160;odemykání šifrovacích klíčů a&#160;například k&#160;autorizaci plateb.
+    </x:String>
+    <x:String x:Key="BiometricSensorToolbarItemGetTypesPopup">
+Zobrazí typy biometrického ověření, které jsou na&#160;zařízení dostupné.
+    </x:String>
     <x:String x:Key="NfcInfoPopup"></x:String>
     <x:String x:Key="BluetoothInfoPopup"></x:String>
     <x:String x:Key="BluetoothToolbarItemGetDeviceNamePopup"></x:String>
