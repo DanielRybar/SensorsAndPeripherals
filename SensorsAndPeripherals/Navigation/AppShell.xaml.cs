@@ -17,7 +17,7 @@ namespace SensorsAndPeripherals.Navigation
             base.OnNavigated(args);
 
             var currentLocation = args?.Current?.Location?.OriginalString;
-            if (!string.IsNullOrEmpty(currentLocation))
+            if (!string.IsNullOrEmpty(currentLocation) && !currentLocation.Contains("Popup", StringComparison.OrdinalIgnoreCase))
             {
                 Preferences.Set(LocalStorageKeys.DEFAULT_MODULE, currentLocation);
             }

@@ -47,17 +47,25 @@ public partial class InfoPopup : Popup
 
             foreach (var item in toolbarItems)
             {
-                IconsLayout.Add(new Label
+                var grid = new Grid
+                {
+                    ColumnDefinitions = [new() { Width = GridLength.Auto }, new() { Width = GridLength.Star }],
+                    ColumnSpacing = 15,
+                    Padding = new(0, 10, 0, 0)
+                };
+                var iconLabel = new Label
                 {
                     Text = item.Key,
-                    Style = "PopupIconLabel".SafeGetResource<Style>()
-                });
-
-                IconsLayout.Add(new Label
+                    Style = "PopupIconLabel".SafeGetResource<Style>(),
+                };
+                var descLabel = new Label
                 {
                     Text = item.Value,
-                    Style = "CenteredLabel".SafeGetResource<Style>()
-                });
+                    Style = "PopupDescStyle".SafeGetResource<Style>(),
+                };
+                grid.Add(iconLabel, column: 0);
+                grid.Add(descLabel, column: 1);
+                IconsLayout.Add(grid);
             }
         }
         else

@@ -202,7 +202,7 @@ Je nutné zdůraznit, že GPS není v&#160;pravém slova smyslu senzor, ke&#160;
 Poslední známá lokace se načítá bleskově z&#160;mezipaměti systému, může být však neaktuální. Přesná lokace vyžaduje pro&#160;získání souřadnic aktivaci samotného GPS modulu, zatímco přibližná lokace se počítá rychleji pouze ze&#160;signálů okolních Wi-Fi sítí a&#160;mobilních vysílačů (BTS).    
     </x:String>
     <x:String x:Key="GpsToolbarItemGetAddressPopup">
-Zobrazí adresu vypočítanou z&#160;GPS souřadnic.
+Zobrazí adresu vypočítanou na&#160;základě GPS souřadnic.
     </x:String>
     <x:String x:Key="ProximitySensorInfoPopup">
 Senzor blízkosti slouží k&#160;detekci přítomnosti objektů v&#160;těsné blízkosti čelní strany zařízení.;

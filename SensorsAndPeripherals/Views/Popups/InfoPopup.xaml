@@ -15,15 +15,15 @@
             <VerticalStackLayout Style="{StaticResource PopupMainVsl}">
                 <VerticalStackLayout x:Name="DescriptionLayout" Style="{StaticResource PopupMinorVsl}">
                     <Label Text="{StaticResource PopupDescriptionLabel}" Style="{StaticResource PopupHeadlineStyle}" />
-                <Label x:Name="ItemDescription" Style="{StaticResource PopupDescStyle}" />
+                    <Label x:Name="ItemDescription" Style="{StaticResource PopupDescStyle}" />
                 </VerticalStackLayout>
                 <VerticalStackLayout x:Name="ValuesLayout" Style="{StaticResource PopupMinorVsl}">
                     <Label Text="{StaticResource PopupValuesLabel}" Style="{StaticResource PopupHeadlineStyle}" />
-                <Label x:Name="ItemValues" Style="{StaticResource PopupDescStyle}" />
+                    <Label x:Name="ItemValues" Style="{StaticResource PopupDescStyle}" />
                 </VerticalStackLayout>
                 <VerticalStackLayout x:Name="UsageLayout" Style="{StaticResource PopupMinorVsl}">
                     <Label Text="{StaticResource PopupUsageLabel}" Style="{StaticResource PopupHeadlineStyle}" />
-                <Label x:Name="ItemUsage" Style="{StaticResource PopupDescStyle}" />
+                    <Label x:Name="ItemUsage" Style="{StaticResource PopupDescStyle}" />
                 </VerticalStackLayout>
                 <VerticalStackLayout x:Name="IconsLayout" Style="{StaticResource PopupMinorVsl}">
                     <Label x:Name="IconsLayoutHeadline" Style="{StaticResource PopupHeadlineStyle}" />

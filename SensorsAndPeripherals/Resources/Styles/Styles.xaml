@@ -767,11 +767,13 @@
     <Style TargetType="Label" x:Key="PopupDescStyle">
         <Setter Property="FontSize" Value="15" />
         <Setter Property="HorizontalTextAlignment" Value="Start" />
+        <Setter Property="VerticalOptions" Value="Center" />
     </Style>
 
     <Style TargetType="Label" x:Key="PopupIconLabel" BasedOn="{StaticResource CenteredLabel}">
         <Setter Property="FontFamily" Value="FontAwesomeSolid" />
         <Setter Property="FontSize" Value="30" />
+        <Setter Property="VerticalOptions" Value="Center" />
     </Style>
 
     <Style TargetType="Label" x:Key="DataGuardEmptyLabel" BasedOn="{StaticResource CenteredLabel}">
