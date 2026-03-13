@@ -38,8 +38,13 @@ public partial class InfoPopup : Popup
             ValuesLayout.IsVisible = false;
             UsageLayout.IsVisible = false;
         }
-        if (toolbarItems.Count > 0)
+        int toolbarItemsCount = toolbarItems.Count;
+        if (toolbarItemsCount > 0)
         {
+            IconsLayoutHeadline.Text = toolbarItemsCount >= 2
+                ? "PopupMultipleIconsLabel".SafeGetResource<string>()
+                : "PopupSingleIconLabel".SafeGetResource<string>();
+
             foreach (var item in toolbarItems)
             {
                 IconsLayout.Add(new Label

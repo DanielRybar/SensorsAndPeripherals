@@ -155,9 +155,10 @@
     <x:String x:Key="TestConnectionStatus">Zjistit stav připojení</x:String>
     <x:String x:Key="TestInternetAvailability">Ověřit dostupnost internetu</x:String>
     <x:String x:Key="PopupDescriptionLabel">Popis</x:String>
-    <x:String x:Key="PopupValuesLabel">Hodnoty</x:String>
+    <x:String x:Key="PopupValuesLabel">Formát dat</x:String>
     <x:String x:Key="PopupUsageLabel">Využití</x:String>
-    <x:String x:Key="PopupIconsLabel">Pomocné ikonky</x:String>
+    <x:String x:Key="PopupSingleIconLabel">Pomocná ikonka</x:String>
+    <x:String x:Key="PopupMultipleIconsLabel">Pomocné ikonky</x:String>
     <x:String x:Key="SendFeedbackCaption">Odeslat zpětnou vazbu</x:String>
     <x:String x:Key="FeedbackEmailSubject">Zpětná vazba k aplikaci Senzory a periferie</x:String>
     <x:String x:Key="FeedbackEmailBody">Ahoj,&#10;&#10;posílám ti zpětnou vazbu ke tvé aplikaci. Chtěl/a bych ti aplikaci pochválit / zkritizovat / nahlásit chybu:&#10;&#10;</x:String>
@@ -195,9 +196,19 @@ Používá se zejména k&#160;automatické regulaci jasu displeje a&#160;adaptiv
 Senzor tlaku neboli barometr měří atmosférický tlak.;
 Výstupem je jediná hodnota typu float, a&#160;to hodnota tlaku v&#160;hektopascalech (hPa).;
 Využívá se například pro&#160;odhad nadmořské výšky zařízení, zpřesnění navigace a&#160;lokalizace ve&#160;spojení s&#160;GPS, detekci stoupání a&#160;klesání nebo pro&#160;sledování lokálních změn počasí.</x:String>
-    <x:String x:Key="GpsInfoPopup"></x:String>
-    <x:String x:Key="GpsToolbarItemGetAddressPopup"></x:String>
-    <x:String x:Key="ProximitySensorInfoPopup"></x:String>
+    <x:String x:Key="GpsInfoPopup">
+Technologie GPS (Global Positioning System) slouží k&#160;přesnému určení geografické polohy zařízení (zeměpisná šířka, délka a&#160;nadmořská výška).&#10;
+Je nutné zdůraznit, že GPS není v&#160;pravém slova smyslu senzor, ke&#160;kterému by se přistupovalo přes standardní senzorová API. Jedná se o&#160;komplexní systémovou službu, která komunikuje se&#160;specializovaným hardwarovým čipem a&#160;zpracovává signály z&#160;družic.&#10;
+Poslední známá lokace se načítá bleskově z&#160;mezipaměti systému, může být však neaktuální. Přesná lokace vyžaduje pro&#160;získání souřadnic aktivaci samotného GPS modulu, zatímco přibližná lokace se počítá rychleji pouze ze&#160;signálů okolních Wi-Fi sítí a&#160;mobilních vysílačů (BTS).    
+    </x:String>
+    <x:String x:Key="GpsToolbarItemGetAddressPopup">
+Zobrazí adresu vypočítanou z&#160;GPS souřadnic.
+    </x:String>
+    <x:String x:Key="ProximitySensorInfoPopup">
+Senzor blízkosti slouží k&#160;detekci přítomnosti objektů v&#160;těsné blízkosti čelní strany zařízení.;
+Výstupem je vzdálenost v&#160;centimetrech (typu float), u&#160;většiny zařízení je však senzor pouze binární – vrací tedy buď hodnotu 0 (blízko), nebo hodnotu maximálního dosahu (daleko, například 5&#160;cm).;
+Jeho primárním účelem je detekce přiložení přístroje k&#160;uchu během telefonního hovoru, což systému umožní zhasnout displej a&#160;deaktivovat dotykovou vrstvu, aby nedošlo třeba k&#160;nechtěnému ukončení hovoru tváří.
+    </x:String>
     <x:String x:Key="BiometricSensorInfoPopup"></x:String>
     <x:String x:Key="BiometricSensorToolbarItemGetTypesPopup"></x:String>
     <x:String x:Key="NfcInfoPopup"></x:String>
