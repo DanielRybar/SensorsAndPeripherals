@@ -7,7 +7,7 @@
              x:DataType="vm:AboutAppViewModel"
              Title="{StaticResource AboutAppTitle}">
 
-    <ScrollView Style="{StaticResource AboutAppMainView}">
+    <ScrollView Style="{StaticResource MainScrollView}">
         <Grid RowDefinitions="*, Auto" Style="{StaticResource MainGridStyle}">
             <VerticalStackLayout VerticalOptions="Center" Spacing="20" Padding="20,0">
                 <VerticalStackLayout Spacing="15">

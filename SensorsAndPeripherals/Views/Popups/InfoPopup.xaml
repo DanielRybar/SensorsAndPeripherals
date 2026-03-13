@@ -11,22 +11,24 @@
                 BackgroundColor="{StaticResource Transparent}" 
                 ImageSource="{StaticResource PopupCloseIcon}"
                 Clicked="CloseButton_Clicked" />
-        <VerticalStackLayout Grid.Row="1" Style="{StaticResource PopupMainVsl}">
-            <VerticalStackLayout x:Name="DescriptionLayout" Style="{StaticResource PopupMinorVsl}">
-                <Label Text="{StaticResource PopupDescriptionLabel}" Style="{StaticResource PopupHeadlineStyle}" />
+        <ScrollView Grid.Row="1" Style="{StaticResource MainScrollView}">
+            <VerticalStackLayout Style="{StaticResource PopupMainVsl}">
+                <VerticalStackLayout x:Name="DescriptionLayout" Style="{StaticResource PopupMinorVsl}">
+                    <Label Text="{StaticResource PopupDescriptionLabel}" Style="{StaticResource PopupHeadlineStyle}" />
                 <Label x:Name="ItemDescription" Style="{StaticResource PopupDescStyle}" />
-            </VerticalStackLayout>
-            <VerticalStackLayout x:Name="ValuesLayout" Style="{StaticResource PopupMinorVsl}">
-                <Label Text="{StaticResource PopupValuesLabel}" Style="{StaticResource PopupHeadlineStyle}" />
+                </VerticalStackLayout>
+                <VerticalStackLayout x:Name="ValuesLayout" Style="{StaticResource PopupMinorVsl}">
+                    <Label Text="{StaticResource PopupValuesLabel}" Style="{StaticResource PopupHeadlineStyle}" />
                 <Label x:Name="ItemValues" Style="{StaticResource PopupDescStyle}" />
-            </VerticalStackLayout>
-            <VerticalStackLayout x:Name="UsageLayout" Style="{StaticResource PopupMinorVsl}">
-                <Label Text="{StaticResource PopupUsageLabel}" Style="{StaticResource PopupHeadlineStyle}" />
+                </VerticalStackLayout>
+                <VerticalStackLayout x:Name="UsageLayout" Style="{StaticResource PopupMinorVsl}">
+                    <Label Text="{StaticResource PopupUsageLabel}" Style="{StaticResource PopupHeadlineStyle}" />
                 <Label x:Name="ItemUsage" Style="{StaticResource PopupDescStyle}" />
+                </VerticalStackLayout>
+                <VerticalStackLayout x:Name="IconsLayout" Style="{StaticResource PopupMinorVsl}">
+                    <Label Text="{StaticResource PopupIconsLabel}" Style="{StaticResource PopupHeadlineStyle}" />
+                </VerticalStackLayout>
             </VerticalStackLayout>
-            <VerticalStackLayout x:Name="IconsLayout" Style="{StaticResource PopupMinorVsl}">
-                <Label Text="{StaticResource PopupIconsLabel}" Style="{StaticResource PopupHeadlineStyle}" />
-            </VerticalStackLayout>
-        </VerticalStackLayout>
+        </ScrollView>
     </Grid>
 </toolkit:Popup>
