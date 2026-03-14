@@ -1,0 +1,89 @@
+name: Build and Deploy .NET MAUI App (.NET 10)
+
+on:
+  push:
+    branches: [ "production" ]
+  pull_request:
+    branches: [ "production" ]
+
+env:
+  PROJECT_PATH: "SensorsAndPeripherals/SensorsAndPeripherals.csproj"
+  FINAL_APK_NAME: "SensorsAndPeripherals"
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    # Set up Java 17
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'microsoft'
+        java-version: '17'
+
+    # Set up .NET SDK
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '10.0.x'
+
+    # Install .NET MAUI workload
+    - name: Install .NET MAUI
+      run: dotnet workload install maui
+
+    # Restore dependencies
+    - name: Restore dependencies
+      run: dotnet restore ${{ env.PROJECT_PATH }}
+
+    # Decode keystore from base64
+    - name: Decode keystore from base64
+      shell: pwsh
+      run: |
+        [System.IO.File]::WriteAllBytes("keystore.jks", [Convert]::FromBase64String("${{ secrets.KEYSTORE_FILE_B64 }}"))
+
+    # Build & Publish & Sign
+    - name: Publish and Sign APK
+      run: |
+        dotnet publish ${{ env.PROJECT_PATH }} `
+          -c Release `
+          -f net10.0-android `
+          --no-restore `
+          /p:AndroidPackageFormat=apk `
+          /p:AndroidKeyStore=true `
+          /p:AndroidSigningKeyStore="${{ github.workspace }}\keystore.jks" `
+          /p:AndroidSigningStorePass="${{ secrets.KEYSTORE_PASSWORD }}" `
+          /p:AndroidSigningKeyAlias="${{ secrets.KEY_ALIAS }}" `
+          /p:AndroidSigningKeyPass="${{ secrets.KEYSTORE_PASSWORD }}" `
+          -o ./app-build/
+
+    # Verify APK existence and rename it
+    - name: Verify and rename APK
+      shell: pwsh
+      run: |
+        $apk = Get-ChildItem -Path ./app-build -Filter "*-Signed.apk" -Recurse | Select-Object -First 1
+        if (-not $apk) {
+             $apk = Get-ChildItem -Path ./app-build -Filter "*.apk" -Recurse | Select-Object -First 1
+        }
+        if ($apk) {
+            Write-Host "Original APK found: $($apk.FullName)"
+            $newFileName = "${{ env.FINAL_APK_NAME }}-v1.0.${{ github.run_number }}.apk"
+            $newFullPath = Join-Path -Path $apk.DirectoryName -ChildPath $newFileName
+            Rename-Item -Path $apk.FullName -NewName $newFileName       
+            Write-Host "APK renamed to: $newFullPath"
+            echo "APK_PATH=$newFullPath" | Out-File -FilePath $env:GITHUB_ENV -Append
+        } else {
+            Write-Error "APK not found!"
+            exit 1
+        }
+
+    # Create a new release tag and upload renamed APK to GitHub Releases
+    - name: Create Release and Upload APK
+      uses: softprops/action-gh-release@v2
+      if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'push'
+      with:
+        tag_name: v1.0.${{ github.run_number }}
+        files: ${{ env.APK_PATH }}
+        token: ${{ secrets.GH_TOKEN }}
