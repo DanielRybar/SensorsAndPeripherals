@@ -138,6 +138,18 @@ namespace SensorsAndPeripherals.Views.Abstract
             ToolbarFixBug();
         }
 
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            if (popupWasOpened)
+            {
+                return;
+            }
+            OnSafeDisappearing();
+        }
+
+        protected virtual void OnSafeDisappearing() { }
+
         /// <summary>
         /// https://github.com/dotnet/maui/issues/7823
         /// </summary>

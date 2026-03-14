@@ -14,9 +14,8 @@ public partial class VibrationPage : ApplicationPage
         BindingContext = viewModel = new VibrationViewModel();
     }
 
-    protected override void OnDisappearing()
+    protected override void OnSafeDisappearing()
     {
-        base.OnDisappearing();
         viewModel.CancelVibration();
     }
 

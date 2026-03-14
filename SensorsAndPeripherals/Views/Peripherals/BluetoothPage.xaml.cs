@@ -24,9 +24,8 @@ public partial class BluetoothPage : ApplicationPage
         viewModel.Initialize();
     }
 
-    protected override void OnDisappearing()
+    protected override void OnSafeDisappearing()
     {
-        base.OnDisappearing();
         viewModel.CleanUp();
     }
 

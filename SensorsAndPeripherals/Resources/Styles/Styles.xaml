@@ -678,7 +678,7 @@
 
     <Style TargetType="Label" BasedOn="{StaticResource CenteredLabel}" x:Key="DisplayTextValue">
         <Setter Property="FontAttributes" Value="Bold" />
-        <Setter Property="FontSize" Value="24" />
+        <Setter Property="FontSize" Value="23" />
         <Setter Property="HorizontalOptions" Value="Center" />
     </Style>
 
@@ -749,10 +749,6 @@
         <Setter Property="VerticalTextAlignment" Value="Center" />
     </Style>
 
-    <Style TargetType="Label" x:Key="AboutAppDescriptionLabel" BasedOn="{StaticResource CenteredLabel}">
-        <Setter Property="FontSize" Value="15" />
-    </Style>
-
     <Style TargetType="VerticalStackLayout" x:Key="PopupMainVsl">
         <Setter Property="Padding" Value="30,10,30,30" />
         <Setter Property="Spacing" Value="25" />
@@ -763,13 +759,13 @@
     </Style>
 
     <Style TargetType="Label" BasedOn="{StaticResource DisplayTextCaption}" x:Key="PopupHeadlineStyle">
-        <Setter Property="FontSize" Value="18" />
+        <Setter Property="FontSize" Value="17" />
         <Setter Property="TextColor" Value="{StaticResource MainApplicationColor}" />
         <Setter Property="HorizontalTextAlignment" Value="Start" />
     </Style>
 
     <Style TargetType="Label" x:Key="PopupDescStyle">
-        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontSize" Value="14" />
         <Setter Property="HorizontalTextAlignment" Value="Start" />
         <Setter Property="VerticalOptions" Value="Center" />
     </Style>
@@ -786,7 +782,7 @@
         <Setter Property="IsVisible" Value="True" />
         <Setter Property="LineBreakMode" Value="WordWrap" />
         <Setter Property="Padding" Value="20,0,20,0" />
-        <Setter Property="FontSize" Value="15" />
+        <Setter Property="FontSize" Value="14" />
     </Style>
 
 </ResourceDictionary>

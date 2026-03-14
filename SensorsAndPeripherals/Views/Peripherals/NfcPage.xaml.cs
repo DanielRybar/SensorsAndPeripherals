@@ -18,9 +18,8 @@ public partial class NfcPage : ApplicationPage
         };
     }
 
-    protected override void OnDisappearing()
+    protected override void OnSafeDisappearing()
     {
-        base.OnDisappearing();
         viewModel.CancelCurrentRequests();
     }
 

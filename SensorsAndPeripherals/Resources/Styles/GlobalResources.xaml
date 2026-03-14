@@ -73,7 +73,7 @@
     <x:String x:Key="BluetoothNotEnabled">Bluetooth je vypnutý. Prosím, zapněte jej v&#160;nastavení telefonu.</x:String>
     <x:String x:Key="BluetoothPermissionDenied">Aplikaci chybí potřebná oprávnění k&#160;Bluetooth.</x:String>
     <x:String x:Key="BluetoothUnknownError">Došlo k&#160;neznámé chybě při&#160;inicializaci Bluetooth.</x:String>
-    <x:String x:Key="BluetoothExternalTurnOff">Bluetooth byl nečekaně vypnut.</x:String>
+    <x:String x:Key="BluetoothExternalTurnOff">Bluetooth byl nečekaně vypnutý.</x:String>
     <x:String x:Key="BluetoothAdapterName">Název zařízení</x:String>
 
     <x:String x:Key="MetersPerSecondSquared">m/s²</x:String>
