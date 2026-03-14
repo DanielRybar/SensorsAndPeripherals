@@ -9,7 +9,7 @@ public partial class InfoPopup : Popup
     public InfoPopup(string[] description, Dictionary<string, string> toolbarItems)
     {
         InitializeComponent();
-        UpdateLayout(description, toolbarItems);
+        UpdateLayout(description, new(toolbarItems));
         Closed += (s, e) =>
         {
             // https://github.com/CommunityToolkit/Maui/issues/2923
