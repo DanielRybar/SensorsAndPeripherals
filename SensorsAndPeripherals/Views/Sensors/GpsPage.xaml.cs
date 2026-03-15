@@ -18,9 +18,8 @@ public partial class GpsPage : ApplicationPage
         };
     }
 
-    protected override void OnDisappearing()
+    protected override void OnSafeDisappearing()
     {
-        base.OnDisappearing();
         viewModel.CancelCurrentLocationRequest();
     }
 

@@ -14,9 +14,8 @@ public partial class MagnetometerPage : ApplicationPage
         BindingContext = viewModel = new MagnetometerViewModel();
     }
 
-    protected override void OnDisappearing()
+    protected override void OnSafeDisappearing()
     {
-        base.OnDisappearing();
         if (viewModel.IsMonitoring)
         {
             viewModel.StopSensor();

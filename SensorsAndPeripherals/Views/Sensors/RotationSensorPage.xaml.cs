@@ -14,9 +14,8 @@ public partial class RotationSensorPage : ApplicationPage
         BindingContext = viewModel = new RotationSensorViewModel();
     }
 
-    protected override void OnDisappearing()
+    protected override void OnSafeDisappearing()
     {
-        base.OnDisappearing();
         if (viewModel.IsMonitoring)
         {
             viewModel.StopSensor();

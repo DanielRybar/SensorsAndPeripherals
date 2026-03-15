@@ -14,7 +14,7 @@
                     <Image Source="{AppThemeBinding Light=logo_dark.png, Dark=logo_light.png}" HeightRequest="130" WidthRequest="150" />
                     <Label Text="{StaticResource ApplicationName}" Style="{StaticResource AboutAppTitleStyle}" />
                 </VerticalStackLayout>
-                <Label Text="{StaticResource ShortAppDescription}" Style="{StaticResource AboutAppDescriptionLabel}" />
+                <Label Text="{StaticResource ShortAppDescription}" Style="{StaticResource CenteredLabel}" />
                 <FlexLayout JustifyContent="SpaceEvenly" Margin="0,10,0,10">
                     <Image Source="csharp.png" Style="{StaticResource AboutAppImage}" AutomationId="csharp">
                         <Image.GestureRecognizers>
@@ -32,7 +32,7 @@
                         </Image.GestureRecognizers>
                     </Image>
                 </FlexLayout>
-                <Label Style="{StaticResource AboutAppDescriptionLabel}" Text="{StaticResource LongAppDescription}" />
+                <Label Style="{StaticResource CenteredLabel}" Text="{StaticResource LongAppDescription}" />
             </VerticalStackLayout>
             <VerticalStackLayout Grid.Row="1" Style="{StaticResource SensorStatusVsl}">
                 <Button Command="{Binding SendFeedbackCommand}" Text="{StaticResource SendFeedbackCaption}" Style="{StaticResource HorizontalFilledButton}" />

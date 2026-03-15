@@ -14,9 +14,8 @@ public partial class AudioPage : ApplicationPage
         BindingContext = viewModel = new AudioViewModel();
     }
 
-    protected override void OnDisappearing()
+    protected override void OnSafeDisappearing()
     {
-        base.OnDisappearing();
         if (viewModel.IsRecording)
         {
             viewModel.StopRecording();

@@ -14,9 +14,8 @@ public partial class ProximitySensorPage : ApplicationPage
         BindingContext = viewModel = new ProximitySensorViewModel();
     }
 
-    protected override void OnDisappearing()
+    protected override void OnSafeDisappearing()
     {
-        base.OnDisappearing();
         if (viewModel.IsMonitoring)
         {
             viewModel.StopSensor();
