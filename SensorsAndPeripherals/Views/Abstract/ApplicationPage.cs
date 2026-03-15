@@ -71,7 +71,7 @@ namespace SensorsAndPeripherals.Views.Abstract
                     Priority = 1,
                     Command = new Command(async () =>
                     {
-                        if (string.IsNullOrEmpty(InfoText))
+                        if (popupWasOpened || string.IsNullOrEmpty(InfoText))
                         {
                             return;
                         }
