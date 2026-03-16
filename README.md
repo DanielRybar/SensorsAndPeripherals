@@ -14,8 +14,8 @@ Aplikace vytvořená v rámci bakalářské práce na Technické univerzitě v L
 - Nejnovější verze aplikace (tedy i **APK soubor**) je k dispozici ke stažení na [GitHub Releases](https://github.com/DanielRybar/SensorsAndPeripherals/releases)
 - Pro instalaci aplikace je třeba povolit instalaci z neznámých zdrojů (protože APK soubor není distribuován přes Google Play)
 
-## Návod k použití
-- Základní návod k použití vytvořený v rámci předmětu **NTI/PDO** v roce 2026 je k dispozici online [ZDE](https://github.com/DanielRybar/PDO)
+## Materiály
+- Základní návody a technické koncepty vytvořené v rámci předmětu **NTI/PDO** v roce 2026 jsou k dispozici online [ZDE](https://danielrybar.github.io/PDO/)
 
 ## Vybrané screenshoty z aplikace
 Aplikace se skládá celkem ze 17 obrazovek. Většina z nich obsahuje navíc také modální okna s popisem dané komponenty. Níže jsou uvedeny vybrané ukázky uživatelského rozhraní demonstrující světlý i tmavý motiv.
