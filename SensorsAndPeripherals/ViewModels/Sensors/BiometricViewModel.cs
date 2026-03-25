@@ -18,17 +18,18 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         {
             GetAvailableBiometricTypesCommand = new Command(async () =>
             {
-                IsWorking = true;
-                var result = await biometricService.GetBiometricTypesAsync();
-                if (result is not null)
+                await ExecuteSafeAsync(async () =>
                 {
-                    ShowBiometricTypesDialogRequested?.Invoke(string.Join(", ", result.Select(t => t.ToString())));
-                }
-                else
-                {
-                    ShowBiometricTypesDialogRequested?.Invoke("BiometricSensorsNotFound".SafeGetResource<string>());
-                }
-                IsWorking = false;
+                    var result = await biometricService.GetBiometricTypesAsync();
+                    if (result is not null)
+                    {
+                        ShowBiometricTypesDialogRequested?.Invoke(string.Join(", ", result.Select(t => t.ToString())));
+                    }
+                    else
+                    {
+                        ShowBiometricTypesDialogRequested?.Invoke("BiometricSensorsNotFound".SafeGetResource<string>());
+                    }
+                });
             },
             () => IsSupported && !IsWorking);
 
@@ -59,28 +60,29 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         #region methods
         public async Task InitializeAsync()
         {
-            IsWorking = true;
-            IsSupported = await biometricService.IsAvailableAsync();
-            IsWorking = false;
+            await ExecuteSafeAsync(async () =>
+            {
+                IsSupported = await biometricService.IsAvailableAsync();
+            });
         }
 
         private async Task PerformAuthentication(AuthenticatorStrength strength)
         {
-            IsWorking = true;
-            var result = await biometricService.AuthenticateAsync(
-                "PerformAuthentication01".SafeGetResource<string>(),
-                "PerformAuthentication02".SafeGetResource<string>(),
-                "PerformAuthentication03".SafeGetResource<string>(),
-                strength);
-
-            AuthResult = result switch
+            await ExecuteSafeAsync(async () =>
             {
-                BiometricAuthResult.Success => "BiometricStatusSuccess".SafeGetResource<string>(),
-                BiometricAuthResult.Failed => "BiometricStatusFailed".SafeGetResource<string>(),
-                BiometricAuthResult.NotAvailable => "BiometricStatusNotAvailable".SafeGetResource<string>(),
-                _ => "BiometricStatusUnknown".SafeGetResource<string>()
-            };
-            IsWorking = false;
+                var result = await biometricService.AuthenticateAsync(
+                    "PerformAuthentication01".SafeGetResource<string>(),
+                    "PerformAuthentication02".SafeGetResource<string>(),
+                    "PerformAuthentication03".SafeGetResource<string>(),
+                    strength);
+                AuthResult = result switch
+                {
+                    BiometricAuthResult.Success => "BiometricStatusSuccess".SafeGetResource<string>(),
+                    BiometricAuthResult.Failed => "BiometricStatusFailed".SafeGetResource<string>(),
+                    BiometricAuthResult.NotAvailable => "BiometricStatusNotAvailable".SafeGetResource<string>(),
+                    _ => "BiometricStatusUnknown".SafeGetResource<string>()
+                };
+            });
         }
 
         private void ChangeCanExecute()

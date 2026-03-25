@@ -67,15 +67,16 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         private async Task StartAdvertisingAsync()
         {
             LoadingText = "StartingBLEPropagation".SafeGetResource<string>();
-            IsWorking = true;
-            await Task.Delay(DelayConstants.MEDIUM_DELAY);
-            var result = await peripheralService.StartAdvertisingAsync();
-            StatusMessage = HandleBluetoothResult(result);
-            if (result == BluetoothResult.Success)
+            await ExecuteSafeAsync(async () =>
             {
-                IsAdvertising = true;
-            }
-            IsWorking = false;
+                await Task.Delay(DelayConstants.MEDIUM_DELAY);
+                var result = await peripheralService.StartAdvertisingAsync();
+                StatusMessage = HandleBluetoothResult(result);
+                if (result == BluetoothResult.Success)
+                {
+                    IsAdvertising = true;
+                }
+            });
         }
 
         private void StopAdvertising()
@@ -87,16 +88,17 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
         private async Task StartDiscoveringAsync()
         {
             LoadingText = "ScanningStarted".SafeGetResource<string>();
-            IsWorking = true;
-            await Task.Delay(DelayConstants.MEDIUM_DELAY);
-            DiscoveredDevices.Clear();
-            var result = await peripheralService.StartDiscoveringAsync();
-            StatusMessageDiscovering = HandleBluetoothResult(result);
-            if (result == BluetoothResult.Success)
+            await ExecuteSafeAsync(async () =>
             {
-                IsDiscovering = true;
-            }
-            IsWorking = false;
+                await Task.Delay(DelayConstants.MEDIUM_DELAY);
+                DiscoveredDevices.Clear();
+                var result = await peripheralService.StartDiscoveringAsync();
+                StatusMessageDiscovering = HandleBluetoothResult(result);
+                if (result == BluetoothResult.Success)
+                {
+                    IsDiscovering = true;
+                }
+            });
         }
 
         private void StopDiscovering()

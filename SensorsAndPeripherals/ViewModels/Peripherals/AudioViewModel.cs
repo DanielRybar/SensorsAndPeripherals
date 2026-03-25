@@ -76,29 +76,30 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
 
         private async Task StartRecordingAsync()
         {
-            IsWorking = true;
-            await Task.Delay(DelayConstants.MEDIUM_DELAY);
-            RecordedFilePath = null;
-            var started = await peripheralService.StartRecordingAsync();
-            switch (started)
+            await ExecuteSafeAsync(async () =>
             {
-                case MicrophoneResult.Ok:
-                    IsRecording = true;
-                    stopwatch.Restart();
-                    timer.Start();
-                    break;
-                case MicrophoneResult.PermissionDenied:
-                    StatusMessage = "MicrophonePermissionDenied".SafeGetResource<string>();
-                    break;
-                case MicrophoneResult.NotSupported:
-                    StatusMessage = "AudioNotSupported".SafeGetResource<string>();
-                    break;
-                case MicrophoneResult.Error:
-                default:
-                    StatusMessage = "RecordingError".SafeGetResource<string>();
-                    break;
-            }
-            IsWorking = false;
+                await Task.Delay(DelayConstants.MEDIUM_DELAY);
+                RecordedFilePath = null;
+                var started = await peripheralService.StartRecordingAsync();
+                switch (started)
+                {
+                    case MicrophoneResult.Ok:
+                        IsRecording = true;
+                        stopwatch.Restart();
+                        timer.Start();
+                        break;
+                    case MicrophoneResult.PermissionDenied:
+                        StatusMessage = "MicrophonePermissionDenied".SafeGetResource<string>();
+                        break;
+                    case MicrophoneResult.NotSupported:
+                        StatusMessage = "AudioNotSupported".SafeGetResource<string>();
+                        break;
+                    case MicrophoneResult.Error:
+                    default:
+                        StatusMessage = "RecordingError".SafeGetResource<string>();
+                        break;
+                }
+            });
         }
 
         private void UpdateTimeDisplay()

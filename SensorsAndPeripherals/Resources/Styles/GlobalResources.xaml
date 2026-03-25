@@ -152,7 +152,7 @@
     <x:String x:Key="NetworkState">Stav sítě</x:String>
     <x:String x:Key="ActiveProfiles">Aktivní rozhraní</x:String>
     <x:String x:Key="InternetAvailability">Dostupnost internetu</x:String>
-    <x:String x:Key="TestConnectionStatus">Zjistit stav připojení</x:String>
+    <x:String x:Key="TestConnectionStatus">Aktualizovat stav připojení</x:String>
     <x:String x:Key="TestInternetAvailability">Ověřit dostupnost internetu</x:String>
     <x:String x:Key="PopupDescriptionLabel">Popis</x:String>
     <x:String x:Key="PopupValuesLabel">Formát dat</x:String>
@@ -232,7 +232,7 @@ Zobrazí název zařízení, pod&#160;kterým je viditelné pro&#160;okolí.
     </x:String>
     <x:String x:Key="ConnectivityInfoPopup">
 Wi-Fi je obchodní název pro&#160;sítě standardu IEEE 802.11 a&#160;je preferovanou volbou pro&#160;přenos velkých objemů dat, například při&#160;aktualizacích nebo stahování obsahu, a&#160;to především díky absenci datových limitů. Je však nutná přítomnost přístupového bodu, který signál vysílá do&#160;okolí. Mobilní sítě naopak zajišťují celoplošné pokrytí a&#160;vysokou míru mobility uživatele, avšak je třeba počítat s&#160;potenciálně vyšší latencí, kolísáním stability signálu a&#160;omezeními vyplývajícími z&#160;datových tarifů.&#10;
-Aktivní rozhraní ukazují, jakými způsoby je zařízení aktuálně připojeno k&#160;nějaké síti (tedy ne pouze k&#160;internetu). Aktualizují se při&#160;kliknutí na&#160;tlačítko pro&#160;zjištění stavu připojení. Dostupnost internetu se testuje tak, že se provolá webová služba společnosti Google a&#160;při&#160;úspěšném spojení se vrátí informace o&#160;připojení k&#160;internetu.
+Aktivní rozhraní ukazují, jakými způsoby je zařízení aktuálně připojeno k&#160;nějaké síti (tedy ne pouze k&#160;internetu). Obnoví se při&#160;kliknutí na&#160;tlačítko pro&#160;aktualizaci stavu připojení. Dostupnost internetu se testuje tak, že se provolá webová služba společnosti Google a&#160;při&#160;úspěšném spojení se vrátí informace o&#160;připojení k&#160;internetu.
     </x:String>
     <x:String x:Key="CameraInfoPopup">
 Kamera dnes v&#160;mobilních zařízeních neslouží jen k&#160;pořizování běžných fotografií a&#160;videí, ale stala se klíčovou vstupní periferií pro&#160;pokročilé techniky počítačového vidění. V&#160;praxi se hojně využívá pro&#160;skenování a&#160;rozpoznávání obrazu v&#160;reálném čase, jako je čtení QR a&#160;čárových kódů, digitalizace dokumentů pomocí optického rozpoznávání znaků nebo v&#160;aplikacích s&#160;rozšířenou realitou.&#10;

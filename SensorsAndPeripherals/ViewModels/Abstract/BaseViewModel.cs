@@ -14,6 +14,23 @@ namespace SensorsAndPeripherals.ViewModels.Abstract
             return true;
         }
 
+        protected async Task ExecuteSafeAsync(Func<Task> operation)
+        {
+            if (IsWorking)
+            {
+                return;
+            }
+            IsWorking = true;
+            try
+            {
+                await operation();
+            }
+            finally
+            {
+                IsWorking = false;
+            }
+        }
+
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null!)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
