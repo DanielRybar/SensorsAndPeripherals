@@ -18,18 +18,19 @@ namespace SensorsAndPeripherals.ViewModels
         {
             GetSensorsCommand = new Command(async () =>
             {
-                IsWorking = true;
-                await Task.Delay(DelayConstants.LONG_DELAY);
-                Sensors.Clear();
-                var sensors = sensorListService.GetAllSensors().OrderBy(x => x.Power);
-                foreach (var sensor in sensors)
+                await ExecuteSafeAsync(async () =>
                 {
-                    if (sensor?.Name is not null)
+                    await Task.Delay(DelayConstants.LONG_DELAY);
+                    Sensors.Clear();
+                    var sensors = sensorListService.GetAllSensors().OrderBy(x => x.Power);
+                    foreach (var sensor in sensors)
                     {
-                        Sensors.Add(sensor);
+                        if (sensor?.Name is not null)
+                        {
+                            Sensors.Add(sensor);
+                        }
                     }
-                }
-                IsWorking = false;
+                });
             });
         }
         #endregion

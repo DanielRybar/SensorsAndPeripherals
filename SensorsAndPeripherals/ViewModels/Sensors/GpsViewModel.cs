@@ -50,50 +50,51 @@ namespace SensorsAndPeripherals.ViewModels.Sensors
         #region methods
         private async Task GetLocation(bool fromCache, bool isFine = true)
         {
-            IsWorking = true;
-            (GetAddressFromCoordinatesCommand as Command)!.ChangeCanExecute();
-            var (status, location) = await FetchLocationAsync(fromCache, isFine);
-            switch (status)
+            await ExecuteSafeAsync(async () =>
             {
-                case LocationStatus.Obtained:
-                    IsResultVisible = true;
-                    ResultLocation = new LocationInfo
-                    {
-                        Latitude = location!.Latitude,
-                        Longitude = location.Longitude,
-                        Altitude = location.Altitude,
-                        Accuracy = location.Accuracy,
-                        Timestamp = location.Timestamp.ToLocalTime(),
-                        Address = await GetAddress(location.Latitude, location.Longitude)
-                    };
-                    break;
-                case LocationStatus.ObtainedButNull:
-                    IsResultVisible = false;
-                    StatusMessage = "GpsLocationStatusObtainedButNull".SafeGetResource<string>();
-                    break;
-                case LocationStatus.NotSupported:
-                    IsResultVisible = false;
-                    StatusMessage = "GpsLocationStatusNotSupported".SafeGetResource<string>();
-                    break;
-                case LocationStatus.NotEnabled:
-                    IsResultVisible = false;
-                    StatusMessage = "GpsLocationStatusNotEnabled".SafeGetResource<string>();
-                    break;
-                case LocationStatus.PermissionDenied:
-                    IsResultVisible = false;
-                    StatusMessage = "GpsLocationStatusPermissionDenied".SafeGetResource<string>();
-                    break;
-                case LocationStatus.OperationCancelled:
-                    IsResultVisible = false;
-                    StatusMessage = "GpsLocationStatusOperationCancelled".SafeGetResource<string>();
-                    break;
-                case LocationStatus.UnknownError:
-                default:
-                    IsResultVisible = false;
-                    StatusMessage = "GpsLocationStatusUnknownError".SafeGetResource<string>();
-                    break;
-            }
-            IsWorking = false;
+                (GetAddressFromCoordinatesCommand as Command)!.ChangeCanExecute();
+                var (status, location) = await FetchLocationAsync(fromCache, isFine);
+                switch (status)
+                {
+                    case LocationStatus.Obtained:
+                        IsResultVisible = true;
+                        ResultLocation = new LocationInfo
+                        {
+                            Latitude = location!.Latitude,
+                            Longitude = location.Longitude,
+                            Altitude = location.Altitude,
+                            Accuracy = location.Accuracy,
+                            Timestamp = location.Timestamp.ToLocalTime(),
+                            Address = await GetAddress(location.Latitude, location.Longitude)
+                        };
+                        break;
+                    case LocationStatus.ObtainedButNull:
+                        IsResultVisible = false;
+                        StatusMessage = "GpsLocationStatusObtainedButNull".SafeGetResource<string>();
+                        break;
+                    case LocationStatus.NotSupported:
+                        IsResultVisible = false;
+                        StatusMessage = "GpsLocationStatusNotSupported".SafeGetResource<string>();
+                        break;
+                    case LocationStatus.NotEnabled:
+                        IsResultVisible = false;
+                        StatusMessage = "GpsLocationStatusNotEnabled".SafeGetResource<string>();
+                        break;
+                    case LocationStatus.PermissionDenied:
+                        IsResultVisible = false;
+                        StatusMessage = "GpsLocationStatusPermissionDenied".SafeGetResource<string>();
+                        break;
+                    case LocationStatus.OperationCancelled:
+                        IsResultVisible = false;
+                        StatusMessage = "GpsLocationStatusOperationCancelled".SafeGetResource<string>();
+                        break;
+                    case LocationStatus.UnknownError:
+                    default:
+                        IsResultVisible = false;
+                        StatusMessage = "GpsLocationStatusUnknownError".SafeGetResource<string>();
+                        break;
+                }
+            });
             (GetAddressFromCoordinatesCommand as Command)!.ChangeCanExecute();
         }
 

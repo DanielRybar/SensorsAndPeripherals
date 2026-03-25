@@ -14,11 +14,12 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             GetConnectionStatusCommand = new Command(GetConnectionStatus);
             TestInternetConnectionCommand = new Command(async () =>
             {
-                IsWorking = true;
-                await Task.Delay(DelayConstants.MEDIUM_DELAY);
-                InternetConnectionTestResult = await peripheralService.TestInternetConnectionAsync();
-                GetConnectionStatus();
-                IsWorking = false;
+                await ExecuteSafeAsync(async () =>
+                {
+                    await Task.Delay(DelayConstants.MEDIUM_DELAY);
+                    InternetConnectionTestResult = await peripheralService.TestInternetConnectionAsync();
+                    GetConnectionStatus();
+                });
             });
         }
         #endregion

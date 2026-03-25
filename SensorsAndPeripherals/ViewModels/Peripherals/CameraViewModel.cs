@@ -14,9 +14,8 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
             StatusMessage = "CameraInit".SafeGetResource<string>();
             TakeAndDisplayPhotoCommand = new Command(async () =>
             {
-                IsWorking = true;
                 StatusMessage = string.Empty;
-                try
+                await ExecuteSafeAsync(async () =>
                 {
                     var (cameraResult, fileResult) = await peripheralService.TakePhotoAsync();
                     switch (cameraResult)
@@ -49,11 +48,7 @@ namespace SensorsAndPeripherals.ViewModels.Peripherals
                             StatusMessage = "CameraShootingError".SafeGetResource<string>();
                             break;
                     }
-                }
-                finally
-                {
-                    IsWorking = false;
-                }
+                });
             }, () => IsSupported);
         }
         #endregion
