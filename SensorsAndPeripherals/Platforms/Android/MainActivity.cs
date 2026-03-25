@@ -2,6 +2,7 @@
 using Android.Content;
 using Android.Content.PM;
 using Android.OS;
+using AndroidX.Core.View;
 using Plugin.NFC;
 
 namespace SensorsAndPeripherals
@@ -18,6 +19,12 @@ namespace SensorsAndPeripherals
         {
             base.OnCreate(savedInstanceState);
             CrossNFC.Init(this);
+            if (Window is not null)
+            {
+                var windowInsetsController = WindowCompat.GetInsetsController(Window, Window.DecorView);
+                windowInsetsController?.AppearanceLightNavigationBars = false;
+                windowInsetsController?.AppearanceLightStatusBars = false;
+            }
         }
 
         protected override void OnNewIntent(Intent? intent)
