@@ -538,6 +538,8 @@
     <Style TargetType="Grid" x:Key="GaugeContainer">
         <Setter Property="WidthRequest" Value="160" />
         <Setter Property="HeightRequest" Value="160" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
     </Style>
 
     <Style TargetType="Ellipse" x:Key="GaugeCircle">
@@ -568,10 +570,11 @@
         <Setter Property="WidthRequest" Value="4"/>
         <Setter Property="HeightRequest" Value="75"/>
         <Setter Property="CornerRadius" Value="3"/>
-        <Setter Property="VerticalOptions" Value="Start"/>
         <Setter Property="HorizontalOptions" Value="Center" />
-        <Setter Property="TranslationY" Value="5" />
-        <Setter Property="AnchorY" Value="1" />
+        <Setter Property="VerticalOptions" Value="Start" />
+        <Setter Property="Margin" Value="0, 5, 0, 0" />
+        <Setter Property="AnchorX" Value="0.5" />
+        <Setter Property="AnchorY" Value="1.0" />
     </Style>
 
     <Style TargetType="VerticalStackLayout" x:Key="GaugeVsl">

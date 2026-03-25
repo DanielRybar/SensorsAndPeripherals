@@ -1,11 +1,11 @@
 ﻿using SensorsAndPeripherals.Constants;
-using SensorsAndPeripherals.Views;
+using SensorsAndPeripherals.Views.Sensors;
 
 namespace SensorsAndPeripherals.Navigation
 {
     public partial class AppShell : Shell
     {
-        private readonly string defaultRoute = $"//{nameof(AboutAppPage)}";
+        private readonly string defaultRoute = $"//{nameof(AccelerometerPage)}";
 
         public AppShell()
         {
